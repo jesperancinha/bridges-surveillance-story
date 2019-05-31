@@ -1,0 +1,64 @@
+package com.jesperancinha.bridgelogistics.services;
+
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+import com.jesperancinha.bridgelogistics.BridgeOpeningConflict;
+import com.jesperancinha.bridgelogistics.data.BridgeOpeningDto;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+public class BridgeOpeningServiceTest {
+
+    private static final String BRIDGE_ONE = "bridgeOne";
+
+    private BridgeOpeningService bridgeOpeningService;
+
+    private final BridgeOpeningDto bridgeOpeningDto1 = new BridgeOpeningDto();
+    private final BridgeOpeningDto bridgeOpeningDto2 = new BridgeOpeningDto();
+    private final BridgeOpeningDto bridgeOpeningDto3 = new BridgeOpeningDto();
+
+    @Before
+    public void setUp() {
+        List<BridgeOpeningDto> testCases = new ArrayList<>();
+        bridgeOpeningDto1.setBridgeName(BRIDGE_ONE);
+        bridgeOpeningDto1.setOpeningTime(LocalDateTime.of(2016, 11, 1, 10, 10, 0));
+        bridgeOpeningDto1.setClosingTime(LocalDateTime.of(2016, 11, 1, 12, 10, 0));
+        testCases.add(bridgeOpeningDto1);
+        bridgeOpeningDto2.setOpeningTime(LocalDateTime.of(2016, 11, 1, 11, 10, 0));
+        bridgeOpeningDto2.setClosingTime(LocalDateTime.of(2016, 11, 1, 13, 10, 0));
+        bridgeOpeningDto2.setBridgeName(BRIDGE_ONE);
+        testCases.add(bridgeOpeningDto2);
+        bridgeOpeningDto3.setOpeningTime(LocalDateTime.of(2016, 11, 1, 12, 10, 0));
+        bridgeOpeningDto3.setClosingTime(LocalDateTime.of(2016, 11, 1, 14, 10, 0));
+        bridgeOpeningDto3.setBridgeName(BRIDGE_ONE);
+        testCases.add(bridgeOpeningDto3);
+        this.bridgeOpeningService = new BridgeOpeningService(testCases);
+    }
+
+    @Test
+    public void getAllConfilcts() {
+        final Map<String, Map<BridgeOpeningDto, BridgeOpeningConflict>> brugopeningConflicts = bridgeOpeningService.detectAllConflicts();
+
+        assertThat(brugopeningConflicts).hasSize(1);
+        final Map<BridgeOpeningDto, BridgeOpeningConflict> bridgeOne = brugopeningConflicts.get(BRIDGE_ONE);
+        assertThat(bridgeOne).isNotNull();
+        final Set<BridgeOpeningDto> bridgeOpeningDtos = bridgeOne.keySet();
+        final Object[] allOpenings = bridgeOpeningDtos.toArray();
+        assertThat(allOpenings).hasSize(2);
+        assertThat(allOpenings).containsExactly(bridgeOpeningDto1, bridgeOpeningDto2);
+        final List<BridgeOpeningDto> betrokkenElementenOpening1 = bridgeOne.get(allOpenings[0]).getRelatedOpeningTimes();
+        assertThat(betrokkenElementenOpening1).hasSize(2);
+        assertThat(betrokkenElementenOpening1).containsExactly(bridgeOpeningDto1, bridgeOpeningDto2);
+        final List<BridgeOpeningDto> betrokkenElementenOpening2 = bridgeOne.get(allOpenings[1]).getRelatedOpeningTimes();
+        assertThat(betrokkenElementenOpening2).hasSize(2);
+        assertThat(betrokkenElementenOpening2).containsExactly(bridgeOpeningDto2, bridgeOpeningDto3);
+
+    }
+}
