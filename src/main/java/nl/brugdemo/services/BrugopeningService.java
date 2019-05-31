@@ -5,10 +5,12 @@ import nl.brugdemo.data.BrugopeningDto;
 import org.paukov.combinatorics3.Generator;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class BrugopeningService {
 
@@ -19,52 +21,54 @@ public class BrugopeningService {
         this.openingTimes = openingTimes;
     }
 
-    public Map<String, List<BrugopeningConflict>> detectAllConflicts() {
-        Map<String, List<BrugopeningConflict>> allConflicts = new HashMap<>();
+    public Map<String, Map<BrugopeningDto, BrugopeningConflict>> detectAllConflicts() {
+        Map<String, Map<BrugopeningDto, BrugopeningConflict>> allConflicts = new HashMap<>();
         Generator.combination(openingTimes)
             .simple(2)
             .stream()
             .forEach(comb -> {
                 BrugopeningDto opening1 = comb.get(0);
                 BrugopeningDto opening2 = comb.get(1);
-                BrugopeningConflict conflicts = findConflicts(opening1, opening2);
-                if (conflicts != null) {
+                if (hasConflicts(opening1, opening2)) {
                     String bridgeName = opening1.getBrugNaam();
-                    List<BrugopeningConflict> currentBridgeConflicts = allConflicts.get(bridgeName);
+                    Map<BrugopeningDto, BrugopeningConflict> currentBridgeConflicts = allConflicts.get(bridgeName);
                     if (Objects.isNull(currentBridgeConflicts)) {
-                        currentBridgeConflicts = new ArrayList<>();
+                        currentBridgeConflicts = new HashMap<>();
                     }
-                    currentBridgeConflicts.add(conflicts);
+                    BrugopeningConflict brugopeningConflict = currentBridgeConflicts.get(opening1);
+                    if(Objects.isNull(brugopeningConflict)){
+                        brugopeningConflict = new BrugopeningConflict();
+                        brugopeningConflict.setBetrokkenElementen(new ArrayList<>());
+                        currentBridgeConflicts.put(opening1, brugopeningConflict);
+                    }
+                    brugopeningConflict.getBetrokkenElementen().addAll(Arrays.asList(opening1, opening2));
+                    sanitize(brugopeningConflict);
                     allConflicts.put(bridgeName, currentBridgeConflicts);
                 }
             });
         return allConflicts;
     }
 
-    private BrugopeningConflict findConflicts(BrugopeningDto opening1, BrugopeningDto opening2) {
+    /**
+     * This method prevents conflictual opening times to be
+     * @param currentBridgeConflicts
+     */
+    private void sanitize(BrugopeningConflict currentBridgeConflicts) {
+        currentBridgeConflicts
+            .setBetrokkenElementen(currentBridgeConflicts.getBetrokkenElementen()
+                .stream()
+                .distinct()
+                .collect(Collectors.toList()));
+    }
+
+    private boolean hasConflicts(BrugopeningDto opening1, BrugopeningDto opening2) {
         if (opening1.getBrugNaam().equalsIgnoreCase(opening2.getBrugNaam())) {
             if (opening1.getGaatDicht().isAfter((opening2.getGaatOpen())) && opening1.getGaatOpen().isBefore(opening2.getGaatOpen())) {
-                return createConflict(opening1, opening2);
-            } else if (opening1.getGaatOpen().isBefore(opening2.getGaatOpen()) && opening1.getGaatDicht().isAfter(opening2.getGaatDicht())) {
-                return createConflict(opening1, opening2);
-            }
+                return true;
+            } else
+                return opening1.getGaatOpen().isBefore(opening2.getGaatOpen()) && opening1.getGaatDicht().isAfter(opening2.getGaatDicht());
         }
-        return null;
+        return false;
     }
 
-    private BrugopeningConflict createConflict(BrugopeningDto opening1, BrugopeningDto opening2) {
-        BrugopeningConflict brugopeningConflict = new BrugopeningConflict();
-        addOpenings(brugopeningConflict, opening1, opening2);
-        return brugopeningConflict;
-    }
-
-    private void addOpenings(BrugopeningConflict brugopeningConflict, BrugopeningDto opening1, BrugopeningDto opening2) {
-        List<BrugopeningDto> betrokkenElementen = brugopeningConflict.getBetrokkenElementen();
-        if (betrokkenElementen == null) {
-            betrokkenElementen = new ArrayList<>();
-            brugopeningConflict.setBetrokkenElementen(betrokkenElementen);
-        }
-        betrokkenElementen.add(opening1);
-        betrokkenElementen.add(opening2);
-    }
 }
