@@ -17,12 +17,10 @@ import java.util.Set;
 public class BridgeOpeningServiceTest {
 
     private static final String BRIDGE_ONE = "bridgeOne";
-
-    private BridgeOpeningService bridgeOpeningService;
-
     private final BridgeOpeningDto bridgeOpeningDto1 = new BridgeOpeningDto();
     private final BridgeOpeningDto bridgeOpeningDto2 = new BridgeOpeningDto();
     private final BridgeOpeningDto bridgeOpeningDto3 = new BridgeOpeningDto();
+    private BridgeOpeningService bridgeOpeningService;
 
     @Before
     public void setUp() {
