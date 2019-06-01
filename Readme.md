@@ -54,4 +54,4 @@ limitations under the License.
 
 ## Sources
 
-*   [Brug Demo](https://github.com/MichelSchudel/brugdemo)
+-   [Brug Demo](https://github.com/MichelSchudel/brugdemo)
