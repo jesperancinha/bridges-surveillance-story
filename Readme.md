@@ -7,6 +7,7 @@ Starting from the example of [Michael Schudel](https://github.com/MichelSchudel)
 2019/06/01:
 - Generates conflict table by key opening time
 - Orders opening times by opening time
+
 2019/05/31:
 - Changes code from dutch to english
 - AssertJ for unit tests
