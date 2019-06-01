@@ -21,7 +21,7 @@ Starting from the example of [Michael Schudel](https://github.com/MichelSchudel)
 
 ## License
 
-```
+```text
 Copyright 2019 João Esperancinha (jesperancinha)
 
 Licensed under the Apache License, Version 2.0 (the "License");
