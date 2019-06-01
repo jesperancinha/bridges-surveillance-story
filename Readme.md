@@ -9,6 +9,7 @@ Starting from the example of [Michael Schudel](https://github.com/MichelSchudel)
 ## Requirements Change log
 
 2019/06/01:
+-   Records timetables per bridge name
 -   Generates conflict table by key opening time
 -   Orders opening times by opening time
 
