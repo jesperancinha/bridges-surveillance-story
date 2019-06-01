@@ -47,11 +47,11 @@ limitations under the License.
 
 ## About me
 
-* Twitter [@jofisaes](https://twitter.com/jofisaes)
-* GitHub [jesperancinha](https://github.com/jesperancinha)
-* Free Code Camp [jofisaes](https://www.freecodecamp.org/jofisaes)
-* Hackerrank [jofisaes](https://www.hackerrank.com/jofisaes)
+*   Twitter [@jofisaes](https://twitter.com/jofisaes)
+*   GitHub [jesperancinha](https://github.com/jesperancinha)
+*   Free Code Camp [jofisaes](https://www.freecodecamp.org/jofisaes)
+*   Hackerrank [jofisaes](https://www.hackerrank.com/jofisaes)
 
 ## Sources
 
-* [Brug Demo](https://github.com/MichelSchudel/brugdemo)
+*   [Brug Demo](https://github.com/MichelSchudel/brugdemo)
