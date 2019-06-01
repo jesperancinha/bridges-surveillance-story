@@ -61,8 +61,8 @@ public class BridgeOpeningService {
         currentBridgeConflicts
             .setRelatedOpeningTimes(currentBridgeConflicts.getRelatedOpeningTimes()
                 .stream()
-                .distinct()
                 .sorted((ot1, ot2) -> ot1.getOpeningTime().isAfter(ot2.getOpeningTime()) ? 1 : 0)
+                .distinct()
                 .collect(Collectors.toList()));
     }
 

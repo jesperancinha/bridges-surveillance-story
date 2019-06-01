@@ -53,19 +53,15 @@ public class BridgeOpeningServiceTest {
         assertThat(bridgeOne).isNotNull();
         final Set<BridgeOpeningDto> bridgeOpeningDtos = bridgeOne.keySet();
         assertThat(bridgeOpeningDtos).hasSize(3);
-        final List<BridgeOpeningDto> newOpeningOrders = new ArrayList<>(bridgeOpeningDtos);
-        BridgeOpeningDto firstOpeningFound = newOpeningOrders.get(0);
-        BridgeOpeningDto secondOpeningFound = newOpeningOrders.get(1);
-        BridgeOpeningDto thirdOpeningFound = newOpeningOrders.get(2);
-        final List<BridgeOpeningDto> relatedElementsConflict1 = bridgeOne.get(firstOpeningFound).getRelatedOpeningTimes();
-        assertThat(relatedElementsConflict1).hasSize(3);
-        assertThat(relatedElementsConflict1).contains(firstOpeningFound, secondOpeningFound, thirdOpeningFound);
-        final List<BridgeOpeningDto> relatedElementsConflict2 = bridgeOne.get(secondOpeningFound).getRelatedOpeningTimes();
-        assertThat(relatedElementsConflict2).hasSize(2);
-        assertThat(relatedElementsConflict2).contains(firstOpeningFound, secondOpeningFound);
-        assertThat(relatedElementsConflict2).containsAnyOf(firstOpeningFound, thirdOpeningFound);
-        final List<BridgeOpeningDto> relatedElementsConflict3 = bridgeOne.get(secondOpeningFound).getRelatedOpeningTimes();
+
+        final List<BridgeOpeningDto> relatedElementsConflict1 = bridgeOne.get(bridgeOpeningDto1).getRelatedOpeningTimes();
+        assertThat(relatedElementsConflict1).hasSize(2);
+        assertThat(relatedElementsConflict1).contains(bridgeOpeningDto1, bridgeOpeningDto2);
+        final List<BridgeOpeningDto> relatedElementsConflict2 = bridgeOne.get(bridgeOpeningDto2).getRelatedOpeningTimes();
+        assertThat(relatedElementsConflict2).hasSize(3);
+        assertThat(relatedElementsConflict2).contains(bridgeOpeningDto1, bridgeOpeningDto2, bridgeOpeningDto3);
+        final List<BridgeOpeningDto> relatedElementsConflict3 = bridgeOne.get(bridgeOpeningDto3).getRelatedOpeningTimes();
         assertThat(relatedElementsConflict3).hasSize(2);
-        assertThat(relatedElementsConflict3).contains(secondOpeningFound, firstOpeningFound);
+        assertThat(relatedElementsConflict3).contains(bridgeOpeningDto2, bridgeOpeningDto3);
     }
 }
