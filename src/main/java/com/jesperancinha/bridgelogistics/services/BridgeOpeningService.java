@@ -19,24 +19,43 @@ import java.util.stream.Collectors;
 public class BridgeOpeningService {
 
 
-    private List<BridgeOpeningDto> openingTimes;
+    private Map<String, List<BridgeOpeningDto>> openingTimes;
 
-    BridgeOpeningService(List<BridgeOpeningDto> openingTimes) {
+    /**
+     * Initialize your service with an opening times map per bridge name
+     *
+     * @param openingTimes {@link Map}
+     */
+    BridgeOpeningService(Map<String, List<BridgeOpeningDto>> openingTimes) {
         this.openingTimes = openingTimes;
+
+    }
+
+    /**
+     * Initialize your service with an unsorted opening times list
+     *
+     * @param allOpeningTimes {@link List}
+     */
+    BridgeOpeningService(List<BridgeOpeningDto> allOpeningTimes) {
+        this.openingTimes = allOpeningTimes.stream().collect(
+            Collectors.groupingBy(BridgeOpeningDto::getBridgeName));
     }
 
     /**
      * Detects all conflictual time slots in current bridge times
-     * @return
+     *
+     * @return All conflicts map per bridge, per opening times {@link Map}
      */
     public Map<String, Map<BridgeOpeningDto, BridgeOpeningConflict>> detectAllConflicts() {
         Map<String, Map<BridgeOpeningDto, BridgeOpeningConflict>> allConflicts = new HashMap<>();
-        Generator.combination(openingTimes)
-            .simple(2)
-            .stream()
-            .map(combination -> Generator.permutation(combination).simple())
-            .flatMap(IGenerator::stream)
-            .forEach(comb -> findConflictInATwoListBridgeOpeningTimes(allConflicts, comb));
+        openingTimes.forEach((bridgeName, bridgeOeningTimes) ->
+            Generator.combination(bridgeOeningTimes)
+                .simple(2)
+                .stream()
+                .map(combination -> Generator.permutation(combination).simple())
+                .flatMap(IGenerator::stream)
+                .forEach(comb -> findConflictInATwoListBridgeOpeningTimes(allConflicts, comb)));
+
         return allConflicts;
     }
 
@@ -92,6 +111,7 @@ public class BridgeOpeningService {
     private boolean hasConflicts(BridgeOpeningDto opening1, BridgeOpeningDto opening2) {
         return hasConflictsByOrder(opening1, opening2) || hasConflictsByOrder(opening2, opening1);
     }
+
     private boolean hasConflictsByOrder(BridgeOpeningDto opening1, BridgeOpeningDto opening2) {
         if (opening1.getBridgeName().equalsIgnoreCase(opening2.getBridgeName())) {
             if (opening1.getClosingTime().isAfter((opening2.getOpeningTime())) && opening1.getOpeningTime().isBefore(opening2.getOpeningTime())) {
