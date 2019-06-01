@@ -3,6 +3,7 @@ package com.jesperancinha.bridgelogistics.services;
 import com.jesperancinha.bridgelogistics.BridgeOpeningConflict;
 import com.jesperancinha.bridgelogistics.data.BridgeOpeningDto;
 import org.paukov.combinatorics3.Generator;
+import org.paukov.combinatorics3.IGenerator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,6 +27,8 @@ public class BridgeOpeningService {
         Generator.combination(openingTimes)
             .simple(2)
             .stream()
+            .map(combination -> Generator.permutation(combination).simple())
+            .flatMap(IGenerator::stream)
             .forEach(comb -> {
                 BridgeOpeningDto opening1 = comb.get(0);
                 BridgeOpeningDto opening2 = comb.get(1);
@@ -36,7 +39,7 @@ public class BridgeOpeningService {
                         currentBridgeConflicts = new HashMap<>();
                     }
                     BridgeOpeningConflict bridgeOpeningConflict = currentBridgeConflicts.get(opening1);
-                    if(Objects.isNull(bridgeOpeningConflict)){
+                    if (Objects.isNull(bridgeOpeningConflict)) {
                         bridgeOpeningConflict = new BridgeOpeningConflict();
                         bridgeOpeningConflict.setRelatedOpeningTimes(new ArrayList<>());
                         currentBridgeConflicts.put(opening1, bridgeOpeningConflict);
@@ -51,6 +54,7 @@ public class BridgeOpeningService {
 
     /**
      * This method prevents conflictual opening times to be
+     *
      * @param currentBridgeConflicts {@link BridgeOpeningConflict}
      */
     private void sanitize(BridgeOpeningConflict currentBridgeConflicts) {
@@ -58,10 +62,14 @@ public class BridgeOpeningService {
             .setRelatedOpeningTimes(currentBridgeConflicts.getRelatedOpeningTimes()
                 .stream()
                 .distinct()
+                .sorted((ot1, ot2) -> ot1.getOpeningTime().isAfter(ot2.getOpeningTime()) ? 1 : 0)
                 .collect(Collectors.toList()));
     }
 
     private boolean hasConflicts(BridgeOpeningDto opening1, BridgeOpeningDto opening2) {
+        return hasConflictsByOrder(opening1, opening2) || hasConflictsByOrder(opening2, opening1);
+    }
+    private boolean hasConflictsByOrder(BridgeOpeningDto opening1, BridgeOpeningDto opening2) {
         if (opening1.getBridgeName().equalsIgnoreCase(opening2.getBridgeName())) {
             if (opening1.getClosingTime().isAfter((opening2.getOpeningTime())) && opening1.getOpeningTime().isBefore(opening2.getOpeningTime())) {
                 return true;

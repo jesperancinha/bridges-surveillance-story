@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -23,6 +24,7 @@ public class BridgeOpeningServiceTest {
     private final BridgeOpeningDto bridgeOpeningDto1 = new BridgeOpeningDto();
     private final BridgeOpeningDto bridgeOpeningDto2 = new BridgeOpeningDto();
     private final BridgeOpeningDto bridgeOpeningDto3 = new BridgeOpeningDto();
+    private final List<BridgeOpeningDto> allOpenings = new ArrayList<>(Arrays.asList(bridgeOpeningDto1, bridgeOpeningDto2, bridgeOpeningDto3));
 
     @Before
     public void setUp() {
@@ -44,21 +46,26 @@ public class BridgeOpeningServiceTest {
 
     @Test
     public void getAllConfilcts() {
-        final Map<String, Map<BridgeOpeningDto, BridgeOpeningConflict>> brugopeningConflicts = bridgeOpeningService.detectAllConflicts();
+        final Map<String, Map<BridgeOpeningDto, BridgeOpeningConflict>> bridgeOpeningConflicts = bridgeOpeningService.detectAllConflicts();
 
-        assertThat(brugopeningConflicts).hasSize(1);
-        final Map<BridgeOpeningDto, BridgeOpeningConflict> bridgeOne = brugopeningConflicts.get(BRIDGE_ONE);
+        assertThat(bridgeOpeningConflicts).hasSize(1);
+        final Map<BridgeOpeningDto, BridgeOpeningConflict> bridgeOne = bridgeOpeningConflicts.get(BRIDGE_ONE);
         assertThat(bridgeOne).isNotNull();
         final Set<BridgeOpeningDto> bridgeOpeningDtos = bridgeOne.keySet();
-        final Object[] allOpenings = bridgeOpeningDtos.toArray();
-        assertThat(allOpenings).hasSize(2);
-        assertThat(allOpenings).containsExactly(bridgeOpeningDto1, bridgeOpeningDto2);
-        final List<BridgeOpeningDto> betrokkenElementenOpening1 = bridgeOne.get(allOpenings[0]).getRelatedOpeningTimes();
-        assertThat(betrokkenElementenOpening1).hasSize(2);
-        assertThat(betrokkenElementenOpening1).containsExactly(bridgeOpeningDto1, bridgeOpeningDto2);
-        final List<BridgeOpeningDto> betrokkenElementenOpening2 = bridgeOne.get(allOpenings[1]).getRelatedOpeningTimes();
-        assertThat(betrokkenElementenOpening2).hasSize(2);
-        assertThat(betrokkenElementenOpening2).containsExactly(bridgeOpeningDto2, bridgeOpeningDto3);
-
+        assertThat(bridgeOpeningDtos).hasSize(3);
+        final List<BridgeOpeningDto> newOpeningOrders = new ArrayList<>(bridgeOpeningDtos);
+        BridgeOpeningDto firstOpeningFound = newOpeningOrders.get(0);
+        BridgeOpeningDto secondOpeningFound = newOpeningOrders.get(1);
+        BridgeOpeningDto thirdOpeningFound = newOpeningOrders.get(2);
+        final List<BridgeOpeningDto> relatedElementsConflict1 = bridgeOne.get(firstOpeningFound).getRelatedOpeningTimes();
+        assertThat(relatedElementsConflict1).hasSize(3);
+        assertThat(relatedElementsConflict1).contains(firstOpeningFound, secondOpeningFound, thirdOpeningFound);
+        final List<BridgeOpeningDto> relatedElementsConflict2 = bridgeOne.get(secondOpeningFound).getRelatedOpeningTimes();
+        assertThat(relatedElementsConflict2).hasSize(2);
+        assertThat(relatedElementsConflict2).contains(firstOpeningFound, secondOpeningFound);
+        assertThat(relatedElementsConflict2).containsAnyOf(firstOpeningFound, thirdOpeningFound);
+        final List<BridgeOpeningDto> relatedElementsConflict3 = bridgeOne.get(secondOpeningFound).getRelatedOpeningTimes();
+        assertThat(relatedElementsConflict3).hasSize(2);
+        assertThat(relatedElementsConflict3).contains(secondOpeningFound, firstOpeningFound);
     }
 }
