@@ -10,7 +10,6 @@ import org.junit.Test;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -24,7 +23,6 @@ public class BridgeOpeningServiceTest {
     private final BridgeOpeningDto bridgeOpeningDto1 = new BridgeOpeningDto();
     private final BridgeOpeningDto bridgeOpeningDto2 = new BridgeOpeningDto();
     private final BridgeOpeningDto bridgeOpeningDto3 = new BridgeOpeningDto();
-    private final List<BridgeOpeningDto> allOpenings = new ArrayList<>(Arrays.asList(bridgeOpeningDto1, bridgeOpeningDto2, bridgeOpeningDto3));
 
     @Before
     public void setUp() {

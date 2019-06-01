@@ -41,16 +41,16 @@ limitations under the License.
 
 **Under development**
 
-## Location:
+## Location
 
 [GitHub location](https://github.com/jesperancinha/brugdemo)
 
 ## About me
 
-*   Twitter [@jofisaes](https://twitter.com/jofisaes)
-*   GitHub [jesperancinha](https://github.com/jesperancinha)
-*   Free Code Camp [jofisaes](https://www.freecodecamp.org/jofisaes)
-*   Hackerrank [jofisaes](https://www.hackerrank.com/jofisaes)
+-   Twitter [@jofisaes](https://twitter.com/jofisaes)
+-   GitHub [jesperancinha](https://github.com/jesperancinha)
+-   Free Code Camp [jofisaes](https://www.freecodecamp.org/jofisaes)
+-   Hackerrank [jofisaes](https://www.hackerrank.com/jofisaes)
 
 ## Sources
 
