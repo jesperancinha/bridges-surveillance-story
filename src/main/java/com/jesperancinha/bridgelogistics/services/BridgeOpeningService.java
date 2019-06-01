@@ -13,6 +13,9 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+/**
+ * This service manages the bridge opening times service. It detects conflict and handles main bridge functions
+ */
 public class BridgeOpeningService {
 
 
@@ -22,6 +25,10 @@ public class BridgeOpeningService {
         this.openingTimes = openingTimes;
     }
 
+    /**
+     * Detects all conflictual time slots in current bridge times
+     * @return
+     */
     public Map<String, Map<BridgeOpeningDto, BridgeOpeningConflict>> detectAllConflicts() {
         Map<String, Map<BridgeOpeningDto, BridgeOpeningConflict>> allConflicts = new HashMap<>();
         Generator.combination(openingTimes)
@@ -29,27 +36,43 @@ public class BridgeOpeningService {
             .stream()
             .map(combination -> Generator.permutation(combination).simple())
             .flatMap(IGenerator::stream)
-            .forEach(comb -> {
-                BridgeOpeningDto opening1 = comb.get(0);
-                BridgeOpeningDto opening2 = comb.get(1);
-                if (hasConflicts(opening1, opening2)) {
-                    String bridgeName = opening1.getBridgeName();
-                    Map<BridgeOpeningDto, BridgeOpeningConflict> currentBridgeConflicts = allConflicts.get(bridgeName);
-                    if (Objects.isNull(currentBridgeConflicts)) {
-                        currentBridgeConflicts = new HashMap<>();
-                    }
-                    BridgeOpeningConflict bridgeOpeningConflict = currentBridgeConflicts.get(opening1);
-                    if (Objects.isNull(bridgeOpeningConflict)) {
-                        bridgeOpeningConflict = new BridgeOpeningConflict();
-                        bridgeOpeningConflict.setRelatedOpeningTimes(new ArrayList<>());
-                        currentBridgeConflicts.put(opening1, bridgeOpeningConflict);
-                    }
-                    bridgeOpeningConflict.getRelatedOpeningTimes().addAll(Arrays.asList(opening1, opening2));
-                    sanitize(bridgeOpeningConflict);
-                    allConflicts.put(bridgeName, currentBridgeConflicts);
-                }
-            });
+            .forEach(comb -> findConflictInATwoListBridgeOpeningTimes(allConflicts, comb));
         return allConflicts;
+    }
+
+    private void findConflictInATwoListBridgeOpeningTimes(Map<String, Map<BridgeOpeningDto, BridgeOpeningConflict>> allConflicts, List<BridgeOpeningDto> comb) {
+        BridgeOpeningDto opening1 = comb.get(0);
+        BridgeOpeningDto opening2 = comb.get(1);
+        if (hasConflicts(opening1, opening2)) {
+            handleConflicts(allConflicts, opening1, opening2);
+        }
+    }
+
+    private void handleConflicts(Map<String, Map<BridgeOpeningDto, BridgeOpeningConflict>> allConflicts, BridgeOpeningDto opening1, BridgeOpeningDto opening2) {
+        String bridgeName = opening1.getBridgeName();
+        Map<BridgeOpeningDto, BridgeOpeningConflict> currentBridgeConflicts = createOrGetBridgeOpeningDtoBridgeOpeningConflictMap(allConflicts, bridgeName);
+        BridgeOpeningConflict bridgeOpeningConflict = createOrGetBridgeOpeningConflict(currentBridgeConflicts, opening1);
+        bridgeOpeningConflict.getRelatedOpeningTimes().addAll(Arrays.asList(opening1, opening2));
+        sanitize(bridgeOpeningConflict);
+        allConflicts.put(bridgeName, currentBridgeConflicts);
+    }
+
+    private BridgeOpeningConflict createOrGetBridgeOpeningConflict(Map<BridgeOpeningDto, BridgeOpeningConflict> currentBridgeConflicts, BridgeOpeningDto opening1) {
+        BridgeOpeningConflict bridgeOpeningConflict = currentBridgeConflicts.get(opening1);
+        if (Objects.isNull(bridgeOpeningConflict)) {
+            bridgeOpeningConflict = new BridgeOpeningConflict();
+            bridgeOpeningConflict.setRelatedOpeningTimes(new ArrayList<>());
+            currentBridgeConflicts.put(opening1, bridgeOpeningConflict);
+        }
+        return bridgeOpeningConflict;
+    }
+
+    private Map<BridgeOpeningDto, BridgeOpeningConflict> createOrGetBridgeOpeningDtoBridgeOpeningConflictMap(Map<String, Map<BridgeOpeningDto, BridgeOpeningConflict>> allConflicts, String bridgeName) {
+        Map<BridgeOpeningDto, BridgeOpeningConflict> currentBridgeConflicts = allConflicts.get(bridgeName);
+        if (Objects.isNull(currentBridgeConflicts)) {
+            currentBridgeConflicts = new HashMap<>();
+        }
+        return currentBridgeConflicts;
     }
 
     /**
