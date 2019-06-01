@@ -9,15 +9,15 @@ Starting from the example of [Michael Schudel](https://github.com/MichelSchudel)
 ## Requirements Change log
 
 2019/06/01:
-- Generates conflict table by key opening time
-- Orders opening times by opening time
+-   Generates conflict table by key opening time
+-   Orders opening times by opening time
 
 2019/05/31:
-- Adds automated code QA tests
-- Changes code from dutch to english
-- AssertJ for unit tests
-- Groups by conflictual bridge opening
-- Groups by Bridge
+-   Adds automated code QA tests
+-   Changes code from dutch to english
+-   AssertJ for unit tests
+-   Groups by conflictual bridge opening
+-   Groups by Bridge
 
 ## License
 
