@@ -1,8 +1,8 @@
-# Bridge Service
+# Bridge Logistics JMS module
 
 You can find here installation information about how to get the services running
 
-## RabbitMQ
+## RabbitMQ Installation
 
 There are some quarks while installing RabbitMQ on a MAC. Here is what I had to do:
 
@@ -29,6 +29,22 @@ $ sudo mkdir /usr/local/sbin
 $ sudo chown <your_user_name>:admin /usr/local/sbin
 
 $ brew link rabbitmq
+
+## Rabbit MQ start
+
+$ rabbitmq-server
+
+## Rabbit MQ stop
+
+## Rabbit MQ management
+
+> Current exchanges
+
+$ rabbitmqctl list_exchanges
+
+> Current bindings
+
+$ rabbitmqctl list_bindings
 
 ## Sources
 

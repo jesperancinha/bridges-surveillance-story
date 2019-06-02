@@ -2,6 +2,6 @@ package com.jesperancinha.bridgelogistics.application;
 
 import javax.ws.rs.ApplicationPath;
 
-@ApplicationPath("rest")
+@ApplicationPath("bridgelogistics")
 public class RestConfiguration {
 }
