@@ -4,7 +4,9 @@
 
 # Bridge Management Logistics
 
-Starting from the example of [Michael Schudel](https://github.com/MichelSchudel), this is an application to be build using a JMS messaging system to serve the logistics for a bridge management system.
+Starting from the example of [Michael Schudel](https://github.com/MichelSchudel), this is an application to be build using a JMS messaging system to serve the logistics for a bridge management system.  
+If you look at the first [brick](https://github.com/jesperancinha/brugdemo/blob/master/bridge-logistics-jms/src/main/java/com/jesperancinha/bridgelogistics/services/BridgeOpeningService.java) of this project, you can see that the whole project involves managing timetables as a kick-start.
+The project will be expanded to further goals.  
 
 Current goal is to use RabbitMQ as a JMS provider. 
 JMS provider will play following roles:
@@ -19,9 +21,9 @@ Transport can be a train, bus, boat, bike, truck, etc.
 Merchandise should registered if it's destined to commercial exchanges.
 Events can be anything that may happen in a configured range around the bridge
 
-For passengers, a development area will be created called PCS(Passenger Control Service).
-For merchandise, a development area will be created called MCS(Merchandise Control Service).
-For bridge ranges, a development area will be created called DCS(Domain Control Service)
+For passengers, a development area will be created called PCS(Passenger Control Service).  
+For merchandise, a development area will be created called MCS(Merchandise Control Service).  
+For bridge ranges, a development area will be created called DCS(Domain Control Service).  
 
 ## Status
 
@@ -41,6 +43,7 @@ For bridge ranges, a development area will be created called DCS(Domain Control 
 ## Requirements Change log
 
 2019/06/02:
+-   MDB's deployed
 -   Foundations for Web application
 -   First PassengerConsumer JMS Topic listener
 -   Introduction of JMS provider
