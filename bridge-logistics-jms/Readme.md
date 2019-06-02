@@ -46,6 +46,18 @@ $ rabbitmqctl list_exchanges
 
 $ rabbitmqctl list_bindings
 
+## Running with JBoss
+
+This application is being tested with JBoss 8.0.0.Final
+If you run accross this error:
+
+```text
+Caused by: org.jboss.msc.service.ServiceNotFoundException: Service service jboss.ejb.default-resource-adapter-name-service not found
+```
+
+Please make sure that your standalone.xml file located in <wildfly_home>/standalone/configuration has been replaced by standalone-full.xml. You need that in order to run the MDB's (Message driven beans).
+
 ## Sources
 
 -   [How to install RabbitMQ on Mac using Homebrew](https://www.dyclassroom.com/howto-mac/how-to-install-rabbitmq-on-mac-using-homebrew)
+-   [Error when deploying an .ear file containing an MDB to JBoss](https://stackoverflow.com/questions/15670322/error-when-deploying-an-ear-file-containing-an-mdb-to-jboss)

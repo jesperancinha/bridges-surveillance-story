@@ -9,10 +9,10 @@ Starting from the example of [Michael Schudel](https://github.com/MichelSchudel)
 Current goal is to use RabbitMQ as a JMS provider. 
 JMS provider will play following roles:
 
-1.  Count passengers going through a bridge
-2.  Register transport type
-3.  Register merchandise before crossing the bridge
-4.  Register events per configured range area
+1.   Count passengers going through a bridge
+2.   Register transport type
+3.   Register merchandise before crossing the bridge
+4.   Register events per configured range area
 
 Passengers are registered by numbers and if they they carry extra merchandise or a bike
 Transport can be a train, bus, boat, bike, truck, etc.

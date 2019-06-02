@@ -13,6 +13,9 @@
         <!--suppress MavenPropertyInParent -->
         <version>${revision}</version>
     </parent>
+
+    <packaging>war</packaging>
+
     <dependencies>
         <dependency>
             <groupId>javax</groupId>
@@ -42,6 +45,14 @@
                 <version>2.22.1</version>
                 <configuration>
                     <useSystemClassLoader>false</useSystemClassLoader>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
         </plugins>
