@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/jesperancinha/brugdemo.svg?branch=master)](https://travis-ci.org/jesperancinha/brugdemo)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/c01626e32a04487fa23bf8174be56050)](https://www.codacy.com/app/jofisaes/brugdemo?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jesperancinha/brugdemo&amp;utm_campaign=Badge_Grade)
 [![CircleCI](https://circleci.com/gh/jesperancinha/brugdemo.svg?style=svg)](https://circleci.com/gh/jesperancinha/brugdemo)
 [![codebeat badge](https://codebeat.co/badges/fa858c4b-4c7e-4c5b-9323-9339dfe7176c)](https://codebeat.co/projects/github-com-jesperancinha-brugdemo-master)
