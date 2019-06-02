@@ -3,7 +3,7 @@ package com.jesperancinha.bridgelogistics.services;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.jesperancinha.bridgelogistics.BridgeOpeningConflict;
+import com.jesperancinha.bridgelogistics.data.BridgeOpeningConflictDto;
 import com.jesperancinha.bridgelogistics.data.BridgeOpeningDto;
 import org.junit.Before;
 import org.junit.Test;
@@ -42,10 +42,10 @@ public class BridgeOpeningServiceTest {
 
     @Test
     public void getAllConfilcts() {
-        final Map<String, Map<BridgeOpeningDto, BridgeOpeningConflict>> bridgeOpeningConflicts = bridgeOpeningService.detectAllConflicts();
+        final Map<String, Map<BridgeOpeningDto, BridgeOpeningConflictDto>> bridgeOpeningConflicts = bridgeOpeningService.detectAllConflicts();
 
         assertThat(bridgeOpeningConflicts).hasSize(1);
-        final Map<BridgeOpeningDto, BridgeOpeningConflict> bridgeOne = bridgeOpeningConflicts.get(BRIDGE_ONE);
+        final Map<BridgeOpeningDto, BridgeOpeningConflictDto> bridgeOne = bridgeOpeningConflicts.get(BRIDGE_ONE);
         assertThat(bridgeOne).isNotNull();
         final Set<BridgeOpeningDto> bridgeOpeningDtos = bridgeOne.keySet();
         assertThat(bridgeOpeningDtos).hasSize(3);

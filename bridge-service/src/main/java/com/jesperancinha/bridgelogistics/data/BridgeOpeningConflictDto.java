@@ -1,4 +1,4 @@
-package com.jesperancinha.bridgelogistics;
+package com.jesperancinha.bridgelogistics.data;
 
 import com.jesperancinha.bridgelogistics.data.BridgeOpeningDto;
 
@@ -8,7 +8,7 @@ import java.util.List;
  * This object is made when a conflict is found.
  * It will accumulate all conflicts found in reference to the first element in the list
  */
-public class BridgeOpeningConflict {
+public class BridgeOpeningConflictDto {
 
     private String message;
 
