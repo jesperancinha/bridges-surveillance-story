@@ -52,7 +52,7 @@ public class BridgeOpeningServiceTest {
     }
 
     @Test
-    public void testConflicts_BridgeOne_Ok() {
+    public void testConflictsBridgeOneOk() {
         final Map<String, Map<BridgeOpeningDto, BridgeOpeningConflictDto>> bridgeOpeningConflicts = bridgeOpeningService.detectAllConflicts();
 
         assertThat(bridgeOpeningConflicts).hasSize(2);
@@ -83,7 +83,7 @@ public class BridgeOpeningServiceTest {
     }
 
     @Test
-    public void testConflicts_BridgeTwo_Ok() {
+    public void testConflictsBridgeTwoOk() {
         final Map<String, Map<BridgeOpeningDto, BridgeOpeningConflictDto>> bridgeOpeningConflicts = bridgeOpeningService.detectAllConflicts();
 
         assertThat(bridgeOpeningConflicts).hasSize(2);
