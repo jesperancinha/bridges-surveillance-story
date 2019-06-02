@@ -19,6 +19,10 @@ Transport can be a train, bus, boat, bike, truck, etc.
 Merchandise should registered if it's destined to commercial exchanges.
 Events can be anything that may happen in a configured range around the bridge
 
+For passengers, a development area will be created called PCS(Passenger Control Service).
+For merchandise, a development area will be created called MCS(Merchandise Control Service).
+For bridge ranges, a development area will be created called DCS(Domain Control Service)
+
 ## Status
 
 **Under development**
@@ -31,10 +35,13 @@ Events can be anything that may happen in a configured range around the bridge
 
 -   [Brug Demo](https://github.com/MichelSchudel/brugdemo)
 -   [JMS vs RabbitMQ](https://dzone.com/articles/jms-vs-rabbitmq)
+-   [Get Started with RabbitMQ](https://www.rabbitmq.com/getstarted.html)
+-   [Microservice Architecture by Kong](https://microservices.io/)
 
 ## Requirements Change log
 
 2019/06/02:
+-   Foundations for Web application
 -   First PassengerConsumer JMS Topic listener
 -   Introduction of JMS provider
 -   Introduction of RabbitMQ

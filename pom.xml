@@ -45,6 +45,10 @@
     </dependencyManagement>
 
     <modules>
-        <module>bridge-service</module>
+        <module>bridge-logistics-service</module>
+        <module>bridge-logistics-webapp</module>
+        <module>bridge-logistics-pcs</module>
+        <module>bridge-logistics-dcs</module>
+        <module>bridge-logistics-mcs</module>
     </modules>
 </project>

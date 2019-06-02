@@ -23,8 +23,11 @@ Error: Could not symlink sbin/cuttlefish
 /usr/local/sbin is not writable.
 
 $ sudo echo /usr/local/sbin >> /etc/paths.d/usr_local_sbin
+
 $ sudo mkdir /usr/local/sbin
+
 $ sudo chown <your_user_name>:admin /usr/local/sbin
+
 $ brew link rabbitmq
 
 ## Sources
