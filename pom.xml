@@ -16,19 +16,32 @@
         <combinatoricslib3.version>3.3.0</combinatoricslib3.version>
         <assertj-core.version>3.11.1</assertj-core.version>
         <javaee-api.version>8.0.1</javaee-api.version>
+        <amqp-client.version>5.7.1</amqp-client.version>
+        <slf4j-api.version>1.7.26</slf4j-api.version>
+        <activemq-client.version>5.15.9</activemq-client.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>org.apache.activemq</groupId>
+                <artifactId>activemq-client</artifactId>
+                <version>${activemq-client.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.rabbitmq</groupId>
+                <artifactId>amqp-client</artifactId>
+                <version>${amqp-client.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>javax</groupId>
                 <artifactId>javaee-api</artifactId>
                 <version>${javaee-api.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>${junit.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.dpaukov</groupId>
@@ -39,7 +52,11 @@
                 <groupId>org.assertj</groupId>
                 <artifactId>assertj-core</artifactId>
                 <version>${assertj-core.version}</version>
-                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -50,5 +67,6 @@
         <module>bridge-logistics-pcs</module>
         <module>bridge-logistics-dcs</module>
         <module>bridge-logistics-mcs</module>
+        <module>bridge-logistics-jms-test</module>
     </modules>
 </project>

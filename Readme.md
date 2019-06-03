@@ -40,8 +40,11 @@ For bridge ranges, a development area will be created called DCS(Domain Control 
 -   [JMS vs RabbitMQ](https://dzone.com/articles/jms-vs-rabbitmq)
 -   [Get Started with RabbitMQ](https://www.rabbitmq.com/getstarted.html)
 -   [Microservice Architecture by Kong](https://microservices.io/)
+-   [Integrate ActiveMQ with WildFly](http://www.mastertheboss.com/jboss-server/jboss-jms/integrate-activemq-with-wildfly)
 
 ## Requirements Change log
+2019/06/03:   
+-   Switch to ActiveMQ  
 
 2019/06/02:
 -   MDB's deployed
