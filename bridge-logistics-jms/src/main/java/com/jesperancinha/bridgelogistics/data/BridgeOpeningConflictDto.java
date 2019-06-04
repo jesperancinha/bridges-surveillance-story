@@ -1,7 +1,5 @@
 package com.jesperancinha.bridgelogistics.data;
 
-import com.jesperancinha.bridgelogistics.data.BridgeOpeningDto;
-
 import java.util.List;
 
 /**

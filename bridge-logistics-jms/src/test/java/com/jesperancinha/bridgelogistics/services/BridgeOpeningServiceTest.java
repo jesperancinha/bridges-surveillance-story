@@ -1,8 +1,6 @@
 package com.jesperancinha.bridgelogistics.services;
 
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import com.jesperancinha.bridgelogistics.data.BridgeOpeningConflictDto;
 import com.jesperancinha.bridgelogistics.data.BridgeOpeningDto;
 import org.junit.Before;
@@ -13,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class BridgeOpeningServiceTest {
 

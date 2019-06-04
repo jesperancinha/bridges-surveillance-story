@@ -43,6 +43,11 @@ For bridge ranges, a development area will be created called DCS(Domain Control 
 -   [Integrate ActiveMQ with WildFly](http://www.mastertheboss.com/jboss-server/jboss-jms/integrate-activemq-with-wildfly)
 
 ## Requirements Change log
+
+2019/06/04:
+-   First successful implementation of the JMS topics with ActiveMQ
+-   Connection from Wildfly to local ActiveMQ
+
 2019/06/03:   
 -   Switch to ActiveMQ  
 

@@ -3,13 +3,7 @@ package com.jesperancinha.bridgelogistics;
 import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
 
-import javax.jms.Connection;
-import javax.jms.ConnectionFactory;
-import javax.jms.JMSException;
-import javax.jms.MessageProducer;
-import javax.jms.Session;
-import javax.jms.TextMessage;
-import javax.jms.Topic;
+import javax.jms.*;
 
 public class PassengerProducer {
 
@@ -17,8 +11,8 @@ public class PassengerProducer {
 
     public static void main(String[] args) throws JMSException {
 
-      // ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(url);
-        ConnectionFactory connectionFactory = new ActiveMQConnectionFactory("java:global/activemq/topic/PasssengerTopic");
+//       ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(url);
+        ConnectionFactory connectionFactory = new ActiveMQConnectionFactory("defaultUser", "defaultPassword", "tcp://localhost:61616");
         Connection connection = connectionFactory.createConnection();
         connection.start();
 
@@ -26,9 +20,9 @@ public class PassengerProducer {
         // create here a non-transactional session object. If you want
         // to use transactions you should set the first parameter to 'true'
         Session session = connection.createSession(false,
-            Session.AUTO_ACKNOWLEDGE);
+                Session.AUTO_ACKNOWLEDGE);
 
-        Topic topic = session.createTopic("java:global/activemq/topic/PasssengerTopic");
+        Topic topic = session.createTopic("topic/PasssengerTopic");
 
         MessageProducer producer = session.createProducer(topic);
 

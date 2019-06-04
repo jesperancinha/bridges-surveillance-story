@@ -9,14 +9,20 @@ import javax.jms.Message;
 import javax.jms.MessageListener;
 
 @MessageDriven(activationConfig = {
-    @ActivationConfigProperty(propertyName = "destinationType",
-        propertyValue = "javax.jms.Topic"),
-    @ActivationConfigProperty(propertyName = "destinationLookup",
-        propertyValue = "activemq/topic/PasssengerTopic")
+        @ActivationConfigProperty(propertyName = "acknowledgeMode",
+                propertyValue = "Auto-acknowledge"),
+        @ActivationConfigProperty(propertyName = "destinationType",
+                propertyValue = "javax.jms.Topic"),
+        @ActivationConfigProperty(propertyName = "destination",
+                propertyValue = "topic/PasssengerTopic")
 })
 public class PassengerConsumer implements MessageListener {
 
     private Logger logger = LoggerFactory.getLogger(PassengerConsumer.class);
+
+    public PassengerConsumer() {
+        super();
+    }
 
     @Override
     public void onMessage(Message message) {

@@ -5,12 +5,7 @@ import com.jesperancinha.bridgelogistics.data.BridgeOpeningDto;
 import org.paukov.combinatorics3.Generator;
 import org.paukov.combinatorics3.IGenerator;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -38,7 +33,7 @@ public class BridgeOpeningService {
      */
     BridgeOpeningService(List<BridgeOpeningDto> allOpeningTimes) {
         this.openingTimes = allOpeningTimes.stream().collect(
-            Collectors.groupingBy(BridgeOpeningDto::getBridgeName));
+                Collectors.groupingBy(BridgeOpeningDto::getBridgeName));
     }
 
     /**
@@ -49,12 +44,12 @@ public class BridgeOpeningService {
     public Map<String, Map<BridgeOpeningDto, BridgeOpeningConflictDto>> detectAllConflicts() {
         Map<String, Map<BridgeOpeningDto, BridgeOpeningConflictDto>> allConflicts = new HashMap<>();
         openingTimes.forEach((bridgeName, bridgeOeningTimes) ->
-            Generator.combination(bridgeOeningTimes)
-                .simple(2)
-                .stream()
-                .map(combination -> Generator.permutation(combination).simple())
-                .flatMap(IGenerator::stream)
-                .forEach(comb -> findConflictInATwoListBridgeOpeningTimes(allConflicts, comb)));
+                Generator.combination(bridgeOeningTimes)
+                        .simple(2)
+                        .stream()
+                        .map(combination -> Generator.permutation(combination).simple())
+                        .flatMap(IGenerator::stream)
+                        .forEach(comb -> findConflictInATwoListBridgeOpeningTimes(allConflicts, comb)));
 
         return allConflicts;
     }
@@ -101,11 +96,11 @@ public class BridgeOpeningService {
      */
     private void sanitize(BridgeOpeningConflictDto currentBridgeConflicts) {
         currentBridgeConflicts
-            .setRelatedOpeningTimes(currentBridgeConflicts.getRelatedOpeningTimes()
-                .stream()
-                .sorted((ot1, ot2) -> ot1.getOpeningTime().isAfter(ot2.getOpeningTime()) ? 1 : 0)
-                .distinct()
-                .collect(Collectors.toList()));
+                .setRelatedOpeningTimes(currentBridgeConflicts.getRelatedOpeningTimes()
+                        .stream()
+                        .sorted((ot1, ot2) -> ot1.getOpeningTime().isAfter(ot2.getOpeningTime()) ? 1 : 0)
+                        .distinct()
+                        .collect(Collectors.toList()));
     }
 
     private boolean hasConflicts(BridgeOpeningDto opening1, BridgeOpeningDto opening2) {
