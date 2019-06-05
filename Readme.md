@@ -6,7 +6,7 @@
 # Bridge Management Logistics
 
 Starting from the example of [Michael Schudel](https://github.com/MichelSchudel), this is an application to be build using a JMS messaging system to serve the logistics for a bridge management system.  
-If you look at the first [brick](https://github.com/jesperancinha/brugdemo/blob/master/bridge-logistics-jms/src/main/java/com/jesperancinha/bridgelogistics/services/BridgeOpeningService.java) of this project, you can see that the whole project involves managing timetables as a kick-start.
+If you look at the first [brick](https://github.com/jesperancinha/bridge-logistics/blob/master/bridge-logistics-jms/src/main/java/com/jesperancinha/bridgelogistics/services/BridgeOpeningService.java) of this project, you can see that the whole project involves managing timetables as a kick-start.
 The project will be expanded to further goals.  
 
 Current goal is to use RabbitMQ as a JMS provider. 
