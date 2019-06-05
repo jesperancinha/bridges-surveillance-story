@@ -5,13 +5,13 @@ import java.time.LocalDateTime;
 /**
  * This object serves to determine a time slot to open and close a bridge
  */
-public class BridgeOpeningDto {
+public class BridgeOpeningTimesDto {
 
     private BridgeDto bridge;
     private LocalDateTime openingTime;
     private LocalDateTime closingTime;
 
-    public BridgeDto getBridgeName() {
+    public BridgeDto getBridge() {
         return bridge;
     }
 

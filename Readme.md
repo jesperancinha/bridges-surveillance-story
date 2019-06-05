@@ -9,7 +9,7 @@ Starting from the example of [Michel Schudel](https://github.com/MichelSchudel),
 If you look at the first [brick](https://github.com/jesperancinha/bridge-logistics/blob/master/bridge-logistics-jms/src/main/java/com/jesperancinha/bridgelogistics/services/BridgeOpeningService.java) of this project, you can see that the whole project involves managing timetables as a kick-start.
 The project will be expanded to further goals.  
 
-Current goal is to use RabbitMQ as a JMS provider. 
+Current goal is to use ActiveMQ as a JMS provider. 
 JMS provider will play following roles:
 
 1.   Count passengers going through a bridge
@@ -26,7 +26,11 @@ For passengers, a development area will be created called PCS(Passenger Control 
 For merchandise, a development area will be created called MCS(Merchandise Control Service).  
 For bridge ranges, a development area will be created called DCS(Domain Control Service).  
 
-## Status
+## Overview
+
+![N|Solid](docs/BridgeSystem.png)
+
+## Status 
 
 **Under development**
 
@@ -41,8 +45,10 @@ For bridge ranges, a development area will be created called DCS(Domain Control 
 -   [Get Started with RabbitMQ](https://www.rabbitmq.com/getstarted.html)
 -   [Microservice Architecture by Kong](https://microservices.io/)
 -   [Integrate ActiveMQ with WildFly](http://www.mastertheboss.com/jboss-server/jboss-jms/integrate-activemq-with-wildfly)
+-   [SQL Server Table and Column Naming Conventions](https://www.codeproject.com/Articles/1065295/SQL-Server-Table-and-Column-Naming-Conventions)
 
 ## Requirements Change log
+
 2019/06/05:
 -   Design stages
 

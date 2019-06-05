@@ -10,7 +10,7 @@ public class BridgeOpeningConflictDto {
 
     private String message;
 
-    private List<BridgeOpeningDto> relatedOpeningTimes;
+    private List<BridgeOpeningTimesDto> relatedOpeningTimes;
 
     public String getMessage() {
         return message;
@@ -20,11 +20,11 @@ public class BridgeOpeningConflictDto {
         this.message = message;
     }
 
-    public List<BridgeOpeningDto> getRelatedOpeningTimes() {
+    public List<BridgeOpeningTimesDto> getRelatedOpeningTimes() {
         return relatedOpeningTimes;
     }
 
-    public void setRelatedOpeningTimes(List<BridgeOpeningDto> relatedOpeningTimes) {
+    public void setRelatedOpeningTimes(List<BridgeOpeningTimesDto> relatedOpeningTimes) {
         this.relatedOpeningTimes = relatedOpeningTimes;
     }
 }
