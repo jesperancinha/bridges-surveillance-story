@@ -7,16 +7,16 @@ import java.time.LocalDateTime;
  */
 public class BridgeOpeningDto {
 
-    private String bridgeName;
+    private BridgeDto bridge;
     private LocalDateTime openingTime;
     private LocalDateTime closingTime;
 
-    public String getBridgeName() {
-        return bridgeName;
+    public BridgeDto getBridgeName() {
+        return bridge;
     }
 
-    public void setBridgeName(String bridgeName) {
-        this.bridgeName = bridgeName;
+    public void setBridgeName(BridgeDto bridgeName) {
+        this.bridge = bridgeName;
     }
 
     public LocalDateTime getOpeningTime() {
