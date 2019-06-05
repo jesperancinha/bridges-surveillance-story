@@ -1,7 +1,7 @@
-[![Build Status](https://travis-ci.org/jesperancinha/brugdemo.svg?branch=master)](https://travis-ci.org/jesperancinha/brugdemo)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c01626e32a04487fa23bf8174be56050)](https://www.codacy.com/app/jofisaes/brugdemo?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jesperancinha/brugdemo&amp;utm_campaign=Badge_Grade)
-[![CircleCI](https://circleci.com/gh/jesperancinha/brugdemo.svg?style=svg)](https://circleci.com/gh/jesperancinha/brugdemo)
-[![codebeat badge](https://codebeat.co/badges/fa858c4b-4c7e-4c5b-9323-9339dfe7176c)](https://codebeat.co/projects/github-com-jesperancinha-brugdemo-master)
+[![Build Status](https://travis-ci.org/jesperancinha/bridge-logistics.svg?branch=master)](https://travis-ci.org/jesperancinha/bridge-logistics)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/318e7f47f8944b3d97a83d2fd2402b85)](https://www.codacy.com/app/jofisaes/bridge-logistics?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jesperancinha/bridge-logistics&amp;utm_campaign=Badge_Grade)
+[![CircleCI](https://circleci.com/gh/jesperancinha/bridge-logistics.svg?style=svg)](https://circleci.com/gh/jesperancinha/bridge-logistics)
+[![codebeat badge](https://codebeat.co/badges/a81b5c40-aeca-4b8d-9015-1ed1004617e5)](https://codebeat.co/projects/github-com-jesperancinha-bridge-logistics-master)
 
 # Bridge Management Logistics
 
@@ -43,6 +43,8 @@ For bridge ranges, a development area will be created called DCS(Domain Control 
 -   [Integrate ActiveMQ with WildFly](http://www.mastertheboss.com/jboss-server/jboss-jms/integrate-activemq-with-wildfly)
 
 ## Requirements Change log
+2019/06/05:
+-   Design stages
 
 2019/06/04:
 -   First successful implementation of the JMS topics with ActiveMQ
