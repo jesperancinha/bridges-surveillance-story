@@ -1,10 +1,10 @@
-package com.jesperancinha.bridgelogistics.services;
+package com.jesperancinha.bridgelogistics.jpa;
 
 
 import com.jesperancinha.bridgelogistics.controllers.data.BridgeDto;
 import com.jesperancinha.bridgelogistics.controllers.data.BridgeOpeningConflictDto;
 import com.jesperancinha.bridgelogistics.controllers.data.BridgeOpeningTimeDto;
-import com.jesperancinha.bridgelogistics.services.BridgeOpeningService;
+import com.jesperancinha.bridgelogistics.jpa.services.BridgeOpeningService;
 import org.junit.Before;
 import org.junit.Test;
 

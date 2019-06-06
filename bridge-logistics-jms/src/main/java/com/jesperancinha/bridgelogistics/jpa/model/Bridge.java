@@ -1,4 +1,4 @@
-package com.jesperancinha.bridgelogistics.services.model;
+package com.jesperancinha.bridgelogistics.jpa.model;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -8,7 +8,11 @@ import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
-@Entity(name = "Bridge")
+@Entity
+@NamedQueries({
+        @NamedQuery(name="Bridge.findAll",
+                query="SELECT b FROM Bridge b")
+})
 public class Bridge {
 
     @Id

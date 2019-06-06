@@ -1,4 +1,4 @@
-package com.jesperancinha.bridgelogistics.services.model;
+package com.jesperancinha.bridgelogistics.jpa.model;
 
 import lombok.Getter;
 import lombok.Setter;

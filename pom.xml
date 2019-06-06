@@ -20,6 +20,7 @@
         <slf4j-api.version>1.7.26</slf4j-api.version>
         <activemq.version>5.15.9</activemq.version>
         <lombok.version>1.18.8</lombok.version>
+        <hibernate-entitymanager.version>5.4.3.Final</hibernate-entitymanager.version>
     </properties>
 
     <dependencyManagement>
@@ -68,6 +69,11 @@
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-entitymanager</artifactId>
+                <version>${hibernate-entitymanager.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
