@@ -19,6 +19,7 @@
         <amqp-client.version>5.7.1</amqp-client.version>
         <slf4j-api.version>1.7.26</slf4j-api.version>
         <activemq.version>5.15.9</activemq.version>
+        <lombok.version>1.18.8</lombok.version>
     </properties>
 
     <dependencyManagement>
@@ -62,6 +63,11 @@
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>${junit.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -1,14 +1,16 @@
-package com.jesperancinha.bridgelogistics.data;
+package com.jesperancinha.bridgelogistics.controllers.data;
 
 import java.time.LocalDateTime;
 
 /**
  * This object serves to determine a time slot to open and close a bridge
  */
-public class BridgeOpeningTimesDto {
+public class BridgeOpeningTimeDto {
 
     private BridgeDto bridge;
+
     private LocalDateTime openingTime;
+
     private LocalDateTime closingTime;
 
     public BridgeDto getBridge() {

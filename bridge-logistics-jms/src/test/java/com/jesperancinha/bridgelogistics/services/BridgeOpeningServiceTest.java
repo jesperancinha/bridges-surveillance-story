@@ -1,9 +1,10 @@
 package com.jesperancinha.bridgelogistics.services;
 
 
-import com.jesperancinha.bridgelogistics.data.BridgeDto;
-import com.jesperancinha.bridgelogistics.data.BridgeOpeningConflictDto;
-import com.jesperancinha.bridgelogistics.data.BridgeOpeningTimesDto;
+import com.jesperancinha.bridgelogistics.controllers.data.BridgeDto;
+import com.jesperancinha.bridgelogistics.controllers.data.BridgeOpeningConflictDto;
+import com.jesperancinha.bridgelogistics.controllers.data.BridgeOpeningTimeDto;
+import com.jesperancinha.bridgelogistics.services.BridgeOpeningService;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -19,92 +20,92 @@ public class BridgeOpeningServiceTest {
 
     private static final BridgeDto BRIDGE_ONE = new BridgeDto();
     private static final BridgeDto BRIDGE_TWO = new BridgeDto();
-    private final BridgeOpeningTimesDto bridgeOpeningTimesDto1 = new BridgeOpeningTimesDto();
-    private final BridgeOpeningTimesDto bridgeOpeningTimesDto2 = new BridgeOpeningTimesDto();
-    private final BridgeOpeningTimesDto bridgeOpeningTimesDto3 = new BridgeOpeningTimesDto();
-    private final BridgeOpeningTimesDto bridgeOpeningTimesDto4 = new BridgeOpeningTimesDto();
-    private final BridgeOpeningTimesDto bridgeOpeningTimesDto5 = new BridgeOpeningTimesDto();
+    private final BridgeOpeningTimeDto bridgeOpeningTimeDto1 = new BridgeOpeningTimeDto();
+    private final BridgeOpeningTimeDto bridgeOpeningTimeDto2 = new BridgeOpeningTimeDto();
+    private final BridgeOpeningTimeDto bridgeOpeningTimeDto3 = new BridgeOpeningTimeDto();
+    private final BridgeOpeningTimeDto bridgeOpeningTimeDto4 = new BridgeOpeningTimeDto();
+    private final BridgeOpeningTimeDto bridgeOpeningTimeDto5 = new BridgeOpeningTimeDto();
     private BridgeOpeningService bridgeOpeningService;
 
     @Before
     public void setUp() {
-        List<BridgeOpeningTimesDto> testCases = new ArrayList<>();
-        bridgeOpeningTimesDto1.setBridgeName(BRIDGE_ONE);
-        bridgeOpeningTimesDto1.setOpeningTime(LocalDateTime.of(2016, 11, 1, 10, 10, 0));
-        bridgeOpeningTimesDto1.setClosingTime(LocalDateTime.of(2016, 11, 1, 12, 10, 0));
-        testCases.add(bridgeOpeningTimesDto1);
-        bridgeOpeningTimesDto2.setOpeningTime(LocalDateTime.of(2016, 11, 1, 11, 10, 0));
-        bridgeOpeningTimesDto2.setClosingTime(LocalDateTime.of(2016, 11, 1, 13, 10, 0));
-        bridgeOpeningTimesDto2.setBridgeName(BRIDGE_ONE);
-        testCases.add(bridgeOpeningTimesDto2);
-        bridgeOpeningTimesDto3.setOpeningTime(LocalDateTime.of(2016, 11, 1, 12, 10, 0));
-        bridgeOpeningTimesDto3.setClosingTime(LocalDateTime.of(2016, 11, 1, 14, 10, 0));
-        bridgeOpeningTimesDto3.setBridgeName(BRIDGE_ONE);
-        testCases.add(bridgeOpeningTimesDto3);
-        bridgeOpeningTimesDto4.setOpeningTime(LocalDateTime.of(2016, 11, 1, 9, 10, 0));
-        bridgeOpeningTimesDto4.setClosingTime(LocalDateTime.of(2016, 11, 1, 14, 10, 0));
-        bridgeOpeningTimesDto4.setBridgeName(BRIDGE_TWO);
-        testCases.add(bridgeOpeningTimesDto4);
-        bridgeOpeningTimesDto5.setOpeningTime(LocalDateTime.of(2016, 11, 1, 12, 10, 0));
-        bridgeOpeningTimesDto5.setClosingTime(LocalDateTime.of(2016, 11, 1, 20, 10, 0));
-        bridgeOpeningTimesDto5.setBridgeName(BRIDGE_TWO);
-        testCases.add(bridgeOpeningTimesDto5);
+        List<BridgeOpeningTimeDto> testCases = new ArrayList<>();
+        bridgeOpeningTimeDto1.setBridgeName(BRIDGE_ONE);
+        bridgeOpeningTimeDto1.setOpeningTime(LocalDateTime.of(2016, 11, 1, 10, 10, 0));
+        bridgeOpeningTimeDto1.setClosingTime(LocalDateTime.of(2016, 11, 1, 12, 10, 0));
+        testCases.add(bridgeOpeningTimeDto1);
+        bridgeOpeningTimeDto2.setOpeningTime(LocalDateTime.of(2016, 11, 1, 11, 10, 0));
+        bridgeOpeningTimeDto2.setClosingTime(LocalDateTime.of(2016, 11, 1, 13, 10, 0));
+        bridgeOpeningTimeDto2.setBridgeName(BRIDGE_ONE);
+        testCases.add(bridgeOpeningTimeDto2);
+        bridgeOpeningTimeDto3.setOpeningTime(LocalDateTime.of(2016, 11, 1, 12, 10, 0));
+        bridgeOpeningTimeDto3.setClosingTime(LocalDateTime.of(2016, 11, 1, 14, 10, 0));
+        bridgeOpeningTimeDto3.setBridgeName(BRIDGE_ONE);
+        testCases.add(bridgeOpeningTimeDto3);
+        bridgeOpeningTimeDto4.setOpeningTime(LocalDateTime.of(2016, 11, 1, 9, 10, 0));
+        bridgeOpeningTimeDto4.setClosingTime(LocalDateTime.of(2016, 11, 1, 14, 10, 0));
+        bridgeOpeningTimeDto4.setBridgeName(BRIDGE_TWO);
+        testCases.add(bridgeOpeningTimeDto4);
+        bridgeOpeningTimeDto5.setOpeningTime(LocalDateTime.of(2016, 11, 1, 12, 10, 0));
+        bridgeOpeningTimeDto5.setClosingTime(LocalDateTime.of(2016, 11, 1, 20, 10, 0));
+        bridgeOpeningTimeDto5.setBridgeName(BRIDGE_TWO);
+        testCases.add(bridgeOpeningTimeDto5);
         this.bridgeOpeningService = new BridgeOpeningService(testCases);
     }
 
     @Test
     public void testConflictsBridgeOneOk() {
-        final Map<BridgeDto, Map<BridgeOpeningTimesDto, BridgeOpeningConflictDto>> bridgeOpeningConflicts = bridgeOpeningService.detectAllConflicts();
+        final Map<BridgeDto, Map<BridgeOpeningTimeDto, BridgeOpeningConflictDto>> bridgeOpeningConflicts = bridgeOpeningService.detectAllConflicts();
 
         assertThat(bridgeOpeningConflicts).hasSize(2);
 
-        final Map<BridgeOpeningTimesDto, BridgeOpeningConflictDto> bridgeOne = bridgeOpeningConflicts.get(BRIDGE_ONE);
+        final Map<BridgeOpeningTimeDto, BridgeOpeningConflictDto> bridgeOne = bridgeOpeningConflicts.get(BRIDGE_ONE);
         assertThat(bridgeOne).isNotNull();
-        final Set<BridgeOpeningTimesDto> bridgeOpeningTimesDtos = bridgeOne.keySet();
-        assertThat(bridgeOpeningTimesDtos).isNotNull();
-        assertThat(bridgeOpeningTimesDtos).hasSize(3);
-        final BridgeOpeningConflictDto bridgeOpeningConflictDto1 = bridgeOne.get(bridgeOpeningTimesDto1);
+        final Set<BridgeOpeningTimeDto> bridgeOpeningTimeDtos = bridgeOne.keySet();
+        assertThat(bridgeOpeningTimeDtos).isNotNull();
+        assertThat(bridgeOpeningTimeDtos).hasSize(3);
+        final BridgeOpeningConflictDto bridgeOpeningConflictDto1 = bridgeOne.get(bridgeOpeningTimeDto1);
         assertThat(bridgeOpeningConflictDto1).isNotNull();
-        final List<BridgeOpeningTimesDto> relatedElementsConflict1 = bridgeOpeningConflictDto1.getRelatedOpeningTimes();
+        final List<BridgeOpeningTimeDto> relatedElementsConflict1 = bridgeOpeningConflictDto1.getRelatedOpeningTimes();
         assertThat(relatedElementsConflict1).isNotNull();
         assertThat(relatedElementsConflict1).hasSize(2);
-        assertThat(relatedElementsConflict1).contains(bridgeOpeningTimesDto1, bridgeOpeningTimesDto2);
-        final BridgeOpeningConflictDto bridgeOpeningConflictDto2 = bridgeOne.get(bridgeOpeningTimesDto2);
+        assertThat(relatedElementsConflict1).contains(bridgeOpeningTimeDto1, bridgeOpeningTimeDto2);
+        final BridgeOpeningConflictDto bridgeOpeningConflictDto2 = bridgeOne.get(bridgeOpeningTimeDto2);
         assertThat(bridgeOpeningConflictDto2).isNotNull();
-        final List<BridgeOpeningTimesDto> relatedElementsConflict2 = bridgeOpeningConflictDto2.getRelatedOpeningTimes();
+        final List<BridgeOpeningTimeDto> relatedElementsConflict2 = bridgeOpeningConflictDto2.getRelatedOpeningTimes();
         assertThat(relatedElementsConflict2).isNotNull();
         assertThat(relatedElementsConflict2).hasSize(3);
-        assertThat(relatedElementsConflict2).contains(bridgeOpeningTimesDto1, bridgeOpeningTimesDto2, bridgeOpeningTimesDto3);
-        final BridgeOpeningConflictDto bridgeOpeningConflictDto3 = bridgeOne.get(bridgeOpeningTimesDto3);
+        assertThat(relatedElementsConflict2).contains(bridgeOpeningTimeDto1, bridgeOpeningTimeDto2, bridgeOpeningTimeDto3);
+        final BridgeOpeningConflictDto bridgeOpeningConflictDto3 = bridgeOne.get(bridgeOpeningTimeDto3);
         assertThat(bridgeOpeningConflictDto3).isNotNull();
-        final List<BridgeOpeningTimesDto> relatedElementsConflict3 = bridgeOpeningConflictDto3.getRelatedOpeningTimes();
+        final List<BridgeOpeningTimeDto> relatedElementsConflict3 = bridgeOpeningConflictDto3.getRelatedOpeningTimes();
         assertThat(relatedElementsConflict3).isNotNull();
         assertThat(relatedElementsConflict3).hasSize(2);
-        assertThat(relatedElementsConflict3).contains(bridgeOpeningTimesDto2, bridgeOpeningTimesDto3);
+        assertThat(relatedElementsConflict3).contains(bridgeOpeningTimeDto2, bridgeOpeningTimeDto3);
     }
 
     @Test
     public void testConflictsBridgeTwoOk() {
-        final Map<BridgeDto, Map<BridgeOpeningTimesDto, BridgeOpeningConflictDto>> bridgeOpeningConflicts = bridgeOpeningService.detectAllConflicts();
+        final Map<BridgeDto, Map<BridgeOpeningTimeDto, BridgeOpeningConflictDto>> bridgeOpeningConflicts = bridgeOpeningService.detectAllConflicts();
 
         assertThat(bridgeOpeningConflicts).hasSize(2);
 
-        final Map<BridgeOpeningTimesDto, BridgeOpeningConflictDto> bridgeTwo = bridgeOpeningConflicts.get(BRIDGE_TWO);
+        final Map<BridgeOpeningTimeDto, BridgeOpeningConflictDto> bridgeTwo = bridgeOpeningConflicts.get(BRIDGE_TWO);
         assertThat(bridgeTwo).isNotNull();
-        final Set<BridgeOpeningTimesDto> bridgeOpeningTimesDtos2 = bridgeTwo.keySet();
-        assertThat(bridgeOpeningTimesDtos2).isNotNull();
-        assertThat(bridgeOpeningTimesDtos2).hasSize(2);
-        final BridgeOpeningConflictDto bridgeOpeningConflictDto4 = bridgeTwo.get(bridgeOpeningTimesDto4);
+        final Set<BridgeOpeningTimeDto> bridgeOpeningTimeDtos2 = bridgeTwo.keySet();
+        assertThat(bridgeOpeningTimeDtos2).isNotNull();
+        assertThat(bridgeOpeningTimeDtos2).hasSize(2);
+        final BridgeOpeningConflictDto bridgeOpeningConflictDto4 = bridgeTwo.get(bridgeOpeningTimeDto4);
         assertThat(bridgeOpeningConflictDto4).isNotNull();
-        final List<BridgeOpeningTimesDto> relatedOpeningTimes4ForBridge2 = bridgeOpeningConflictDto4.getRelatedOpeningTimes();
+        final List<BridgeOpeningTimeDto> relatedOpeningTimes4ForBridge2 = bridgeOpeningConflictDto4.getRelatedOpeningTimes();
         assertThat(relatedOpeningTimes4ForBridge2).isNotNull();
         assertThat(relatedOpeningTimes4ForBridge2).hasSize(2);
-        assertThat(relatedOpeningTimes4ForBridge2).contains(bridgeOpeningTimesDto4, bridgeOpeningTimesDto5);
-        final BridgeOpeningConflictDto bridgeOpeningConflictDto5 = bridgeTwo.get(bridgeOpeningTimesDto5);
+        assertThat(relatedOpeningTimes4ForBridge2).contains(bridgeOpeningTimeDto4, bridgeOpeningTimeDto5);
+        final BridgeOpeningConflictDto bridgeOpeningConflictDto5 = bridgeTwo.get(bridgeOpeningTimeDto5);
         assertThat(bridgeOpeningConflictDto5).isNotNull();
-        final List<BridgeOpeningTimesDto> relatedOpeningTimes5ForBridge2 = bridgeOpeningConflictDto5.getRelatedOpeningTimes();
+        final List<BridgeOpeningTimeDto> relatedOpeningTimes5ForBridge2 = bridgeOpeningConflictDto5.getRelatedOpeningTimes();
         assertThat(relatedOpeningTimes5ForBridge2).isNotNull();
         assertThat(relatedOpeningTimes5ForBridge2).hasSize(2);
-        assertThat(relatedOpeningTimes5ForBridge2).contains(bridgeOpeningTimesDto5, bridgeOpeningTimesDto4);
+        assertThat(relatedOpeningTimes5ForBridge2).contains(bridgeOpeningTimeDto5, bridgeOpeningTimeDto4);
     }
 }

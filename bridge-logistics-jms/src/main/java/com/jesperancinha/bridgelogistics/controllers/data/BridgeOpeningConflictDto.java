@@ -1,4 +1,4 @@
-package com.jesperancinha.bridgelogistics.data;
+package com.jesperancinha.bridgelogistics.controllers.data;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ public class BridgeOpeningConflictDto {
 
     private String message;
 
-    private List<BridgeOpeningTimesDto> relatedOpeningTimes;
+    private List<BridgeOpeningTimeDto> relatedOpeningTimes;
 
     public String getMessage() {
         return message;
@@ -20,11 +20,11 @@ public class BridgeOpeningConflictDto {
         this.message = message;
     }
 
-    public List<BridgeOpeningTimesDto> getRelatedOpeningTimes() {
+    public List<BridgeOpeningTimeDto> getRelatedOpeningTimes() {
         return relatedOpeningTimes;
     }
 
-    public void setRelatedOpeningTimes(List<BridgeOpeningTimesDto> relatedOpeningTimes) {
+    public void setRelatedOpeningTimes(List<BridgeOpeningTimeDto> relatedOpeningTimes) {
         this.relatedOpeningTimes = relatedOpeningTimes;
     }
 }

@@ -1,4 +1,4 @@
-package com.jesperancinha.bridgelogistics.data;
+package com.jesperancinha.bridgelogistics.controllers.data;
 
 public class BridgeDto {
 

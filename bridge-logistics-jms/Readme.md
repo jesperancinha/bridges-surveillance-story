@@ -73,6 +73,7 @@ Please not that in this project, it is the presence of the jboss-deployment-stru
 -   [How to install RabbitMQ on Mac using Homebrew](https://www.dyclassroom.com/howto-mac/how-to-install-rabbitmq-on-mac-using-homebrew)
 -   [Error when deploying an .ear file containing an MDB to JBoss](https://stackoverflow.com/questions/15670322/error-when-deploying-an-ear-file-containing-an-mdb-to-jboss)
 -   [JNDI adaptor for RabbitMQ integration in WildFly](https://github.com/isis2304/rabbitmq-wildfly-adaptor)
+-   [40 Introduction to the Java Persistence API](https://javaee.github.io/tutorial/persistence-intro.html)
 
 ## About me
 
