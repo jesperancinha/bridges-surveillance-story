@@ -10,8 +10,9 @@
 
     <properties>
         <revision>0.0.0-SNAPSHOT</revision>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler>3.8.0</maven.compiler>
         <junit.version>4.12</junit.version>
         <combinatoricslib3.version>3.3.0</combinatoricslib3.version>
         <assertj-core.version>3.11.1</assertj-core.version>

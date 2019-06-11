@@ -35,6 +35,38 @@ For bridge ranges, a development area will be created called DCS(Domain Control 
 
 **Under development**
 
+
+## Docker installation
+
+### Install VirtualBox
+
+Option 1
+
+>$ brew tap caskroom/cask  
+>$ brew install brew-cask-completion  
+>$ brew install brew-cask  
+>$ brew cask install virtualbox  
+ 
+Option 2
+
+Go to: [Download VirtualBox](https://www.virtualbox.org/wiki/Downloads)  
+
+You might need this:
+
+>$ sudo spctl --master-enable
+
+
+### Install Docker machine
+
+Option 1
+
+>$ brew cask install docker
+>$ docker-machine create dev
+
+Option 2
+
+Go to: [Install Docker Desktop for Mac](https://docs.docker.com/docker-for-mac/install/)
+
 ## Location
 
 [GitHub location](https://github.com/jesperancinha/brugdemo)
@@ -49,8 +81,13 @@ For bridge ranges, a development area will be created called DCS(Domain Control 
 -   [SQL Server Table and Column Naming Conventions](https://www.codeproject.com/Articles/1065295/SQL-Server-Table-and-Column-Naming-Conventions)
 -   [The Power of a Good SQL Naming Convention](https://www.xaprb.com/blog/2008/10/26/the-power-of-a-good-sql-naming-convention/)
 -   [Integration Testing for Java EE](https://www.oracle.com/technetwork/articles/java/integrationtesting-487452.html)
+-   [How to create Docker Images with a Dockerfile](https://www.howtoforge.com/tutorial/how-to-create-docker-images-with-dockerfile/)
 
 ## Requirements Change log
+
+2019/06/10:
+-   Migration to Java 11
+-   Docker foundations
 
 2019/06/06:
 -   Main entities created
