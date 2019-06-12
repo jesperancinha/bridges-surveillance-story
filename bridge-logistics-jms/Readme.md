@@ -23,7 +23,14 @@ I am currentlyt using the following:
 1. [activemq-rar-5.10.0.rar](https://search.maven.org/search?q=a:activemq-rar) | [direct download](https://search.maven.org/remotecontent?filepath=org/apache/activemq/activemq-rar/5.15.9/activemq-rar-5.15.9.rar)
 2. [Wildfly Server 16.0.0 Final](https://wildfly.org/downloads) | [direct download](https://download.jboss.org/wildfly/16.0.0.Final/wildfly-16.0.0.Final.zip)
 
+Remember to run your wilfly version with  **--add-modules=java.se** as a VM switch.
 
+Remove this from your standalone xml:
+
+```xml
+    <default-bindings context-service="java:jboss/ee/concurrency/context/default" datasource="java:jboss/datasources/ExampleDS" jms-connection-factory="java:jboss/DefaultJMSConnectionFactory" managed-executor-service="java:jboss/ee/concurrency/executor/default" managed-scheduled-executor-service="java:jboss/ee/concurrency/scheduler/default" managed-thread-factory="java:jboss/ee/concurrency/factory/default"/>
+
+```
 > standalone.xml (after overwritten by that all file)  
 ```xml
  <subsystem xmlns="urn:jboss:domain:resource-adapters:5.0">
@@ -74,6 +81,9 @@ Please not that in this project, it is the presence of the jboss-deployment-stru
 -   [Error when deploying an .ear file containing an MDB to JBoss](https://stackoverflow.com/questions/15670322/error-when-deploying-an-ear-file-containing-an-mdb-to-jboss)
 -   [JNDI adaptor for RabbitMQ integration in WildFly](https://github.com/isis2304/rabbitmq-wildfly-adaptor)
 -   [40 Introduction to the Java Persistence API](https://javaee.github.io/tutorial/persistence-intro.html)
+-   [How to run Wildfly 14 with java 11?](https://stackoverflow.com/questions/52852192/how-to-run-wildfly-14-with-java-11)
+-   [Can not finish schema update: org.h2.jdbc.JdbcSQLException: Table & ldquo; PG_CLASS & rdquo; not found; SQL statement](https://www.codesd.com/item/can-not-finish-schema-update-org-h2-jdbc-jdbcsqlexception-table-pg-class-not-found-sql-statement.html)
+-   [Could not complete schema update: org.h2.jdbc.JdbcSQLException: Table “PG_CLASS” not found; SQL statement](https://stackoverflow.com/questions/27694783/could-not-complete-schema-update-org-h2-jdbc-jdbcsqlexception-table-pg-class)
 
 ## About me
 

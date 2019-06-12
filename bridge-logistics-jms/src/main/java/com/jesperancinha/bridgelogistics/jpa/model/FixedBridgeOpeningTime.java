@@ -5,7 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Past;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 import static javax.persistence.CascadeType.ALL;
 
@@ -15,7 +15,7 @@ import static javax.persistence.CascadeType.ALL;
 public class FixedBridgeOpeningTime {
 
     @Id
-    @Column(name="FixedBridgeOpeningTimeID")
+    @Column(name = "FixedBridgeOpeningTimeID")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
@@ -26,10 +26,10 @@ public class FixedBridgeOpeningTime {
     @Temporal(javax.persistence.TemporalType.DATE)
     @Past
     @Column(name = "OpeningTime")
-    private LocalDateTime openingTime;
+    private Date openingTime;
 
     @Temporal(javax.persistence.TemporalType.DATE)
     @Past
     @Column(name = "ClosingTime")
-    private LocalDateTime closingTime;
+    private Date closingTime;
 }

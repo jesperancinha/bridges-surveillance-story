@@ -8,7 +8,7 @@ import java.util.List;
 
 public class BridgeRepository {
 
-    @PersistenceContext
+    @PersistenceContext(unitName = "bridge-logistics-pu")
     private EntityManager entityManager;
 
     public List<Bridge> findAllBridges() {
