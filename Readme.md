@@ -67,6 +67,14 @@ Option 2
 
 Go to: [Install Docker Desktop for Mac](https://docs.docker.com/docker-for-mac/install/)
 
+### Start Docker
+
+>$ docker build --rm=true -t bridge-logistics-image .
+
+>$ docker run -i -t -d -p 5432:5432 bridge-logistics-image
+
+>$ docker container ls --all
+
 ## Location
 
 [GitHub location](https://github.com/jesperancinha/brugdemo)
@@ -82,8 +90,13 @@ Go to: [Install Docker Desktop for Mac](https://docs.docker.com/docker-for-mac/i
 -   [The Power of a Good SQL Naming Convention](https://www.xaprb.com/blog/2008/10/26/the-power-of-a-good-sql-naming-convention/)
 -   [Integration Testing for Java EE](https://www.oracle.com/technetwork/articles/java/integrationtesting-487452.html)
 -   [How to create Docker Images with a Dockerfile](https://www.howtoforge.com/tutorial/how-to-create-docker-images-with-dockerfile/)
+-   [How to create a Docker image for PostgreSQL and persist data](https://www.andreagrandi.it/2015/02/21/how-to-create-a-docker-image-for-postgresql-and-persist-data/)
+-   [Dockerize PostgreSQL](https://docs.docker.com/engine/examples/postgresql_service/)
 
 ## Requirements Change log
+
+2019/06/12:
+-   Docker file
 
 2019/06/10:
 -   Migration to Java 11
