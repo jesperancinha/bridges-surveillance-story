@@ -1,4 +1,4 @@
-package com.jesperancinha.bridgelogistics.jpa.services;
+package com.jesperancinha.bridgelogistics.services;
 
 import com.jesperancinha.bridgelogistics.controllers.data.BridgeDto;
 import com.jesperancinha.bridgelogistics.controllers.data.BridgeOpeningConflictDto;

@@ -95,6 +95,9 @@ Go to: [Install Docker Desktop for Mac](https://docs.docker.com/docker-for-mac/i
 
 ## Requirements Change log
 
+2019/06/13:
+-   Module separation
+
 2019/06/12:
 -   Automatic PostgreSQL table generation via JEE8 and the Java Persistence API
 -   Docker file
