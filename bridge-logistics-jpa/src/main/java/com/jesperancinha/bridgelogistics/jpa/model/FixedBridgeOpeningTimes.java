@@ -11,8 +11,9 @@ import static javax.persistence.CascadeType.ALL;
 
 @Getter
 @Setter
-@Entity(name = "FixedBridgeOpeningTime")
-public class FixedBridgeOpeningTime {
+@Entity
+@Table(name = "FIXED_BRIDGE_OPENING_TIMES")
+public class FixedBridgeOpeningTimes {
 
     @Id
     @Column(name = "FixedBridgeOpeningTimeID")

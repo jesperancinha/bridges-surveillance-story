@@ -96,6 +96,7 @@ Go to: [Install Docker Desktop for Mac](https://docs.docker.com/docker-for-mac/i
 ## Requirements Change log
 
 2019/06/13:
+-   Rest services implementation foundations
 -   Module separation
 
 2019/06/12:
@@ -141,6 +142,10 @@ Go to: [Install Docker Desktop for Mac](https://docs.docker.com/docker-for-mac/i
 -   AssertJ for unit tests
 -   Groups by conflictual bridge opening
 -   Groups by Bridge
+
+## Tools
+
+-   [SDKMAN!](https://sdkman.io/install)
 
 ## License
 

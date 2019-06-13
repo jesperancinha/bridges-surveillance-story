@@ -25,11 +25,11 @@ public class BridgeOpeningServiceTest {
     private final BridgeOpeningTimeDto bridgeOpeningTimeDto3 = new BridgeOpeningTimeDto();
     private final BridgeOpeningTimeDto bridgeOpeningTimeDto4 = new BridgeOpeningTimeDto();
     private final BridgeOpeningTimeDto bridgeOpeningTimeDto5 = new BridgeOpeningTimeDto();
-    private BridgeOpeningService bridgeOpeningService;
+    private final BridgeOpeningService bridgeOpeningService = new BridgeOpeningService();
+    private final List<BridgeOpeningTimeDto> testCases = new ArrayList<>();
 
     @Before
     public void setUp() {
-        List<BridgeOpeningTimeDto> testCases = new ArrayList<>();
         bridgeOpeningTimeDto1.setBridgeName(BRIDGE_ONE);
         bridgeOpeningTimeDto1.setOpeningTime(LocalDateTime.of(2016, 11, 1, 10, 10, 0));
         bridgeOpeningTimeDto1.setClosingTime(LocalDateTime.of(2016, 11, 1, 12, 10, 0));
@@ -50,12 +50,11 @@ public class BridgeOpeningServiceTest {
         bridgeOpeningTimeDto5.setClosingTime(LocalDateTime.of(2016, 11, 1, 20, 10, 0));
         bridgeOpeningTimeDto5.setBridgeName(BRIDGE_TWO);
         testCases.add(bridgeOpeningTimeDto5);
-        this.bridgeOpeningService = new BridgeOpeningService(testCases);
     }
 
     @Test
     public void testConflictsBridgeOneOk() {
-        final Map<BridgeDto, Map<BridgeOpeningTimeDto, BridgeOpeningConflictDto>> bridgeOpeningConflicts = bridgeOpeningService.detectAllConflicts();
+        final Map<BridgeDto, Map<BridgeOpeningTimeDto, BridgeOpeningConflictDto>> bridgeOpeningConflicts = bridgeOpeningService.getAllConflicts(testCases);
 
         assertThat(bridgeOpeningConflicts).hasSize(2);
 
@@ -86,7 +85,7 @@ public class BridgeOpeningServiceTest {
 
     @Test
     public void testConflictsBridgeTwoOk() {
-        final Map<BridgeDto, Map<BridgeOpeningTimeDto, BridgeOpeningConflictDto>> bridgeOpeningConflicts = bridgeOpeningService.detectAllConflicts();
+        final Map<BridgeDto, Map<BridgeOpeningTimeDto, BridgeOpeningConflictDto>> bridgeOpeningConflicts = bridgeOpeningService.getAllConflicts(testCases);
 
         assertThat(bridgeOpeningConflicts).hasSize(2);
 

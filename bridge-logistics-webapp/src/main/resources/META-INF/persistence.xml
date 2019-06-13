@@ -4,8 +4,11 @@
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
              http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
              version="2.1">
-    <persistence-unit name="bridge-logistics-pu" transaction-type="RESOURCE_LOCAL">
+    <persistence-unit name="bridge-logistics-pu" transaction-type="JTA">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>com.jesperancinha.bridgelogistics.jpa.model.Bridge</class>
+        <class>com.jesperancinha.bridgelogistics.jpa.model.FixedBridgeOpeningTimes</class>
+        <class>com.jesperancinha.bridgelogistics.jpa.model.PeriodicBridgeOpeningTimes</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/bridge-logistics"/>

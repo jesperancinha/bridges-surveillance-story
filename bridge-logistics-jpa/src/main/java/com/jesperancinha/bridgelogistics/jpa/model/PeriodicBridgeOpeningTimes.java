@@ -9,11 +9,12 @@ import static javax.persistence.CascadeType.ALL;
 
 @Getter
 @Setter
-@Entity(name = "PeriodicBridgeOpeningTime")
-public class PeriodicBridgeOpeningTime {
+@Entity
+@Table(name = "PERIODIC_BRIDGE_OPENING_TIMES")
+public class PeriodicBridgeOpeningTimes {
 
     @Id
-    @Column(name="PeriodicBridgeOpeningTimeID")
+    @Column(name = "PeriodicBridgeOpeningTimeID")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 

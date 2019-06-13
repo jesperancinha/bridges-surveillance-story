@@ -9,9 +9,10 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @Entity
+@Table(name = "BRIDGE")
 @NamedQueries({
-        @NamedQuery(name="Bridge.findAll",
-                query="SELECT b FROM Bridge b")
+        @NamedQuery(name = "Bridge.findAll",
+                query = "SELECT b FROM Bridge b")
 })
 public class Bridge {
 

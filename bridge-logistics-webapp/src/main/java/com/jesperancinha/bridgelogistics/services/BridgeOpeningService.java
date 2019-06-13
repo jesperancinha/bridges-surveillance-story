@@ -6,24 +6,24 @@ import com.jesperancinha.bridgelogistics.controllers.data.BridgeOpeningTimeDto;
 import org.paukov.combinatorics3.Generator;
 import org.paukov.combinatorics3.IGenerator;
 
+import javax.ejb.Stateless;
 import java.util.*;
 import java.util.stream.Collectors;
 
 /**
  * This service manages the bridge opening times service. It detects conflict and handles main bridge functions
  */
+@Stateless
 public class BridgeOpeningService {
-
-
-    private Map<BridgeDto, List<BridgeOpeningTimeDto>> openingTimes;
 
     /**
      * Initialize your service with an opening times map per bridge name
      *
      * @param openingTimes {@link Map}
+     * @return
      */
-    BridgeOpeningService(Map<BridgeDto, List<BridgeOpeningTimeDto>> openingTimes) {
-        this.openingTimes = openingTimes;
+    public Map<BridgeDto, Map<BridgeOpeningTimeDto, BridgeOpeningConflictDto>> getAllConflicts(Map<BridgeDto, List<BridgeOpeningTimeDto>> openingTimes) {
+        return detectAllConflicts(openingTimes);
 
     }
 
@@ -31,18 +31,21 @@ public class BridgeOpeningService {
      * Initialize your service with an unsorted opening times list
      *
      * @param allOpeningTimes {@link List}
+     * @return
      */
-    public BridgeOpeningService(List<BridgeOpeningTimeDto> allOpeningTimes) {
-        this.openingTimes = allOpeningTimes.stream().collect(
+    public Map<BridgeDto, Map<BridgeOpeningTimeDto, BridgeOpeningConflictDto>> getAllConflicts(List<BridgeOpeningTimeDto> allOpeningTimes) {
+        Map<BridgeDto, List<BridgeOpeningTimeDto>> openingTimes = allOpeningTimes.stream().collect(
                 Collectors.groupingBy(BridgeOpeningTimeDto::getBridge));
+        return detectAllConflicts(openingTimes);
     }
 
     /**
      * Detects all conflictual time slots in current bridge times
      *
+     * @param openingTimes
      * @return All conflicts map per bridge, per opening times {@link Map}
      */
-    public Map<BridgeDto, Map<BridgeOpeningTimeDto, BridgeOpeningConflictDto>> detectAllConflicts() {
+    public Map<BridgeDto, Map<BridgeOpeningTimeDto, BridgeOpeningConflictDto>> detectAllConflicts(Map<BridgeDto, List<BridgeOpeningTimeDto>> openingTimes) {
         Map<BridgeDto, Map<BridgeOpeningTimeDto, BridgeOpeningConflictDto>> allConflicts = new HashMap<>();
         openingTimes.forEach((bridgeName, bridgeOeningTimes) ->
                 Generator.combination(bridgeOeningTimes)
