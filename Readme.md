@@ -171,4 +171,6 @@ limitations under the License.
 -   GitHub [jesperancinha](https://github.com/jesperancinha)
 -   Free Code Camp [jofisaes](https://www.freecodecamp.org/jofisaes)
 -   Hackerrank [jofisaes](https://www.hackerrank.com/jofisaes)
--   [Acclaim Badges](https://www.youracclaim.com/users/joao-esperancinha/badges)
+-   Acclaim Badges [joao-esperancinha](https://www.youracclaim.com/users/joao-esperancinha/badges)
+-   Home Page [joaofilipesabinoesperancinha](http://wwww.joaofilipesabinoesperancinha.nl)
+
