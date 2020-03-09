@@ -5,7 +5,7 @@ mvn clean package && docker build -t com.jesperancinha/bridge-logistics-dcs .
 
 docker rm -f bridge-logistics-dcs || true && docker run -d -p 8080:8080 -p 4848:4848 --name bridge-logistics-dcs com.jesperancinha/bridge-logistics-dcs
 
-## About me
+## About me 👨🏽‍💻🚀
 
 [![Twitter Follow](https://img.shields.io/twitter/follow/joaofse?label=João%20Esperancinha&style=social)](https://twitter.com/joaofse)
 [![GitHub followers](https://img.shields.io/github/followers/jesperancinha.svg?label=jesperancinha&style=social)](https://github.com/jesperancinha)
