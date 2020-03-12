@@ -12,6 +12,7 @@
 [![GitHub top language](https://img.shields.io/github/languages/code-size/jesperancinha/bridge-logistics.svg)](#)
 
 [![alt text](Documentation/bl-apachespark-s.png "Apache Spark")](https://spark.apache.org/)
+[![alt text](Documentation/bl-rabbit-mq-s.png "Rabbit MQ")](https://www.rabbitmq.com/)
 
 This application uses a JMS messaging system to serve the logistics for a bridge management system.  
 
