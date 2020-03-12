@@ -1,4 +1,6 @@
 # Bridge Management Logistics
+
+
 [![Build Status](https://travis-ci.org/jesperancinha/bridge-logistics.svg?branch=master)](https://travis-ci.org/jesperancinha/bridge-logistics)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/318e7f47f8944b3d97a83d2fd2402b85)](https://www.codacy.com/app/jofisaes/bridge-logistics?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jesperancinha/bridge-logistics&amp;utm_campaign=Badge_Grade)
 [![CircleCI](https://circleci.com/gh/jesperancinha/bridge-logistics.svg?style=svg)](https://circleci.com/gh/jesperancinha/bridge-logistics)
@@ -8,6 +10,8 @@
 [![GitHub language count](https://img.shields.io/github/languages/count/jesperancinha/bridge-logistics.svg)](#)
 [![GitHub top language](https://img.shields.io/github/languages/top/jesperancinha/bridge-logistics.svg)](#)
 [![GitHub top language](https://img.shields.io/github/languages/code-size/jesperancinha/bridge-logistics.svg)](#)
+
+[![alt text](Documentation/bl-apachespark-s.png "Apache Spark")](https://spark.apache.org/)
 
 This application uses a JMS messaging system to serve the logistics for a bridge management system.  
 
