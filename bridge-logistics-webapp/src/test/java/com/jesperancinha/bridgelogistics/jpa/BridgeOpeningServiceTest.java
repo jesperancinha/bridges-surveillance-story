@@ -5,8 +5,8 @@ import com.jesperancinha.bridgelogistics.controllers.data.BridgeDto;
 import com.jesperancinha.bridgelogistics.controllers.data.BridgeOpeningConflictDto;
 import com.jesperancinha.bridgelogistics.controllers.data.BridgeOpeningTimeDto;
 import com.jesperancinha.bridgelogistics.services.BridgeOpeningService;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public class BridgeOpeningServiceTest {
     private final BridgeOpeningService bridgeOpeningService = new BridgeOpeningService();
     private final List<BridgeOpeningTimeDto> testCases = new ArrayList<>();
 
-    @Before
+    @BeforeEach
     public void setUp() {
         bridgeOpeningTimeDto1.setBridgeName(BRIDGE_ONE);
         bridgeOpeningTimeDto1.setOpeningTime(LocalDateTime.of(2016, 11, 1, 10, 10, 0));
