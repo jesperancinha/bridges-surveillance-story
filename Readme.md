@@ -156,10 +156,13 @@ Go to: [Install Docker Desktop for Mac](https://docs.docker.com/docker-for-mac/i
 -   Install java versions with [SDKMan](https://sdkman.io/) for MAC-OS and Linux based systems
 
 ```bash
+curl -s "https://get.sdkman.io" | bash
+source "$HOME/.sdkman/bin/sdkman-init.sh"
 sdk install java 8.0.242.hs-adpt
 sdk install java 11.0.6.hs-adpt
 sdk install java 12.0.2.hs-adpt
 sdk install java 13.0.2.hs-adpt
+sdk install java 14.0.0.hs-adpt
 ```
 
 -   Install java versions without [SDKMan](https://sdkman.io/) for [ubuntu prompt for windows](https://www.microsoft.com/en-us/p/ubuntu/9nblggh4msv6?activetab=pivot:overviewtab).
@@ -189,6 +192,7 @@ alias java8="sdk use java 8.0.242.hs-adpt"
 alias java11="sdk use java  11.0.6.hs-adpt"
 alias java12="sdk use java 12.0.2.hs-adpt"
 alias java13="sdk use java 13.0.2.hs-adpt"
+alias java14="sdk use java 14.0.0.hs-adpt"
 alias m2disable="rm ~/.m2/settings.xml"
 alias m2enable="cp /your_repo_folder/settings.xml ~/.m2/"
 
