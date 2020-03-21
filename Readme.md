@@ -39,11 +39,9 @@ PLEASE NOTE: Java 14 has been released in March. I started this project last yea
 
 ## [Overview](Overview.md)
 
-## Requirements [Change Log](ChangeLog.md)
+## [Requirements Change Log](ChangeLog.md)
 
-## Status 
-
-[Under development](https://github.com/jesperancinha/project-signer/blob/master/project-signer-templates/UnderConstruction.md)
+## Status: [Under development](https://github.com/jesperancinha/project-signer/blob/master/project-signer-templates/UnderConstruction.md)
 
 ## Docker installation
 
