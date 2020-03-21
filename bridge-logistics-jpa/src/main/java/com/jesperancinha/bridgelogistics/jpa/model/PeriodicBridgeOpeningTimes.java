@@ -1,30 +1,36 @@
 package com.jesperancinha.bridgelogistics.jpa.model;
 
-import lombok.Getter;
-import lombok.Setter;
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import static javax.persistence.CascadeType.ALL;
 
-@Getter
-@Setter
 @Entity
 @Table(name = "PERIODIC_BRIDGE_OPENING_TIMES")
-public class PeriodicBridgeOpeningTimes {
+public record PeriodicBridgeOpeningTimes(
 
-    @Id
-    @Column(name = "PeriodicBridgeOpeningTimeID")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+        @Id
+        @Column(name = "PeriodicBridgeOpeningTimeID")
+        @GeneratedValue(strategy = GenerationType.AUTO)
+        Long id,
 
-    @ManyToOne(cascade = ALL, optional = false)
-    @JoinColumn(name = "BridgeID", nullable = false, updatable = false)
-    private Bridge bridge;
+        @ManyToOne(cascade = ALL, optional = false)
+        @JoinColumn(name = "BridgeID", nullable = false, updatable = false)
+        Bridge bridge,
 
-    @Column(name = "CronOpeningTime")
-    private String cronOpeningTime;
+        @Column(name = "CronOpeningTime")
+        String cronOpeningTime,
 
-    @Column(name = "CronClosingTime")
-    private String cronClosingTime;
+        @Column(name = "CronClosingTime")
+        String cronClosingTime
+) {
+    public PeriodicBridgeOpeningTimes() {
+        this(null, null, null, null);
+    }
 }
