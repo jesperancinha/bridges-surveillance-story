@@ -37,14 +37,13 @@ PLEASE NOTE: Java 14 has been released in March. I started this project last yea
 
 -   [Intellij EAP(Early Access Program)](https://www.jetbrains.com/idea/nextversion/?_ga=2.179813472.597851686.1584783010-460061110.1578427207#section=mac)
 
-## Overview
+## [Overview](Overview.md)
 
-![N|Solid](docs/BridgeSystem.png)
+## Requirements [Change Log](ChangeLog.md)
 
 ## Status 
 
-**Under development**
-
+[Under development](https://github.com/jesperancinha/project-signer/blob/master/project-signer-templates/UnderConstruction.md)
 
 ## Docker installation
 
@@ -85,29 +84,7 @@ Go to: [Install Docker Desktop for Mac](https://docs.docker.com/docker-for-mac/i
 
 >$ docker container ls --all
 
-## Location
-
-[GitHub location](https://github.com/jesperancinha/brugdemo)
-
-## Sources
-
--   [Brug Demo](https://github.com/MichelSchudel/brugdemo)
--   [JMS vs RabbitMQ](https://dzone.com/articles/jms-vs-rabbitmq)
--   [Get Started with RabbitMQ](https://www.rabbitmq.com/getstarted.html)
--   [Microservice Architecture by Kong](https://microservices.io/)
--   [Integrate ActiveMQ with WildFly](http://www.mastertheboss.com/jboss-server/jboss-jms/integrate-activemq-with-wildfly)
--   [SQL Server Table and Column Naming Conventions](https://www.codeproject.com/Articles/1065295/SQL-Server-Table-and-Column-Naming-Conventions)
--   [The Power of a Good SQL Naming Convention](https://www.xaprb.com/blog/2008/10/26/the-power-of-a-good-sql-naming-convention/)
--   [Integration Testing for Java EE](https://www.oracle.com/technetwork/articles/java/integrationtesting-487452.html)
--   [How to create Docker Images with a Dockerfile](https://www.howtoforge.com/tutorial/how-to-create-docker-images-with-dockerfile/)
--   [How to create a Docker image for PostgreSQL and persist data](https://www.andreagrandi.it/2015/02/21/how-to-create-a-docker-image-for-postgresql-and-persist-data/)
--   [Dockerize PostgreSQL](https://docs.docker.com/engine/examples/postgresql_service/)
-
-## Requirements Change log
-
--   [Change Log](ChangeLog.md)
-
-## Hints & Tricks
+## [Hints & Tricks](https://github.com/jesperancinha/project-signer/blob/master/project-signer-templates/Hints%26Tricks.md)
 
 -   [SDKMAN!](https://sdkman.io/install)
 
@@ -172,6 +149,20 @@ alias java11="export JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64 && update-
 alias java12="echo \"Java 12 is not available. Setting up 13\" && export JAVA_HOME=/usr/lib/jvm/java-13-oracle && update-java-alternatives -s java-13-oracle"
 alias java13="export JAVA_HOME=/usr/lib/jvm/java-13-oracle && update-java-alternatives -s java-13-oracle"
 ```
+
+## References
+
+-   [Brug Demo](https://github.com/MichelSchudel/brugdemo)
+-   [JMS vs RabbitMQ](https://dzone.com/articles/jms-vs-rabbitmq)
+-   [Get Started with RabbitMQ](https://www.rabbitmq.com/getstarted.html)
+-   [Microservice Architecture by Kong](https://microservices.io/)
+-   [Integrate ActiveMQ with WildFly](http://www.mastertheboss.com/jboss-server/jboss-jms/integrate-activemq-with-wildfly)
+-   [SQL Server Table and Column Naming Conventions](https://www.codeproject.com/Articles/1065295/SQL-Server-Table-and-Column-Naming-Conventions)
+-   [The Power of a Good SQL Naming Convention](https://www.xaprb.com/blog/2008/10/26/the-power-of-a-good-sql-naming-convention/)
+-   [Integration Testing for Java EE](https://www.oracle.com/technetwork/articles/java/integrationtesting-487452.html)
+-   [How to create Docker Images with a Dockerfile](https://www.howtoforge.com/tutorial/how-to-create-docker-images-with-dockerfile/)
+-   [How to create a Docker image for PostgreSQL and persist data](https://www.andreagrandi.it/2015/02/21/how-to-create-a-docker-image-for-postgresql-and-persist-data/)
+-   [Dockerize PostgreSQL](https://docs.docker.com/engine/examples/postgresql_service/)
 
 ## About me 👨🏽‍💻🚀
 

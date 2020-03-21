@@ -1,4 +1,4 @@
-## Bridge Logistics Change Log
+# Bridge Logistics Change Log
 
 2019/06/13:
 -   Rest services implementation foundations
