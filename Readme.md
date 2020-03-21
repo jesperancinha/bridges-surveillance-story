@@ -150,7 +150,7 @@ alias java13="export JAVA_HOME=/usr/lib/jvm/java-13-oracle && update-java-altern
 
 ## References
 
--   [Brug Demo](https://github.com/MichelSchudel/brugdemo)
+-   [Java™ EE at a Glance](https://www.oracle.com/java/technologies/java-ee-glance.html)
 -   [JMS vs RabbitMQ](https://dzone.com/articles/jms-vs-rabbitmq)
 -   [Get Started with RabbitMQ](https://www.rabbitmq.com/getstarted.html)
 -   [Microservice Architecture by Kong](https://microservices.io/)

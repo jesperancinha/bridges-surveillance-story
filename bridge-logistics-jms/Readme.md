@@ -73,7 +73,7 @@ Remove this from your standalone xml:
     </resource-adapters>
 </subsystem>
 ```
-Please not that in this project, it is the presence of the jboss-deployment-structure.xml that activates the connection between JBoss and the JMS queues and topics.
+Please note that in this project, it is the presence of the jboss-deployment-structure.xml that activates the connection between JBoss and the JMS queues and topics.
 
 ## Sources
 
