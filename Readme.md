@@ -33,6 +33,10 @@ For passengers, a development area will be created called PCS(Passenger Control 
 For merchandise, a development area will be created called MCS(Merchandise Control Service).  
 For bridge ranges, a development area will be created called DCS(Domain Control Service).  
 
+PLEASE NOTE: Java 14 has been released in March. I started this project last year and I had not yet decided as to which Java version I would be mostly interested in using. For now it will be Java 14. Intellij didn't have this support in March 2019. Yet it's early access program version did. In order to be able to run this in Intellij you must either get the April version (comming soon...) or download the following:
+
+-   [Intellij EAP(Early Access Program)](https://www.jetbrains.com/idea/nextversion/?_ga=2.179813472.597851686.1584783010-460061110.1578427207#section=mac)
+
 ## Overview
 
 ![N|Solid](docs/BridgeSystem.png)
