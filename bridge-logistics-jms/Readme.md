@@ -5,6 +5,14 @@ You can find here installation information about how to get the services running
 
 $ brew install activemq
 
+## Running integration tests in IntelliJ
+
+Make sure you have this running test environment for [Arquillian](http://arquillian.org/)
+
+|Arquillian                                |
+|------------------------------------------|
+|Weld EE Embedded 1.1.x: DomainConsumerTest|
+
 ## Running with JBoss
 
 This application is being tested with JBoss 8.0.0.Final

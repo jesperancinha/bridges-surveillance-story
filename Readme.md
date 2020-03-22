@@ -37,6 +37,10 @@ PLEASE NOTE: Java 14 has been released in March. I started this project last yea
 
 -   [Intellij EAP(Early Access Program)](https://www.jetbrains.com/idea/nextversion/?_ga=2.179813472.597851686.1584783010-460061110.1578427207#section=mac)
 
+## Testing
+
+-   [bridge-logistics-jms](bridge-logistics-jms/Readme.md)
+
 ## [Overview](Overview.md)
 
 ## [Requirements Change Log](ChangeLog.md)
