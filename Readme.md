@@ -150,6 +150,7 @@ alias java13="export JAVA_HOME=/usr/lib/jvm/java-13-oracle && update-java-altern
 
 ## References
 
+-   [Arquillian JUnit5 Hacks](https://github.com/OndroMih/arquillian-junit5-hacks)
 -   [Java Libhunt Arquillian Alternatives](https://java.libhunt.com/arquillian-github-com-alternatives)
 -   [Eclipse EE4J](https://projects.eclipse.org/projects/ee4j)
 -   [Arquillian](http://arquillian.org/)
