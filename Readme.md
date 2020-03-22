@@ -150,6 +150,9 @@ alias java13="export JAVA_HOME=/usr/lib/jvm/java-13-oracle && update-java-altern
 
 ## References
 
+-   [Java Libhunt Arquillian Alternatives](https://java.libhunt.com/arquillian-github-com-alternatives)
+-   [Eclipse EE4J](https://projects.eclipse.org/projects/ee4j)
+-   [Arquillian](http://arquillian.org/)
 -   [Java™ EE at a Glance](https://www.oracle.com/java/technologies/java-ee-glance.html)
 -   [JMS vs RabbitMQ](https://dzone.com/articles/jms-vs-rabbitmq)
 -   [Get Started with RabbitMQ](https://www.rabbitmq.com/getstarted.html)
