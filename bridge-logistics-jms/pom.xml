@@ -6,7 +6,7 @@
 
     <artifactId>bridge-logistics-jms</artifactId>
     <parent>
-        <groupId>com.jesperancinha</groupId>
+        <groupId>org.jesperancinha.logistics</groupId>
         <artifactId>bridge-logistics</artifactId>
         <relativePath>../pom.xml</relativePath>
         <!--suppress MavenPropertyInParent -->
@@ -75,6 +75,11 @@
             <artifactId>testng</artifactId>
             <version>6.11</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jesperancinha.logistics</groupId>
+            <artifactId>bridge-logistics-jms-test</artifactId>
+            <version>${revision}</version>
         </dependency>
     </dependencies>
 

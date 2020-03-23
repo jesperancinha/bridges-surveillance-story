@@ -139,6 +139,10 @@ $ rabbitmqctl list_exchanges
 
 $ rabbitmqctl list_bindings
 
+## References
+
+-   [How To Unit Test JMS Code](https://activemq.apache.org/how-to-unit-test-jms-code)
+-   [How To Test Your Distributed Message-Driven Application With Spring? by Pilo Software Developer](http://pillopl.github.io/testing-messaging/)
 ## About me 👨🏽‍💻🚀
 
 [![Twitter Follow](https://img.shields.io/twitter/follow/joaofse?label=João%20Esperancinha&style=social)](https://twitter.com/joaofse)
