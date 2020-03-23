@@ -23,7 +23,7 @@
         <lombok.version>1.18.8</lombok.version>
         <hibernate-entitymanager.version>5.4.3.Final</hibernate-entitymanager.version>
         <maven-war-plugin.version>3.2.3</maven-war-plugin.version>
-        <postgresql.version>42.2.4</postgresql.version>
+        <postgresql.version>42.2.5</postgresql.version>
         <maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
     </properties>
 
