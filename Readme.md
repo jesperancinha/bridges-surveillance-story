@@ -76,7 +76,7 @@ Option 1
 
 Option 2
 
-Go to: [Install Docker Desktop for Mac](https://docs.docker.com/docker-for-mac/install/)
+>Go to: [Install Docker Desktop for Mac](https://docs.docker.com/docker-for-mac/install/)
 
 ### Start Docker
 
@@ -85,6 +85,14 @@ Go to: [Install Docker Desktop for Mac](https://docs.docker.com/docker-for-mac/i
 >$ docker run -i -t -d -p 5432:5432 bridge-logistics-image
 
 >$ docker container ls --all
+
+## Apache Spark [![alt text](Documentation/bl-apachespark-s.png "Apache Spark")](https://spark.apache.org/)
+
+```bash
+brew install apache-spark
+
+spark-shell
+```
 
 ## [Hints & Tricks](https://github.com/jesperancinha/project-signer/blob/master/project-signer-templates/Hints%26Tricks.md)
 
@@ -154,6 +162,10 @@ alias java13="export JAVA_HOME=/usr/lib/jvm/java-13-oracle && update-java-altern
 
 ## References
 
+-   [Confluent Tutorial: Creating a Streaming Data Pipeline](https://docs.confluent.io/current/streams/quickstart.html)
+-   [Spark Streaming + Kafka Integration Guide (Kafka broker version 0.10.0 or higher)](https://spark.apache.org/docs/2.2.0/streaming-kafka-0-10-integration.html)
+-   [Spark Streaming Programming Guide](https://spark.apache.org/docs/2.2.0/streaming-programming-guide.html)
+-   [Apache Spark Tutorial](https://www.javatpoint.com/apache-spark-tutorial)
 -   [Java EE vs Spring Testing](https://antoniogoncalves.org/2018/01/16/java-ee-vs-spring-testing/)
 -   [Arquillian JUnit5 Hacks](https://github.com/OndroMih/arquillian-junit5-hacks)
 -   [Java Libhunt Arquillian Alternatives](https://java.libhunt.com/arquillian-github-com-alternatives)
