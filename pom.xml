@@ -5,11 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.jesperancinha.logistics</groupId>
     <artifactId>bridge-logistics</artifactId>
-    <version>${revision}</version>
+    <version>0.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <properties>
-        <revision>0.0.0-SNAPSHOT</revision>
         <maven.compiler.source>14</maven.compiler.source>
         <maven.compiler.target>14</maven.compiler.target>
         <maven.compiler>3.8.0</maven.compiler>
@@ -32,7 +31,7 @@
             <dependency>
                 <groupId>org.jesperancinha.logistics</groupId>
                 <artifactId>bridge-logistics-jpa</artifactId>
-                <version>${revision}</version>
+                <version>0.0.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.postgresql</groupId>
@@ -100,12 +99,7 @@
     </dependencyManagement>
 
     <modules>
-        <module>bridge-logistics-jms</module>
-        <module>bridge-logistics-webapp</module>
-        <module>bridge-logistics-pcs</module>
-        <module>bridge-logistics-dcs</module>
-        <module>bridge-logistics-mcs</module>
-        <module>bridge-logistics-jms-test</module>
-        <module>bridge-logistics-jpa</module>
+        <module>bridge-client</module>
+        <module>bridge-central-server</module>
     </modules>
 </project>

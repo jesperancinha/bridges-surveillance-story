@@ -7,10 +7,10 @@
     <artifactId>bridge-logistics-jms</artifactId>
     <parent>
         <groupId>org.jesperancinha.logistics</groupId>
-        <artifactId>bridge-logistics</artifactId>
+        <artifactId>bridge-central-server</artifactId>
         <relativePath>../pom.xml</relativePath>
         <!--suppress MavenPropertyInParent -->
-        <version>${revision}</version>
+        <version>0.0.0-SNAPSHOT</version>
     </parent>
 
     <packaging>war</packaging>
@@ -79,7 +79,7 @@
         <dependency>
             <groupId>org.jesperancinha.logistics</groupId>
             <artifactId>bridge-logistics-jms-test</artifactId>
-            <version>${revision}</version>
+            <version>0.0.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
