@@ -18,12 +18,12 @@
         <revision>0.0.0-SNAPSHOT</revision>
     </properties>
     <modules>
-        <module>bridge-logistics-jms</module>
-        <module>bridge-logistics-webapp</module>
-        <module>bridge-logistics-pcs</module>
-        <module>bridge-logistics-dcs</module>
-        <module>bridge-logistics-mcs</module>
-        <module>bridge-logistics-jms-test</module>
-        <module>bridge-logistics-jpa</module>
+        <module>bl-jpa</module>
+        <module>bl-pcs</module>
+        <module>bl-dcs</module>
+        <module>bl-mcs</module>
+        <module>bl-web-app</module>
+        <module>bl-notification-system</module>
+        <module>bl-notification-system-test</module>
     </modules>
 </project>
