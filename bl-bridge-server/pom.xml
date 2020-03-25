@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <name>Bridge Logistics Sensor Client</name>
-    <artifactId>bl-client</artifactId>
+    <name>Bridge Logistics Bridge Sensor Server</name>
+    <artifactId>bl-bridge-server</artifactId>
     <packaging>pom</packaging>
 </project>

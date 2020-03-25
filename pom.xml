@@ -99,7 +99,7 @@
     </dependencyManagement>
 
     <modules>
-        <module>bl-client</module>
         <module>bl-central-server</module>
+        <module>bl-bridge-server</module>
     </modules>
 </project>
