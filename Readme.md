@@ -94,6 +94,26 @@ brew install apache-spark
 spark-shell
 ```
 
+## Zookeeper [![alt text](Documentation/bl-zookeeper-s.png "Zookeeper")](https://zookeeper.apache.org/)
+
+```bash
+brew install zookeeper
+
+brew upgrade zookeeper
+
+zookeeper-server-start /usr/local/etc/kafka/zookeeper.properties
+```
+
+## Kafka [![alt text](Documentation/bl-kafka-s.png "Kafka")](https://kafka.apache.org/documentation/streams/)
+
+```bash
+brew install kafka
+
+brew upgrade kafka
+
+kafka-server-start /usr/local/etc/kafka/server.properties
+```
+
 ## [Hints & Tricks](https://github.com/jesperancinha/project-signer/blob/master/project-signer-templates/Hints%26Tricks.md)
 
 -   [SDKMAN!](https://sdkman.io/install)
@@ -162,6 +182,7 @@ alias java13="export JAVA_HOME=/usr/lib/jvm/java-13-oracle && update-java-altern
 
 ## References
 
+-   [Offset Management For Apache Kafka With Apache Spark Streaming](https://blog.cloudera.com/offset-management-for-apache-kafka-with-apache-spark-streaming/)
 -   [Confluent Tutorial: Creating a Streaming Data Pipeline](https://docs.confluent.io/current/streams/quickstart.html)
 -   [Spark Streaming + Kafka Integration Guide (Kafka broker version 0.10.0 or higher)](https://spark.apache.org/docs/2.2.0/streaming-kafka-0-10-integration.html)
 -   [Spark Streaming Programming Guide](https://spark.apache.org/docs/2.2.0/streaming-programming-guide.html)
