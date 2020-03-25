@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>bridge-logistics</artifactId>
+        <groupId>org.jesperancinha.logistics</groupId>
+        <version>0.0.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <name>Bridge Logistics Central Server</name>
+    <artifactId>bridge-central-server</artifactId>
+
+    <packaging>pom</packaging>
+
+    <properties>
+        <revision>0.0.0-SNAPSHOT</revision>
+    </properties>
+    <modules>
+        <module>bridge-logistics-jms</module>
+        <module>bridge-logistics-webapp</module>
+        <module>bridge-logistics-pcs</module>
+        <module>bridge-logistics-dcs</module>
+        <module>bridge-logistics-mcs</module>
+        <module>bridge-logistics-jms-test</module>
+        <module>bridge-logistics-jpa</module>
+    </modules>
+</project>
