@@ -102,6 +102,8 @@ brew install zookeeper
 brew upgrade zookeeper
 
 zookeeper-server-start /usr/local/etc/kafka/zookeeper.properties
+
+tail -f /usr/local/var/log/zookeeper/zookeeper.log
 ```
 
 ## Kafka [![alt text](Documentation/bl-kafka-s.png "Kafka")](https://kafka.apache.org/documentation/streams/)
@@ -120,6 +122,12 @@ kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partit
 ```
 
 ## [Hints & Tricks](https://github.com/jesperancinha/project-signer/blob/master/project-signer-templates/Hints%26Tricks.md)
+
+-   [pbcopy](http://sweetme.at/2013/11/17/copy-to-and-paste-from-the-clipboard-on-the-mac-osx-command-line/)
+
+```bash
+curl -L "http://coolsite.com" | pbcopy
+```
 
 -   [SDKMAN!](https://sdkman.io/install)
 
@@ -187,6 +195,7 @@ alias java13="export JAVA_HOME=/usr/lib/jvm/java-13-oracle && update-java-altern
 
 ## References
 
+-   [Apache Kafka Documentation](https://kafka.apache.org/documentation/)
 -   [Apache Kafka Installation on Mac using Homebrew](https://medium.com/@Ankitthakur/apache-kafka-installation-on-mac-using-homebrew-a367cdefd273 )
 -   [Offset Management For Apache Kafka With Apache Spark Streaming](https://blog.cloudera.com/offset-management-for-apache-kafka-with-apache-spark-streaming/)
 -   [Confluent Tutorial: Creating a Streaming Data Pipeline](https://docs.confluent.io/current/streams/quickstart.html)
