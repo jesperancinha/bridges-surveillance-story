@@ -193,6 +193,11 @@ alias java12="echo \"Java 12 is not available. Setting up 13\" && export JAVA_HO
 alias java13="export JAVA_HOME=/usr/lib/jvm/java-13-oracle && update-java-alternatives -s java-13-oracle"
 ```
 
+-   Upgrade [YARN](https://yarnpkg.com/)
+
+```bash
+curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
+```
 ## References
 
 -   [Apache Kafka Documentation](https://kafka.apache.org/documentation/)
