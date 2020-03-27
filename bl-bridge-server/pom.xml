@@ -12,4 +12,5 @@
     <name>Bridge Logistics Bridge Sensor Server</name>
     <artifactId>bl-bridge-server</artifactId>
     <packaging>pom</packaging>
+
 </project>
