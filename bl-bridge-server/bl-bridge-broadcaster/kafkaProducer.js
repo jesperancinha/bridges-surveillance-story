@@ -8,12 +8,12 @@ let produce = () => {
         const Producer = kafka.Producer;
         const client = new kafka.KafkaClient({kafkaHost: config.kafka_server});
         const producer = new Producer(client);
-        const kafka_topic = 'example';
+        const kafka_topic = topics.temperature;
         console.log(kafka_topic);
         let payloads = [
             {
                 topic: topics.temperature,
-                messages: "Wohoooo!!!"
+                messages: "Hello Hello Are you there?"
             }
         ];
 

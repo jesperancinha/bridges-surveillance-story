@@ -1,3 +1,3 @@
 module.exports = {
-    kafka_server: 'localhost:2181',
+    kafka_server: 'localhost:9090',
 };
