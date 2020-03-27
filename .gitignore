@@ -8,3 +8,6 @@ target
 ## ActiveMQ
 activemq-data
 
+## Node JS Build
+node_modules
+
