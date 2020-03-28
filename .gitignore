@@ -11,3 +11,5 @@ activemq-data
 ## Node JS Build
 node_modules
 
+## MACOS
+.DS_Store

@@ -25,5 +25,6 @@
         <module>bl-web-app</module>
         <module>bl-notification-system</module>
         <module>bl-notification-system-test</module>
+        <module>bl-readings-service</module>
     </modules>
 </project>
