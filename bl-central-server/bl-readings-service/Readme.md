@@ -1,10 +1,23 @@
 # bl-readings-service
 
+## Starting Spark
+
+```bash
+mvn scala:run -DmainClass=org.jesperancinha.bridgelogistics.readings.ReadingsLauncher
+```
+
+## Hints & Tricks
+
+```bash
+brew install sbt
+brew upgrade sbt
+```
 ## References
 
 -   [Structured Streaming + Kafka Integration Guide (Kafka broker version 0.10.0 or higher](https://spark.apache.org/docs/latest/structured-streaming-kafka-integration.html)
 -   [Apache Spark - Lightning-fast unified analytics engine](https://spark.apache.org/)
 -   [Apache Spark - Monitoring and Instrumentation](https://spark.apache.org/docs/latest/monitoring.html)
+-   [Building a Data Pipeline with Kafka, Spark Streaming and Cassandra](https://www.baeldung.com/kafka-spark-data-pipeline)
 
 ## About me 👨🏽‍💻🚀
 
