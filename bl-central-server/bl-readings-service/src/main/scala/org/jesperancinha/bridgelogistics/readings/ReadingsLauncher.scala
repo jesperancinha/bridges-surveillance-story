@@ -29,7 +29,7 @@ object ReadingsLauncher extends App {
     = KafkaUtils.createDirectStream(streamingContext, LocationStrategies.PreferConsistent,
       ConsumerStrategies.Subscribe[String, String](topics, kafkaParams))
 
-    val maps = stream.map(record => (record.key, record.value))
+//    val maps = stream.map(record => (record.key, record.value))
 
     stream.foreachRDD { rdd =>
       System.out.println("--- New RDD with " + rdd.partitions.length + " partitions and " + rdd.count + " records")
