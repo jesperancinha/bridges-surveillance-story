@@ -12,7 +12,7 @@ Press ^C at any time to quit.
 package name: (bl-bridge-broadcaster)
 version: (1.0.0)
 description: This project sends messages from the bridge to the local kafka bus
-entry point: (server.js)
+entry point: (app.ts)
 test command:
 git repository:
 keywords:
@@ -24,7 +24,7 @@ About to write to /Users/jofisaes/dev/src/jofisaes/bridge-logistics/bl-bridge-se
   "name": "bl-bridge-broadcaster",
   "version": "1.0.0",
   "description": "This project sends messages from the bridge to the local kafka bus",
-  "main": "server.js",
+  "main": "app.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

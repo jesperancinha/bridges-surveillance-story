@@ -2,19 +2,26 @@
   "name": "bl-bridge-broadcaster",
   "version": "1.0.0",
   "description": "This project sends messages from the bridge to the local kafka bus",
-  "main": "index.js",
+  "main": "dist/app.js",
   "scripts": {
+    "start": "tsc && node dist/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "João Esperacinha",
   "license": "ISC",
   "devDependencies": {
+    "@types/node": "^13.9.8",
     "nodemon": "^2.0.2"
   },
   "dependencies": {
+    "@types/jquery": "^3.3.34",
+    "awesome-typescript-loader": "^5.2.1",
     "express": "^4.17.1",
     "fs": "0.0.1-security",
     "kafka-node": "^5.0.0",
-    "node-cron": "^2.0.3"
+    "node-cron": "^2.0.3",
+    "source-map-loader": "^0.2.4",
+    "tslint": "^6.1.0",
+    "typescript": "^3.8.3"
   }
 }
