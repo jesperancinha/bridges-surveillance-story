@@ -13,6 +13,11 @@ NOTE: This is here just to provide tests.
 node dist/consumer/kafkaConsumer.js
 ```
 
+or
+
+```bash
+npm run consumer
+```
 
 ## Kafka locations
 

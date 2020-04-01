@@ -2,6 +2,7 @@ import {readdirSync, readFileSync} from "fs";
 import kafka from 'kafka-node';
 import {Config} from "./config";
 import {Topics} from './topics';
+import {Sample} from "./model/sample";
 
 let produce = () => {
     try {
@@ -14,10 +15,11 @@ let produce = () => {
         console.log(kafka_topic);
         const payloads = files.map(
             file => {
-                let messages = readFileSync(`points/${file}`, 'utf8');
+                let messages = JSON.parse(readFileSync(`points/${file}`, 'utf8')) as Sample
+                messages.reading = "10"
                 return ({
                     topic: Topics.temperature,
-                    messages: messages
+                    messages: JSON.stringify(messages)
                 })
             }
         )

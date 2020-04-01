@@ -7,7 +7,7 @@
         <version>0.0.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>bridge-logistics-dcs</artifactId>
+    <artifactId>bl-dcs</artifactId>
     <packaging>war</packaging>
     <dependencies>
         <dependency>
