@@ -17,6 +17,7 @@ let produce = () => {
             file => {
                 let messages = JSON.parse(readFileSync(`points/${file}`, 'utf8')) as Sample
                 messages.reading = "10"
+                messages.timeOfReading = Date.now();
                 return ({
                     topic: Topics.temperature,
                     messages: JSON.stringify(messages)

@@ -4,4 +4,5 @@ export class Sample {
     deviceType: String;
     reading: String;
     unit: String;
+    timeOfReading: Number;
 }
