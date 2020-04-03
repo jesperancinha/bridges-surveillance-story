@@ -16,12 +16,12 @@
   },
   "dependencies": {
     "@types/jquery": "^3.3.34",
-    "awesome-typescript-loader": "^5.2.1",
     "express": "^4.17.1",
     "fs": "0.0.1-security",
     "kafka-node": "^5.0.0",
     "node-cron": "^2.0.3",
     "source-map-loader": "^0.2.4",
+    "ts-loader": "^6.2.2",
     "tslint": "^6.1.0",
     "typescript": "^3.8.3"
   }

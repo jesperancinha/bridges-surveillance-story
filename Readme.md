@@ -202,6 +202,8 @@ curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
 ```
 ## References
 
+-   [MQTT](https://www.npmjs.com/package/mqtt)
+-   [Internet of Things: Where Does the Data Go?](https://www.wired.com/insights/2015/03/internet-things-data-go/)
 -   [Apache Kafka Documentation](https://kafka.apache.org/documentation/)
 -   [Apache Kafka Installation on Mac using Homebrew](https://medium.com/@Ankitthakur/apache-kafka-installation-on-mac-using-homebrew-a367cdefd273 )
 -   [Offset Management For Apache Kafka With Apache Spark Streaming](https://blog.cloudera.com/offset-management-for-apache-kafka-with-apache-spark-streaming/)

@@ -1,5 +1,42 @@
 # Bridge Logistics Bridge Sensor Server
 
+## MQTT - Temperature
+-   Installation
+
+```bash
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+brew install mosquitto
+```
+
+-   Auto Start/Stop Mosquitto
+
+```bash
+brew services start mosquitto
+brew services stop mosquitto
+```
+
+-   Remove Background service
+
+```bash
+mosquitto -c /usr/local/etc/mosquitto/mosquitto.conf
+```
+
+-   In one console
+
+```bash
+npm install mqtt -g
+mqtt sub -t 'temperature' -h 'test.mosquitto.org' -v
+mqtt sub -t 'temperature' -h 'localhost' -v
+```
+-   In another console
+
+```bash
+mqtt pub -t 'temperature' -h 'test.mosquitto.org' -m 'HOT - 100C'
+mqtt pub -t 'temperature' -h 'localhost' -m 'HOT - 100C'
+```
+
+> NOTE: We can find all of these tests in [Mosquitto](http://test.mosquitto.org/) 🦟
+
 ## About me 👨🏽‍💻🚀
 
 [![Twitter Follow](https://img.shields.io/twitter/follow/joaofse?label=João%20Esperancinha&style=social)](https://twitter.com/joaofse)
