@@ -1,0 +1,27 @@
+{
+  "name": "bl-bridge-humidity-coap",
+  "version": "1.0.0",
+  "description": "Humidity sensor emitter",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsc && node dist/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/jesperancinha/bridge-logistics.git"
+  },
+  "author": "João Esperancinha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jesperancinha/bridge-logistics/issues"
+  },
+  "homepage": "https://github.com/jesperancinha/bridge-logistics#readme",
+  "dependencies": {
+    "coap": "^0.23.1",
+    "express": "^4.17.1",
+    "node-cron": "^2.0.3",
+    "ts-loader": "^6.2.2",
+    "typescript": "^3.8.3"
+  }
+}

@@ -29,8 +29,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven.compiler}</version>
                 <configuration>
-                    <target>${maven.compiler.target}</target>
-                    <source>${maven.compiler.source}</source>
+                    <target>13</target>
+                    <source>13</source>
                     <compilerArgs>--enable-preview</compilerArgs>
                 </configuration>
             </plugin>
