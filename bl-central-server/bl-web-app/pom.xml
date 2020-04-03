@@ -27,7 +27,7 @@
         </dependency>
         <dependency>
             <groupId>org.jesperancinha.logistics</groupId>
-            <artifactId>bridge-logistics-jpa</artifactId>
+            <artifactId>bl-jpa</artifactId>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>

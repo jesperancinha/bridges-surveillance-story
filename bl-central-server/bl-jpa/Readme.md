@@ -1,4 +1,4 @@
-# bridge-logistics-jpa
+# bl-jpa
 
 ## About me 👨🏽‍💻🚀
 
