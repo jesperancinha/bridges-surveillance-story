@@ -56,8 +56,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven.compiler}</version>
                 <configuration>
-                    <target>13</target>
-                    <source>13</source>
+                    <target>${maven.compiler.target}</target>
+                    <source>${maven.compiler.source}</source>
                 </configuration>
             </plugin>
             <plugin>
