@@ -8,7 +8,7 @@
 
     <parent>
         <groupId>org.jesperancinha.logistics</groupId>
-        <artifactId>bridge-central-server</artifactId>
+        <artifactId>bl-central-server</artifactId>
         <relativePath>../pom.xml</relativePath>
         <!--suppress MavenPropertyInParent -->
         <version>0.0.0-SNAPSHOT</version>
