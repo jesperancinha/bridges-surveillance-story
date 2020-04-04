@@ -6,7 +6,7 @@
   "scripts": {
     "start": "tsc && node dist/app.js",
     "consumer": "tsc && node dist/consumer/kafkaConsumer.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Warning: no test specified!\""
   },
   "author": "João Esperacinha",
   "license": "ISC",
