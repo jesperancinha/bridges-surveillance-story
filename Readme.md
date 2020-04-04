@@ -14,24 +14,23 @@
 [![alt text](Documentation/bl-apachespark-s.png "Apache Spark")](https://spark.apache.org/)
 [![alt text](Documentation/bl-rabbit-mq-s.png "Rabbit MQ")](https://www.rabbitmq.com/)
 
-This application uses a JMS messaging system to serve the logistics for a bridge management system.  
-
-Current goal is to use ActiveMQ as a JMS provider. 
-JMS provider will play following roles:
+This application uses event sourcing to serve the logistics for a bridge management system.  
+This is what in general this project is responsible for
 
 1.   Count passengers going through a bridge
 2.   Register transport type
 3.   Register merchandise before crossing the bridge
 4.   Register events per configured range area
+5.   Inform trains of the train Schedule changes
 
 Passengers are registered by numbers and if they they carry extra merchandise or a bike
 Transport can be a train, bus, boat, bike, truck, etc.
 Merchandise should registered if it's destined to commercial exchanges.
 Events can be anything that may happen in a configured range around the bridge
 
-For passengers, a development area will be created called PCS(Passenger Control Service).  
-For merchandise, a development area will be created called MCS(Merchandise Control Service).  
-For bridge ranges, a development area will be created called DCS(Domain Control Service).  
+1. For passengers, a development area will be created called PCS(Passenger Control Service).  
+2. For merchandise, a development area will be created called MCS(Merchandise Control Service).  
+3. For bridge timetables and ranges, a development area will be created called DCS(Domain Control Service).  
 
 PLEASE NOTE: Java 14 has been released in March. I started this project last year and I had not yet decided as to which Java version I would be mostly interested in using. For now it will be Java 14. Intellij didn't have this support in March 2019. Yet it's early access program version did. In order to be able to run this in Intellij you must either get the April version (comming soon...) or download the following:
 
@@ -202,6 +201,11 @@ curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
 ```
 ## References
 
+-   [Kafka vs. RabbitMQ: Architecture, Performance & Use Cases](https://www.upsolver.com/blog/kafka-versus-rabbitmq-architecture-performance-use-case)
+-   [Real-Time Analysis of Popular Uber Locations using Apache APIs: Spark Structured Streaming, Machine Learning, Kafka and MapR Database](https://mapr.com/blog/real-time-analysis-popular-uber-locations-spark-structured-streaming-machine-learning-kafka-and-mapr-db/)
+-   [IoT architecture: building blocks and how they work](https://www.scnsoft.com/blog/iot-architecture-in-a-nutshell-and-how-it-works)
+-   [Top 15 Standard IoT Protocols That You Must Know About](https://www.ubuntupit.com/top-15-standard-iot-protocols-that-you-must-know-about/)
+-   [Using Apache Kafka as a Scalable, Event-Driven Backbone for Service Architectures](https://www.confluent.io/blog/apache-kafka-for-service-architectures/)
 -   [MQTT](https://www.npmjs.com/package/mqtt)
 -   [Internet of Things: Where Does the Data Go?](https://www.wired.com/insights/2015/03/internet-things-data-go/)
 -   [Apache Kafka Documentation](https://kafka.apache.org/documentation/)

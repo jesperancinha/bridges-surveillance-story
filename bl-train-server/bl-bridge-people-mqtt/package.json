@@ -1,0 +1,27 @@
+{
+  "name": "bl-bridge-people-mqtt",
+  "version": "1.0.0",
+  "description": "People sensor counter emitter",
+  "main": "dist/app.js",
+  "scripts": {
+    "start": "tsc && node dist/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/jesperancinha/bridge-logistics.git"
+  },
+  "author": "João Esperancinha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jesperancinha/bridge-logistics/issues"
+  },
+  "homepage": "https://github.com/jesperancinha/bridge-logistics#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mqtt": "^3.0.0",
+    "node-cron": "^2.0.3",
+    "ts-loader": "^6.2.2",
+    "typescript": "^3.8.3"
+  }
+}

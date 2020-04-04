@@ -1,9 +1,12 @@
 # Bridge Logistics JMS module
 
 You can find here installation information about how to get the services running
+
 ## ActiveMQ Installation
 
-$ brew install activemq
+```bash
+brew install activemq
+```
 
 ## Running integration tests in IntelliJ
 
@@ -97,9 +100,11 @@ Please note that in this project, it is the presence of the jboss-deployment-str
 
 ## RabbitMQ Installation
 
-There are some quarks while installing RabbitMQ on a MAC. Here is what I had to do:
+>There can be some quarks while installing RabbitMQ on a MAC. 
+>Here is what we may come accross when doing so:
 
-$ brew install rabbitmq
+```bash
+brew install rabbitmq
 
 Error: The `brew link` step did not complete successfully
 The formula built, but is not symlinked into /usr/local
@@ -109,23 +114,32 @@ Could not symlink sbin/cuttlefish
 You can try again using:
   brew link rabbitmq
   
-$ brew link rabbitmq
+brew link rabbitmq
 
 Linking /usr/local/Cellar/rabbitmq/3.7.15...
 Error: Could not symlink sbin/cuttlefish
 /usr/local/sbin is not writable.
 
-$ sudo echo /usr/local/sbin >> /etc/paths.d/usr_local_sbin
+sudo echo /usr/local/sbin >> /etc/paths.d/usr_local_sbin
 
-$ sudo mkdir /usr/local/sbin
+sudo mkdir /usr/local/sbin
 
-$ sudo chown <your_user_name>:admin /usr/local/sbin
+sudo chown <your_user_name>:admin /usr/local/sbin
 
-$ brew link rabbitmq
+brew link rabbitmq
+```
 
 ## Rabbit MQ start
 
-$ rabbitmq-server
+```bash
+rabbitmq-server
+```
+
+or 
+
+```bash
+ brew services start rabbitmq
+```
 
 ## Rabbit MQ stop
 
@@ -133,11 +147,15 @@ $ rabbitmq-server
 
 > Current exchanges
 
-$ rabbitmqctl list_exchanges
+```bash
+rabbitmqctl list_exchanges
+```
 
 > Current bindings
 
-$ rabbitmqctl list_bindings
+```bash
+rabbitmqctl list_bindings
+```
 
 ## References
 
