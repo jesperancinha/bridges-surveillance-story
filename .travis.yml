@@ -1,3 +1,24 @@
 language: java
 jdk:
   - openjdk14
+env:
+  - NODE_VERSION=12 CC=clang CXX=clang++
+before_install:
+  - nvm install $NODE_VERSION
+before_script:
+  - cd bl-bridge-server/bl-bridge-broadcaster && npm install
+  - cd bl-bridge-server/bl-bridge-humidity-coap && npm install
+  - cd bl-bridge-server/bl-bridge-temperature-mqtt && npm install
+  - cd bl-train-server/bl-bridge-merchandise-service && npm install
+  - cd bl-train-server/bl-bridge-people-mqtt && npm install
+  - cd bl-train-server/bl-train-broadcaster && npm install
+script:
+  - cd bl-bridge-server/bl-bridge-broadcaster && npm test
+  - cd bl-bridge-server/bl-bridge-humidity-coap && npm test
+  - cd bl-bridge-server/bl-bridge-temperature-mqtt && npm test
+  - cd bl-train-server/bl-bridge-merchandise-service && npm test
+  - cd bl-train-server/bl-bridge-people-mqtt && npm test
+  - cd bl-train-server/bl-train-broadcaster && npm test
+notifications:
+  email:
+    on_success: "never"
