@@ -16,12 +16,10 @@ import java.util.Properties;
 public class PassengerConsumerRunner {
 
     private String topicName = "topic/PasssengerTopic";
-    private String initialContextFactory = ""
-            + "org.apache.activemq.jndi.ActiveMQInitialContextFactory";
+    private String initialContextFactory = "" + "org.apache.activemq.jndi.ActiveMQInitialContextFactory";
     private String connectionString = "tcp://localhost:61616";
 
     private boolean messageReceived = false;
-
 
     public static void main(String[] args) {
         PassengerConsumerRunner subscriber = new PassengerConsumerRunner();
@@ -33,29 +31,24 @@ public class PassengerConsumerRunner {
         Properties properties = new Properties();
         TopicConnection topicConnection = null;
         properties.put("java.naming.factory.initial", initialContextFactory);
-        properties.put("connectionfactory.QueueConnectionFactory",
-                connectionString);
+        properties.put("connectionfactory.QueueConnectionFactory", connectionString);
         properties.put("topic." + topicName, topicName);
         try {
             InitialContext ctx = new InitialContext(properties);
-            TopicConnectionFactory topicConnectionFactory = (TopicConnectionFactory) ctx
-                    .lookup("QueueConnectionFactory");
+            TopicConnectionFactory topicConnectionFactory = (TopicConnectionFactory) ctx.lookup("QueueConnectionFactory");
             topicConnection = topicConnectionFactory.createTopicConnection();
-            System.out
-                    .println("Create Topic Connection for Topic " + topicName);
+            System.out.println("Create Topic Connection for Topic " + topicName);
 
             while (!messageReceived) {
                 try {
-                    TopicSession topicSession = topicConnection
-                            .createTopicSession(false, Session.AUTO_ACKNOWLEDGE);
+                    TopicSession topicSession = topicConnection.createTopicSession(false, Session.AUTO_ACKNOWLEDGE);
 
                     Topic topic = (Topic) ctx.lookup(topicName);
                     // start the connection
                     topicConnection.start();
 
                     // create a topic subscriber
-                    javax.jms.TopicSubscriber topicSubscriber = topicSession
-                            .createSubscriber(topic);
+                    javax.jms.TopicSubscriber topicSubscriber = topicSession.createSubscriber(topic);
 
                     TestMessageListener messageListener = new TestMessageListener();
                     topicSubscriber.setMessageListener(messageListener);
@@ -81,8 +74,7 @@ public class PassengerConsumerRunner {
                 try {
                     topicConnection.close();
                 } catch (JMSException e) {
-                    throw new RuntimeException(
-                            "Error in closing topic connection", e);
+                    throw new RuntimeException("Error in closing topic connection", e);
                 }
             }
         }
@@ -91,8 +83,7 @@ public class PassengerConsumerRunner {
     public class TestMessageListener implements MessageListener {
         public void onMessage(Message message) {
             try {
-                System.out.println("Got the Message : "
-                        + ((TextMessage) message).getText());
+                System.out.println("Got the Message : " + ((TextMessage) message).getText());
                 // messageReceived = true;
             } catch (JMSException e) {
                 e.printStackTrace();

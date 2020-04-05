@@ -38,5 +38,7 @@
         <module>bl-notification-system</module>
         <module>bl-notification-system-test</module>
         <module>bl-readings-service</module>
+        <module>bl-readings-aggregator-service</module>
+        <module>bl-readings-agg-last-service</module>
     </modules>
 </project>

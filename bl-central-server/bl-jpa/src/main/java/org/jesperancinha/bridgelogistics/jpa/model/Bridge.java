@@ -10,25 +10,17 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-@Entity
-@Table(name = "BRIDGE")
-@NamedQueries({
-        @NamedQuery(name = "Bridge.findAll",
-                query = "SELECT b FROM Bridge b")
-})
-public record Bridge(
-        @Id
-        @Column(name = "BridgeID")
-        @GeneratedValue(strategy = GenerationType.AUTO)
+@Entity @Table(name = "BRIDGE") @NamedQueries({ @NamedQuery(name = "Bridge.findAll", query = "SELECT b FROM Bridge b") }) public record Bridge(
+@Id @Column(name = "BridgeID") @GeneratedValue(strategy = GenerationType.AUTO)
         Long id,
-        @NotNull
+@NotNull
         String name,
-        String address,
-        String city,
-        String postCode,
-        String country
-) {
-    public Bridge() {
-        this(null, null, null, null, null, null);
+            String address,
+            String city,
+            String postCode,
+            String country
+            ){
+public Bridge(){
+    this(null,null,null,null,null,null);
     }
-}
+    }

@@ -7,14 +7,13 @@ import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.testng.annotations.Test;
 
-public class DomainConsumerTest extends Arquillian { ;
+public class DomainConsumerTest extends Arquillian {
+    ;
 
     @Deployment
     public static JavaArchive createDeployment() {
         System.out.println("Deploying...");
-        return ShrinkWrap.create(JavaArchive.class)
-                .addClass(DomainConsumer.class)
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+        return ShrinkWrap.create(JavaArchive.class).addClass(DomainConsumer.class).addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 
     @Test

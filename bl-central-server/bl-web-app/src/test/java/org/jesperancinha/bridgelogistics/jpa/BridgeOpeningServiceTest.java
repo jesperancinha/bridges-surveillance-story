@@ -1,6 +1,5 @@
 package org.jesperancinha.bridgelogistics.jpa;
 
-
 import org.jesperancinha.bridgelogistics.controllers.data.BridgeDto;
 import org.jesperancinha.bridgelogistics.controllers.data.BridgeOpeningConflictDto;
 import org.jesperancinha.bridgelogistics.controllers.data.BridgeOpeningTimeDto;

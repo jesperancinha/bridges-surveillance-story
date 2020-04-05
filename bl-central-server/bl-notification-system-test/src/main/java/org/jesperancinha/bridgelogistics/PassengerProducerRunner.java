@@ -3,7 +3,13 @@ package org.jesperancinha.bridgelogistics;
 import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
 
-import javax.jms.*;
+import javax.jms.Connection;
+import javax.jms.ConnectionFactory;
+import javax.jms.JMSException;
+import javax.jms.MessageProducer;
+import javax.jms.Session;
+import javax.jms.TextMessage;
+import javax.jms.Topic;
 
 public class PassengerProducerRunner {
 
@@ -19,8 +25,7 @@ public class PassengerProducerRunner {
         // JMS messages are sent and received using a Session. We will
         // create here a non-transactional session object. If you want
         // to use transactions you should set the first parameter to 'true'
-        Session session = connection.createSession(false,
-                Session.AUTO_ACKNOWLEDGE);
+        Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
         Topic topic = session.createTopic("topic/PasssengerTopic");
 

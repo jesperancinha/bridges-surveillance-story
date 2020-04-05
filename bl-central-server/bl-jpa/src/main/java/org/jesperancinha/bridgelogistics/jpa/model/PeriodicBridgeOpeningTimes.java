@@ -11,26 +11,21 @@ import javax.persistence.Table;
 
 import static javax.persistence.CascadeType.ALL;
 
-@Entity
-@Table(name = "PERIODIC_BRIDGE_OPENING_TIMES")
-public record PeriodicBridgeOpeningTimes(
+@Entity @Table(name = "PERIODIC_BRIDGE_OPENING_TIMES") public record PeriodicBridgeOpeningTimes(
 
-        @Id
-        @Column(name = "PeriodicBridgeOpeningTimeID")
-        @GeneratedValue(strategy = GenerationType.AUTO)
+@Id @Column(name = "PeriodicBridgeOpeningTimeID") @GeneratedValue(strategy = GenerationType.AUTO)
         Long id,
 
-        @ManyToOne(cascade = ALL, optional = false)
-        @JoinColumn(name = "BridgeID", nullable = false, updatable = false)
+@ManyToOne(cascade = ALL, optional = false) @JoinColumn(name = "BridgeID", nullable = false, updatable = false)
         Bridge bridge,
 
-        @Column(name = "CronOpeningTime")
+@Column(name = "CronOpeningTime")
         String cronOpeningTime,
 
-        @Column(name = "CronClosingTime")
+@Column(name = "CronClosingTime")
         String cronClosingTime
-) {
-    public PeriodicBridgeOpeningTimes() {
-        this(null, null, null, null);
+            ){
+public PeriodicBridgeOpeningTimes(){
+    this(null,null,null,null);
     }
-}
+    }
