@@ -49,6 +49,7 @@ object ReadingsLauncher extends App {
           "device_type TEXT, " +
           "unit TEXT, " +
           "periodicity TEXT, " +
+          "timeOfReading BIGINT, " +
           "reading TEXT)")
       } finally if (session != null) session.close()
     }
@@ -69,10 +70,11 @@ object ReadingsLauncher extends App {
           temperature.deviceType,
           temperature.unit,
           temperature.periodicity,
+          temperature.timeOfReading,
           temperature.reading
         )))
         collection.saveToCassandra("readings", "temperatures",
-          SomeColumns("id", "device_id", "device_serial_number", "device_type", "unit", "periodicity", "reading"))
+          SomeColumns("id", "device_id", "device_serial_number", "device_type", "unit", "periodicity", "timeOfReading", "reading"))
       })
     }
 
