@@ -16,6 +16,23 @@ docker exec -it bl-train-container bash
 uname -a
 ```
 
+## Start RabbitMQ
+
+```bash
+rabbitmq-server
+```
+
+## Stop RabbiMQ
+
+```bash
+rabbitmqctl stop
+```
+## RabbitMQ administrator password
+
+http://localhost:15672/
+
+guest/guest
+
 ## About me 👨🏽‍💻🚀
 
 [![Twitter Follow](https://img.shields.io/twitter/follow/joaofse?label=João%20Esperancinha&style=social)](https://twitter.com/joaofse)
