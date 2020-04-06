@@ -10,6 +10,7 @@
     </parent>
 
     <artifactId>bl-readings-service</artifactId>
+    <name>Bridge Logistics Readings Service</name>
 
     <dependencies>
         <dependency>

@@ -1,11 +1,30 @@
 # Bridge Logistics Merchandise Control Service (MCS)
 
+## RabbitMQ administrator password
+
+http://localhost:15672/
+
+guest/guest
+
+## Create RabbitMQ Federation
+
+```bash
+rabbitmq-plugins enable rabbitmq_federation
+rabbitmq-plugins enable rabbitmq_federation_management
+```
+
 ## Build
 mvn clean package && docker build -t org.jesperancinha/bridge-logistics-mcs .
 
 ## RUN
 
 docker rm -f bridge-logistics-mcs || true && docker run -d -p 8080:8080 -p 4848:4848 --name bridge-logistics-mcs org.jesperancinha/bridge-logistics-mcs
+
+## References
+
+-   [RabbitMQ Federation](https://medium.com/trendyol-tech/rabbitmq-federation-plugin-cb87f7450365)
+-   [RabbitMQ Management Plugin](https://www.rabbitmq.com/management.html)
+-   [RabbitMQ Clustering Guide](https://www.rabbitmq.com/clustering.html)
 
 ## About me 👨🏽‍💻🚀
 

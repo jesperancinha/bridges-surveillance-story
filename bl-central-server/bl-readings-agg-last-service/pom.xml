@@ -10,6 +10,7 @@
     </parent>
 
     <artifactId>bl-readings-agg-last-service</artifactId>
+    <name>Bridge Logistics Aggregator Last Service</name>
 
     <dependencies>
         <dependency>

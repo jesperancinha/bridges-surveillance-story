@@ -9,6 +9,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>bl-mcs</artifactId>
     <packaging>war</packaging>
+    <name>Bridge Logistics Merchandise Control Service</name>
     <dependencies>
         <dependency>
             <groupId>javax</groupId>
