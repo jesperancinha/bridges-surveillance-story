@@ -1,5 +1,21 @@
 # bl-train-server
 
+## Build container
+
+```bash
+docker stop bl-train-container
+docker rm bl-train-container
+docker build -t jesperancinha/bl-train-server:0.0.1 .
+docker run -d --name bl-train-container jesperancinha/bl-train-server:0.0.1
+docker exec -it bl-train-container bash
+```
+
+## System Info
+
+```bash
+uname -a
+```
+
 ## About me 👨🏽‍💻🚀
 
 [![Twitter Follow](https://img.shields.io/twitter/follow/joaofse?label=João%20Esperancinha&style=social)](https://twitter.com/joaofse)
