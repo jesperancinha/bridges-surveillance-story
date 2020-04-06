@@ -122,6 +122,30 @@ kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partit
 kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic WINDDIRECTION
 ```
 
+### Setting up OpenShift [![alt text](Documentation/bl-openshift-s.png)](https://manage.openshift.com/)
+
+-   Open an account
+
+    -   [Openshift online](https://manage.openshift.com/)
+
+-   Setup OKD (Original Community Distribution of Kubernetes)
+
+    -   [OKD](https://www.okd.io/index.html)
+
+-   Install Minishift
+
+```bash
+brew cask install minishift
+brew cask install --force minishift
+minishift addons install --defaults
+minishift addons enable admin-user
+minishift start --vm-driver=virtualbox
+brew install openshift-cli
+oc adm policy --as system:admin add-cluster-role-to-user cluster-admin developer
+minishift console
+oc create rolebinding default-view --clusterrole=view --serviceaccount=mancalaje:default --namespace=mancalaje
+```
+
 ## [Hints & Tricks](https://github.com/jesperancinha/project-signer/blob/master/project-signer-templates/Hints%26Tricks.md)
 
 -   [pbcopy](http://sweetme.at/2013/11/17/copy-to-and-paste-from-the-clipboard-on-the-mac-osx-command-line/)
