@@ -1,6 +1,5 @@
 # bl-bridge-merchandise-service
 
-
 ## Install RabbitMQ
 
 -   Command line
@@ -26,6 +25,12 @@ brew services stop mosquitto
 
 ```bash
 rabbitmq-server
+```
+
+## Stop RabbiMQ
+
+```bash
+rabbitmqctl stop
 ```
 
 ## References
