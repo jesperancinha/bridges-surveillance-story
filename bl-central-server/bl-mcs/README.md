@@ -57,10 +57,20 @@ rabbitmq-server
 rabbitmqctl stop
 ```
 
+	
+rabbitmqctl set_parameter federation-upstream my-upstream \
+'{"uri":"amqp://localhost:5672","expires":3600000}'
+
+	
+rabbitmqctl set_parameter federation-upstream my-upstream \
+'{"uri":"amqp://localhost:5673","expires":3600000}'
+
 
 ## References
 
 -   [Is it possible to run more than one rabbitmq instance on one machine?](https://stackoverflow.com/questions/21453910/is-it-possible-to-run-more-than-one-rabbitmq-instance-on-one-machine)
+-   [RabbitMQ Federation Plugin](https://www.rabbitmq.com/federation.html)
+-   [RabbitMQ Federated Exchanges](https://www.rabbitmq.com/federated-exchanges.html)
 -   [RabbitMQ Federation](https://medium.com/trendyol-tech/rabbitmq-federation-plugin-cb87f7450365)
 -   [RabbitMQ Management Plugin](https://www.rabbitmq.com/management.html)
 -   [RabbitMQ Clustering Guide](https://www.rabbitmq.com/clustering.html)

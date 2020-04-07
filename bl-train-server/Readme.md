@@ -41,6 +41,10 @@ rabbitmq-plugins enable rabbitmq_federation_management
 
 guest/guest
 
+## References
+
+-   [Cluster migration with RabbitMQ Queue Federation](https://www.cloudamqp.com/blog/2015-07-08-migrate-between-plans-rabbitmq-queue-federation.html)
+
 ## About me 👨🏽‍💻🚀
 
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-20/JEOrgLogo-20.png)](http://joaofilipesabinoesperancinha.nl)
