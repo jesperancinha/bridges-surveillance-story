@@ -27,9 +27,17 @@ rabbitmq-server
 ```bash
 rabbitmqctl stop
 ```
-## RabbitMQ administrator password
 
-http://localhost:15672/
+## Create RabbitMQ Federation
+
+```bash
+rabbitmq-plugins enable rabbitmq_federation
+rabbitmq-plugins enable rabbitmq_federation_management
+```
+
+## RabbitMQ running with administrator password
+
+[RabbitMQ Default Localhost](http://localhost:15672)
 
 guest/guest
 

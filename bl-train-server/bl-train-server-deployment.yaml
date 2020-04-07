@@ -39,3 +39,5 @@ spec:
           ports:
             - name: http
               containerPort: 5672
+            - name: rabbitMQ
+              containerPort: 15672
