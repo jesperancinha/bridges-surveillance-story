@@ -8,11 +8,11 @@ spec:
     app: bl-train-server
     tier: frontend
   ports:
-    - name: http
-      port: 5672
-      targetPort: 5672
+    - name: rabbitmqweb
+      port: 30000
+      targetPort: 15672
       protocol: TCP
-      nodePort: 5672
+      nodePort: 30000
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -34,10 +34,10 @@ spec:
     spec:
       containers:
         - name: bl-train-server
-          image: bl-train-server:latest
-          imagePullPolicy: Never
+          image: jesperancinha/bl-train-server:0.0.1
+          imagePullPolicy: IfNotPresent
           ports:
-            - name: http
+            - name: queue
               containerPort: 5672
-            - name: rabbitMQ
+            - name: rabbitmqweb
               containerPort: 15672

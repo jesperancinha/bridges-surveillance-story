@@ -14,4 +14,4 @@ COPY entrypoint.sh /root
 
 ENTRYPOINT ["/root/entrypoint.sh"]
 
-EXPOSE 5672 15671 15672
+EXPOSE 5673 15671 15673

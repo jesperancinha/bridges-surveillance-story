@@ -5,7 +5,7 @@ import sys
 credentials = pika.PlainCredentials('test', 'test')
 
 connection = pika.BlockingConnection(
-    pika.ConnectionParameters(host='localhost', port='5673', credentials=credentials, virtual_host='bl-merchandise-vh'))
+    pika.ConnectionParameters(host='localhost', port='5673', credentials=credentials, virtual_host='bl_merchandise_vh'))
 channel = connection.channel()
 channel.queue_declare("bl-merchandise-queue", durable=True)
 channel.exchange_declare(exchange='bl-merchandise-exchange', exchange_type='fanout', durable=True)
