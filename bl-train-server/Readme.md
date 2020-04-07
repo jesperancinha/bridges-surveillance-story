@@ -44,6 +44,8 @@ guest/guest
 ## References
 
 -   [Cluster migration with RabbitMQ Queue Federation](https://www.cloudamqp.com/blog/2015-07-08-migrate-between-plans-rabbitmq-queue-federation.html)
+-   [Chapter 8. Cross-cluster message distribution](https://livebook.manning.com/book/rabbitmq-in-depth/chapter-8/)
+-   [Understand Federation in RabbitMQ - RabbitMQ Federation Plugin](https://jee-appy.blogspot.com/2018/08/setup-rabbitmq-exchange-federation.html)
 
 ## About me 👨🏽‍💻🚀
 
