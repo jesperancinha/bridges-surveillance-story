@@ -10,6 +10,8 @@ RUN rabbitmq-plugins enable rabbitmq_federation
 
 RUN rabbitmq-plugins enable rabbitmq_federation_management
 
+RUN rabbitmq-plugins enable rabbitmq_shovel rabbitmq_shovel_management
+
 COPY entrypoint.sh /root
 
 ENTRYPOINT ["/root/entrypoint.sh"]
