@@ -12,7 +12,7 @@ import java.sql.Connection;
 import java.sql.Statement;
 
 @ExtendWith(SpringExtension.class)
-@SpringBootTest()
+@SpringBootTest
 @TestPropertySource("classpath:application-test.properties")
 public class ReceiverTest {
 
@@ -21,7 +21,6 @@ public class ReceiverTest {
     @BeforeAll
     public static void initialise() throws Exception {
         if (embeddedPostgres == null) {
-            //Create an instance of embedded postgress
             embeddedPostgres = EmbeddedPostgres.builder().setPort(5433).start();
 
             try (Connection conn = embeddedPostgres.getPostgresDatabase().getConnection()) {
@@ -33,5 +32,6 @@ public class ReceiverTest {
 
     @Test
     public void receiveMessage() {
+        System.out.println("OK");
     }
 }

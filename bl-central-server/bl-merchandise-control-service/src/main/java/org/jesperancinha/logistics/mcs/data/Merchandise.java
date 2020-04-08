@@ -6,4 +6,5 @@ public record Merchandise(Long supplierId,
     Long volumePerUnit,
     Long sourceLocationId,
     Long destinationLocationId) {
+
 }

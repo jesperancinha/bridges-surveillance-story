@@ -1,5 +1,8 @@
 package org.jesperancinha.logistics.mcs.rabbitmq;
 
+import org.jesperancinha.logistics.mcs.data.Merchandise;
+import org.jesperancinha.logistics.mcs.repository.MerchandiseRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.nio.charset.Charset;
@@ -10,9 +13,13 @@ public class Receiver {
 
     private CountDownLatch latch = new CountDownLatch(1);
 
+    @Autowired
+    private MerchandiseRepository merchandiseRepository;
+
     public void receiveMessage(byte[] message) {
         String messageString = new String(message, Charset.defaultCharset());
         System.out.println("Received <" + messageString + ">");
+        merchandiseRepository.save(new Merchandise(1L, 2L, 3L, 4L, 5L, 6L));
         latch.countDown();
     }
 
