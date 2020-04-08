@@ -59,6 +59,7 @@ rabbitmqctl stop
 
 ## References
 
+-   [Messaging with RabbitMQ](https://spring.io/guides/gs/messaging-rabbitmq/)
 -   [Is it possible to run more than one rabbitmq instance on one machine?](https://stackoverflow.com/questions/21453910/is-it-possible-to-run-more-than-one-rabbitmq-instance-on-one-machine)
 -   [RabbitMQ Federation Plugin](https://www.rabbitmq.com/federation.html)
 -   [RabbitMQ Federated Exchanges](https://www.rabbitmq.com/federated-exchanges.html)

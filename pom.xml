@@ -22,25 +22,74 @@
     <name>Bridge Logistics Parent</name>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
         <maven.compiler.source>14</maven.compiler.source>
         <maven.compiler.target>14</maven.compiler.target>
         <maven.compiler>3.8.0</maven.compiler>
-        <junit.version>4.12</junit.version>
-        <combinatoricslib3.version>3.3.0</combinatoricslib3.version>
-        <assertj-core.version>3.11.1</assertj-core.version>
-        <javaee-api.version>8.0.1</javaee-api.version>
-        <amqp-client.version>5.7.1</amqp-client.version>
-        <slf4j-api.version>1.7.26</slf4j-api.version>
-        <activemq.version>5.15.11</activemq.version>
-        <lombok.version>1.18.8</lombok.version>
-        <hibernate-entitymanager.version>5.4.3.Final</hibernate-entitymanager.version>
-        <maven-war-plugin.version>3.2.3</maven-war-plugin.version>
-        <postgresql.version>42.2.5</postgresql.version>
         <maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
+        <maven-war-plugin.version>3.2.3</maven-war-plugin.version>
+
+        <spring-boot-autoconfigure.version>2.2.4.RELEASE</spring-boot-autoconfigure.version>
+        <spring-boot-starter-amqp.version>2.2.2.RELEASE</spring-boot-starter-amqp.version>
+        <spring-boot-starter-web.version>2.2.4.RELEASE</spring-boot-starter-web.version>
+
+        <spring-boot-starter-test.version>2.2.4.RELEASE</spring-boot-starter-test.version>
+        <spring-rabbit-test.version>2.2.5.RELEASE</spring-rabbit-test.version>
+
+        <activemq.version>5.15.11</activemq.version>
+        <amqp-client.version>5.7.1</amqp-client.version>
+
+        <combinatoricslib3.version>3.3.0</combinatoricslib3.version>
+        <javaee-api.version>8.0.1</javaee-api.version>
+        <slf4j-api.version>1.7.26</slf4j-api.version>
+
+        <postgresql.version>42.2.5</postgresql.version>
+        <hibernate-entitymanager.version>5.4.3.Final</hibernate-entitymanager.version>
+
+        <junit.version>4.12</junit.version>
+        <assertj-core.version>3.11.1</assertj-core.version>
+
+        <lombok.version>1.18.8</lombok.version>
+        <failOnMissingWebXml>false</failOnMissingWebXml>
+
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-autoconfigure</artifactId>
+                <version>${spring-boot-autoconfigure.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-amqp</artifactId>
+                <version>${spring-boot-starter-amqp.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${spring-boot-starter-web.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <scope>test</scope>
+                <version>${spring-boot-starter-test.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.junit.vintage</groupId>
+                        <artifactId>junit-vintage-engine</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.amqp</groupId>
+                <artifactId>spring-rabbit-test</artifactId>
+                <version>${spring-rabbit-test.version}</version>
+                <scope>test</scope>
+            </dependency>
             <dependency>
                 <groupId>org.jesperancinha.logistics</groupId>
                 <artifactId>bl-jpa</artifactId>

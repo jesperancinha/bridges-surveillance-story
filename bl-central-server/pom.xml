@@ -30,10 +30,10 @@
         <revision>0.0.0-SNAPSHOT</revision>
     </properties>
     <modules>
-        <module>bl-jpa</module>
-        <module>bl-pcs</module>
-        <module>bl-dcs</module>
-        <module>bl-mcs</module>
+        <module>bl-domain-model</module>
+        <module>bl-domain-control-service</module>
+        <module>bl-passenger-control-service</module>
+        <module>bl-merchandise-control-service</module>
         <module>bl-web-app</module>
         <module>bl-readings-service</module>
         <module>bl-readings-aggregator-service</module>
