@@ -19,7 +19,7 @@ public class Receiver {
     public void receiveMessage(byte[] message) {
         String messageString = new String(message, Charset.defaultCharset());
         System.out.println("Received <" + messageString + ">");
-        merchandiseRepository.save(new Merchandise(1L, 2L, 3L, 4L, 5L, 6L));
+        merchandiseRepository.save(new Merchandise("1L",1L, 2L, 3L, 4L, 5L, 6L));
         latch.countDown();
     }
 

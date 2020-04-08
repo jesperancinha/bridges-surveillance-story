@@ -25,7 +25,7 @@ public class ReceiverTest {
 
             try (Connection conn = embeddedPostgres.getPostgresDatabase().getConnection()) {
                 Statement statement = conn.createStatement();
-                statement.execute("CREATE DATABASE BL_LOGISTICS");
+                statement.execute("CREATE DATABASE bllogistics");
             }
         }
     }
