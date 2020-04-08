@@ -1,0 +1,19 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>bridge-logistics</artifactId>
+        <groupId>org.jesperancinha.logistics</groupId>
+        <version>0.0.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>bl-legacy</artifactId>
+
+    <packaging>pom</packaging>
+
+    <name>Bridge Logistics Legacy modules</name>
+
+    <modules>
+        <module>bl-notification-system</module>
+        <module>bl-notification-system-test</module>
+    </modules>
+</project>

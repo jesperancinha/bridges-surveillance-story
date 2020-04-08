@@ -115,5 +115,6 @@
         <module>bl-central-server</module>
         <module>bl-bridge-server</module>
         <module>bl-train-server</module>
+        <module>bl-legacy</module>
     </modules>
 </project>
