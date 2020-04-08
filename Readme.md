@@ -226,6 +226,7 @@ curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
 ```
 ## References
 
+-   [Share Link Generator!](http://sharelinkgenerator.com/)
 -   [Docker Desktop for Mac](https://hub.docker.com/editions/community/docker-ce-desktop-mac)
 -   [Kafka vs. RabbitMQ: Architecture, Performance & Use Cases](https://www.upsolver.com/blog/kafka-versus-rabbitmq-architecture-performance-use-case)
 -   [Real-Time Analysis of Popular Uber Locations using Apache APIs: Spark Structured Streaming, Machine Learning, Kafka and MapR Database](https://mapr.com/blog/real-time-analysis-popular-uber-locations-spark-structured-streaming-machine-learning-kafka-and-mapr-db/)
