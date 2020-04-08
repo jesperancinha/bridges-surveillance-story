@@ -1,4 +1,4 @@
-package org.jesperancinha.logistics.mcs;
+package org.jesperancinha.logistics.mcs.rabbitmq;
 
 import org.springframework.stereotype.Component;
 
