@@ -6,13 +6,15 @@ import javax.persistence.Table;
 
 @Entity
 @Table
-public record Merchandise(@Id  String id,
+public record Merchandise(@Id String id,
     Long supplierId,
     Long productId,
     Long quantity,
     Long volumePerUnit,
     Long sourceLocationId,
     Long destinationLocationId) {
-
+    public Merchandise() {
+        this(null, null, null, null, null, null, null);
+    }
 
 }
