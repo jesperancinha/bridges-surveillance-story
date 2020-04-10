@@ -224,6 +224,18 @@ alias java13="export JAVA_HOME=/usr/lib/jvm/java-13-oracle && update-java-altern
 ```bash
 curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
 ```
+
+-   Remove Docker-machine
+
+NOTE: This process will remove old docker-machine installations.
+User [Docker-Desktop](https://www.docker.com/products/docker-desktop) instead.
+
+```bash
+brew uninstall docker-machine-driver-vmware
+brew uninstall --force docker-machine
+docker system prune -a
+```
+
 ## References
 
 -   [Share Link Generator!](http://sharelinkgenerator.com/)
