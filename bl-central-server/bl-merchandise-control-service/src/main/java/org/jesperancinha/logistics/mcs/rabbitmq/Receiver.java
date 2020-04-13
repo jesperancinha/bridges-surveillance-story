@@ -21,7 +21,7 @@ public class Receiver {
         String messageString = new String(message, Charset.defaultCharset());
         System.out.println("Received <" + messageString + ">");
         Merchandise merchandise = new Merchandise("1L", 1L, 2L, 3L, 4L, 5L, 6L, Instant.now().toEpochMilli());
-        merchandiseRepository.save(merchandise);
+        merchandiseRepository.save( merchandise);
         latch.countDown();
     }
 
