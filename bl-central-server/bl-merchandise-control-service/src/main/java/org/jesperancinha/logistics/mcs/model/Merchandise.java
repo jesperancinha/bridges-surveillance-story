@@ -1,16 +1,15 @@
 package org.jesperancinha.logistics.mcs.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Objects;
 
 @Entity
 @Table
-public record Merchandise(@Id String id,
+public record Merchandise(@Id Long id,
     Long supplierId,
     Long productId,
     Long quantity,
@@ -20,10 +19,14 @@ public record Merchandise(@Id String id,
     Long timeStamp,
     Long barCode) {
     @Builder
-    public Merchandise{
-        if (supplierId < 0) {
-            throw new IllegalArgumentException( "A supplier must be supplied!");
+    public Merchandise {
+        if (id > 0 && (Objects.isNull(supplierId) || supplierId < 0)) {
+            throw new IllegalArgumentException("A supplier must be supplied!");
         }
+    }
+
+    public Merchandise() {
+        this(-1L, null, null, null, null, null, null, null, null);
     }
 
 }
