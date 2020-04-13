@@ -1,5 +1,7 @@
 package org.jesperancinha.logistics.mcs.data;
 
+import lombok.Builder;
+
 public record MerchandiseDto(String id,
     Long supplierId,
     Long productId,
@@ -9,6 +11,10 @@ public record MerchandiseDto(String id,
     Long destinationLocationId,
     Long timeStamp,
     Long barCode) {
+    @Builder
+    public MerchandiseDto{
+
+    }
     public MerchandiseDto() {
         this(null, null, null, null, null, null, null, null, null);
     }
