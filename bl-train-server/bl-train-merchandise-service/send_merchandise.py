@@ -10,7 +10,7 @@ channel = connection.channel()
 channel.queue_declare("bl_merchandise_queue", durable=True)
 channel.exchange_declare(exchange='bl_merchandise_exchange', exchange_type='fanout', durable=True)
 
-message = ' '.join(sys.argv[1:]) or "info: Hello World!"
+message = ' '.join(sys.argv[1:]) or "{\"id\":1L\"}"
 channel.basic_publish(exchange='bl_merchandise_exchange', routing_key='', body=message)
 print(" [x] Sent %r" % message)
 connection.close()

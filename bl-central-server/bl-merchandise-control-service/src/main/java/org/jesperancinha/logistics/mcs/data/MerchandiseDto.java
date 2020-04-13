@@ -2,7 +2,7 @@ package org.jesperancinha.logistics.mcs.data;
 
 import lombok.Builder;
 
-public record MerchandiseDto(String id,
+public record MerchandiseDto(Long id,
     Long supplierId,
     Long productId,
     Long quantity,
