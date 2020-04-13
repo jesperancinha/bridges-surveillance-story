@@ -8,9 +8,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table
-public record Supplier(@GeneratedValue(strategy = GenerationType.IDENTITY) @Id Long id,
-    String name,
-    String address,
-    String city,
-    String postCode) {
+public record Error(@GeneratedValue(strategy = GenerationType.IDENTITY) @Id Long id,
+    String errorText) {
+    public Error() {
+        this(null, null);
+    }
 }

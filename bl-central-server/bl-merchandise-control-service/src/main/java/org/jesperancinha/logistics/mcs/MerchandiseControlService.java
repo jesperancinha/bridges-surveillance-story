@@ -30,7 +30,8 @@ public class MerchandiseControlService {
 
     @Bean
     Binding binding(Queue queue, FanoutExchange exchange) {
-        return BindingBuilder.bind(queue).to(exchange);
+        return BindingBuilder.bind(queue)
+            .to(exchange);
     }
 
     @Bean

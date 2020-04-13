@@ -21,9 +21,12 @@ public class ReceiverTest {
     @BeforeAll
     public static void initialise() throws Exception {
         if (embeddedPostgres == null) {
-            embeddedPostgres = EmbeddedPostgres.builder().setPort(5433).start();
+            embeddedPostgres = EmbeddedPostgres.builder()
+                .setPort(5433)
+                .start();
 
-            try (Connection conn = embeddedPostgres.getPostgresDatabase().getConnection()) {
+            try (Connection conn = embeddedPostgres.getPostgresDatabase()
+                .getConnection()) {
                 Statement statement = conn.createStatement();
                 statement.execute("CREATE DATABASE bllogistics");
             }

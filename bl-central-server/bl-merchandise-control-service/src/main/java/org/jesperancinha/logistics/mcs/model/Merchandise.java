@@ -1,9 +1,8 @@
-package org.jesperancinha.logistics.mcs.data;
+package org.jesperancinha.logistics.mcs.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.sql.Date;
 
 @Entity
 @Table
@@ -14,9 +13,10 @@ public record Merchandise(@Id String id,
     Long volumePerUnit,
     Long sourceLocationId,
     Long destinationLocationId,
-    Long timetamp) {
+    Long timeStamp,
+    Long barCode) {
     public Merchandise() {
-        this(null, null, null, null, null, null, null, null);
+        this(null, null, null, null, null, null, null, null, null);
     }
 
 }
