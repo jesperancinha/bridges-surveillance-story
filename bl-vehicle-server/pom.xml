@@ -10,7 +10,7 @@
         <version>0.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>bl-train-server</artifactId>
+    <artifactId>bl-vehicle-server</artifactId>
     <version>0.0.0-SNAPSHOT</version>
 
     <packaging>pom</packaging>

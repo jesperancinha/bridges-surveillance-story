@@ -37,7 +37,31 @@ PLEASE NOTE: Java 14 has been released in March. I started this project last yea
 
 -   [Intellij EAP(Early Access Program)](https://www.jetbrains.com/idea/nextversion/?_ga=2.179813472.597851686.1584783010-460061110.1578427207#section=mac)
 
+
 This application is inspired by the TV Series - [The Bridge](https://www.imdb.com/title/tt1733785/)
+
+## Modules
+
+-   [bl-central-server](./bl-central-server): The central server containing all centralizable data
+-   [bl-bridge-server](./bl-bridge-server): A server installed on each bridge
+-   [bl-train-server](./bl-train-server): A server installed on each train
+-   [bl-vehicle-server](./bl-vehicle-server): A server installed on each vehicle
+-   [bl-timetable-generator](./bl-vehicle-server): Utility to generate the bridge timetables
+-   [bl-legacy](./bl-legacy): Legacy software intended useful to shar but not in use
+
+## Constraints
+
+1. Vehicles which will cross the bridge when they are open. Bridges are considered to be open, when the bridge plates are down. If the bridge plates are up, then the bridge is said to be closed. Bridges may also be closed at other times and for other reasons. When a bridge is closed, it cannot be crossed, regardless of the state of its plates.
+2. Trains go over static bridges which are mostly open. They can be closed for exceptional reasons.
+3. When trains go over bridge, we need to know how long the whole train took to cross it.
+4. When vehicles go over the bridge, we need to know how long vehicle took to cross it.
+5. We also need to know the complete weight being passed accross the bridge in regards to merchansise.
+6. We aso need to know the complete weight being passed accross the bridge in regards to people.
+7. The exact number of people will be an aproximation and will be a result from a triangulation of passing through heat sensors and light sensors.
+8. Time tables and merchandise exchanges will be done via RabbitMQ.
+9. Sensor information will be sent via Kafka.
+10. People data will be sent via Kafka Streams.
+11. All Kafka streamed information will be handle via Apache Spark.
 
 ## Testing
 
