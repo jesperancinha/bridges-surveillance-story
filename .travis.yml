@@ -9,15 +9,15 @@ before_script:
   - cd bl-bridge-server/bl-bridge-broadcaster && npm install && cd ../..
   - cd bl-bridge-server/bl-bridge-humidity-coap && npm install && cd ../..
   - cd bl-bridge-server/bl-bridge-temperature-mqtt && npm install && cd ../..
-#  - cd bl-train-server/bl-bridge-merchandise-service && npm install && cd ../..
-  - cd bl-train-server/bl-bridge-people-mqtt && npm install && cd ../..
+  - cd bl-train-server/bl-bridge-merchandise-service && python -m py_compile *.py && cd ../..
+  - cd bl-train-server/bl-train-people-mqtt && npm install && cd ../..
   - cd bl-train-server/bl-train-broadcaster && npm install && cd ../..
 script:
   - cd bl-bridge-server/bl-bridge-broadcaster && npm test && cd ../..
   - cd bl-bridge-server/bl-bridge-humidity-coap && npm test && cd ../..
   - cd bl-bridge-server/bl-bridge-temperature-mqtt && npm test && cd ../..
-#  - cd bl-train-server/bl-bridge-merchandise-service && npm test && cd ../..
-  - cd bl-train-server/bl-bridge-people-mqtt && npm test && cd ../..
+  - cd bl-train-server/bl-bridge-merchandise-service && python -m py_compile *.py && cd ../..
+  - cd bl-train-server/bl-train-people-mqtt && npm test && cd ../..
   - cd bl-train-server/bl-train-broadcaster && npm test && cd ../..
 notifications:
   email:
