@@ -11,5 +11,5 @@
 
     <artifactId>bl-demo-server</artifactId>
 
-
+    <packaging>pom</packaging>
 </project>

@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Tuna pieces in olive oil",
+    "package": "can",
+    "brand": "Jonny East",
+    "package size": 50,
+    "weightPerUnit": 150,
+    "unitWeight": "grams",
+    "barcode": "002342394458",
+    "correctionFactor": 0,
+    "width": 4,
+    "height": 2,
+    "depth": 4,
+    "unitDimension": "cm"
+  },
+  {
+    "name": "Smoked sardines",
+    "package": "can",
+    "brand": "Jonny East",
+    "package size": 50,
+    "weightPerUnit": 120,
+    "unitWeight": "grams",
+    "barcode": "082649323843",
+    "correctionFactor": 0,
+    "width": 4,
+    "height": 2,
+    "depth": 4,
+    "unitDimension": "cm"
+  }
+]

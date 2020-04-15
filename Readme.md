@@ -269,6 +269,14 @@ brew uninstall --force docker-machine
 docker system prune -a
 ```
 
+## Domain
+
+-   [UIC classification of goods wagons](https://en.wikipedia.org/wiki/UIC_classification_of_goods_wagons)
+-   [DB Cargon freight wagons](https://nl.dbcargo.com/resource/blob/1430008/9767e97bb070ccbbf77efd84e7d64948/freight_wagon_catalog_v2011-data.pdf)
+-   [How are freight cars classifed by IR?](https://www.irfca.org/faq/faq-stock2.html)
+-   [Hornby Wagons](https://www.hornby.com/uk-en/)
+-   [Goods wagon](https://en.wikipedia.org/wiki/Goods_wagon)
+
 ## References
 
 -   [Share Link Generator!](http://sharelinkgenerator.com/)
