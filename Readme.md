@@ -47,6 +47,7 @@ This application is inspired by the TV Series - [The Bridge](https://www.imdb.co
 -   [bl-train-server](./bl-train-server): A server installed on each train
 -   [bl-vehicle-server](./bl-vehicle-server): A server installed on each vehicle
 -   [bl-timetable-generator](./bl-vehicle-server): Utility to generate the bridge timetables
+-   [bl-demo-server](./bl-demo-server): This server ensures that a simulated train passes through the bridge
 -   [bl-legacy](./bl-legacy): Legacy software intended useful to shar but not in use
 
 ## Constraints
