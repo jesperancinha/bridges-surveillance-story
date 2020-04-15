@@ -12,6 +12,8 @@
 [![GitHub top language](https://img.shields.io/github/languages/top/jesperancinha/bridge-logistics.svg)](#)
 [![GitHub top language](https://img.shields.io/github/languages/code-size/jesperancinha/bridge-logistics.svg)](#)
 
+[![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/docker-50.png)](https://www.docker.com/)
+[![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/docker-compose-50.png)](https://docs.docker.com/compose/)
 [![alt text](Documentation/bl-apachespark-s.png "Apache Spark")](https://spark.apache.org/)
 [![alt text](Documentation/bl-rabbit-mq-s.png "Rabbit MQ")](https://www.rabbitmq.com/)
 [![alt text](Documentation/bl-kafka-s.png "Kafka")](https://kafka.apache.org/documentation/streams/)
