@@ -14,6 +14,11 @@
 
 [![alt text](Documentation/bl-apachespark-s.png "Apache Spark")](https://spark.apache.org/)
 [![alt text](Documentation/bl-rabbit-mq-s.png "Rabbit MQ")](https://www.rabbitmq.com/)
+[![alt text](Documentation/bl-kafka-s.png "Kafka")](https://kafka.apache.org/documentation/streams/)
+[![alt text](Documentation/bl-zookeeper-s.png "Zookeeper")](https://zookeeper.apache.org/)
+[![alt text](Documentation/bl-openshift-s.png)](https://manage.openshift.com/)
+[![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/spring-50.png)](https://spring.io/)
+[![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/spring-boot-50.png)](https://spring.io/projects/spring-boot)
 
 This application uses event sourcing to serve the logistics for a bridge management system.  
 This is what in general this project is responsible for
