@@ -62,6 +62,8 @@ This application is inspired by the TV Series - [The Bridge](https://www.imdb.co
 9. Sensor information will be sent via Kafka.
 10. People data will be sent via Kafka Streams.
 11. All Kafka streamed information will be handle via Apache Spark.
+12. Bridge opening times are subject to conflict detection. Upon detecting one coflict between opening times. The bridge remains closed until the conflict becomes resolved.
+13. Conflict registration changes state but never gets removed
 
 ## Testing
 

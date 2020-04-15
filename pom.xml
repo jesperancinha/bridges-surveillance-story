@@ -187,5 +187,6 @@
         <module>bl-train-server</module>
         <module>bl-vehicle-server</module>
         <module>bl-legacy</module>
+        <module>bl-demo-server</module>
     </modules>
 </project>
