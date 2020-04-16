@@ -1,5 +1,6 @@
 [
   {
+    "id": 1,
     "name": "Tuna pieces in olive oil",
     "package": "can",
     "brand": "Jonny East",
@@ -14,6 +15,7 @@
     "unitDimension": "cm"
   },
   {
+    "id": 2,
     "name": "Smoked sardines",
     "package": "can",
     "brand": "Jonny East",
