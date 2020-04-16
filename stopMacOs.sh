@@ -2,3 +2,5 @@
 kafka-server-stop
 zookeeper-server-stop
 zkServer stop
+rabbitmqctl stop
+
