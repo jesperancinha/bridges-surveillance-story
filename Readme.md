@@ -189,6 +189,7 @@ oc create rolebinding default-view --clusterrole=view --serviceaccount=mancalaje
 ```bash
 pip install futures
 pip install pebble
+pip install pika
 ```
 
 ## [Hints & Tricks](https://github.com/jesperancinha/project-signer/blob/master/project-signer-templates/Hints%26Tricks.md)
