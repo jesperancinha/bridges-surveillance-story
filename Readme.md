@@ -184,6 +184,13 @@ minishift console
 oc create rolebinding default-view --clusterrole=view --serviceaccount=mancalaje:default --namespace=mancalaje
 ```
 
+## Python libraries
+
+```bash
+pip install futures
+pip install pebble
+```
+
 ## [Hints & Tricks](https://github.com/jesperancinha/project-signer/blob/master/project-signer-templates/Hints%26Tricks.md)
 
 -   [pbcopy](http://sweetme.at/2013/11/17/copy-to-and-paste-from-the-clipboard-on-the-mac-osx-command-line/)
@@ -280,6 +287,7 @@ docker system prune -a
 -   [How are freight cars classifed by IR?](https://www.irfca.org/faq/faq-stock2.html)
 -   [Hornby Wagons](https://www.hornby.com/uk-en/)
 -   [Goods wagon](https://en.wikipedia.org/wiki/Goods_wagon)
+-   [Python online compiler](https://www.programiz.com/python-programming/online-compiler/)
 
 ## References
 
