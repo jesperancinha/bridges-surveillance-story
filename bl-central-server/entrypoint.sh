@@ -29,12 +29,13 @@ federate(){
 
     rabbitmqadmin -u test -p test -V bl_$1_vh declare binding source=bl_$1_exchange destination=bl_$1_queue
 
-    rabbitmqctl set_parameter -p bl_$1_vh federation-upstream bl_$1_upstream '{"uri":"amqp://test:test@bl_train_server:5672/bl_'$1'_vh","expires":3600000}'
+    rabbitmqctl set_parameter -p bl_$1_vh federation-upstream bl_$1_upstream '{"uri":"amqp://test:test@bl_'$2'_server:5672/bl_'$1'_vh","expires":3600000}'
 
     rabbitmqctl set_policy -p bl_$1_vh --apply-to all bl_$1_policy ".*$1.*" '{"federation-upstream-set":"all"}'
 }
 
-federate merchandise
-federate sensor
+federate merchandise train
+federate train_sensor train
+federate bridge_sensor bridge
 
 tail -f /dev/null

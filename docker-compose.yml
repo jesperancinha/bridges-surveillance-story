@@ -16,6 +16,14 @@ services:
       - "15673:15672"
       - "5673:5672"
 
+  bl_bridge_server:
+    hostname: bl_bridge_server
+    build:
+      context: bl-bridge-server/.
+    ports:
+      - "15674:15672"
+      - "5674:5672"
+
   postgres:
     hostname: postgres
     build:
