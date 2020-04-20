@@ -5,30 +5,16 @@
     "city": "Amsterdam",
     "countryCode": "NL",
     "length": "80",
-    "unitLength": "meter"
+    "unitLength": "meter",
+    "type": "train"
   },
   {
     "id": 2,
-    "name": "Puente de Ventas",
-    "city": "Madrid",
-    "countryCode": "ES",
-    "length": "60",
-    "unitLength": "meter"
-  },
-  {
-    "id": 3,
     "name": "Demka spoor-brug",
     "city": "Utrecht",
     "countryCode": "NL",
     "length": "255",
-    "unitLength": "meter"
-  },
-  {
-    "id": 4,
-    "name": "Galecopperbrug",
-    "city": "Utrecht",
-    "countryCode": "NL",
-    "length": "320",
-    "unitLength": "meter"
+    "unitLength": "meter",
+    "type": "vehicle"
   }
 ]
