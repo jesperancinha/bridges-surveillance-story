@@ -1,13 +1,12 @@
 #!/usr/bin/env python
 import json
 import sys
-import time
 
 import pika
 
-def checkIn(host, data):
-    data_json = json.dumps(data)
 
+def sendSignal(host, data):
+    data_json = json.dumps(data)
     credentials = pika.PlainCredentials('test', 'test')
     connection = pika.BlockingConnection(
         pika.ConnectionParameters(host=host, port=5673, credentials=credentials, virtual_host='bl_train_sensor_vh'))

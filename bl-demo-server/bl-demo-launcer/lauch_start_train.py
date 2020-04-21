@@ -5,41 +5,70 @@ import time
 from multiprocessing import Process
 from time import sleep
 
-sys.path.append(os.path.abspath('../../bl-train-server/bl-train-merchandise-service'))
-sys.path.insert(1, os.path.abspath('../../bl-train-server/bl-train-merchandise-service'))
+# sys.path.append(os.path.abspath('../../bl-train-server/bl-train-sensor-service'))
+# sys.path.append(os.path.abspath('../../bl-bridge-server/bl-bridge-sensor-service'))
 
-from send_train_timestamp import sendSignal
+sys.path.insert(1, os.path.abspath('../../bl-train-server/bl-train-sensor-service'))
+sys.path.insert(2, os.path.abspath('bl-train-server/bl-train-sensor-service'))
+sys.path.insert(3, os.path.abspath('../../bl-bridge-server/bl-bridge-sensor-service'))
+sys.path.insert(4, os.path.abspath('bl-bridge-server/bl-bridge-sensor-service'))
 
-milliseconds = int(round(time.time() * 1000))
+from send_train_timestamp import sendSignal as sendTrainSignal
+from send_bridge_timestamp import sendSignal as sendBridgeSignal
 
-checkInData = {
-    'id': 1,
-    'type': 'train',
-    'checkin': milliseconds,
-    'lat': 52.109788,
-    'lon': 5.077982
-}
 
-checkOutData = {
-    'id': 1,
-    'type': 'train',
-    'checkout': milliseconds,
-    'lat': 52.110822,
-    'lon': 5.076083
-}
+def current_time():
+    return int(round(time.time() * 1000))
+
+
+def get_train_checkin_data():
+    return {
+        'id': 1,
+        'type': 'train',
+        'checkin': current_time(),
+        'lat': 52.109788,
+        'lon': 5.077982
+    }
+
+
+def get_train_checkout_data():
+    return {
+        'id': 1,
+        'type': 'train',
+        'checkout': current_time(),
+        'lat': 52.110822,
+        'lon': 5.076083
+    }
+
+
+def get_bridge_checkin_data():
+    return {
+        'type': 'bridge',
+        'checkin': current_time(),
+        'lat': 52.109788,
+        'lon': 5.077982
+    }
+
+
+def get_bridge_checkout_data():
+    return {
+        'type': 'bridge',
+        'checkout': current_time(),
+        'lat': 52.110822,
+        'lon': 5.076083
+    }
 
 
 def check_in_out(host, time_to_get_to_bridge, time_to_get_to_station):
     sleep(time_to_get_to_bridge)
     print("Entering Bridge...")
-    send_checkin_message(host, checkInData)
+    send_checkin_message(host)
     print("Checked In!")
     sleep(5)
-    send_checkout_message(host, checkInData)
+    send_checkout_message(host)
     print("Checked Out!")
     print("Leaving Bridge...")
     sleep(time_to_get_to_station)
-
 
 
 def pulses():
@@ -48,22 +77,19 @@ def pulses():
         send_merchandise_message()
 
 
-def generate_checkin():
-    send_merchandise_message()
-    print("Checked in!")
-
-
 def send_merchandise_message():
     print("Merchansise sent!")
 
 
-def send_checkin_message(host, checkInData):
-    sendSignal(host, checkInData)
+def send_checkin_message(host):
+    sendTrainSignal(host, get_train_checkin_data())
+    sendBridgeSignal(host, get_bridge_checkin_data())
     print("Check In sent!")
 
 
-def send_checkout_message(host, checkOutData):
-    sendSignal(host, checkOutData)
+def send_checkout_message(host):
+    sendTrainSignal(host, get_train_checkout_data())
+    sendBridgeSignal(host, get_bridge_checkout_data())
     print("Check Out sent!")
 
 
