@@ -1,8 +1,9 @@
-{
-  "id": 1,
-  "brand": "FLIAT",
-  "model": "PRESSARIO",
-  "weight": 56,
-  "unitWeight": "ton",
-  "containerId": 1
-}
+[
+  {
+    "id": 1,
+    "brand": "FLIAT",
+    "model": "PRESSARIO",
+    "weight": 56,
+    "unitWeight": "ton"
+  }
+]
