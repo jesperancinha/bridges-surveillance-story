@@ -1,8 +1,8 @@
-package org.jesperancinha.logistics.services;
+package org.jesperancinha.logistics.web.services;
 
-import org.jesperancinha.logistics.controllers.data.BridgeDto;
-import org.jesperancinha.logistics.controllers.data.BridgeOpeningConflictDto;
-import org.jesperancinha.logistics.controllers.data.BridgeOpeningTimeDto;
+import org.jesperancinha.logistics.web.controllers.data.BridgeDto;
+import org.jesperancinha.logistics.web.controllers.data.BridgeOpeningConflictDto;
+import org.jesperancinha.logistics.web.controllers.data.BridgeOpeningTimeDto;
 import org.paukov.combinatorics3.Generator;
 import org.paukov.combinatorics3.IGenerator;
 

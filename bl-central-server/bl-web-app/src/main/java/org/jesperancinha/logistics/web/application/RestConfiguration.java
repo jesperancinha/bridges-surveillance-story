@@ -1,4 +1,4 @@
-package org.jesperancinha.logistics.application;
+package org.jesperancinha.logistics.web.application;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;

@@ -1,6 +1,7 @@
-package org.jesperancinha.logistics.application;
+package org.jesperancinha.logistics.web.application;
 
-import org.jesperancinha.logistics.services.BridgeOpeningService;
+
+import org.jesperancinha.logistics.web.services.BridgeOpeningService;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -18,6 +19,7 @@ public class BridgeConflictResource {
 
     @GET
     public Response getAllConflicts() {
-        return Response.ok(bridgeOpeningService.getAllConflicts(new HashMap<>())).build();
+        return Response.ok(bridgeOpeningService.getAllConflicts(new HashMap<>()))
+            .build();
     }
 }

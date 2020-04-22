@@ -1,4 +1,4 @@
-package org.jesperancinha.logistics.controllers.data;
+package org.jesperancinha.logistics.web.controllers.data;
 
 public class BridgeDto {
 

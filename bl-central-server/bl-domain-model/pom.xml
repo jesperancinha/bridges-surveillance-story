@@ -9,7 +9,7 @@
         <!--suppress MavenPropertyInParent -->
         <version>0.0.0-SNAPSHOT</version>
     </parent>
-    <artifactId>bl-jpa</artifactId>
+    <artifactId>bl-domain-model</artifactId>
     <dependencies>
         <dependency>
             <groupId>javax</groupId>
