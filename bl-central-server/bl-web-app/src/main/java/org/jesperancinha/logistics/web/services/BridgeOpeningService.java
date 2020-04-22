@@ -40,7 +40,7 @@ public class BridgeOpeningService {
      */
     public Map<BridgeDto, Map<BridgeOpeningTimeDto, BridgeOpeningConflictDto>> getAllConflicts(List<BridgeOpeningTimeDto> allOpeningTimes) {
         Map<BridgeDto, List<BridgeOpeningTimeDto>> openingTimes = allOpeningTimes.stream()
-            .collect(Collectors.groupingBy(BridgeOpeningTimeDto::getBridge));
+            .collect(Collectors.groupingBy(BridgeOpeningTimeDto::bridge));
         return detectAllConflicts(openingTimes);
     }
 
@@ -72,20 +72,24 @@ public class BridgeOpeningService {
     }
 
     private void handleConflicts(Map<BridgeDto, Map<BridgeOpeningTimeDto, BridgeOpeningConflictDto>> allConflicts, BridgeOpeningTimeDto opening1, BridgeOpeningTimeDto opening2) {
-        BridgeDto bridge = opening1.getBridge();
+        BridgeDto bridge = opening1.bridge();
         Map<BridgeOpeningTimeDto, BridgeOpeningConflictDto> currentBridgeConflicts = createOrGetBridgeOpeningDtoBridgeOpeningConflictMap(allConflicts, bridge);
         BridgeOpeningConflictDto bridgeOpeningConflictDto = createOrGetBridgeOpeningConflict(currentBridgeConflicts, opening1);
-        bridgeOpeningConflictDto.getRelatedOpeningTimes()
+        bridgeOpeningConflictDto.relatedOpeningTimes()
             .addAll(Arrays.asList(opening1, opening2));
-        sanitize(bridgeOpeningConflictDto);
+        if (currentBridgeConflicts.get(opening1) != null) {
+            bridgeOpeningConflictDto = sanitize(bridgeOpeningConflictDto);
+            currentBridgeConflicts.put(opening1, bridgeOpeningConflictDto);
+        }
         allConflicts.put(bridge, currentBridgeConflicts);
     }
 
     private BridgeOpeningConflictDto createOrGetBridgeOpeningConflict(Map<BridgeOpeningTimeDto, BridgeOpeningConflictDto> currentBridgeConflicts, BridgeOpeningTimeDto opening1) {
         BridgeOpeningConflictDto bridgeOpeningConflictDto = currentBridgeConflicts.get(opening1);
         if (Objects.isNull(bridgeOpeningConflictDto)) {
-            bridgeOpeningConflictDto = new BridgeOpeningConflictDto();
-            bridgeOpeningConflictDto.setRelatedOpeningTimes(new ArrayList<>());
+            bridgeOpeningConflictDto = BridgeOpeningConflictDto.builder()
+                .relatedOpeningTimes(new ArrayList<>())
+                .build();
             currentBridgeConflicts.put(opening1, bridgeOpeningConflictDto);
         }
         return bridgeOpeningConflictDto;
@@ -103,16 +107,20 @@ public class BridgeOpeningService {
      * This method prevents conflictual opening times to be
      *
      * @param currentBridgeConflicts {@link BridgeOpeningConflictDto}
+     * @return
      */
-    private void sanitize(BridgeOpeningConflictDto currentBridgeConflicts) {
-        currentBridgeConflicts.setRelatedOpeningTimes(currentBridgeConflicts.getRelatedOpeningTimes()
-            .stream()
-            .sorted((ot1, ot2) -> ot1.getOpeningTime()
-                .isAfter(ot2.getOpeningTime()) ?
-                1 :
-                0)
-            .distinct()
-            .collect(Collectors.toList()));
+    private BridgeOpeningConflictDto sanitize(BridgeOpeningConflictDto currentBridgeConflicts) {
+        return BridgeOpeningConflictDto.builder()
+            .message(currentBridgeConflicts.message())
+            .relatedOpeningTimes(currentBridgeConflicts.relatedOpeningTimes()
+                .stream()
+                .sorted((ot1, ot2) -> ot1.openingTime()
+                    .isAfter(ot2.openingTime()) ?
+                    1 :
+                    0)
+                .distinct()
+                .collect(Collectors.toList()))
+            .build();
     }
 
     private boolean hasConflicts(BridgeOpeningTimeDto opening1, BridgeOpeningTimeDto opening2) {
@@ -120,16 +128,16 @@ public class BridgeOpeningService {
     }
 
     private boolean hasConflictsByOrder(BridgeOpeningTimeDto opening1, BridgeOpeningTimeDto opening2) {
-        if (opening1.getBridge()
-            .equals(opening2.getBridge())) {
-            if (opening1.getClosingTime()
-                .isAfter((opening2.getOpeningTime())) && opening1.getOpeningTime()
-                .isBefore(opening2.getOpeningTime())) {
+        if (opening1.bridge()
+            .equals(opening2.bridge())) {
+            if (opening1.closingTime()
+                .isAfter((opening2.openingTime())) && opening1.openingTime()
+                .isBefore(opening2.openingTime())) {
                 return true;
             } else
-                return opening1.getOpeningTime()
-                    .isBefore(opening2.getOpeningTime()) && opening1.getClosingTime()
-                    .isAfter(opening2.getClosingTime());
+                return opening1.openingTime()
+                    .isBefore(opening2.openingTime()) && opening1.closingTime()
+                    .isAfter(opening2.closingTime());
         }
         return false;
     }
