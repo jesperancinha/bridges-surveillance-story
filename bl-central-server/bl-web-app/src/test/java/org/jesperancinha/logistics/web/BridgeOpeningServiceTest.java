@@ -31,7 +31,7 @@ public class BridgeOpeningServiceTest {
     @BeforeEach
     public void setUp() {
         BridgeRepository bridgeRepository = null;
-        bridgeOpeningService = new BridgeOpeningService(bridgeRepository);
+        bridgeOpeningService = new BridgeOpeningService();
         bridgeOpeningTimeDto1 = BridgeOpeningTimeDto.builder()
             .bridge(BRIDGE_ONE)
             .openingTime(of(2016, 11, 1, 10, 10, 0))

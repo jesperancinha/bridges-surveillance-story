@@ -22,12 +22,6 @@ import java.util.stream.Collectors;
  */
 @Service
 public class BridgeOpeningService {
-    private final BridgeRepository bridgeRepository;
-
-    public BridgeOpeningService(BridgeRepository bridgeRepository) {
-        this.bridgeRepository = bridgeRepository;
-        this.bridgeRepository.save(new Bridge());
-    }
 
     /**
      * Initialize your service with an opening times map per bridge name

@@ -25,7 +25,10 @@ public class Bridge {
     private String address;
     private String city;
     private String postCode;
-    private String country;
+    private String countryCode;
+    private String unitLength;
+    private Long length;
     private Long lat;
     private Long lon;
+    private String type;
 }
