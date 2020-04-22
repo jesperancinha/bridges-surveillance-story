@@ -1,25 +1,24 @@
 package org.jesperancinha.logistics.web.application;
 
-
 import org.jesperancinha.logistics.web.services.BridgeOpeningService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.ejb.Stateless;
-import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.core.Response;
 import java.util.HashMap;
 
-@Path("/conflicts")
-@Stateless
+@RequestMapping("/conflicts")
 public class BridgeConflictResource {
 
-    @Inject
-    private BridgeOpeningService bridgeOpeningService;
+    private final BridgeOpeningService bridgeOpeningService;
 
-    @GET
-    public Response getAllConflicts() {
-        return Response.ok(bridgeOpeningService.getAllConflicts(new HashMap<>()))
-            .build();
+    public BridgeConflictResource(BridgeOpeningService bridgeOpeningService) {
+
+        this.bridgeOpeningService = bridgeOpeningService;
+    }
+
+    @GetMapping
+    public ResponseEntity getAllConflicts() {
+        return ResponseEntity.ok(bridgeOpeningService.getAllConflicts(new HashMap<>()));
     }
 }

@@ -1,5 +1,22 @@
 # bridge-logistics-webapp
 
+## How to start
+
+-   Via the runnable package
+```bash
+java -jar jetty-runner.jar --port 8080 target/bl-web-app-0.0.0-SNAPSHOT.war
+```
+
+-   Via the maven plugin
+```bash
+mvn jetty:run
+```
+
+## References
+
+-   [Deploying Web Applications in Jetty](https://www.baeldung.com/deploy-to-jetty)
+-   [jetty://](https://www.eclipse.org/jetty/documentation/current/index.html)
+
 ## About me 👨🏽‍💻🚀
 
 [![Twitter Follow](https://img.shields.io/twitter/follow/joaofse?label=João%20Esperancinha&style=social)](https://twitter.com/joaofse)

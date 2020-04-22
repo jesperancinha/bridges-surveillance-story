@@ -24,11 +24,12 @@ public class BridgeOpeningServiceTest {
     private final BridgeOpeningTimeDto bridgeOpeningTimeDto3 = new BridgeOpeningTimeDto();
     private final BridgeOpeningTimeDto bridgeOpeningTimeDto4 = new BridgeOpeningTimeDto();
     private final BridgeOpeningTimeDto bridgeOpeningTimeDto5 = new BridgeOpeningTimeDto();
-    private final BridgeOpeningService bridgeOpeningService = new BridgeOpeningService();
+    private BridgeOpeningService bridgeOpeningService;
     private final List<BridgeOpeningTimeDto> testCases = new ArrayList<>();
 
     @BeforeEach
     public void setUp() {
+        bridgeOpeningService = new BridgeOpeningService();
         bridgeOpeningTimeDto1.setBridgeName(BRIDGE_ONE);
         bridgeOpeningTimeDto1.setOpeningTime(LocalDateTime.of(2016, 11, 1, 10, 10, 0));
         bridgeOpeningTimeDto1.setClosingTime(LocalDateTime.of(2016, 11, 1, 12, 10, 0));
