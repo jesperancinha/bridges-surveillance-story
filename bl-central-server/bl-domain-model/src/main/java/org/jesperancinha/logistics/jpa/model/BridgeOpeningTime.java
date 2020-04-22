@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -22,8 +23,7 @@ import static javax.persistence.CascadeType.ALL;
 @Entity
 @Table(name = "bridge_opening_times")
 public record BridgeOpeningTime(@Id @Column @GeneratedValue(strategy = GenerationType.AUTO)Long id,
-    @ManyToOne(cascade = ALL,
-        optional = false) @JoinColumn(name = "bridgeId",
+    @ManyToOne(cascade = ALL) @JoinColumn(name = "bridge_id",
         nullable = false,
         updatable = false)
     Bridge bridge,
