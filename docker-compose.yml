@@ -8,13 +8,21 @@ services:
       - "15672:15672"
       - "5672:5672"
 
-  bl_train_server:
-    hostname: bl_train_server
+  bl_train_01_server:
+    hostname: bl_train_01_server
     build:
       context: bl-train-server/.
     ports:
       - "15673:15672"
       - "5673:5672"
+
+  bl_vehicle_01_server:
+    hostname: bl_vehicle_01_server
+    build:
+      context: bl-vehicle-server/.
+    ports:
+      - "15675:15672"
+      - "5675:5672"
 
   bl_bridge_server:
     hostname: bl_bridge_server

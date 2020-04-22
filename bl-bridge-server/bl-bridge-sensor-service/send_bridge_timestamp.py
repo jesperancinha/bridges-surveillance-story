@@ -5,7 +5,7 @@ import sys
 import pika
 
 
-def sendSignal(host, data):
+def send_signal(host, data):
     data_json = json.dumps(data)
     credentials = pika.PlainCredentials('test', 'test')
     connection = pika.BlockingConnection(

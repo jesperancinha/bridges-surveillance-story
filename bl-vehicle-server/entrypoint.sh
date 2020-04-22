@@ -18,7 +18,7 @@ rabbitmqctl set_user_tags test administrator
 
 rabbitmqctl set_permissions -p / test ".*" ".*" ".*"
 
-federate(){
+function sourceQueue(){
     rabbitmqctl add_vhost bl_$1_vh
 
     rabbitmqctl set_permissions -p bl_$1_vh test ".*" ".*" ".*"
@@ -28,16 +28,9 @@ federate(){
     rabbitmqadmin -u test -p test -V bl_$1_vh declare queue name=bl_$1_queue
 
     rabbitmqadmin -u test -p test -V bl_$1_vh declare binding source=bl_$1_exchange destination=bl_$1_queue
-
-    rabbitmqctl set_parameter -p bl_$1_vh federation-upstream bl_$1_upstream '{"uri":"amqp://test:test@bl_'$2'_server:5672/bl_'$1'_vh","expires":3600000}'
-
-    rabbitmqctl set_policy -p bl_$1_vh --apply-to all bl_$1_policy ".*$1.*" '{"federation-upstream-set":"all"}'
 }
 
-federate train_01_merchandise train
-federate train_01_sensor train
-federate vehicle_01_sensor vehicle
-federate vehicle_01_merchandise vehicle
-federate bridge_sensor bridge
+sourceQueue vehicle_01_merchandise
+sourceQueue vehicle_01_sensor
 
 tail -f /dev/null
