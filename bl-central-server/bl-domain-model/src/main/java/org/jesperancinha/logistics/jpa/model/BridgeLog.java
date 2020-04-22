@@ -1,5 +1,7 @@
 package org.jesperancinha.logistics.jpa.model;
 
+import lombok.Data;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,13 +13,18 @@ import javax.persistence.Table;
 import static javax.persistence.CascadeType.ALL;
 
 @Entity
+@Data
 @Table(name = "bridge_logs")
-public record BridgeLog(@Id @GeneratedValue(strategy = GenerationType.AUTO)Long id,
+public class BridgeLog {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     @ManyToOne(cascade = ALL,
-        optional = false) @JoinColumn(name = "bridgeId",
+        optional = false)
+    @JoinColumn(name = "bridgeId",
         nullable = false,
         updatable = false)
-    Bridge bridge,
-    Long timestamp,
-    String checkInOut) {
+    private Bridge bridge;
+    private Long timestamp;
+    private String checkInOut;
 }

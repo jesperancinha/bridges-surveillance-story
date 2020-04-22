@@ -1,23 +1,25 @@
 package org.jesperancinha.logistics.jpa.model;
 
+import lombok.Data;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 @Entity
+@Data
 @Table(name = "bridge")
-public record Bridge(@Id @GeneratedValue(strategy = GenerationType.AUTO)Long id,
-    @NotNull String name,
-    String address,
-    String city,
-    String postCode,
-    String country,
-    Long lat,
-    Long lon) {
-    public Bridge() {
-        this(null, null, null, null, null, null, null, null);
-    }
+public class Bridge {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String name;
+    private String address;
+    private String city;
+    private String postCode;
+    private String country;
+    private Long lat;
+    private Long lon;
 }
