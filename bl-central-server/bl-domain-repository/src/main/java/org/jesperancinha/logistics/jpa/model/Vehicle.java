@@ -10,16 +10,13 @@ import javax.persistence.Table;
 
 @Entity
 @Data
-@Table(name = "bridge")
-public class Bridge {
+@Table(name = "vehicle")
+public class Vehicle {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private String address;
-    private String city;
-    private String postCode;
-    private String country;
-    private Long lat;
-    private Long lon;
+    private String brand;
+    private String model;
+    private Long weight;
+    private String unitWeight;
 }

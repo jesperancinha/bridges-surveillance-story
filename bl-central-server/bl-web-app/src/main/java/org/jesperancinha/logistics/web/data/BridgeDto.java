@@ -2,15 +2,14 @@ package org.jesperancinha.logistics.web.data;
 
 import lombok.Builder;
 
-public record BridgeDto(
-    String name,
+public record BridgeDto(String name,
     String address,
     String city,
     String postCode,
     String country) {
 
     @Builder
-    public BridgeDto{
+    public BridgeDto {
     }
 
     public BridgeDto() {

@@ -3,6 +3,9 @@ package org.jesperancinha.logistics.jpa.model;
 import lombok.Data;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -13,15 +16,18 @@ import static javax.persistence.CascadeType.ALL;
 @Data
 @Table(name = "vehicles_log")
 public class VehicleLog {
-    Long id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @ManyToOne(cascade = ALL,
         optional = false)
     @JoinColumn(name = "train_id",
         nullable = false,
         updatable = false)
-    Vehicle vehicle;
-    String transportType;
-    Long lat;
-    Long lon;
-    Long timestamp;
+    private Vehicle vehicle;
+    private String transportType;
+    private Long lat;
+    private Long lon;
+    private Long timestamp;
 }

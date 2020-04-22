@@ -23,7 +23,7 @@ import static javax.persistence.CascadeType.ALL;
 @Table(name = "bridge_opening_times")
 public class BridgeOpeningTime {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     @ManyToOne(cascade = ALL)
     @JoinColumn(name = "bridge_id",

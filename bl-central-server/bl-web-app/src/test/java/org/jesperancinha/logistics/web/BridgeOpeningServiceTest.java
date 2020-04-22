@@ -1,5 +1,6 @@
 package org.jesperancinha.logistics.web;
 
+import org.jesperancinha.logistics.jpa.repositories.BridgeRepository;
 import org.jesperancinha.logistics.web.data.BridgeDto;
 import org.jesperancinha.logistics.web.data.BridgeOpeningConflictDto;
 import org.jesperancinha.logistics.web.data.BridgeOpeningTimeDto;
@@ -29,7 +30,8 @@ public class BridgeOpeningServiceTest {
 
     @BeforeEach
     public void setUp() {
-        bridgeOpeningService = new BridgeOpeningService();
+        BridgeRepository bridgeRepository = null;
+        bridgeOpeningService = new BridgeOpeningService(bridgeRepository);
         bridgeOpeningTimeDto1 = BridgeOpeningTimeDto.builder()
             .bridge(BRIDGE_ONE)
             .openingTime(of(2016, 11, 1, 10, 10, 0))

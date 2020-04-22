@@ -7,24 +7,24 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import java.util.List;
 
 import static javax.persistence.CascadeType.ALL;
 
 @Entity
 @Data
-@Table(name = "trains")
-public class Train {
+@Table(name = "bridge_logs")
+public class BridgeLog {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private String type;
-    @ManyToMany(cascade = ALL)
-    @JoinColumn(name = "carriage_id",
+    @ManyToOne(cascade = ALL,
+        optional = false)
+    @JoinColumn(name = "bridgeId",
         nullable = false,
         updatable = false)
-    private List<Carriage> carriages;
+    private Bridge bridge;
+    private Long timestamp;
+    private String checkInOut;
 }

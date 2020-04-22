@@ -10,13 +10,17 @@ import javax.persistence.Table;
 
 @Entity
 @Data
-@Table(name = "vehicle")
-public class Vehicle {
+@Table(name = "carriage")
+public class Carriage {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
+    private String type;
     private String brand;
-    private String model;
-    private Long weight;
+    private Long capacity;
+    private Long axleLoad;
+    private Long tare;
+    private Long volume;
     private String unitWeight;
+    private String unitVolume;
 }

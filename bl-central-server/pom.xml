@@ -30,7 +30,7 @@
         <revision>0.0.0-SNAPSHOT</revision>
     </properties>
     <modules>
-        <module>bl-domain-model</module>
+        <module>bl-domain-repository</module>
         <module>bl-domain-control-service</module>
         <module>bl-passenger-control-service</module>
         <module>bl-merchandise-control-service</module>
