@@ -16,7 +16,7 @@ public record TrainsLog(
         nullable = false,
         updatable = false)
     Long transportId,
-    String transportType,
+    String trainId,
     Long lat,
     Long lon,
     Long timestamp
