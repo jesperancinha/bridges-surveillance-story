@@ -10,5 +10,7 @@ import javax.persistence.Table;
 @Table(name = "merchandise")
 public record Merchandise(@Id @GeneratedValue(strategy = GenerationType.AUTO)Long id,
     Product product,
-    Long quantity) {
+    Long quantity,
+    Long firstLogTimestamnp,
+    Long timestamp) {
 }
