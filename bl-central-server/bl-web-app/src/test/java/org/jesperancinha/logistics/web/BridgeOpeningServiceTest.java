@@ -1,8 +1,8 @@
 package org.jesperancinha.logistics.web;
 
-import org.jesperancinha.logistics.web.controllers.data.BridgeDto;
-import org.jesperancinha.logistics.web.controllers.data.BridgeOpeningConflictDto;
-import org.jesperancinha.logistics.web.controllers.data.BridgeOpeningTimeDto;
+import org.jesperancinha.logistics.web.data.BridgeDto;
+import org.jesperancinha.logistics.web.data.BridgeOpeningConflictDto;
+import org.jesperancinha.logistics.web.data.BridgeOpeningTimeDto;
 import org.jesperancinha.logistics.web.services.BridgeOpeningService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,8 +1,8 @@
 package org.jesperancinha.logistics.web.services;
 
-import org.jesperancinha.logistics.web.controllers.data.BridgeDto;
-import org.jesperancinha.logistics.web.controllers.data.BridgeOpeningConflictDto;
-import org.jesperancinha.logistics.web.controllers.data.BridgeOpeningTimeDto;
+import org.jesperancinha.logistics.web.data.BridgeDto;
+import org.jesperancinha.logistics.web.data.BridgeOpeningConflictDto;
+import org.jesperancinha.logistics.web.data.BridgeOpeningTimeDto;
 import org.paukov.combinatorics3.Generator;
 import org.paukov.combinatorics3.IGenerator;
 import org.springframework.stereotype.Service;
