@@ -1,4 +1,4 @@
-package org.jesperancinha.logistics.web.application;
+package org.jesperancinha.logistics.web.controller;
 
 import org.jesperancinha.logistics.web.services.BridgeOpeningService;
 import org.springframework.http.ResponseEntity;

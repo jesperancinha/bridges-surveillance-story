@@ -15,13 +15,15 @@ import javax.validation.constraints.NotNull;
 @NamedQueries({ @NamedQuery(name = "Bridge.findAll",
     query = "SELECT b FROM Bridge b") })
 public record Bridge(@Id @Column(name = "BridgeID") @GeneratedValue(strategy = GenerationType.AUTO)
-                     Long id,
-                     @NotNull String name,
-                     String address,
-                     String city,
-                     String postCode,
-                     String country) {
+Long id,
+    @NotNull String name,
+    String address,
+    String city,
+    String postCode,
+    String country,
+    Long lat,
+    Long lon) {
     public Bridge() {
-        this(null, null, null, null, null, null);
+        this(null, null, null, null, null, null, null, null);
     }
 }

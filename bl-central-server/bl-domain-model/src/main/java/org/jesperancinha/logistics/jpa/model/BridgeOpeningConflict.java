@@ -1,8 +1,9 @@
-package org.jesperancinha.logistics.web.model;
+package org.jesperancinha.logistics.jpa.model;
 
 import lombok.Builder;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.List;
 
@@ -12,9 +13,11 @@ import java.util.List;
  */
 @Entity
 @Table(name = "bridge_opening_conflicts")
-public record BridgeOpeningConflict(String message,
+public record BridgeOpeningConflict(@Id Long id,
+    String message,
     List<BridgeOpeningTime>relatedOpeningTimes) {
     @Builder
     public BridgeOpeningConflict {
     }
+
 }

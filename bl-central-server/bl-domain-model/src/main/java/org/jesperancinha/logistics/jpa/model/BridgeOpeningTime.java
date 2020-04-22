@@ -1,4 +1,4 @@
-package org.jesperancinha.logistics.web.model;
+package org.jesperancinha.logistics.jpa.model;
 
 import lombok.Builder;
 
