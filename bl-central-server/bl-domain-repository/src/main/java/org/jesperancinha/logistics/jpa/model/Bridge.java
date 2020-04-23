@@ -10,8 +10,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -36,4 +39,6 @@ public class Bridge {
     private BigDecimal lon;
     private Long radius;
     private String type;
+    @OneToMany(mappedBy = "bridge")
+    private List<BridgeOpeningTime> bridgeOpeningTimea = new ArrayList<BridgeOpeningTime>();
 }

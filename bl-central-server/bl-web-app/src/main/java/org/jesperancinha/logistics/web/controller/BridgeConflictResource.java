@@ -16,7 +16,6 @@ public class BridgeConflictResource {
 
     public BridgeConflictResource(BridgeOpeningService bridgeOpeningService) {
         this.bridgeOpeningService = bridgeOpeningService;
-
     }
 
     @GetMapping("/open")

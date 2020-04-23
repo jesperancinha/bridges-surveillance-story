@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.introspect.AnnotatedParameter;
 import com.fasterxml.jackson.databind.introspect.JacksonAnnotationIntrospector;
 import lombok.extern.slf4j.Slf4j;
 import org.jesperancinha.logistics.jpa.model.Bridge;
+import org.jesperancinha.logistics.jpa.model.BridgeOpeningTime;
 import org.jesperancinha.logistics.jpa.model.Carriage;
 import org.jesperancinha.logistics.jpa.model.Container;
 import org.jesperancinha.logistics.jpa.model.Freight;
@@ -15,6 +16,7 @@ import org.jesperancinha.logistics.jpa.model.Vehicle;
 import org.jesperancinha.logistics.jpa.repositories.BridgeCarriageRepository;
 import org.jesperancinha.logistics.jpa.repositories.BridgeContainerRepository;
 import org.jesperancinha.logistics.jpa.repositories.BridgeFreightRepository;
+import org.jesperancinha.logistics.jpa.repositories.BridgeOpeningTimeRepository;
 import org.jesperancinha.logistics.jpa.repositories.BridgeProductRepository;
 import org.jesperancinha.logistics.jpa.repositories.BridgeRepository;
 import org.jesperancinha.logistics.jpa.repositories.BridgeTrainRepository;
@@ -26,8 +28,13 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.RecordComponent;
+import java.sql.Date;
+import java.sql.Time;
+import java.time.Instant;
+import java.time.LocalTime;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static java.util.Arrays.stream;
 
@@ -50,10 +57,12 @@ public class BridgeLogisticsInitializer implements CommandLineRunner {
 
     private final BridgeVehicleRepository vehicleRepository;
 
+    private final BridgeOpeningTimeRepository openingTimeRepository;
+
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     public BridgeLogisticsInitializer(BridgeRepository bridgeRepository, BridgeCarriageRepository carriageRepository, BridgeContainerRepository containerRepository, BridgeFreightRepository freightRepository, BridgeProductRepository productRepository,
-        BridgeTrainRepository trainRepository, BridgeVehicleRepository vehicleRepository) {
+        BridgeTrainRepository trainRepository, BridgeVehicleRepository vehicleRepository, BridgeOpeningTimeRepository openingTimeRepository) {
         this.bridgeRepository = bridgeRepository;
         this.carriageRepository = carriageRepository;
         this.containerRepository = containerRepository;
@@ -61,6 +70,7 @@ public class BridgeLogisticsInitializer implements CommandLineRunner {
         this.productRepository = productRepository;
         this.trainRepository = trainRepository;
         this.vehicleRepository = vehicleRepository;
+        this.openingTimeRepository = openingTimeRepository;
         JacksonAnnotationIntrospector implicitRecordAI = new JacksonAnnotationIntrospector() {
             @Override
             public String findImplicitPropertyName(AnnotatedMember m) {
@@ -123,6 +133,22 @@ public class BridgeLogisticsInitializer implements CommandLineRunner {
                 .collect(Collectors.toList()))
             .build())
             .forEach(trainRepository::save);
+
+        final Instant now = Instant.now();
+        final long millisToAdd = 10000;
+        final Bridge bridge = bridgeRepository.findById(1L)
+            .orElse(Bridge.builder()
+                .id(1L)
+                .build());
+        IntStream.range(0, 50)
+            .boxed()
+            .map(integer -> BridgeOpeningTime.builder()
+                .id((long) integer)
+                .bridge(bridge)
+                .openingTime(now.plusMillis(millisToAdd * integer).toEpochMilli())
+                .closingTime(now.plusMillis(millisToAdd * (integer + 1)).toEpochMilli())
+                .build())
+            .forEach(openingTimeRepository::save);
     }
 
 }
