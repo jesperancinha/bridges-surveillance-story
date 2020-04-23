@@ -1,15 +1,17 @@
-{
-  "id": 1,
-  "name": "Monster wheels",
-  "composition": [
-    {
-      "carriageId": 1,
-      "products": [
-        {
-          "productId": 1,
-          "quantity": 2500000
-        }
-      ]
-    }
-  ]
-}
+[
+  {
+    "id": 1,
+    "name": "Monster wheels",
+    "composition": [
+      {
+        "containerId": 1,
+        "products": [
+          {
+            "productId": 1,
+            "quantity": 2500000
+          }
+        ]
+      }
+    ]
+  }
+]

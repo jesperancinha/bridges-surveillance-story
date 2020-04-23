@@ -1,6 +1,7 @@
 #!/usr/bin/env python
-import pika
 import sys
+
+import pika
 
 credentials = pika.PlainCredentials('test', 'test')
 connection = pika.BlockingConnection(

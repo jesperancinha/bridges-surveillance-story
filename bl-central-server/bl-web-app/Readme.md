@@ -12,8 +12,36 @@ java -jar jetty-runner.jar --port 8080 target/bl-web-app-0.0.0-SNAPSHOT.war
 mvn jetty:run
 ```
 
+## Hints & Tricks
+
+-  [Serializing/Deserializing in Java 14](https://github.com/FasterXML/jackson-future-ideas/issues/46)
+
+```text
+ObjectMapper objectMapper = new ObjectMapper();
+JacksonAnnotationIntrospector implicitRecordAI = new JacksonAnnotationIntrospector() {
+    @Override
+    public String findImplicitPropertyName(AnnotatedMember m) {
+        if (m.getDeclaringClass().isRecord()) {
+            if (m instanceof AnnotatedParameter parameter) {
+            return m.getDeclaringClass().getRecordComponents()[parameter.getIndex()].getName();
+        }
+        if (m instanceof AnnotatedMember member) {
+            for (RecordComponent recordComponent : m.getDeclaringClass().getRecordComponents()) {
+                if (recordComponent.getName().equals(member.getName())) {
+                    return member.getName();
+                }
+            }
+        }
+    }
+    return super.findImplicitPropertyName(m);
+}
+};
+objectMapper.setAnnotationIntrospector(implicitRecordAI);
+```
+
 ## References
 
+-   [Support for record types in JDK 14 #46](https://github.com/FasterXML/jackson-future-ideas/issues/46)
 -   [Deploying Web Applications in Jetty](https://www.baeldung.com/deploy-to-jetty)
 -   [jetty://](https://www.eclipse.org/jetty/documentation/current/index.html)
 

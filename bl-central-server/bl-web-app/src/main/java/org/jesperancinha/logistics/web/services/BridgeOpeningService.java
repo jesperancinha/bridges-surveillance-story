@@ -1,7 +1,5 @@
 package org.jesperancinha.logistics.web.services;
 
-import org.jesperancinha.logistics.jpa.model.Bridge;
-import org.jesperancinha.logistics.jpa.repositories.BridgeRepository;
 import org.jesperancinha.logistics.web.data.BridgeDto;
 import org.jesperancinha.logistics.web.data.BridgeOpeningConflictDto;
 import org.jesperancinha.logistics.web.data.BridgeOpeningTimeDto;

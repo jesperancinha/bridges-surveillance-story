@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication
 @EnableJpaRepositories("org.jesperancinha.logistics.jpa.repositories")
 @EntityScan("org.jesperancinha.logistics.jpa.model")
-
 public class BridgeLogisticsApplication {
     public static void main(String[] args) {
         SpringApplication.run(BridgeLogisticsApplication.class, args);

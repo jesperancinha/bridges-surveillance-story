@@ -1,32 +1,34 @@
-{
-  "id": 1,
-  "name": "IC 1",
-  "type": "Intercity",
-  "composition": [
-    {
-      "carriageId": 1,
-      "products": [
-        {
-          "productId": 1,
-          "quantity": 2500000
-        }
-      ]
-    },
-    {
-      "carriageId": 2,
-      "products": [
-        {
-          "productId": 2,
-          "quantity": 2500000
-        }
-      ]
-    },
-    {
-      "carriageId": 3,
-      "people": 76
-    },
-    {
-      "carriageId": 4
-    }
-  ]
-}
+[
+  {
+    "id": 1,
+    "name": "IC 1",
+    "type": "Intercity",
+    "composition": [
+      {
+        "carriageId": 1,
+        "products": [
+          {
+            "productId": 1,
+            "quantity": 2500000
+          }
+        ]
+      },
+      {
+        "carriageId": 2,
+        "products": [
+          {
+            "productId": 2,
+            "quantity": 2500000
+          }
+        ]
+      },
+      {
+        "carriageId": 3,
+        "people": 76
+      },
+      {
+        "carriageId": 4
+      }
+    ]
+  }
+]

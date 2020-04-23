@@ -18,8 +18,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class BridgeOpeningServiceTest {
 
-    private static final BridgeDto BRIDGE_ONE =  BridgeDto.builder().name("25 de Abril").build();
-    private static final BridgeDto BRIDGE_TWO =  BridgeDto.builder().name("Vasco da Gama").build();
+    private static final BridgeDto BRIDGE_ONE = BridgeDto.builder()
+        .name("25 de Abril")
+        .build();
+    private static final BridgeDto BRIDGE_TWO = BridgeDto.builder()
+        .name("Vasco da Gama")
+        .build();
     private BridgeOpeningTimeDto bridgeOpeningTimeDto1;
     private BridgeOpeningTimeDto bridgeOpeningTimeDto2;
     private BridgeOpeningTimeDto bridgeOpeningTimeDto3;

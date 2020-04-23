@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 import json
-import pika
 import sys
+
+import pika
 
 
 def send_signal(host, data):

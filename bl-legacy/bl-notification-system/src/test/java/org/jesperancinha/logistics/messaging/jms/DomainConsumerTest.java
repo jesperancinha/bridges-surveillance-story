@@ -13,7 +13,9 @@ public class DomainConsumerTest extends Arquillian {
     @Deployment
     public static JavaArchive createDeployment() {
         System.out.println("Deploying...");
-        return ShrinkWrap.create(JavaArchive.class).addClass(DomainConsumer.class).addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+        return ShrinkWrap.create(JavaArchive.class)
+            .addClass(DomainConsumer.class)
+            .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 
     @Test
