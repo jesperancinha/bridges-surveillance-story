@@ -1,10 +1,10 @@
 package org.jesperancinha.logistics.web;
 
-import org.jesperancinha.logistics.jpa.repositories.BridgeRepository;
+import org.jesperancinha.logistics.jpa.repositories.BridgeOpeningTimeRepository;
 import org.jesperancinha.logistics.web.data.BridgeDto;
 import org.jesperancinha.logistics.web.data.BridgeOpeningConflictDto;
 import org.jesperancinha.logistics.web.data.BridgeOpeningTimeDto;
-import org.jesperancinha.logistics.web.services.BridgeOpeningService;
+import org.jesperancinha.logistics.web.services.BridgeOpeningServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -15,8 +15,9 @@ import java.util.Set;
 
 import static java.time.LocalDateTime.of;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 
-public class BridgeOpeningServiceTest {
+public class BridgeOpeningServiceImplTest {
 
     private static final BridgeDto BRIDGE_ONE = BridgeDto.builder()
         .name("25 de Abril")
@@ -29,13 +30,13 @@ public class BridgeOpeningServiceTest {
     private BridgeOpeningTimeDto bridgeOpeningTimeDto3;
     private BridgeOpeningTimeDto bridgeOpeningTimeDto4;
     private BridgeOpeningTimeDto bridgeOpeningTimeDto5;
-    private BridgeOpeningService bridgeOpeningService;
+    private BridgeOpeningServiceImpl bridgeOpeningServiceImpl;
     private final List<BridgeOpeningTimeDto> testCases = new ArrayList<>();
 
     @BeforeEach
     public void setUp() {
-        BridgeRepository bridgeRepository = null;
-        bridgeOpeningService = new BridgeOpeningService();
+        BridgeOpeningTimeRepository bridgeOpeningTimeRepository = mock(BridgeOpeningTimeRepository.class);
+        bridgeOpeningServiceImpl = new BridgeOpeningServiceImpl(bridgeOpeningTimeRepository);
         bridgeOpeningTimeDto1 = BridgeOpeningTimeDto.builder()
             .bridge(BRIDGE_ONE)
             .openingTime(of(2016, 11, 1, 10, 10, 0))
@@ -70,7 +71,7 @@ public class BridgeOpeningServiceTest {
 
     @Test
     public void testConflictsBridgeOneOk() {
-        final Map<BridgeDto, Map<BridgeOpeningTimeDto, BridgeOpeningConflictDto>> bridgeOpeningConflicts = bridgeOpeningService.getAllConflicts(testCases);
+        final Map<BridgeDto, Map<BridgeOpeningTimeDto, BridgeOpeningConflictDto>> bridgeOpeningConflicts = bridgeOpeningServiceImpl.getAllConflicts(testCases);
 
         assertThat(bridgeOpeningConflicts).hasSize(2);
 
@@ -101,7 +102,7 @@ public class BridgeOpeningServiceTest {
 
     @Test
     public void testConflictsBridgeTwoOk() {
-        final Map<BridgeDto, Map<BridgeOpeningTimeDto, BridgeOpeningConflictDto>> bridgeOpeningConflicts = bridgeOpeningService.getAllConflicts(testCases);
+        final Map<BridgeDto, Map<BridgeOpeningTimeDto, BridgeOpeningConflictDto>> bridgeOpeningConflicts = bridgeOpeningServiceImpl.getAllConflicts(testCases);
 
         assertThat(bridgeOpeningConflicts).hasSize(2);
 

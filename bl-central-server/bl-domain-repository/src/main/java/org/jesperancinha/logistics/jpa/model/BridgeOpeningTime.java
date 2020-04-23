@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import static javax.persistence.CascadeType.ALL;
@@ -25,6 +26,10 @@ import static javax.persistence.CascadeType.ALL;
 @AllArgsConstructor
 @Builder
 @Table(name = "bridge_opening_times")
+@NamedQuery(name = "BridgeOpeningTime.findBridgeByLatAndLonUnderRadius",
+    query = "select bot from BridgeOpeningTime bot"
+        + " where bot.bridge.lat>=:latWest and bot.bridge.lat<=:latEast and bot.bridge.lon<=:lonNorth and bot.bridge.lon>=:lonSouth"
+        + " and bot.openingTime <= :milliseconds and bot.closingTime > :milliseconds ")
 public class BridgeOpeningTime {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

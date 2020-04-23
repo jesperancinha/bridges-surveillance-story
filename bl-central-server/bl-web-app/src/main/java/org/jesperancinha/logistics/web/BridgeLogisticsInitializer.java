@@ -142,9 +142,9 @@ public class BridgeLogisticsInitializer implements CommandLineRunner {
             .map(integer -> BridgeOpeningTime.builder()
                 .id((long) integer)
                 .bridge(bridge)
-                .openingTime(now.plusMillis(millisToAdd * integer)
+                .openingTime(now.plusMillis(millisToAdd * integer * 2)
                     .toEpochMilli())
-                .closingTime(now.plusMillis(millisToAdd * (integer + 1))
+                .closingTime(now.plusMillis(millisToAdd * (integer * 2 + 1))
                     .toEpochMilli())
                 .build())
             .forEach(openingTimeRepository::save);
