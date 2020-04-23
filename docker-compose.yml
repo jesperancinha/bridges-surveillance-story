@@ -3,10 +3,17 @@ services:
   bl_central_server:
     hostname: bl_central_server
     build:
-      context: bl-central-server/.
+      context: bl-central-server/bl-rabbit-mq/.
     ports:
       - "15672:15672"
       - "5672:5672"
+
+  bl_central_server_apps:
+    hostname: bl_central_server_apps
+    build:
+      context: bl-central-server/.
+    ports:
+      - "9000:9000"
 
   bl_train_01_server:
     hostname: bl_train_01_server

@@ -1,19 +1,13 @@
-FROM jesperancinha/je-rabbitmq:0.0.1
+FROM jesperancinha/je-all-build-jdk-14:0.0.1
 
 WORKDIR /root
 
 ENV LANG=C.UTF-8
 
-RUN rabbitmq-plugins enable --offline rabbitmq_management
-
-RUN rabbitmq-plugins enable rabbitmq_federation
-
-RUN rabbitmq-plugins enable rabbitmq_federation_management
-
-RUN rabbitmq-plugins enable rabbitmq_shovel rabbitmq_shovel_management
-
 COPY entrypoint.sh /root
+
+COPY bl-web-app/target/bl-web-app-*.jar /root/bl-web-app.jar
 
 ENTRYPOINT ["/root/entrypoint.sh"]
 
-EXPOSE 5672 15671 15672
+EXPOSE 9000
