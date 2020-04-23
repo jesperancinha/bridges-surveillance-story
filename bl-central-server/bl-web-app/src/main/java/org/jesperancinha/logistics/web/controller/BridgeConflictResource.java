@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 
-@RequestMapping("/conflicts")
+@RequestMapping("/schedules")
 @RestController
 public class BridgeConflictResource {
 
@@ -17,6 +17,11 @@ public class BridgeConflictResource {
     public BridgeConflictResource(BridgeOpeningService bridgeOpeningService) {
         this.bridgeOpeningService = bridgeOpeningService;
 
+    }
+
+    @GetMapping("/open")
+    public ResponseEntity<Boolean> isBridgeOpen(){
+        return ResponseEntity.ok(false);
     }
 
     @GetMapping
