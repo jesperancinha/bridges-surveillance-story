@@ -2,9 +2,10 @@ package org.jesperancinha.logistics.web.data;
 
 import java.math.BigDecimal;
 
-public record LogInMessageDto(Long id,
+public record LogMessageDto(Long id,
+    String source,
     String type,
-    Long checkin,
+    Long timestamp,
     BigDecimal lat,
     BigDecimal lon) {
 }
