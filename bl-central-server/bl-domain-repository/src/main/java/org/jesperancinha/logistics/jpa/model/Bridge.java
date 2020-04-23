@@ -5,11 +5,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.math.BigDecimal;
 
 @Entity
 @Data
@@ -28,7 +30,10 @@ public class Bridge {
     private String countryCode;
     private String unitLength;
     private Long length;
-    private Long lat;
-    private Long lon;
+    @Column(precision=10, scale=6)
+    private BigDecimal lat;
+    @Column(precision=10, scale=6)
+    private BigDecimal lon;
+    private Long radius;
     private String type;
 }
