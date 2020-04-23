@@ -28,4 +28,5 @@ public class TrainsLog {
     private Long lat;
     private Long lon;
     private Long timestamp;
+    private String checkInOut;
 }

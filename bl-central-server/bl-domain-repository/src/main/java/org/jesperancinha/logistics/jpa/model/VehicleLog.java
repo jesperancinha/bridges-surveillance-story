@@ -22,12 +22,12 @@ public class VehicleLog {
     private Long id;
     @ManyToOne(cascade = ALL,
         optional = false)
-    @JoinColumn(name = "train_id",
+    @JoinColumn(name = "vehicle_id", referencedColumnName = "id",
         nullable = false,
         updatable = false)
     private Vehicle vehicle;
-    private String transportType;
     private Long lat;
     private Long lon;
     private Long timestamp;
+    private String checkInOut;
 }
