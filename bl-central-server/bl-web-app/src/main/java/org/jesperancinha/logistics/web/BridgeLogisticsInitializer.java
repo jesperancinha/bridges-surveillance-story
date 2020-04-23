@@ -28,10 +28,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.RecordComponent;
-import java.sql.Date;
-import java.sql.Time;
 import java.time.Instant;
-import java.time.LocalTime;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -40,7 +37,7 @@ import static java.util.Arrays.stream;
 
 @Component
 @Slf4j
-@Profile({ "local", "demo", "prod" })
+@Profile({ "local", "demo" })
 public class BridgeLogisticsInitializer implements CommandLineRunner {
 
     private final BridgeRepository bridgeRepository;
@@ -145,8 +142,10 @@ public class BridgeLogisticsInitializer implements CommandLineRunner {
             .map(integer -> BridgeOpeningTime.builder()
                 .id((long) integer)
                 .bridge(bridge)
-                .openingTime(now.plusMillis(millisToAdd * integer).toEpochMilli())
-                .closingTime(now.plusMillis(millisToAdd * (integer + 1)).toEpochMilli())
+                .openingTime(now.plusMillis(millisToAdd * integer)
+                    .toEpochMilli())
+                .closingTime(now.plusMillis(millisToAdd * (integer + 1))
+                    .toEpochMilli())
                 .build())
             .forEach(openingTimeRepository::save);
     }
