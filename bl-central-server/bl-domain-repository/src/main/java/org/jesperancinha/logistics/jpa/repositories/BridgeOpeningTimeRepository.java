@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public interface BridgeOpeningTimeRepository extends CrudRepository<BridgeOpeningTime, Long> {
-    List<BridgeOpeningTime> findBridgeByLatAndLonUnderRadius(
+    List<BridgeOpeningTime> findBridgeBySquareBoundaryUnderRadius(
         @Param("latWest")
             BigDecimal latWest,
         @Param("latEast")

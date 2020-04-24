@@ -26,7 +26,7 @@ import static javax.persistence.CascadeType.ALL;
 @AllArgsConstructor
 @Builder
 @Table(name = "bridge_opening_times")
-@NamedQuery(name = "BridgeOpeningTime.findBridgeByLatAndLonUnderRadius",
+@NamedQuery(name = "BridgeOpeningTime.findBridgeBySquareBoundaryUnderRadius",
     query = "select bot from BridgeOpeningTime bot"
         + " where bot.bridge.lat>=:latWest and bot.bridge.lat<=:latEast and bot.bridge.lon<=:lonNorth and bot.bridge.lon>=:lonSouth"
         + " and bot.openingTime <= :milliseconds and bot.closingTime > :milliseconds ")

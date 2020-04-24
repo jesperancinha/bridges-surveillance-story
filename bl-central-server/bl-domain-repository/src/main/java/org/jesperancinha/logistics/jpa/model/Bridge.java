@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.math.BigDecimal;
@@ -22,6 +23,9 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "bridge")
+@NamedQuery(name = "Bridge.findBridgeBySquareBoundary",
+    query = "select b from Bridge b"
+        + " where b.lat>=:latWest and b.lat<=:latEast and b.lon<=:lonNorth and b.lon>=:lonSouth")
 public class Bridge {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,12 +37,14 @@ public class Bridge {
     private String countryCode;
     private String unitLength;
     private Long length;
-    @Column(precision=10, scale=6)
+    @Column(precision = 10,
+        scale = 6)
     private BigDecimal lat;
-    @Column(precision=10, scale=6)
+    @Column(precision = 10,
+        scale = 6)
     private BigDecimal lon;
     private Long radius;
     private String type;
     @OneToMany(mappedBy = "bridge")
-    private List<BridgeOpeningTime> bridgeOpeningTimea = new ArrayList<BridgeOpeningTime>();
+    private List<BridgeOpeningTime> bridgeOpeningTimea = new ArrayList<>();
 }

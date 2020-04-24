@@ -281,6 +281,15 @@ brew uninstall --force docker-machine
 docker system prune -a
 ```
 
+-   Python libraries
+
+```bash
+pip install futures
+pip install pebble
+pip install pika
+pip install requests
+```
+
 ## Domain
 
 -   [UIC classification of goods wagons](https://en.wikipedia.org/wiki/UIC_classification_of_goods_wagons)

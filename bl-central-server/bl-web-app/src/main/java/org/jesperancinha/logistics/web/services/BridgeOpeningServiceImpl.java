@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import static java.lang.Math.cos;
+import static org.jesperancinha.logistics.web.utils.GeoCalculator.calculateSquareBoundary;
 
 /**
  * This service manages the bridge opening times service. It detects conflict and handles main bridge functions
@@ -30,10 +30,10 @@ public class BridgeOpeningServiceImpl implements BridgeOpeningService {
     private final BridgeOpeningTimeRepository bridgeOpeningTimeRepository;
 
     @Override
-    public boolean isBridgeOpen(BigDecimal lat, BigDecimal lon) {
+    public boolean isBridgeOpen(final BigDecimal lat, final BigDecimal lon) {
 
-        SquareBoundary squareBoundary = calculateQuareBoundary(lat, lon, BigDecimal.ONE);
-        List<BridgeOpeningTime> bridgeByLatAndLonUnderRadius = bridgeOpeningTimeRepository.findBridgeByLatAndLonUnderRadius(squareBoundary.westLatitude(), squareBoundary.eastLatitude(), squareBoundary.northLongitude(), squareBoundary.southLongitude(),
+        SquareBoundary squareBoundary = calculateSquareBoundary(lat, lon, BigDecimal.ONE);
+        List<BridgeOpeningTime> bridgeByLatAndLonUnderRadius = bridgeOpeningTimeRepository.findBridgeBySquareBoundaryUnderRadius(squareBoundary.westLatitude(), squareBoundary.eastLatitude(), squareBoundary.northLongitude(), squareBoundary.southLongitude(),
             Instant.now()
                 .toEpochMilli());
 
@@ -43,28 +43,6 @@ public class BridgeOpeningServiceImpl implements BridgeOpeningService {
 
     public BridgeOpeningServiceImpl(BridgeOpeningTimeRepository bridgeOpeningTimeRepository) {
         this.bridgeOpeningTimeRepository = bridgeOpeningTimeRepository;
-    }
-
-    /**
-     *  lat = lat0 + (180/pi)*(dy/6378137)
-     *  lon = lon0 + (180/pi)*(dx/6378137)/cos(lat0)
-     * @param lat
-     * @param lon
-     * @return
-     */
-    private SquareBoundary calculateQuareBoundary(BigDecimal lat, BigDecimal lon, BigDecimal radius) {
-        BigDecimal dLat = BigDecimal.valueOf((180 / Math.PI) * (radius.doubleValue() / 6378137));
-        BigDecimal dLon = BigDecimal.valueOf((180 / Math.PI) * (radius.doubleValue() / 6378137) / cos(Math.toRadians(lat.doubleValue())));
-        BigDecimal latWest = lat.subtract(dLat);
-        BigDecimal latEast = lat.add(dLat);
-        BigDecimal lonNorth = lon.add(dLon);
-        BigDecimal lonSouth = lon.subtract(dLon);
-        return SquareBoundary.builder()
-            .westLatitude(latWest)
-            .eastLatitude(latEast)
-            .northLongitude(lonNorth)
-            .southLongitude(lonSouth)
-            .build();
     }
 
     /**
