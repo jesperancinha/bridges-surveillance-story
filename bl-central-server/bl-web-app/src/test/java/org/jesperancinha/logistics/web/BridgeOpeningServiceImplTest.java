@@ -5,6 +5,7 @@ import org.jesperancinha.logistics.web.data.BridgeDto;
 import org.jesperancinha.logistics.web.data.BridgeOpeningConflictDto;
 import org.jesperancinha.logistics.web.data.BridgeOpeningTimeDto;
 import org.jesperancinha.logistics.web.services.BridgeOpeningServiceImpl;
+import org.jesperancinha.logistics.web.utils.GeoCalculator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -36,7 +37,7 @@ public class BridgeOpeningServiceImplTest {
     @BeforeEach
     public void setUp() {
         BridgeOpeningTimeRepository bridgeOpeningTimeRepository = mock(BridgeOpeningTimeRepository.class);
-        bridgeOpeningServiceImpl = new BridgeOpeningServiceImpl(bridgeOpeningTimeRepository);
+        bridgeOpeningServiceImpl = new BridgeOpeningServiceImpl(bridgeOpeningTimeRepository, new GeoCalculator(6371));
         bridgeOpeningTimeDto1 = BridgeOpeningTimeDto.builder()
             .bridge(BRIDGE_ONE)
             .openingTime(of(2016, 11, 1, 10, 10, 0))

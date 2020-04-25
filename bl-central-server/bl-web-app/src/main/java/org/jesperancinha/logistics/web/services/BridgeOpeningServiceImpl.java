@@ -5,6 +5,7 @@ import org.jesperancinha.logistics.jpa.repositories.BridgeOpeningTimeRepository;
 import org.jesperancinha.logistics.web.data.BridgeDto;
 import org.jesperancinha.logistics.web.data.BridgeOpeningConflictDto;
 import org.jesperancinha.logistics.web.data.BridgeOpeningTimeDto;
+import org.jesperancinha.logistics.web.utils.GeoCalculator;
 import org.paukov.combinatorics3.Generator;
 import org.paukov.combinatorics3.IGenerator;
 import org.springframework.stereotype.Service;
@@ -19,8 +20,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import static org.jesperancinha.logistics.web.utils.GeoCalculator.calculateSquareBoundary;
-
 /**
  * This service manages the bridge opening times service. It detects conflict and handles main bridge functions
  */
@@ -28,11 +27,12 @@ import static org.jesperancinha.logistics.web.utils.GeoCalculator.calculateSquar
 public class BridgeOpeningServiceImpl implements BridgeOpeningService {
 
     private final BridgeOpeningTimeRepository bridgeOpeningTimeRepository;
+    private final GeoCalculator geoCalculator;
 
     @Override
     public boolean isBridgeOpen(final BigDecimal lat, final BigDecimal lon) {
 
-        SquareBoundary squareBoundary = calculateSquareBoundary(lat, lon, BigDecimal.ONE);
+        SquareBoundary squareBoundary = geoCalculator.calculateSquareBoundary(lat, lon, BigDecimal.ONE);
         List<BridgeOpeningTime> bridgeByLatAndLonUnderRadius = bridgeOpeningTimeRepository.findBridgeBySquareBoundaryUnderRadius(squareBoundary.westLatitude(), squareBoundary.eastLatitude(), squareBoundary.northLongitude(), squareBoundary.southLongitude(),
             Instant.now()
                 .toEpochMilli());
@@ -41,8 +41,9 @@ public class BridgeOpeningServiceImpl implements BridgeOpeningService {
 
     }
 
-    public BridgeOpeningServiceImpl(BridgeOpeningTimeRepository bridgeOpeningTimeRepository) {
+    public BridgeOpeningServiceImpl(BridgeOpeningTimeRepository bridgeOpeningTimeRepository, GeoCalculator geoCalculator) {
         this.bridgeOpeningTimeRepository = bridgeOpeningTimeRepository;
+        this.geoCalculator = geoCalculator;
     }
 
     /**
