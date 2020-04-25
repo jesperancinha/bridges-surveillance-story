@@ -51,8 +51,8 @@ public class GeoCalculator {
      * @return
      */
     public SquareBoundary calculateSquareBoundary(BigDecimal lat, BigDecimal lon, BigDecimal radius) {
-        BigDecimal dLat = BigDecimal.valueOf((180 / Math.PI) * (radius.doubleValue() * 1000 / 6378137));
-        BigDecimal dLon = BigDecimal.valueOf((180 / Math.PI) * (radius.doubleValue() * 1000 / 6378137) / cos(Math.toRadians(lat.doubleValue())));
+        BigDecimal dLat = BigDecimal.valueOf((180 / Math.PI) * (radius.doubleValue() / this.planetRadius));
+        BigDecimal dLon = BigDecimal.valueOf((180 / Math.PI) * (radius.doubleValue() / this.planetRadius) / cos(Math.toRadians(lat.doubleValue())));
         BigDecimal latWest = lat.subtract(dLat);
         BigDecimal latEast = lat.add(dLat);
         BigDecimal lonNorth = lon.add(dLon);

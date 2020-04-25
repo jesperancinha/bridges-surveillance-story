@@ -2,8 +2,6 @@ package org.jesperancinha.logistics.web.utils;
 
 import org.jesperancinha.logistics.web.services.SquareBoundary;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
 
@@ -11,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class GeoCalculatorTest {
 
-    private  GeoCalculator geoCalculator = new GeoCalculator(6371);
+    private GeoCalculator geoCalculator = new GeoCalculator(6371);
 
     @Test
     public void distance() {
@@ -27,7 +25,7 @@ public class GeoCalculatorTest {
 
         final SquareBoundary square = geoCalculator.calculateSquareBoundary(lat1, lon1, BigDecimal.valueOf(10.0));
 
-        double dLatLeft = Math.ceil(geoCalculator.distance(lat1.doubleValue(), lon1.doubleValue(), square.eastLatitude()
+        double dLatLeft = Math.floor(geoCalculator.distance(lat1.doubleValue(), lon1.doubleValue(), square.eastLatitude()
             .doubleValue(), lon1.doubleValue()));
         double dLatRight = Math.ceil(geoCalculator.distance(lat1.doubleValue(), lon1.doubleValue(), square.westLatitude()
             .doubleValue(), lon1.doubleValue()));

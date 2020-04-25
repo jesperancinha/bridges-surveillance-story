@@ -1,22 +1,21 @@
-import math
+import unittest
+
+from geo_calculator import add_delta_in_km_to_coord, Coord
 
 
-class Coord:
-    def __init__(self, lat, lon):
-        self.lat = lat
-        self.lon = lon
+class TestStringMethods(unittest.TestCase):
 
-    def delta(self, lat, lon):
-        self.lat += lat
-        self.lon += lon
+    def setUp(self):
+        pass
+
+    def test_add_delta_in_km_to_coord(self):
+        coord = Coord(53.32055555555556, -1.7297222222222221)
+
+        new_coord = add_delta_in_km_to_coord(coord, 0, 10)
+
+        self.assertEqual(new_coord.lat, 53.32055555555556)
+        self.assertEqual(new_coord.lon, -1.579167190360281)
 
 
-def add_delta_in_km_to_coord(coord, d_lat_km, d_lon_km, planet_radius_km=6371):
-    lat = coord.lat
-    lon = coord.lon
-    d_lat = (180 / math.pi) * (d_lat_km / planet_radius_km)
-    d_lon = (180 / math.pi) * (d_lon_km / planet_radius_km) / math.cos(math.radians(lat))
-
-    coord = Coord(lat, lon)
-    coord.delta(d_lat, d_lon)
-    return coord
+if __name__ == '__main__':
+    unittest.main()

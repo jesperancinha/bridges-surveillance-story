@@ -92,7 +92,7 @@ def send_checkin_message(host):
 
 
 def send_checkout_message(host):
-    send_train_signal(host, get_train_checkout_data())
+    send_train_signal(host, get_train_checkout_data(    ))
     send_bridge_signal(host, get_bridge_checkout_data())
     print("Check Out sent!")
 
@@ -102,8 +102,8 @@ def start_train(host):
     # This means that whereas in the real case we would find that the train would take on average 120 minutes to get to a bridge, in our example we are using 120 seconds to simulate.
     # Train simulation from time import sleep
 
-    time_to_get_to_bridge = random.randint(8, 10)
-    time_to_get_to_station = random.randint(8, 10)
+    time_to_get_to_bridge = random.randint(18, 20)
+    time_to_get_to_station = random.randint(18, 20)
 
     train_checkin_checkout_process = Process(target=check_in_out, args=[host, time_to_get_to_bridge, time_to_get_to_station])
     train_message_process = Process(target=pulses, args=())
