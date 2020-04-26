@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+docker-compose down
+
 cd docker-psql
 
 docker-compose down

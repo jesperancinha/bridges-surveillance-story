@@ -131,23 +131,25 @@ public class BridgeLogisticsInitializer implements CommandLineRunner {
             .build())
             .forEach(trainRepository::save);
 
-        final Instant now = Instant.now();
-        final long millisToAdd = 10000;
-        final Bridge bridge = bridgeRepository.findById(1L)
-            .orElse(Bridge.builder()
-                .id(1L)
-                .build());
-        IntStream.range(0, 50)
-            .boxed()
-            .map(integer -> BridgeOpeningTime.builder()
-                .id((long) integer)
-                .bridge(bridge)
-                .openingTime(now.plusMillis(millisToAdd * integer * 2)
-                    .toEpochMilli())
-                .closingTime(now.plusMillis(millisToAdd * (integer * 2 + 1))
-                    .toEpochMilli())
-                .build())
-            .forEach(openingTimeRepository::save);
+
+        bridgeRepository.findAll().forEach(
+            bridge -> {
+                final Instant now = Instant.now();
+                final long millisToAdd = 10000;
+                IntStream.range(0, 50)
+                    .boxed()
+                    .map(integer -> BridgeOpeningTime.builder()
+                        .id((long) integer)
+                        .bridge(bridge)
+                        .openingTime(now.plusMillis(millisToAdd * integer * 2)
+                            .toEpochMilli())
+                        .closingTime(now.plusMillis(millisToAdd * (integer * 2 + 1))
+                            .toEpochMilli())
+                        .build())
+                    .forEach(openingTimeRepository::save);
+            }
+        );
+
     }
 
 }
