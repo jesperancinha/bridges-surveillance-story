@@ -66,17 +66,18 @@ def get_bridge_checkout_data(coord):
 
 
 def check_in_out(host, time_to_get_to_bridge, time_to_get_to_station, origin, d_lat, d_lon, d_lat2, d_lon2):
+    print("🚂 🛤 Train is underway. Just left central statin 🏫")
     train_message_process = Process(target=pulses, args=[origin, d_lat, d_lon])
     train_message_process.start()
     sleep(time_to_get_to_bridge)
-    print("Train entering Bridge...")
+    print("🚂 🌉 Train entering Bridge...")
     send_checkin_message(host, origin)
-    print("Train Checked In!")
+    print("🚂 Train Checked In!")
     sleep(5)
     train_message_process.terminate()
     send_checkout_message(host, origin)
-    print("Train Checked Out!")
-    print("Train Leaving Bridge...")
+    print("🚂 Train Checked Out!")
+    print("🚂 Train Leaving Bridge...")
     train_message_process = Process(target=pulses, args=[origin, d_lat2, d_lon2])
     train_message_process.start()
     sleep(time_to_get_to_station)
@@ -139,4 +140,4 @@ def start_train(host):
     train_checkin_checkout_process.join()
     train_checkin_checkout_process.terminate()
 
-    print("Arrived at the train central station!")
+    print("🚂 Arrived at the train central station! 🏫")

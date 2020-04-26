@@ -136,7 +136,7 @@ public class BridgeLogisticsInitializer implements CommandLineRunner {
             bridge -> {
                 final Instant now = Instant.now();
                 final long millisToAdd = 10000;
-                IntStream.range(0, 50)
+                IntStream.range(0, 200)
                     .boxed()
                     .map(integer -> BridgeOpeningTime.builder()
                         .id((long) integer)

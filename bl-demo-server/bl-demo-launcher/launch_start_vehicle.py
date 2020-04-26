@@ -73,23 +73,25 @@ def get_bridge_checkout_data(coord):
 
 
 def check_in_out(host, time_to_get_to_bridge, time_to_get_to_station, origin, d_lat, d_lon, d_lat2, d_lon2):
+    print("🚚 🛣 Vehicle is underway. Just left the supplier central 🏪")
     vehicle_message_process_to_bridge = Process(target=pulses, args=[origin, d_lat, d_lon])
     vehicle_message_process_to_bridge.start()
     sleep(time_to_get_to_bridge)
     area = requests.get(url=URL_OPEN + str(dest_lat) + "/" + str(dest_lon))
     while not area.json():
+        area = requests.get(url=URL_OPEN + str(dest_lat) + "/" + str(dest_lon))
         print(area.json())
         print("⛔️ 🌉 Bridge is closed!")
         sleep(1)
     print("✅ 🌉 Bridge is open!")
     print("Entering Bridge...")
     send_checkin_message(host, origin)
-    print("Checked In!")
+    print("🚚 🔶 Checked In!")
     sleep(5)
     vehicle_message_process_to_bridge.terminate()
     send_checkout_message(host, origin)
-    print("Checked Out!")
-    print("Leaving Bridge...")
+    print("🚚 🟩 Checked Out!")
+    print("🚚 🛣 Leaving Bridge...")
     vehicle_message_process_to_station = Process(target=pulses, args=[origin, d_lat2, d_lon2])
     vehicle_message_process_to_station.start()
     sleep(time_to_get_to_station)
@@ -152,4 +154,4 @@ def start_vehicle(host):
     vehicle_checkin_checkout_process.join()
     vehicle_checkin_checkout_process.terminate()
 
-    print("Arrived at the supplier central!")
+    print("🚚 Arrived at the supplier central! 🏪")
