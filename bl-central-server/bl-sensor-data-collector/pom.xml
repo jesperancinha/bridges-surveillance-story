@@ -84,7 +84,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot-maven-plugin.version}</version>
                 <configuration>
-                    <mainClass>org.jesperancinha.twitter.TwitterFetcherLauncher</mainClass>
+                    <mainClass>org.jesperancinha.logistics.sensor.collector.DataCollectorLauncher</mainClass>
                 </configuration>
                 <executions>
                     <execution>
