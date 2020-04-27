@@ -3,8 +3,8 @@ package org.jesperancinha.logistics.sensor.collector.rabbitmq;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
+import org.jesperancinha.logistics.sensor.collector.data.BridgeLogDto;
 
 import java.nio.charset.Charset;
 import java.util.concurrent.CountDownLatch;
@@ -17,10 +17,11 @@ public class BridgeSensorReceiver {
 
     private static Gson gson = new Gson();
 
-    private CountDownLatch latch = new CountDownLatch(1);
+    private final CountDownLatch latch = new CountDownLatch(1);
 
     public void receiveMessage(byte[] message) {
         String messageString = new String(message, Charset.defaultCharset());
+        BridgeLogDto bridgeLogDto = gson.fromJson(messageString, BridgeLogDto.class);
         System.out.println("Received <" + messageString + ">");
     }
 
