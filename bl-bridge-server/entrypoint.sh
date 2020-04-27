@@ -30,6 +30,6 @@ function sourceQueue(){
     rabbitmqadmin -u test -p test -V bl_$1_vh declare binding source=bl_$1_exchange destination=bl_$1_queue
 }
 
-sourceQueue bridge_sensor
+sourceQueue bridge_01_sensor
 
 tail -f /dev/null
