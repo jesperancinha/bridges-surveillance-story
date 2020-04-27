@@ -1,4 +1,4 @@
-package org.jesperancinha.logistics.mcs;
+package org.jesperancinha.logistics.mcs.configuration;
 
 import org.jesperancinha.logistics.mcs.rabbitmq.Receiver;
 import org.springframework.amqp.core.Binding;
@@ -8,24 +8,24 @@ import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
-@SpringBootApplication
-public class MerchandiseControlService {
-    static final String topicExchangeName = "bl_merchandise_exchange";
+@Configuration
+public class MerchandiseCollectorConfiguration {
 
-    static final String queueName = "bl_merchandise_queue";
+    private static final String BL_MERCHANDISE_EXCHANGE = "bl_merchandise_exchange";
+
+    private static final String BL_MERCHANDISE_QUEUE = "bl_merchandise_queue";
 
     @Bean
     Queue queue() {
-        return new Queue(queueName, true);
+        return new Queue(BL_MERCHANDISE_QUEUE, true);
     }
 
     @Bean
     FanoutExchange exchange() {
-        return new FanoutExchange(topicExchangeName, true, false);
+        return new FanoutExchange(BL_MERCHANDISE_EXCHANGE, true, false);
     }
 
     @Bean
@@ -38,7 +38,7 @@ public class MerchandiseControlService {
     SimpleMessageListenerContainer container(ConnectionFactory connectionFactory, MessageListenerAdapter listenerAdapter) {
         SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
         container.setConnectionFactory(connectionFactory);
-        container.setQueueNames(queueName);
+        container.setQueueNames(BL_MERCHANDISE_QUEUE);
         container.setMessageListener(listenerAdapter);
         return container;
     }
@@ -46,9 +46,5 @@ public class MerchandiseControlService {
     @Bean
     MessageListenerAdapter listenerAdapter(Receiver receiver) {
         return new MessageListenerAdapter(receiver, "receiveMessage");
-    }
-
-    public static void main(String[] args) throws InterruptedException {
-        SpringApplication.run(MerchandiseControlService.class, args);
     }
 }

@@ -33,7 +33,7 @@
         <module>bl-domain-repository</module>
         <module>bl-domain-control-service</module>
         <module>bl-passenger-control-service</module>
-        <module>bl-merchandise-control-service</module>
+        <module>bl-merchandise-data-collector</module>
         <module>bl-web-app</module>
         <module>bl-readings-service</module>
         <module>bl-readings-aggregator-service</module>
