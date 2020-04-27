@@ -1,0 +1,18 @@
+{
+  "properties": [
+    {
+      "name": "bridge.logistics.bridge.sensor.active",
+      "type": "java.lang.String",
+      "description": "Description for bridge.logistics.bridge.sensor.active."
+    },
+    {
+      "name": "bridge.logistics.train.sensor.active",
+      "type": "java.lang.String",
+      "description": "Description for bridge.logistics.train.sensor.active."
+    },
+    {
+      "name": "bridge.logistics.vehicle.sensor.active",
+      "type": "java.lang.String",
+      "description": "Description for bridge.logistics.vehicle.sensor.active."
+    }
+  ] }

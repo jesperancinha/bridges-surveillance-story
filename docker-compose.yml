@@ -31,8 +31,8 @@ services:
       - "15675:15672"
       - "5675:5672"
 
-  bl_bridge_server:
-    hostname: bl_bridge_server
+  bl_bridge_01_server:
+    hostname: bl_bridge_01_server
     build:
       context: bl-bridge-server/.
     ports:

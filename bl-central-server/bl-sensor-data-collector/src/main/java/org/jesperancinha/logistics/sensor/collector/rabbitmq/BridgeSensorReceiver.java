@@ -2,6 +2,7 @@ package org.jesperancinha.logistics.sensor.collector.rabbitmq;
 
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
@@ -10,7 +11,8 @@ import java.util.concurrent.CountDownLatch;
 
 @Slf4j
 @Component
-@Profile("bridge")
+@ConditionalOnProperty(name = "bridge.logistics.bridge.sensor.active",
+    matchIfMissing = true)
 public class BridgeSensorReceiver {
 
     private static Gson gson = new Gson();

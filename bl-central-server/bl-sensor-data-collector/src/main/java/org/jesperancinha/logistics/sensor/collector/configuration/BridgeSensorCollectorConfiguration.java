@@ -8,42 +8,45 @@ import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
+@ConditionalOnProperty(name = "bridge.logistics.bridge.sensor.active",
+    matchIfMissing = true)
 public class BridgeSensorCollectorConfiguration {
 
-    private static final String BL_MERCHANDISE_EXCHANGE = "bl_merchandise_exchange";
+    private static final String BL_BRIDGE_01_SENSOR_EXCHANGE = "bl_bridge_01_sensor_exchange";
 
-    private static final String BL_MERCHANDISE_QUEUE = "bl_merchandise_queue";
+    private static final String BL_BRIDGE_01_SENSOR_QUEUE = "bl_bridge_01_sensor_queue";
 
-    @Bean
+    @Bean(name ="BridgeQueue")
     Queue queue() {
-        return new Queue(BL_MERCHANDISE_QUEUE, true);
+        return new Queue(BL_BRIDGE_01_SENSOR_QUEUE, true);
     }
 
-    @Bean
+    @Bean(name = "BridgeExchange")
     FanoutExchange exchange() {
-        return new FanoutExchange(BL_MERCHANDISE_EXCHANGE, true, false);
+        return new FanoutExchange(BL_BRIDGE_01_SENSOR_EXCHANGE, true, false);
     }
 
-    @Bean
+    @Bean(name = "BridgeBinding")
     Binding binding(Queue queue, FanoutExchange exchange) {
         return BindingBuilder.bind(queue)
             .to(exchange);
     }
 
-    @Bean
+    @Bean(name = "BridgeContainer")
     SimpleMessageListenerContainer container(ConnectionFactory connectionFactory, MessageListenerAdapter listenerAdapter) {
         SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
         container.setConnectionFactory(connectionFactory);
-        container.setQueueNames(BL_MERCHANDISE_QUEUE);
+        container.setQueueNames(BL_BRIDGE_01_SENSOR_QUEUE);
         container.setMessageListener(listenerAdapter);
         return container;
     }
 
-    @Bean
+    @Bean(name = "BridgeListener")
     MessageListenerAdapter listenerAdapter(BridgeSensorReceiver bridgeSensorReceiver) {
         return new MessageListenerAdapter(bridgeSensorReceiver, "receiveMessage");
     }

@@ -38,6 +38,6 @@ federate train_01_merchandise train_01
 federate train_01_sensor train_01
 federate vehicle_01_sensor vehicle_01
 federate vehicle_01_merchandise vehicle_01
-federate bridge_sensor bridge
+federate bridge_01_sensor bridge_01
 
 tail -f /dev/null
