@@ -28,7 +28,7 @@ import java.util.List;
         + " where b.lat>=:latWest and b.lat<=:latEast and b.lon<=:lonNorth and b.lon>=:lonSouth")
 public class Bridge {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     private String address;

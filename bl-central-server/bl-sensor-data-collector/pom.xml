@@ -26,7 +26,7 @@
         </dependency>
         <dependency>
             <groupId>org.jesperancinha.logistics</groupId>
-            <artifactId>bl-domain-model</artifactId>
+            <artifactId>bl-domain-repository</artifactId>
         </dependency>
         <dependency>
             <groupId>org.postgresql</groupId>

@@ -47,6 +47,7 @@ def get_train_checkout_data(coord):
 
 def get_bridge_checkin_data(coord):
     return {
+        'id': 2,
         'source': 'bridge',
         'type': 'checkin',
         'timestamp': current_time(),
@@ -57,6 +58,7 @@ def get_bridge_checkin_data(coord):
 
 def get_bridge_checkout_data(coord):
     return {
+        'id': 2,
         'source': 'bridge',
         'type': 'checkout',
         'timestamp': current_time(),

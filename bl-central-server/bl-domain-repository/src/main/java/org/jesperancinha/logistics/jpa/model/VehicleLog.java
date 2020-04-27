@@ -10,19 +10,17 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import static javax.persistence.CascadeType.ALL;
-
 @Entity
 @Data
 @Table(name = "vehicles_log")
 public class VehicleLog {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @ManyToOne(cascade = ALL,
-        optional = false)
-    @JoinColumn(name = "vehicle_id", referencedColumnName = "id",
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "vehicle_id",
+        referencedColumnName = "id",
         nullable = false,
         updatable = false)
     private Vehicle vehicle;

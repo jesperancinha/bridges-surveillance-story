@@ -17,10 +17,9 @@ import static javax.persistence.CascadeType.ALL;
 @Table(name = "trains_log")
 public class TrainsLog {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @ManyToOne(cascade = ALL,
-        optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "trainId",
         nullable = false,
         updatable = false)
