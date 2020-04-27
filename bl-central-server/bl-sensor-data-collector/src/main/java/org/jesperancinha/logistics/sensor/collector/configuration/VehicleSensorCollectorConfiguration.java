@@ -5,10 +5,10 @@ import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.FanoutExchange;
 import org.springframework.amqp.core.Queue;
-import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,11 +16,20 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConditionalOnProperty(name = "bridge.logistics.vehicle.sensor.active",
     matchIfMissing = true)
-public class VehicleSensorCollectorConfiguration {
+public class VehicleSensorCollectorConfiguration extends CollectorConfiguration {
 
     private static final String BL_VEHICLE_01_SENSOR_EXCHANGE = "bl_vehicle_01_sensor_exchange";
 
     private static final String BL_VEHICLE_01_SENSOR_QUEUE = "bl_vehicle_01_sensor_queue";
+
+    @Value("${spring.rabbitmq.username}")
+    private String username;
+
+    @Value("${spring.rabbitmq.password}")
+    private String password;
+
+    @Value("${bridge.logistics.vehicle.sensor.vhost}")
+    private String vHost;
 
     @Bean(name = "VehicleQueue")
     Queue queue() {
@@ -43,14 +52,10 @@ public class VehicleSensorCollectorConfiguration {
     }
 
     @Bean(name = "VehicleContainer")
-    SimpleMessageListenerContainer container(ConnectionFactory connectionFactory,
+    SimpleMessageListenerContainer container(
         @Qualifier("VehicleListener")
             MessageListenerAdapter listenerAdapter) {
-        SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
-        container.setConnectionFactory(connectionFactory);
-        container.setQueueNames(BL_VEHICLE_01_SENSOR_QUEUE);
-        container.setMessageListener(listenerAdapter);
-        return container;
+        return getSimpleMessageListenerContainer(listenerAdapter, vHost, BL_VEHICLE_01_SENSOR_QUEUE);
     }
 
     @Bean(name = "VehicleListener")

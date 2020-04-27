@@ -5,11 +5,10 @@ import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.FanoutExchange;
 import org.springframework.amqp.core.Queue;
-import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
-import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,13 +16,16 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConditionalOnProperty(name = "bridge.logistics.bridge.sensor.active",
     matchIfMissing = true)
-public class BridgeSensorCollectorConfiguration {
+public class BridgeSensorCollectorConfiguration extends CollectorConfiguration{
 
     private static final String BL_BRIDGE_01_SENSOR_EXCHANGE = "bl_bridge_01_sensor_exchange";
 
     private static final String BL_BRIDGE_01_SENSOR_QUEUE = "bl_bridge_01_sensor_queue";
 
-    @Bean(name ="BridgeQueue")
+    @Value("${bridge.logistics.bridge.sensor.vhost}")
+    private String vHost;
+
+    @Bean(name = "BridgeQueue")
     Queue queue() {
         return new Queue(BL_BRIDGE_01_SENSOR_QUEUE, true);
     }
@@ -47,17 +49,8 @@ public class BridgeSensorCollectorConfiguration {
     SimpleMessageListenerContainer container(
         @Qualifier("BridgeListener")
             MessageListenerAdapter listenerAdapter) {
-        SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
-        CachingConnectionFactory connectionFactory = new CachingConnectionFactory(
-            "localhost"
-        );
-        connectionFactory.setUsername("test");
-        connectionFactory.setPassword("test");
-        connectionFactory.setVirtualHost("bl_bridge_01_sensor_vh");
-        container.setConnectionFactory(connectionFactory);
-        container.setQueueNames(BL_BRIDGE_01_SENSOR_QUEUE);
-        container.setMessageListener(listenerAdapter);
-        return container;
+        return getSimpleMessageListenerContainer(
+            listenerAdapter, vHost, BL_BRIDGE_01_SENSOR_QUEUE);
     }
 
     @Bean(name = "BridgeListener")
