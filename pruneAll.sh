@@ -2,6 +2,12 @@
 
 ./stopMacOs.sh
 
+cd docker-psql
+
+docker-compose down
+
+cd ..
+
 docker-compose down
 
 docker stop docker-psql_postgres_1
