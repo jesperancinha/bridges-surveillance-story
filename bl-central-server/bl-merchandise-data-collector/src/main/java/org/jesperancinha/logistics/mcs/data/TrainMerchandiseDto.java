@@ -10,13 +10,14 @@ public record TrainMerchandiseDto(@Id @NonNull Long id,
     @NonNull String name,
     @NonNull Long supplierId,
     String type,
+    String status,
     @NonNull Long vendorId,
     @NonNull List<CarrierDto>composition) {
     @Builder
     public TrainMerchandiseDto {
     }
     public TrainMerchandiseDto() {
-        this(null, null, null, null, null, null);
+        this(null, null, null, null, null, null, null);
     }
 
 }

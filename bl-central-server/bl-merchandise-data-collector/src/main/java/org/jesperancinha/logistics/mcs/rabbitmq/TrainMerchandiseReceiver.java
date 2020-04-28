@@ -9,7 +9,6 @@ import org.jesperancinha.logistics.jpa.model.ProductCargo;
 import org.jesperancinha.logistics.jpa.model.TransportPackage;
 import org.jesperancinha.logistics.jpa.repositories.CarriageRepository;
 import org.jesperancinha.logistics.jpa.repositories.CompanyRepository;
-import org.jesperancinha.logistics.jpa.repositories.ContainerRepository;
 import org.jesperancinha.logistics.jpa.repositories.MerchandiseLogRepository;
 import org.jesperancinha.logistics.jpa.repositories.ProductCargoRepository;
 import org.jesperancinha.logistics.jpa.repositories.ProductRepository;
@@ -19,9 +18,11 @@ import org.springframework.stereotype.Component;
 
 import java.nio.charset.Charset;
 import java.time.Instant;
-import java.util.Objects;
+import java.util.ArrayList;
 import java.util.concurrent.CountDownLatch;
 import java.util.stream.Stream;
+
+import static java.util.Objects.nonNull;
 
 @Slf4j
 @Component
@@ -68,18 +69,18 @@ public class TrainMerchandiseReceiver {
 
                     trainMerchandiseDto.composition()
                         .parallelStream()
-                        .filter(carrierDto -> Objects.nonNull(carrierDto.packageId()))
+                        .filter(carrierDto -> nonNull(carrierDto.packageId()))
                         .forEach(carrierDto -> {
                             final Long packageId = carrierDto.packageId();
-                            TransportPackage transportPackage = TransportPackage.builder()
+                            final TransportPackage transportPackage = TransportPackage.builder()
                                 .id(packageId)
                                 .supplier(supplier)
                                 .vendor(vendor)
                                 .carriage(carriageRepository.findById(carrierDto.carriageId())
                                     .orElse(null))
+                                .productCargos(new ArrayList<>())
                                 .build();
-                            TransportPackage transportPackage1 = transportPackageRepository.save(transportPackage);
-
+                            final TransportPackage transportPackage1 = transportPackageRepository.save(transportPackage);
                             carrierDto.products()
                                 .parallelStream()
                                 .forEach(productInTransitDto -> {
@@ -97,9 +98,12 @@ public class TrainMerchandiseReceiver {
                                             .toEpochMilli())
                                         .transportPackage(transportPackage1)
                                         .productCargo(productCargoDb)
+                                        .status(trainMerchandiseDto.status())
                                         .build();
+                                    transportPackage1.getProductCargos().add(productCargoDb);
                                     merchandiseLogRepository.save(merchandise);
                                 });
+                            transportPackageRepository.save(transportPackage1);
 
                         });
                     latch.countDown();

@@ -8,6 +8,7 @@ import org.jesperancinha.logistics.jpa.model.Product;
 import org.jesperancinha.logistics.jpa.model.ProductCargo;
 import org.jesperancinha.logistics.jpa.model.TransportPackage;
 import org.jesperancinha.logistics.jpa.repositories.CompanyRepository;
+import org.jesperancinha.logistics.jpa.repositories.ContainerRepository;
 import org.jesperancinha.logistics.jpa.repositories.MerchandiseLogRepository;
 import org.jesperancinha.logistics.jpa.repositories.ProductCargoRepository;
 import org.jesperancinha.logistics.jpa.repositories.ProductRepository;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Component;
 
 import java.nio.charset.Charset;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.concurrent.CountDownLatch;
 import java.util.stream.Stream;
 
@@ -38,14 +40,17 @@ public class VehicleMerchandiseReceiver {
 
     private final ProductCargoRepository productCargoRepository;
 
+    private final ContainerRepository containerRepository;
+
     public VehicleMerchandiseReceiver(Gson gson, MerchandiseLogRepository merchandiseLogRepository, ProductRepository productRepository, TransportPackageRepository transportPackageRepository, CompanyRepository companyRepository,
-        ProductCargoRepository productCargoRepository) {
+        ProductCargoRepository productCargoRepository, ContainerRepository containerRepository) {
         this.gson = gson;
         this.merchandiseLogRepository = merchandiseLogRepository;
         this.productRepository = productRepository;
         this.transportPackageRepository = transportPackageRepository;
         this.companyRepository = companyRepository;
         this.productCargoRepository = productCargoRepository;
+        this.containerRepository = containerRepository;
     }
 
     public void receiveMessage(byte[] message) {
@@ -62,11 +67,18 @@ public class VehicleMerchandiseReceiver {
 
                     vehicleMerchandiseDto.composition()
                         .parallelStream()
-                        .forEach(container -> {
-                            final Long packageId = container.packageId();
-                            final TransportPackage transportPackage = transportPackageRepository.findById(packageId)
-                                .orElse(null);
-                            container.products()
+                        .forEach(containerDto -> {
+                            final Long packageId = containerDto.packageId();
+                            final TransportPackage transportPackage = TransportPackage.builder()
+                                .id(packageId)
+                                .supplier(supplier)
+                                .vendor(vendor)
+                                .container(containerRepository.findById(containerDto.containerId())
+                                    .orElse(null))
+                                .productCargos(new ArrayList<>())
+                                .build();
+                            final TransportPackage transportPackage1 = transportPackageRepository.save(transportPackage);
+                            containerDto.products()
                                 .parallelStream()
                                 .forEach(productInTransitDto -> {
                                     final Product product = productRepository.findById(productInTransitDto.productId())
@@ -81,11 +93,14 @@ public class VehicleMerchandiseReceiver {
                                         .vendor(vendor)
                                         .timestamp(Instant.now()
                                             .toEpochMilli())
-                                        .transportPackage(transportPackage)
+                                        .transportPackage(transportPackage1)
                                         .productCargo(productCargoDb)
                                         .build();
+                                    transportPackage1.getProductCargos()
+                                        .add(productCargoDb);
                                     merchandiseLogRepository.save(merchandise);
                                 });
+                            transportPackageRepository.save(transportPackage1);
 
                         });
                     latch.countDown();

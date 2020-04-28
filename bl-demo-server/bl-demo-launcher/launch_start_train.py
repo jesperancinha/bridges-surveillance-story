@@ -20,7 +20,8 @@ sys.path.insert(6, os.path.abspath('bl-bridge-server/bl-bridge-sensor-service'))
 
 from send_train_timestamp import send_signal as send_train_signal
 from send_bridge_timestamp import send_signal  as send_bridge_signal
-from send_merchandise import send_merchandise
+from send_merchandise import send_merchandise as send_train_merchandise
+
 
 def current_time():
     return int(round(time.time() * 1000))
@@ -71,6 +72,15 @@ def get_bridge_checkout_data(coord):
 
 
 def check_in_out(host, time_to_get_to_bridge, time_to_get_to_station, origin, d_lat, d_lon, d_lat2, d_lon2):
+    success = False
+    while (not success):
+        try:
+            send_merchandise_message(host, origin, 'LOADED')
+            success = True
+        except:
+            print("‼️ Fail ‼️ - Connection to service failed! Making another attempt in 10 seconds")
+            sleep(10)
+
     print("🚂 🛤 Train is underway. Just left central statin 🏫")
     train_message_process = Process(target=pulses, args=[host, origin, d_lat, d_lon])
     train_message_process.start()
@@ -93,13 +103,14 @@ def pulses(host, origin, d_lat, d_lon):
     while True:
         sleep(1)
         origin.delta(d_lat, d_lon)
-        send_merchandise_message(host, origin)
+        send_merchandise_message(host, origin, 'INTRANSIID')
 
 
-def send_merchandise_message(host, origin):
+def send_merchandise_message(host, origin, status):
     with open('../../bl-simulation-data/train.json') as json_file:
         data = json.load(json_file)
-        send_merchandise(host, data)
+        data[0].update({'status': status})
+        send_train_merchandise(host, data)
         print("🚂 Train Merchandise sent! " + str(current_time()))
         print("🚂 Train location: " + str(origin))
 
@@ -149,3 +160,4 @@ def start_train(host):
     train_checkin_checkout_process.terminate()
 
     print("🚂 Arrived at the train central station! 🏫")
+    send_merchandise_message(host, origin, 'DELIVERED')

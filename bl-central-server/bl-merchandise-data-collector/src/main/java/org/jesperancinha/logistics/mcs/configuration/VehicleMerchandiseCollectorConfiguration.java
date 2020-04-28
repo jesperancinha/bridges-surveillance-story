@@ -1,6 +1,6 @@
 package org.jesperancinha.logistics.mcs.configuration;
 
-import org.jesperancinha.logistics.mcs.rabbitmq.TrainMerchandiseReceiver;
+import org.jesperancinha.logistics.mcs.rabbitmq.VehicleMerchandiseReceiver;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.FanoutExchange;
@@ -56,7 +56,7 @@ public class VehicleMerchandiseCollectorConfiguration extends CollectorConfigura
     }
 
     @Bean("VehicleMerchandiseListener")
-    MessageListenerAdapter listenerAdapter(TrainMerchandiseReceiver trainMerchandiseReceiver) {
-        return new MessageListenerAdapter(trainMerchandiseReceiver, "receiveMessage");
+    MessageListenerAdapter listenerAdapter(VehicleMerchandiseReceiver vehicleMerchandiseReceiver) {
+        return new MessageListenerAdapter(vehicleMerchandiseReceiver, "receiveMessage");
     }
 }

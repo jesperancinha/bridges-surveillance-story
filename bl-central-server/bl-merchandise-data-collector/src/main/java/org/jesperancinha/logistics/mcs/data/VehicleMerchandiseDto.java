@@ -8,14 +8,16 @@ import java.util.List;
 
 public record VehicleMerchandiseDto(@Id @NonNull Long id,
     @NonNull String name,
+    String status,
     @NonNull Long supplierId,
     @NonNull Long vendorId,
     @NonNull List<CoontainerDto>composition) {
     @Builder
     public VehicleMerchandiseDto {
     }
+
     public VehicleMerchandiseDto() {
-        this(null, null, null, null, null);
+        this(null, null, null, null, null, null);
     }
 
 }

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import json
 import os
 import random
 import sys
@@ -14,17 +15,21 @@ from geo_calculator import Coord, create_west_random_point, create_east_random_p
 
 sys.path.insert(1, os.path.abspath('../../bl-vehicle-server/bl-vehicle-sensor-service'))
 sys.path.insert(2, os.path.abspath('bl-vehicle-server/bl-vehicle-sensor-service'))
-sys.path.insert(3, os.path.abspath('../../bl-bridge-server/bl-bridge-sensor-service'))
-sys.path.insert(4, os.path.abspath('bl-bridge-server/bl-bridge-sensor-service'))
+sys.path.insert(3, os.path.abspath('../../bl-vehicle-server/bl-vehicle-merchandise-service'))
+sys.path.insert(4, os.path.abspath('bl-vehicle-server/bl-vehicle-merchandise-service'))
+sys.path.insert(5, os.path.abspath('../../bl-bridge-server/bl-bridge-sensor-service'))
+sys.path.insert(6, os.path.abspath('bl-bridge-server/bl-bridge-sensor-service'))
 
 from send_vehicle_timestamp import send_signal as send_vehicle_signal
 from send_bridge_timestamp import send_signal as send_bridge_signal
+from send_vehicle_merchandise import send_merchandise as send_vehicle_merchandise
 
 URL_BRIDGE_AREA = "http://localhost:9000/api/bridge/logistics/schedules/area/"
 URL_OPEN = "http://localhost:9000/api/bridge/logistics/schedules/open/"
 
 dest_lat = 52.347293
 dest_lon = 4.912372
+
 
 def current_time():
     return int(round(time.time() * 1000))
@@ -76,7 +81,7 @@ def get_bridge_checkout_data(coord):
 
 def check_in_out(host, time_to_get_to_bridge, time_to_get_to_station, origin, d_lat, d_lon, d_lat2, d_lon2):
     print("🚚 🛣 Vehicle is underway. Just left the supplier central 🏪")
-    vehicle_message_process_to_bridge = Process(target=pulses, args=[origin, d_lat, d_lon])
+    vehicle_message_process_to_bridge = Process(target=pulses, args=[host, origin, d_lat, d_lon])
     vehicle_message_process_to_bridge.start()
     sleep(time_to_get_to_bridge)
     area = requests.get(url=URL_OPEN + str(dest_lat) + "/" + str(dest_lon))
@@ -94,24 +99,29 @@ def check_in_out(host, time_to_get_to_bridge, time_to_get_to_station, origin, d_
     send_checkout_message(host, origin)
     print("🚚 🟩 Checked Out!")
     print("🚚 🛣 Leaving Bridge...")
-    vehicle_message_process_to_station = Process(target=pulses, args=[origin, d_lat2, d_lon2])
+    vehicle_message_process_to_station = Process(target=pulses, args=[host, origin, d_lat2, d_lon2])
     vehicle_message_process_to_station.start()
     sleep(time_to_get_to_station)
     vehicle_message_process_to_station.terminate()
 
 
-def pulses(origin, d_lat, d_lon):
+def pulses(host, origin, d_lat, d_lon):
+    send_merchandise_message(host, origin, 'LOADED')
     while True:
         sleep(1)
         origin.delta(d_lat, d_lon)
-        send_merchandise_message(origin)
+        send_merchandise_message(host, origin, 'INTRANSIT')
 
 
-def send_merchandise_message(origin):
+def send_merchandise_message(host, origin, status):
     area = requests.get(url=URL_BRIDGE_AREA + str(origin.lat) + "/" + str(origin.lon))
-    print("🚚 Vehicle Merchandise sent! " + str(current_time()))
-    print("🚚 Vehicle location: " + str(origin))
-    print("🚚 Vehicle in the 🌉 bridge area" if area.json() else "🚚 Vehicle not in the bridge area")
+    with open('../../bl-simulation-data/freight.json') as json_file:
+        data = json.load(json_file)
+        data[0].update({'status': status})
+        send_vehicle_merchandise(host, data)
+        print("🚚 Vehicle Merchandise sent! " + str(current_time()))
+        print("🚚 Vehicle location: " + str(origin))
+        print("🚚 Vehicle in the 🌉 bridge area" if area.json() else "🚚 Vehicle not in the bridge area")
 
 
 def send_checkin_message(host, coord):
@@ -157,3 +167,4 @@ def start_vehicle(host):
     vehicle_checkin_checkout_process.terminate()
 
     print("🚚 Arrived at the supplier central! 🏪")
+    send_merchandise_message(host, origin, 'DELIVERED')
