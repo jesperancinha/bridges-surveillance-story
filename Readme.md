@@ -125,7 +125,7 @@ Option 2
 
 >$ docker container ls --all
 
-## Apache Spark [![alt text](Documentation/bl-apachespark-s.png "Apache Spark")](https://spark.apache.org/)
+## Apache Spark [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/apache-spark-50.png "Apache Spark")](https://spark.apache.org/)
 
 ```bash
 brew install apache-spark
@@ -133,7 +133,7 @@ brew install apache-spark
 spark-shell
 ```
 
-## Zookeeper [![alt text](Documentation/bl-zookeeper-s.png "Zookeeper")](https://zookeeper.apache.org/)
+## Zookeeper [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/zookeeper-50.png "Zookeeper")](https://zookeeper.apache.org/)
 
 ```bash
 brew install zookeeper
@@ -145,7 +145,7 @@ zookeeper-server-start /usr/local/etc/kafka/zookeeper.properties
 tail -f /usr/local/var/log/zookeeper/zookeeper.log
 ```
 
-## Kafka [![alt text](Documentation/bl-kafka-s.png "Kafka")](https://kafka.apache.org/documentation/streams/)
+## Kafka [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/kafka-50.png "Kafka")](https://kafka.apache.org/documentation/streams/)
 
 ```bash
 brew install kafka
@@ -160,7 +160,7 @@ kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partit
 kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic WINDDIRECTION
 ```
 
-### Setting up OpenShift [![alt text](Documentation/bl-openshift-s.png)](https://manage.openshift.com/)
+### Setting up OpenShift [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/openshift-50.png)](https://manage.openshift.com/)
 
 -   Open an account
 
