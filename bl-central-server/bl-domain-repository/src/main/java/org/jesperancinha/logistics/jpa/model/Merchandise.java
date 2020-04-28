@@ -23,9 +23,6 @@ public class Merchandise {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @ManyToOne
-    private ProductCargo productCargo;
-
     private Long timestamp;
 
     @ManyToOne
@@ -36,4 +33,7 @@ public class Merchandise {
 
     @ManyToOne
     private TransportPackage transportPackage;
+
+    @ManyToOne
+    private ProductCargo productCargo;
 }

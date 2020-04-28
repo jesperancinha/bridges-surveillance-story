@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,13 +20,20 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "package")
+@Table(name = "transport_package")
 public class TransportPackage {
+
     @Id
     private Long id;
 
+    @ManyToOne
+    private Company supplier;
+
+    @ManyToOne
+    private Company vendor;
+
     @OneToMany
-    private List<ProductCargo> products;
+    private List<ProductCargo> productCargos;
 
     @ManyToOne
     private Carriage carriage;

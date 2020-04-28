@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import json
 import os
 import random
 import sys
@@ -12,12 +13,14 @@ from geo_calculator import Coord, create_west_random_point, create_east_random_p
 
 sys.path.insert(1, os.path.abspath('../../bl-train-server/bl-train-sensor-service'))
 sys.path.insert(2, os.path.abspath('bl-train-server/bl-train-sensor-service'))
-sys.path.insert(3, os.path.abspath('../../bl-bridge-server/bl-bridge-sensor-service'))
-sys.path.insert(4, os.path.abspath('bl-bridge-server/bl-bridge-sensor-service'))
+sys.path.insert(3, os.path.abspath('../../bl-train-server/bl-train-merchandise-service'))
+sys.path.insert(4, os.path.abspath('bl-train-server/bl-train-merchandise-service'))
+sys.path.insert(5, os.path.abspath('../../bl-bridge-server/bl-bridge-sensor-service'))
+sys.path.insert(6, os.path.abspath('bl-bridge-server/bl-bridge-sensor-service'))
 
 from send_train_timestamp import send_signal as send_train_signal
 from send_bridge_timestamp import send_signal  as send_bridge_signal
-
+from send_merchandise import send_merchandise
 
 def current_time():
     return int(round(time.time() * 1000))
@@ -69,7 +72,7 @@ def get_bridge_checkout_data(coord):
 
 def check_in_out(host, time_to_get_to_bridge, time_to_get_to_station, origin, d_lat, d_lon, d_lat2, d_lon2):
     print("🚂 🛤 Train is underway. Just left central statin 🏫")
-    train_message_process = Process(target=pulses, args=[origin, d_lat, d_lon])
+    train_message_process = Process(target=pulses, args=[host, origin, d_lat, d_lon])
     train_message_process.start()
     sleep(time_to_get_to_bridge)
     print("🚂 🌉 Train entering Bridge...")
@@ -80,22 +83,25 @@ def check_in_out(host, time_to_get_to_bridge, time_to_get_to_station, origin, d_
     send_checkout_message(host, origin)
     print("🚂 Train Checked Out!")
     print("🚂 Train Leaving Bridge...")
-    train_message_process = Process(target=pulses, args=[origin, d_lat2, d_lon2])
+    train_message_process = Process(target=pulses, args=[host, origin, d_lat2, d_lon2])
     train_message_process.start()
     sleep(time_to_get_to_station)
     train_message_process.terminate()
 
 
-def pulses(origin, d_lat, d_lon):
+def pulses(host, origin, d_lat, d_lon):
     while True:
         sleep(1)
         origin.delta(d_lat, d_lon)
-        send_merchandise_message(origin)
+        send_merchandise_message(host, origin)
 
 
-def send_merchandise_message(origin):
-    print("🚂 Train Merchandise sent! " + str(current_time()))
-    print("🚂 Train location: " + str(origin))
+def send_merchandise_message(host, origin):
+    with open('../../bl-simulation-data/train.json') as json_file:
+        data = json.load(json_file)
+        send_merchandise(host, data)
+        print("🚂 Train Merchandise sent! " + str(current_time()))
+        print("🚂 Train location: " + str(origin))
 
 
 def send_checkin_message(host, origin):

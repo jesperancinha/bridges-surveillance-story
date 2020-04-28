@@ -22,10 +22,6 @@ public class MerchandiseLog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    Long packageId;
-    @ManyToOne
-    private ProductCargo productCargo;
-    private Long quantity;
     private Long timestamp;
     /**
      * Status can be LOADED, INTRANSIT, DELIVERED
@@ -40,4 +36,7 @@ public class MerchandiseLog {
 
     @ManyToOne
     private TransportPackage transportPackage;
+
+    @ManyToOne
+    private ProductCargo productCargo;
 }
