@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.util.List;
 
@@ -34,4 +35,10 @@ public class Freight {
         inverseJoinColumns = @JoinColumn(name = "container_id",
             referencedColumnName = "id"))
     private List<Container> containers;
+
+    @ManyToOne
+    private Company supplier;
+
+    @ManyToOne
+    private Company vendor;
 }

@@ -22,8 +22,8 @@ import java.util.List;
 @Table(name = "package")
 public class TransportPackage {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @OneToMany
     private List<ProductCargo> products;
 

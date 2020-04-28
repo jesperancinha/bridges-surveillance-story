@@ -8,17 +8,19 @@ import lombok.extern.slf4j.Slf4j;
 import org.jesperancinha.logistics.jpa.model.Bridge;
 import org.jesperancinha.logistics.jpa.model.BridgeOpeningTime;
 import org.jesperancinha.logistics.jpa.model.Carriage;
+import org.jesperancinha.logistics.jpa.model.Company;
 import org.jesperancinha.logistics.jpa.model.Container;
 import org.jesperancinha.logistics.jpa.model.Freight;
 import org.jesperancinha.logistics.jpa.model.Product;
 import org.jesperancinha.logistics.jpa.model.Train;
 import org.jesperancinha.logistics.jpa.model.Vehicle;
+import org.jesperancinha.logistics.jpa.repositories.BridgeRepository;
 import org.jesperancinha.logistics.jpa.repositories.CarriageRepository;
+import org.jesperancinha.logistics.jpa.repositories.CompanyRepository;
 import org.jesperancinha.logistics.jpa.repositories.ContainerRepository;
 import org.jesperancinha.logistics.jpa.repositories.FreightRepository;
 import org.jesperancinha.logistics.jpa.repositories.OpeningTimeRepository;
 import org.jesperancinha.logistics.jpa.repositories.ProductRepository;
-import org.jesperancinha.logistics.jpa.repositories.BridgeRepository;
 import org.jesperancinha.logistics.jpa.repositories.TrainRepository;
 import org.jesperancinha.logistics.jpa.repositories.VehicleRepository;
 import org.jesperancinha.logistics.web.data.FreightDto;
@@ -56,10 +58,12 @@ public class BridgeLogisticsInitializer implements CommandLineRunner {
 
     private final OpeningTimeRepository openingTimeRepository;
 
+    private final CompanyRepository companyRepository;
+
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    public BridgeLogisticsInitializer(BridgeRepository bridgeRepository, CarriageRepository carriageRepository, ContainerRepository containerRepository, FreightRepository freightRepository, ProductRepository productRepository,
-        TrainRepository trainRepository, VehicleRepository vehicleRepository, OpeningTimeRepository openingTimeRepository) {
+    public BridgeLogisticsInitializer(BridgeRepository bridgeRepository, CarriageRepository carriageRepository, ContainerRepository containerRepository, FreightRepository freightRepository, ProductRepository productRepository, TrainRepository trainRepository,
+        VehicleRepository vehicleRepository, OpeningTimeRepository openingTimeRepository, CompanyRepository companyRepository) {
         this.bridgeRepository = bridgeRepository;
         this.carriageRepository = carriageRepository;
         this.containerRepository = containerRepository;
@@ -68,6 +72,7 @@ public class BridgeLogisticsInitializer implements CommandLineRunner {
         this.trainRepository = trainRepository;
         this.vehicleRepository = vehicleRepository;
         this.openingTimeRepository = openingTimeRepository;
+        this.companyRepository = companyRepository;
         JacksonAnnotationIntrospector implicitRecordAI = new JacksonAnnotationIntrospector() {
             @Override
             public String findImplicitPropertyName(AnnotatedMember m) {
@@ -97,6 +102,8 @@ public class BridgeLogisticsInitializer implements CommandLineRunner {
     public void run(String... args) throws Exception {
         stream(objectMapper.readValue(getClass().getResourceAsStream("/bridges.json"), Bridge[].class)).forEach(bridgeRepository::save);
 
+        stream(objectMapper.readValue(getClass().getResourceAsStream("/companies.json"), Company[].class)).forEach(companyRepository::save);
+
         stream(objectMapper.readValue(getClass().getResourceAsStream("/carriages.json"), Carriage[].class)).forEach(carriageRepository::save);
 
         stream(objectMapper.readValue(getClass().getResourceAsStream("/containers.json"), Container[].class)).forEach(containerRepository::save);
@@ -115,6 +122,8 @@ public class BridgeLogisticsInitializer implements CommandLineRunner {
                     .orElse(null))
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList()))
+            .supplier(companyRepository.findById(freightDto.supplierId()).orElse(null))
+            .vendor(companyRepository.findById(freightDto.vendorId()).orElse(null))
             .build())
             .forEach(freightRepository::save);
 
@@ -128,12 +137,13 @@ public class BridgeLogisticsInitializer implements CommandLineRunner {
                     .orElse(null))
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList()))
+            .supplier(companyRepository.findById(trainDto.supplierId()).orElse(null))
+            .vendor(companyRepository.findById(trainDto.vendorId()).orElse(null))
             .build())
             .forEach(trainRepository::save);
 
-
-        bridgeRepository.findAll().forEach(
-            bridge -> {
+        bridgeRepository.findAll()
+            .forEach(bridge -> {
                 final Instant now = Instant.now();
                 final long millisToAdd = 10000;
                 IntStream.range(0, 200)
@@ -147,8 +157,7 @@ public class BridgeLogisticsInitializer implements CommandLineRunner {
                             .toEpochMilli())
                         .build())
                     .forEach(openingTimeRepository::save);
-            }
-        );
+            });
 
     }
 
