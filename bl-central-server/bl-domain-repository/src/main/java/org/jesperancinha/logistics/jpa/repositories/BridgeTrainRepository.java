@@ -1,6 +1,5 @@
 package org.jesperancinha.logistics.jpa.repositories;
 
-import org.jesperancinha.logistics.jpa.model.Merchandise;
 import org.jesperancinha.logistics.jpa.model.Train;
 import org.springframework.data.repository.CrudRepository;
 

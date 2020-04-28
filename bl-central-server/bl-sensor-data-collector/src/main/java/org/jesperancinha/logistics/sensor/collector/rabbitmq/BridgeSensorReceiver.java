@@ -37,13 +37,13 @@ public class BridgeSensorReceiver {
     public void receiveMessage(byte[] message) {
         String messageString = new String(message, Charset.defaultCharset());
         BridgeLogDto bridgeLogDto = gson.fromJson(messageString, BridgeLogDto.class);
-        if (Objects.isNull(bridgeLogDto.id())) {
-            System.out.println("Received empty id message <" + messageString + ">");
-        } else {
+        if (Objects.nonNull(bridgeLogDto.id())) {
             Bridge bridge = bridgeRepository.findById(bridgeLogDto.id())
                 .orElse(null);
-            bridgeLogRepository.save(BridgeConverter.toData(bridgeLogDto, bridge));
+            bridgeLogRepository.save(BridgeConverter.toModel(bridgeLogDto, bridge));
             System.out.println("Received <" + messageString + ">");
+        } else {
+            System.out.println("Received empty id message <" + messageString + ">");
         }
     }
 

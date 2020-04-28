@@ -24,8 +24,7 @@ import java.util.List;
 @AllArgsConstructor
 @Table(name = "bridge")
 @NamedQuery(name = "Bridge.findBridgeBySquareBoundary",
-    query = "select b from Bridge b"
-        + " where b.lat>=:latWest and b.lat<=:latEast and b.lon<=:lonNorth and b.lon>=:lonSouth")
+    query = "select b from Bridge b" + " where b.lat>=:latWest and b.lat<=:latEast and b.lon<=:lonNorth and b.lon>=:lonSouth")
 public class Bridge {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

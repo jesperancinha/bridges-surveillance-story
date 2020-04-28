@@ -1,7 +1,6 @@
 package org.jesperancinha.logistics.jpa.repositories;
 
 import org.jesperancinha.logistics.jpa.model.Bridge;
-import org.jesperancinha.logistics.jpa.model.BridgeOpeningTime;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 

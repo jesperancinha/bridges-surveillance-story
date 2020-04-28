@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConditionalOnProperty(name = "bridge.logistics.bridge.sensor.active",
     matchIfMissing = true)
-public class BridgeSensorCollectorConfiguration extends CollectorConfiguration{
+public class BridgeSensorCollectorConfiguration extends CollectorConfiguration {
 
     private static final String BL_BRIDGE_01_SENSOR_EXCHANGE = "bl_bridge_01_sensor_exchange";
 
@@ -49,8 +49,7 @@ public class BridgeSensorCollectorConfiguration extends CollectorConfiguration{
     SimpleMessageListenerContainer container(
         @Qualifier("BridgeListener")
             MessageListenerAdapter listenerAdapter) {
-        return getSimpleMessageListenerContainer(
-            listenerAdapter, vHost, BL_BRIDGE_01_SENSOR_QUEUE);
+        return getSimpleMessageListenerContainer(listenerAdapter, vHost, BL_BRIDGE_01_SENSOR_QUEUE);
     }
 
     @Bean(name = "BridgeListener")
