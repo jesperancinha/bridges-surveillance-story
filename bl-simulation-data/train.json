@@ -6,6 +6,7 @@
     "composition": [
       {
         "carriageId": 1,
+        "packageId": 545835,
         "products": [
           {
             "productId": 1,
@@ -15,6 +16,7 @@
       },
       {
         "carriageId": 2,
+        "packageId": 985243,
         "products": [
           {
             "productId": 2,

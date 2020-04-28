@@ -33,8 +33,8 @@ def current_time():
 def get_vehicle_checkin_data(coord):
     return {
         'id': 1,
-        'source': 'vehicle',
-        'type': 'checkin',
+        'source': 'VEHICLE',
+        'type': 'CHECKIN',
         'timestamp': current_time(),
         'lat': coord.lat,
         'lon': coord.lon
@@ -44,8 +44,8 @@ def get_vehicle_checkin_data(coord):
 def get_vehicle_checkout_data(coord):
     return {
         'id': 1,
-        'source': 'vehicle',
-        'type': 'checkout',
+        'source': 'VEHICLE',
+        'type': 'CHECKOUT',
         'timestamp': current_time(),
         'lat': coord.lat,
         'lon': coord.lon
@@ -55,8 +55,8 @@ def get_vehicle_checkout_data(coord):
 def get_bridge_checkin_data(coord):
     return {
         'id': 1,
-        'source': 'bridge',
-        'type': 'checkin',
+        'source': 'BRIDGE',
+        'type': 'CHECKIN',
         'timestamp': current_time(),
         'lat': coord.lat,
         'lon': coord.lon
@@ -66,8 +66,8 @@ def get_bridge_checkin_data(coord):
 def get_bridge_checkout_data(coord):
     return {
         'id': 1,
-        'source': 'bridge',
-        'type': 'checkout',
+        'source': 'BRIDGE',
+        'type': 'CHECKOUT',
         'timestamp': current_time(),
         'lat': coord.lat,
         'lon': coord.lon

@@ -16,11 +16,15 @@ public class MerchandiseLog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-
+    Long packageId;
     @ManyToOne
     private Product product;
     private Long quantity;
     private Long timestamp;
+    /**
+     * Status can be LOADED, INTRANSIT, DELIVERED
+     */
+    private String status;
     @ManyToOne
     private Train train;
     @ManyToOne

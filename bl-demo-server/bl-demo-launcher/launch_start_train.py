@@ -26,8 +26,8 @@ def current_time():
 def get_train_checkin_data(coord):
     return {
         'id': 1,
-        'source': 'train',
-        'type': 'checkin',
+        'source': 'TRAIN',
+        'type': 'CHECKIN',
         'timestamp': current_time(),
         'lat': coord.lat,
         'lon': coord.lon
@@ -37,8 +37,8 @@ def get_train_checkin_data(coord):
 def get_train_checkout_data(coord):
     return {
         'id': 1,
-        'source': 'train',
-        'type': 'checkout',
+        'source': 'TRAIN',
+        'type': 'CHECKOUT',
         'timestamp': current_time(),
         'lat': coord.lat,
         'lon': coord.lon
@@ -48,8 +48,8 @@ def get_train_checkout_data(coord):
 def get_bridge_checkin_data(coord):
     return {
         'id': 2,
-        'source': 'bridge',
-        'type': 'checkin',
+        'source': 'BRIDGE',
+        'type': 'CHECKIN',
         'timestamp': current_time(),
         'lat': coord.lat,
         'lon': coord.lon
@@ -59,8 +59,8 @@ def get_bridge_checkin_data(coord):
 def get_bridge_checkout_data(coord):
     return {
         'id': 2,
-        'source': 'bridge',
-        'type': 'checkout',
+        'source': 'BRIDGE',
+        'type': 'CHECKOUT',
         'timestamp': current_time(),
         'lat': coord.lat,
         'lon': coord.lon
