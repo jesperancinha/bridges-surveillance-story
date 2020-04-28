@@ -21,7 +21,7 @@ import java.util.concurrent.CountDownLatch;
 
 @Slf4j
 @Component
-public class Receiver {
+public class VehicleMerchandiseReceiver {
 
     private final Gson gson;
 
@@ -37,7 +37,7 @@ public class Receiver {
 
     private final ProductCargoRepository productCargoRepository;
 
-    public Receiver(Gson gson, MerchandiseLogRepository merchandiseLogRepository, ProductRepository productRepository, TransportPackageRepository transportPackageRepository, CompanyRepository companyRepository, ProductCargoRepository productCargoRepository) {
+    public VehicleMerchandiseReceiver(Gson gson, MerchandiseLogRepository merchandiseLogRepository, ProductRepository productRepository, TransportPackageRepository transportPackageRepository, CompanyRepository companyRepository, ProductCargoRepository productCargoRepository) {
         this.gson = gson;
         this.merchandiseLogRepository = merchandiseLogRepository;
         this.productRepository = productRepository;

@@ -14,7 +14,7 @@ import java.sql.Statement;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @TestPropertySource("classpath:application-test.properties")
-public class ReceiverTest {
+public class TrainMerchandiseReceiverTest {
 
     private static EmbeddedPostgres embeddedPostgres;
 
