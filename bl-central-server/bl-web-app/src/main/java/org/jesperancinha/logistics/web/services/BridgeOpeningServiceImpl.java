@@ -1,7 +1,7 @@
 package org.jesperancinha.logistics.web.services;
 
 import org.jesperancinha.logistics.jpa.model.BridgeOpeningTime;
-import org.jesperancinha.logistics.jpa.repositories.BridgeOpeningTimeRepository;
+import org.jesperancinha.logistics.jpa.repositories.OpeningTimeRepository;
 import org.jesperancinha.logistics.web.data.BridgeDto;
 import org.jesperancinha.logistics.web.data.BridgeOpeningConflictDto;
 import org.jesperancinha.logistics.web.data.BridgeOpeningTimeDto;
@@ -26,14 +26,14 @@ import java.util.stream.Collectors;
 @Service
 public class BridgeOpeningServiceImpl implements BridgeOpeningService {
 
-    private final BridgeOpeningTimeRepository bridgeOpeningTimeRepository;
+    private final OpeningTimeRepository openingTimeRepository;
     private final GeoCalculator geoCalculator;
 
     @Override
     public boolean isBridgeOpen(final BigDecimal lat, final BigDecimal lon) {
 
         SquareBoundary squareBoundary = geoCalculator.calculateSquareBoundary(lat, lon, BigDecimal.ONE);
-        List<BridgeOpeningTime> bridgeByLatAndLonUnderRadius = bridgeOpeningTimeRepository.findBridgeBySquareBoundaryUnderRadius(squareBoundary.westLatitude(), squareBoundary.eastLatitude(), squareBoundary.northLongitude(), squareBoundary.southLongitude(),
+        List<BridgeOpeningTime> bridgeByLatAndLonUnderRadius = openingTimeRepository.findBridgeBySquareBoundaryUnderRadius(squareBoundary.westLatitude(), squareBoundary.eastLatitude(), squareBoundary.northLongitude(), squareBoundary.southLongitude(),
             Instant.now()
                 .toEpochMilli());
 
@@ -41,8 +41,8 @@ public class BridgeOpeningServiceImpl implements BridgeOpeningService {
 
     }
 
-    public BridgeOpeningServiceImpl(BridgeOpeningTimeRepository bridgeOpeningTimeRepository, GeoCalculator geoCalculator) {
-        this.bridgeOpeningTimeRepository = bridgeOpeningTimeRepository;
+    public BridgeOpeningServiceImpl(OpeningTimeRepository openingTimeRepository, GeoCalculator geoCalculator) {
+        this.openingTimeRepository = openingTimeRepository;
         this.geoCalculator = geoCalculator;
     }
 

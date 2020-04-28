@@ -1,4 +1,4 @@
-package org.jesperancinha.logistics.mcs.model;
+package org.jesperancinha.logistics.sensor.collector.data;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table
-public record Supplier(@GeneratedValue(strategy = GenerationType.IDENTITY) @Id Long id,
+public record SupplierDto(@GeneratedValue(strategy = GenerationType.IDENTITY) @Id Long id,
     String name,
     String address,
     String city,

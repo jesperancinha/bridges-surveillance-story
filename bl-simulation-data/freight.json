@@ -2,6 +2,8 @@
   {
     "id": 1,
     "name": "Monster wheels",
+    "supplierId": "512033844",
+    "vendorId": "675376978",
     "composition": [
       {
         "containerId": 1,

@@ -1,6 +1,6 @@
 package org.jesperancinha.logistics.web;
 
-import org.jesperancinha.logistics.jpa.repositories.BridgeOpeningTimeRepository;
+import org.jesperancinha.logistics.jpa.repositories.OpeningTimeRepository;
 import org.jesperancinha.logistics.web.data.BridgeDto;
 import org.jesperancinha.logistics.web.data.BridgeOpeningConflictDto;
 import org.jesperancinha.logistics.web.data.BridgeOpeningTimeDto;
@@ -36,8 +36,8 @@ public class BridgeOpeningServiceImplTest {
 
     @BeforeEach
     public void setUp() {
-        BridgeOpeningTimeRepository bridgeOpeningTimeRepository = mock(BridgeOpeningTimeRepository.class);
-        bridgeOpeningServiceImpl = new BridgeOpeningServiceImpl(bridgeOpeningTimeRepository, new GeoCalculator(6371));
+        OpeningTimeRepository openingTimeRepository = mock(OpeningTimeRepository.class);
+        bridgeOpeningServiceImpl = new BridgeOpeningServiceImpl(openingTimeRepository, new GeoCalculator(6371));
         bridgeOpeningTimeDto1 = BridgeOpeningTimeDto.builder()
             .bridge(BRIDGE_ONE)
             .openingTime(of(2016, 11, 1, 10, 10, 0))

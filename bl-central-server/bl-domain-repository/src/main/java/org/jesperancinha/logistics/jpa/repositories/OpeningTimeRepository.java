@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 import java.math.BigDecimal;
 import java.util.List;
 
-public interface BridgeOpeningTimeRepository extends CrudRepository<BridgeOpeningTime, Long> {
+public interface OpeningTimeRepository extends CrudRepository<BridgeOpeningTime, Long> {
     List<BridgeOpeningTime> findBridgeBySquareBoundaryUnderRadius(
         @Param("latWest")
             BigDecimal latWest,

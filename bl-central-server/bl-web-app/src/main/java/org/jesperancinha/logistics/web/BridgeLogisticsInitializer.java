@@ -13,14 +13,14 @@ import org.jesperancinha.logistics.jpa.model.Freight;
 import org.jesperancinha.logistics.jpa.model.Product;
 import org.jesperancinha.logistics.jpa.model.Train;
 import org.jesperancinha.logistics.jpa.model.Vehicle;
-import org.jesperancinha.logistics.jpa.repositories.BridgeCarriageRepository;
-import org.jesperancinha.logistics.jpa.repositories.BridgeContainerRepository;
-import org.jesperancinha.logistics.jpa.repositories.BridgeFreightRepository;
-import org.jesperancinha.logistics.jpa.repositories.BridgeOpeningTimeRepository;
-import org.jesperancinha.logistics.jpa.repositories.BridgeProductRepository;
+import org.jesperancinha.logistics.jpa.repositories.CarriageRepository;
+import org.jesperancinha.logistics.jpa.repositories.ContainerRepository;
+import org.jesperancinha.logistics.jpa.repositories.FreightRepository;
+import org.jesperancinha.logistics.jpa.repositories.OpeningTimeRepository;
+import org.jesperancinha.logistics.jpa.repositories.ProductRepository;
 import org.jesperancinha.logistics.jpa.repositories.BridgeRepository;
-import org.jesperancinha.logistics.jpa.repositories.BridgeTrainRepository;
-import org.jesperancinha.logistics.jpa.repositories.BridgeVehicleRepository;
+import org.jesperancinha.logistics.jpa.repositories.TrainRepository;
+import org.jesperancinha.logistics.jpa.repositories.VehicleRepository;
 import org.jesperancinha.logistics.web.data.FreightDto;
 import org.jesperancinha.logistics.web.data.TrainDto;
 import org.springframework.boot.CommandLineRunner;
@@ -42,24 +42,24 @@ public class BridgeLogisticsInitializer implements CommandLineRunner {
 
     private final BridgeRepository bridgeRepository;
 
-    private final BridgeCarriageRepository carriageRepository;
+    private final CarriageRepository carriageRepository;
 
-    private final BridgeContainerRepository containerRepository;
+    private final ContainerRepository containerRepository;
 
-    private final BridgeFreightRepository freightRepository;
+    private final FreightRepository freightRepository;
 
-    private final BridgeProductRepository productRepository;
+    private final ProductRepository productRepository;
 
-    private final BridgeTrainRepository trainRepository;
+    private final TrainRepository trainRepository;
 
-    private final BridgeVehicleRepository vehicleRepository;
+    private final VehicleRepository vehicleRepository;
 
-    private final BridgeOpeningTimeRepository openingTimeRepository;
+    private final OpeningTimeRepository openingTimeRepository;
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    public BridgeLogisticsInitializer(BridgeRepository bridgeRepository, BridgeCarriageRepository carriageRepository, BridgeContainerRepository containerRepository, BridgeFreightRepository freightRepository, BridgeProductRepository productRepository,
-        BridgeTrainRepository trainRepository, BridgeVehicleRepository vehicleRepository, BridgeOpeningTimeRepository openingTimeRepository) {
+    public BridgeLogisticsInitializer(BridgeRepository bridgeRepository, CarriageRepository carriageRepository, ContainerRepository containerRepository, FreightRepository freightRepository, ProductRepository productRepository,
+        TrainRepository trainRepository, VehicleRepository vehicleRepository, OpeningTimeRepository openingTimeRepository) {
         this.bridgeRepository = bridgeRepository;
         this.carriageRepository = carriageRepository;
         this.containerRepository = containerRepository;

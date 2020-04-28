@@ -9,7 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,23 +16,13 @@ import javax.persistence.Table;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "merchandise")
-public class Merchandise {
+@Table(name = "company")
+public class Company {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-
-    @ManyToOne
-    private ProductCargo productCargo;
-
-    private Long timestamp;
-
-    @ManyToOne
-    private Company supplier;
-
-    @ManyToOne
-    private Company vendor;
-
-    @ManyToOne
-    private TransportPackage transportPackage;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String name;
+    private String address;
+    private String city;
+    private String postCode;
 }

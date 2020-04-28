@@ -2,8 +2,8 @@ package org.jesperancinha.logistics.sensor.collector.rabbitmq;
 
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
-import org.jesperancinha.logistics.jpa.repositories.BridgeTrainRepository;
-import org.jesperancinha.logistics.jpa.repositories.BridgeTrainsLogRepository;
+import org.jesperancinha.logistics.jpa.repositories.TrainRepository;
+import org.jesperancinha.logistics.jpa.repositories.TrainsLogRepository;
 import org.jesperancinha.logistics.sensor.collector.converter.TrainConverter;
 import org.jesperancinha.logistics.sensor.collector.data.TrainLogDto;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -21,23 +21,23 @@ public class TrainSensorReceiver {
 
     private final Gson gson;
 
-    private final BridgeTrainsLogRepository bridgeTrainsLogRepository;
+    private final TrainsLogRepository trainsLogRepository;
 
-    private final BridgeTrainRepository bridgeTrainRepository;
+    private final TrainRepository trainRepository;
 
     private final CountDownLatch latch = new CountDownLatch(1);
 
-    public TrainSensorReceiver(Gson gson, BridgeTrainsLogRepository bridgeTrainsLogRepository, BridgeTrainRepository bridgeTrainRepository) {
+    public TrainSensorReceiver(Gson gson, TrainsLogRepository trainsLogRepository, TrainRepository trainRepository) {
         this.gson = gson;
-        this.bridgeTrainsLogRepository = bridgeTrainsLogRepository;
-        this.bridgeTrainRepository = bridgeTrainRepository;
+        this.trainsLogRepository = trainsLogRepository;
+        this.trainRepository = trainRepository;
     }
 
     public void receiveMessage(byte[] message) {
         String messageString = new String(message, Charset.defaultCharset());
         TrainLogDto trainLogDto = gson.fromJson(messageString, TrainLogDto.class);
         if (Objects.nonNull(trainLogDto.id())) {
-            bridgeTrainsLogRepository.save(TrainConverter.toModel(trainLogDto, bridgeTrainRepository.findById(trainLogDto.id())
+            trainsLogRepository.save(TrainConverter.toModel(trainLogDto, trainRepository.findById(trainLogDto.id())
                 .orElse(null)));
             System.out.println("Received <" + messageString + ">");
         } else {

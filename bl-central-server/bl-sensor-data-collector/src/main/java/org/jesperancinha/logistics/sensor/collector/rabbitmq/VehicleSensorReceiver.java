@@ -2,8 +2,8 @@ package org.jesperancinha.logistics.sensor.collector.rabbitmq;
 
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
-import org.jesperancinha.logistics.jpa.repositories.BridgeVehicleLogRepository;
-import org.jesperancinha.logistics.jpa.repositories.BridgeVehicleRepository;
+import org.jesperancinha.logistics.jpa.repositories.VehicleLogRepository;
+import org.jesperancinha.logistics.jpa.repositories.VehicleRepository;
 import org.jesperancinha.logistics.sensor.collector.converter.VehicleConverter;
 import org.jesperancinha.logistics.sensor.collector.data.VehicleLogDto;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -21,16 +21,16 @@ public class VehicleSensorReceiver {
 
     private final Gson gson;
 
-    private final BridgeVehicleLogRepository bridgeVehicleLogRepository;
+    private final VehicleLogRepository vehicleLogRepository;
 
-    private final BridgeVehicleRepository bridgeVehicleRepository;
+    private final VehicleRepository vehicleRepository;
 
     private final CountDownLatch latch = new CountDownLatch(1);
 
-    public VehicleSensorReceiver(Gson gson, BridgeVehicleLogRepository bridgeVehicleLogRepository, BridgeVehicleRepository bridgeVehicleRepository) {
+    public VehicleSensorReceiver(Gson gson, VehicleLogRepository vehicleLogRepository, VehicleRepository vehicleRepository) {
         this.gson = gson;
-        this.bridgeVehicleLogRepository = bridgeVehicleLogRepository;
-        this.bridgeVehicleRepository = bridgeVehicleRepository;
+        this.vehicleLogRepository = vehicleLogRepository;
+        this.vehicleRepository = vehicleRepository;
     }
 
     public void receiveMessage(byte[] message) {
@@ -38,7 +38,7 @@ public class VehicleSensorReceiver {
         VehicleLogDto vehicleLogDto = gson.fromJson(messageString, VehicleLogDto.class);
 
         if (Objects.nonNull(vehicleLogDto.id())) {
-            bridgeVehicleLogRepository.save(VehicleConverter.toModel(vehicleLogDto, bridgeVehicleRepository.findById(vehicleLogDto.id())
+            vehicleLogRepository.save(VehicleConverter.toModel(vehicleLogDto, vehicleRepository.findById(vehicleLogDto.id())
                 .orElse(null)));
             System.out.println("Received <" + messageString + ">");
         } else {

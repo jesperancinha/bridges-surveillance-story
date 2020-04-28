@@ -10,34 +10,27 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.List;
 
 @Entity
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "merchandise_log")
-public class MerchandiseLog {
+@Table(name = "package")
+public class TransportPackage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    Long packageId;
-    @ManyToOne
-    private ProductCargo productCargo;
-    private Long quantity;
-    private Long timestamp;
-    /**
-     * Status can be LOADED, INTRANSIT, DELIVERED
-     */
-    private String status;
+    private Long id;
+    @OneToMany
+    private List<ProductCargo> products;
 
     @ManyToOne
-    private Company supplier;
+    private Carriage carriage;
 
     @ManyToOne
-    private Company vendor;
+    private Container container;
 
-    @ManyToOne
-    private TransportPackage transportPackage;
 }
