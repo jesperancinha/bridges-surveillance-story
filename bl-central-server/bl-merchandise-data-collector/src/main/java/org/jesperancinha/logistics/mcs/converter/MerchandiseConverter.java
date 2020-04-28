@@ -4,7 +4,7 @@ import org.jesperancinha.logistics.mcs.data.MerchandiseDto;
 import org.jesperancinha.logistics.mcs.model.Merchandise;
 
 public class MerchandiseConverter {
-    public static Merchandise toData(MerchandiseDto merchandiseDto) {
+    public static Merchandise toModel(MerchandiseDto merchandiseDto) {
         return Merchandise.builder()
             .id(merchandiseDto.id())
             .barCode(merchandiseDto.barCode())

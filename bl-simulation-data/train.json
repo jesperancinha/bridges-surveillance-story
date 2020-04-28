@@ -3,6 +3,8 @@
     "id": 1,
     "name": "IC 1",
     "type": "Intercity",
+    "supplierId": "485028493",
+    "vendorId": "932849542",
     "composition": [
       {
         "carriageId": 1,
@@ -25,8 +27,7 @@
         ]
       },
       {
-        "carriageId": 3,
-        "people": 76
+        "carriageId": 3
       },
       {
         "carriageId": 4

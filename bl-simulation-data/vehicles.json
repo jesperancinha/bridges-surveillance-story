@@ -4,6 +4,8 @@
     "brand": "FLIAT",
     "model": "PRESSARIO",
     "weight": 56,
-    "unitWeight": "ton"
+    "unitWeight": "ton",
+    "supplierId": "859378497",
+    "vendorId": "192847562"
   }
 ]

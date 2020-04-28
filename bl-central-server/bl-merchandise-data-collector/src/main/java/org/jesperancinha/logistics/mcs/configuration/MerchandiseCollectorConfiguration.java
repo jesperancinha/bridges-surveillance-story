@@ -1,5 +1,6 @@
 package org.jesperancinha.logistics.mcs.configuration;
 
+import com.google.gson.Gson;
 import org.jesperancinha.logistics.mcs.rabbitmq.Receiver;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
@@ -22,6 +23,12 @@ public class MerchandiseCollectorConfiguration {
     Queue queue() {
         return new Queue(BL_MERCHANDISE_QUEUE, true);
     }
+
+    @Bean
+    Gson gson(){
+        return new Gson();
+    }
+
 
     @Bean
     FanoutExchange exchange() {
