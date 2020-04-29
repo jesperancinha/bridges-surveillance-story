@@ -16,4 +16,10 @@ mvn clean install -Pdemo -DskipTests
 
 cd ../..
 
+cd bl-bridge-server/bl-bridge-humidity-coap
+
+npm start build
+
+cd ../..
+
 docker-compose up -d --build --remove-orphans

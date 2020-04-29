@@ -40,7 +40,12 @@ mqtt pub -t 'temperature' -h 'localhost' -m 'HOT - 100C'
 ```
 
 > NOTE: We can find all of these tests in [Mosquitto](http://test.mosquitto.org/) 🦟
+## CoAP Client
 
+```bash
+npm install coap-cli -g
+echo -n 'hello world' | coap post coap://localhost/message
+```
 ## References
 
 -   [mcollina/node-coap](https://github.com/mcollina/node-coap)

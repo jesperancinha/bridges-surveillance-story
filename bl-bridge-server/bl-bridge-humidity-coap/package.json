@@ -4,6 +4,7 @@
   "description": "Humidity sensor emitter",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
     "start": "tsc && node dist/app.js",
     "test": "echo \"Warning: no test specified!\""
   },

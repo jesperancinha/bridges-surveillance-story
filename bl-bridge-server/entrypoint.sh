@@ -32,4 +32,13 @@ function sourceQueue(){
 
 sourceQueue bridge_01_sensor
 
+mosquitto &
+
+node dist/app.js &
+
+./startZookeeper.sh &
+
+./startKafka.sh &
+
 tail -f /dev/null
+
