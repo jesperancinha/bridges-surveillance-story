@@ -2,7 +2,7 @@
 
 docker-compose down
 
-cd docker-psql
+cd bl-demo-server/docker-psql
 
 docker-compose down
 

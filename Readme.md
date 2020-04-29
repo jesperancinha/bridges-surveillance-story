@@ -82,9 +82,9 @@ This application is inspired by the TV Series - [The Bridge](https://www.imdb.co
 
 -   [bridge-logistics-jms](bridge-logistics-jms/Readme.md)
 
-## [Overview](Overview.md)
+## [Overview](Documentation/Overview.md)
 
-## [Requirements Change Log](ChangeLog.md)
+## [Requirements Change Log](Documentation/ChangeLog.md)
 
 ## Status: [Under development](https://github.com/jesperancinha/project-signer/blob/master/project-signer-templates/UnderConstruction.md)
 
