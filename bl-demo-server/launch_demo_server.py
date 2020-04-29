@@ -1,8 +1,12 @@
 # -*- coding: utf-8 -*-
+import os
+import sys
 from multiprocessing import Process
 from time import sleep
 
 import requests
+
+sys.path.insert(1, os.path.abspath('bl-demo-launcher'))
 
 from launch_start_train import start_train
 from launch_start_vehicle import start_vehicle

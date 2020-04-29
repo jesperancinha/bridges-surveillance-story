@@ -18,7 +18,7 @@ cd ../..
 
 cd bl-bridge-server/bl-bridge-humidity-coap
 
-npm start build
+npm run build
 
 cd ../..
 

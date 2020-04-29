@@ -13,12 +13,12 @@ import requests
 # sys.path.append(os.path.abspath('../../bl-bridge-server/bl-bridge-sensor-service'))
 from geo_calculator import Coord, create_west_random_point, create_east_random_point
 
-sys.path.insert(1, os.path.abspath('../../bl-vehicle-server/bl-vehicle-sensor-service'))
-sys.path.insert(2, os.path.abspath('bl-vehicle-server/bl-vehicle-sensor-service'))
-sys.path.insert(3, os.path.abspath('../../bl-vehicle-server/bl-vehicle-merchandise-service'))
-sys.path.insert(4, os.path.abspath('bl-vehicle-server/bl-vehicle-merchandise-service'))
-sys.path.insert(5, os.path.abspath('../../bl-bridge-server/bl-bridge-sensor-service'))
-sys.path.insert(6, os.path.abspath('bl-bridge-server/bl-bridge-sensor-service'))
+sys.path.insert(1, os.path.abspath('../bl-vehicle-sensor-service'))
+sys.path.insert(2, os.path.abspath('bl-vehicle-sensor-service'))
+sys.path.insert(3, os.path.abspath('../bl-vehicle-merchandise-service'))
+sys.path.insert(4, os.path.abspath('bl-vehicle-merchandise-service'))
+sys.path.insert(5, os.path.abspath('../bl-bridge-sensor-service'))
+sys.path.insert(6, os.path.abspath('bl-bridge-sensor-service'))
 
 from send_vehicle_timestamp import send_signal as send_vehicle_signal
 from send_bridge_timestamp import send_signal as send_bridge_signal
@@ -115,7 +115,7 @@ def pulses(host, origin, d_lat, d_lon):
 
 def send_merchandise_message(host, origin, status):
     area = requests.get(url=URL_BRIDGE_AREA + str(origin.lat) + "/" + str(origin.lon))
-    with open('../../bl-simulation-data/freight.json') as json_file:
+    with open('../bl-simulation-data/freight.json') as json_file:
         data = json.load(json_file)
         data[0].update({'status': status})
         send_vehicle_merchandise(host, data)

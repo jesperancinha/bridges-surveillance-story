@@ -1,4 +1,8 @@
- #!/usr/bin/env python
+# !/usr/bin/env python
+import json
+import sys
+
+import pika
 import json
 import sys
 

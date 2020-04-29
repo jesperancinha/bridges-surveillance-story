@@ -4,6 +4,12 @@ docker stop bl-bridge-server-container
 
 docker rm bl-bridge-server-container
 
+cd bl-bridge-humidity-coap
+
+npm run build
+
+cd ..
+
 docker build . -t bl-bridge-server
 
 docker run -d \
