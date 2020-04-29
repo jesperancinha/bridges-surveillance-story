@@ -2,7 +2,7 @@ import kafka from 'kafka-node';
 import {Config} from "./config";
 import {Topics} from './topics';
 
-let produce = (data) => {
+let produce = (data: object = {}) => {
     try {
         const Producer = kafka.Producer;
         const client = new kafka.KafkaClient({kafkaHost: Config.kafka_server});

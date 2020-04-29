@@ -18,6 +18,16 @@ COPY bl-bridge-humidity-coap/node_modules /root/node_modules
 
 COPY entrypoint.sh /root
 
+RUN rm /usr/local/etc/kafka/config/server.properties
+
+COPY kafka/*.* /usr/local/etc/kafka/config/
+
+COPY kafka/*.* /usr/local/etc/kafka/config/
+
+COPY zookeeper/*.* /usr/local/etc/kafka/config/
+
+COPY startKafka.sh /root
+
 ENTRYPOINT ["/root/entrypoint.sh"]
 
 #RabbitMQ
@@ -31,3 +41,6 @@ EXPOSE 1883
 
 #Cassandra
 EXPOSE 7199 7000 7001 9042 9160 61620 61621 8888
+
+#Kafka
+EXPOSE 9090 9091 9092
