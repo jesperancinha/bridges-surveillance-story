@@ -27,8 +27,7 @@
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/mosquitto-50.png)](https://mosquitto.org/)
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/CoAP-50.png)](https://coap.technology/)
 
-
-This application uses event sourcing to serve the logistics for a bridge management system.  
+This application uses event sourcing to serve the logistics for a bridge management system.
 This is what in general this project is responsible for
 
 1.   Count passengers going through a bridge
