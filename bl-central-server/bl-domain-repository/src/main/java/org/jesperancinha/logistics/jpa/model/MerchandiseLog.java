@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.jesperancinha.logistics.jpa.types.Status;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,7 +27,7 @@ public class MerchandiseLog {
     /**
      * Status can be LOADED, INTRANSIT, DELIVERED
      */
-    private String status;
+    private Status status;
 
     @ManyToOne
     private Company supplier;

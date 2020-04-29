@@ -103,7 +103,7 @@ def pulses(host, origin, d_lat, d_lon):
     while True:
         sleep(1)
         origin.delta(d_lat, d_lon)
-        send_merchandise_message(host, origin, 'INTRANSIID')
+        send_merchandise_message(host, origin, 'INTRANSIT')
 
 
 def send_merchandise_message(host, origin, status):

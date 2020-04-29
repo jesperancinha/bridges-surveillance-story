@@ -1,6 +1,8 @@
 package org.jesperancinha.logistics.mcs.data;
 
 import lombok.Builder;
+import org.jesperancinha.logistics.jpa.types.Status;
+import org.jesperancinha.logistics.jpa.types.TrainType;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.Id;
@@ -9,8 +11,8 @@ import java.util.List;
 public record TrainMerchandiseDto(@Id @NonNull Long id,
     @NonNull String name,
     @NonNull Long supplierId,
-    String type,
-    String status,
+    TrainType type,
+    Status status,
     @NonNull Long vendorId,
     @NonNull List<CarrierDto>composition) {
     @Builder

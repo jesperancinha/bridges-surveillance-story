@@ -10,9 +10,11 @@ import org.jesperancinha.logistics.jpa.model.TransportPackage;
 import org.jesperancinha.logistics.jpa.repositories.CompanyRepository;
 import org.jesperancinha.logistics.jpa.repositories.ContainerRepository;
 import org.jesperancinha.logistics.jpa.repositories.MerchandiseLogRepository;
+import org.jesperancinha.logistics.jpa.repositories.MerchandiseRepository;
 import org.jesperancinha.logistics.jpa.repositories.ProductCargoRepository;
 import org.jesperancinha.logistics.jpa.repositories.ProductRepository;
 import org.jesperancinha.logistics.jpa.repositories.TransportPackageRepository;
+import org.jesperancinha.logistics.mcs.converter.MerchandiseLogConverter;
 import org.jesperancinha.logistics.mcs.data.VehicleMerchandiseDto;
 import org.springframework.stereotype.Component;
 
@@ -21,6 +23,8 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.concurrent.CountDownLatch;
 import java.util.stream.Stream;
+
+import static org.jesperancinha.logistics.jpa.types.Status.DELIVERED;
 
 @Slf4j
 @Component
@@ -32,6 +36,8 @@ public class VehicleMerchandiseReceiver {
 
     private final MerchandiseLogRepository merchandiseLogRepository;
 
+    private final MerchandiseRepository merchandiseRepository;
+
     private final ProductRepository productRepository;
 
     private final TransportPackageRepository transportPackageRepository;
@@ -42,10 +48,11 @@ public class VehicleMerchandiseReceiver {
 
     private final ContainerRepository containerRepository;
 
-    public VehicleMerchandiseReceiver(Gson gson, MerchandiseLogRepository merchandiseLogRepository, ProductRepository productRepository, TransportPackageRepository transportPackageRepository, CompanyRepository companyRepository,
-        ProductCargoRepository productCargoRepository, ContainerRepository containerRepository) {
+    public VehicleMerchandiseReceiver(Gson gson, MerchandiseLogRepository merchandiseLogRepository, MerchandiseRepository merchandiseRepository, ProductRepository productRepository, TransportPackageRepository transportPackageRepository,
+        CompanyRepository companyRepository, ProductCargoRepository productCargoRepository, ContainerRepository containerRepository) {
         this.gson = gson;
         this.merchandiseLogRepository = merchandiseLogRepository;
+        this.merchandiseRepository = merchandiseRepository;
         this.productRepository = productRepository;
         this.transportPackageRepository = transportPackageRepository;
         this.companyRepository = companyRepository;
@@ -88,17 +95,21 @@ public class VehicleMerchandiseReceiver {
                                         .quantity(productInTransitDto.quantity())
                                         .build();
                                     final ProductCargo productCargoDb = productCargoRepository.save(productCargo);
-                                    final MerchandiseLog merchandise = MerchandiseLog.builder()
+                                    final MerchandiseLog merchandiseLog = MerchandiseLog.builder()
                                         .supplier(supplier)
                                         .vendor(vendor)
                                         .timestamp(Instant.now()
                                             .toEpochMilli())
                                         .transportPackage(transportPackage1)
                                         .productCargo(productCargoDb)
+                                        .status(vehicleMerchandiseDto.status())
                                         .build();
                                     transportPackage1.getProductCargos()
                                         .add(productCargoDb);
-                                    merchandiseLogRepository.save(merchandise);
+                                    merchandiseLogRepository.save(merchandiseLog);
+                                    if (merchandiseLog.getStatus() == DELIVERED) {
+                                        merchandiseRepository.save(MerchandiseLogConverter.toMerchandise(merchandiseLog));
+                                    }
                                 });
                             transportPackageRepository.save(transportPackage1);
 
