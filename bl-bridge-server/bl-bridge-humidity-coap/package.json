@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/jesperancinha/bridge-logistics#readme",
   "dependencies": {
+    "@types/node": "^13.13.4",
     "coap": "^0.23.1",
     "express": "^4.17.1",
     "node-cron": "^2.0.3",

@@ -1,17 +1,12 @@
-import cron from "node-cron";
-import express from "express";
+import coap from "coap"
 
-let app = express();
+let server = coap.createServer()
 
-function sendMessage() {
-    console.log("Sending CoAP Humidity info...");
-    console.log("Humidity data sent!");
-}
 
-cron.schedule("* * * * *", function () {
-    sendMessage();
-});
+server.on('request', function (req, res) {
+    let requestMessage = req.payload.toString();
+    res.end(`You just said this! ${requestMessage}`)
+})
 
-sendMessage();
-
-app.listen(3128);
+server.listen(function () {
+})

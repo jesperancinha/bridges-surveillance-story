@@ -1,4 +1,4 @@
-FROM jesperancinha/je-rabbitmq:0.0.1
+FROM jesperancinha/je-streams:0.0.1
 
 WORKDIR /root
 
@@ -16,4 +16,11 @@ COPY entrypoint.sh /root
 
 ENTRYPOINT ["/root/entrypoint.sh"]
 
+#RabbitMQ
 EXPOSE 5674 15671 15674
+
+#CoAP
+EXPOSE 5683
+
+#Mosquittto
+EXPOSE 1883

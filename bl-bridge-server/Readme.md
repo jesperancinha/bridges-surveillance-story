@@ -37,6 +37,11 @@ mqtt pub -t 'temperature' -h 'localhost' -m 'HOT - 100C'
 
 > NOTE: We can find all of these tests in [Mosquitto](http://test.mosquitto.org/) 🦟
 
+## References
+
+-   [mcollina/node-coap](https://github.com/mcollina/node-coap)
+-   [vency/coap-cli](https://github.com/avency/coap-cli)
+
 ## About me 👨🏽‍💻🚀
 
 [![Twitter Follow](https://img.shields.io/twitter/follow/joaofse?label=João%20Esperancinha&style=social)](https://twitter.com/joaofse)
