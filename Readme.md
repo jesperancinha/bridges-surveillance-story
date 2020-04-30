@@ -192,6 +192,7 @@ oc create rolebinding default-view --clusterrole=view --serviceaccount=mancalaje
 pip install futures
 pip install pebble
 pip install pika
+pip install coapthon
 ```
 
 ## [Hints & Tricks](https://github.com/jesperancinha/project-signer/blob/master/project-signer-templates/Hints%26Tricks.md)
@@ -291,6 +292,7 @@ pip install pebble
 pip install pika
 pip install requests
 pip install CoAPthon
+pip install coapthon
 ```
 
 ## Domain
