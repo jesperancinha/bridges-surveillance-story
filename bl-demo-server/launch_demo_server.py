@@ -10,6 +10,7 @@ sys.path.insert(1, os.path.abspath('bl-demo-launcher'))
 
 from launch_start_train import start_train
 from launch_start_vehicle import start_vehicle
+from lauch_bridge_meters import start_train_meters
 
 
 def train_simulation():
@@ -22,11 +23,18 @@ def vehicle_simulation():
         start_vehicle('localhost')
 
 
+def bridge_meter_simulation():
+    while True:
+        start_train_meters('127.0.0.1')
+
+
 train_simulation_process = Process(target=train_simulation)
 vehicle_simulation_process = Process(target=vehicle_simulation)
+bridge_meters_simulation_process = Process(target=bridge_meter_simulation)
 
 train_simulation_process.start()
 vehicle_simulation_process.start()
+bridge_meters_simulation_process.start()
 
 URL_OPEN = "http://localhost:9000/api/bridge/logistics/schedules/open/52.347293/4.912372"
 
