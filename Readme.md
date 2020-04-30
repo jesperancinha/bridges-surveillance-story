@@ -157,7 +157,7 @@ brew upgrade kafka
 kafka-server-start /usr/local/etc/kafka/server.properties
 
 kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic TEMPERATURE
-kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic MOISTURE
+kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic HUMIDITY
 kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic WINDSPEED
 kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic WINDDIRECTION
 ```

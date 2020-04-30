@@ -34,7 +34,9 @@ sourceQueue bridge_01_sensor
 
 mosquitto &
 
-node dist/app.js &
+node bl-bridge-temperature-coap/dist/app.js &
+
+node bl-bridge-humidity-mqtt/dist/app.js &
 
 ./startZookeeper.sh &
 

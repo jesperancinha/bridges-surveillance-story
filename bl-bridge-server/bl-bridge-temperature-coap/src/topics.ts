@@ -1,6 +1,6 @@
 export class Topics {
     static temperature = 'TEMPERATURE';
-    static moisture = 'MOISTURE';
+    static humidity = 'HUMIDITY';
     static windspeed = 'WINDSPEED';
     static winddirection = 'WINDDIRECTION';
 }

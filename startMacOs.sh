@@ -17,7 +17,7 @@ kafka-server-start /usr/local/etc/kafka/server2.properties &
 echo -e '\e[32m'Sleeping...'\e[39m'
 sleep 4
 kafka-topics --create --zookeeper localhost:2181 --replication-factor 2 --partitions 3 --topic TEMPERATURE
-kafka-topics --create --zookeeper localhost:2181 --replication-factor 2 --partitions 3 --topic MOISTURE
+kafka-topics --create --zookeeper localhost:2181 --replication-factor 2 --partitions 3 --topic HUMIDITY
 kafka-topics --create --zookeeper localhost:2181 --replication-factor 2 --partitions 3 --topic WINDSPEED
 kafka-topics --create --zookeeper localhost:2181 --replication-factor 2 --partitions 3 --topic WINDDIRECTION
 

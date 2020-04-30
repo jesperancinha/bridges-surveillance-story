@@ -15,8 +15,8 @@ def send_meter(host, data):
     client.on_message=on_message
     client.connect(host)
     client.loop_start()
-    client.subscribe("moisture")
-    client.publish("moisture", str(data))
+    client.subscribe("humidity")
+    client.publish("humidity", str(data))
     time.sleep(4)
     client.loop_stop()
 
