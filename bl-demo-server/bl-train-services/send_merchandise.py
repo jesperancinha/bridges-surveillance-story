@@ -1,8 +1,6 @@
 # !/usr/bin/env python
-import json
-import sys
+# -*- coding: utf-8 -*-
 
-import pika
 import json
 import sys
 
@@ -19,7 +17,7 @@ def send_merchandise(host, data):
     channel.exchange_declare(exchange='bl_train_01_merchandise_exchange', exchange_type='fanout', durable=True)
     message = ' '.join(sys.argv[1:]) or data_json
     channel.basic_publish(exchange='bl_train_01_merchandise_exchange', routing_key='', body=message)
-    print(" [x] Sent %r" % message)
+    print("🚂 📦 Sent %r" % message)
     connection.close()
 
 

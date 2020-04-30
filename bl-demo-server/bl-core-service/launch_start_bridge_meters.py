@@ -8,25 +8,25 @@ from os.path import isfile, join
 from time import sleep
 import time
 
-sys.path.insert(1, os.path.abspath('../bl-bridge-meter-service'))
-sys.path.insert(2, os.path.abspath('bl-bridge-meter-service'))
+sys.path.insert(1, os.path.abspath('../bl-bridge-services'))
+sys.path.insert(2, os.path.abspath('bl-bridge-services'))
 
-from send_bridge_reading import send_meter
+from send_bridge_temperature_reading import send_meter
 
 
-def send_bridge_meter_readings(host, f):
+def send_bridge_temperature_meter_readings(host, f):
     data = json.load(f)
     data.update({'reading': random.randint(18, 28)})
     data.update({'timeOfReading':  int(time.time()*1000)})
     send_meter(host, data)
 
 
-def lauch_bridge_meters(host):
+def start_bridge_meters(host):
     files_in_dir = [f for f in listdir('../bl-simulation-data/bridge') if isfile(join('../bl-simulation-data/bridge', f))]
     allTasks = []
     for file in files_in_dir:
         with open('../bl-simulation-data/bridge/' + file, 'r') as f:
-            send_bridge_meter_simulation_process = Process(target=send_bridge_meter_readings, args=[host, f])
+            send_bridge_meter_simulation_process = Process(target=send_bridge_temperature_meter_readings, args=[host, f])
             send_bridge_meter_simulation_process.start()
             allTasks.append(send_bridge_meter_simulation_process)
     for task in allTasks:
@@ -35,4 +35,4 @@ def lauch_bridge_meters(host):
 
 
 if __name__ == '__main__':
-    lauch_bridge_meters("127.0.0.1")
+    start_bridge_meters("127.0.0.1")

@@ -12,9 +12,9 @@ RUN rabbitmq-plugins enable rabbitmq_federation_management
 
 RUN rabbitmq-plugins enable rabbitmq_shovel rabbitmq_shovel_management
 
-COPY bl-bridge-humidity-coap/dist /root/dist
+COPY bl-bridge-temperature-coap/dist /root/dist
 
-COPY bl-bridge-humidity-coap/node_modules /root/node_modules
+COPY bl-bridge-temperature-coap/node_modules /root/node_modules
 
 COPY entrypoint.sh /root
 

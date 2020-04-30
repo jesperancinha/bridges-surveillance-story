@@ -16,7 +16,7 @@ mvn clean install -Pdemo -DskipTests
 
 cd ../..
 
-cd bl-bridge-server/bl-bridge-humidity-coap
+cd bl-bridge-server/bl-bridge-temperature-coap
 
 npm run build
 

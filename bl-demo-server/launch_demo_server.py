@@ -6,11 +6,12 @@ from time import sleep
 
 import requests
 
-sys.path.insert(1, os.path.abspath('bl-demo-launcher'))
+sys.path.insert(1, os.path.abspath('bl-core-service'))
+sys.path.insert(2, os.path.abspath('../bl-core-service'))
 
 from launch_start_train import start_train
 from launch_start_vehicle import start_vehicle
-from lauch_bridge_meters import start_train_meters
+from launch_start_bridge_meters import start_bridge_meters
 
 
 def train_simulation():
@@ -25,7 +26,7 @@ def vehicle_simulation():
 
 def bridge_meter_simulation():
     while True:
-        start_train_meters('127.0.0.1')
+        start_bridge_meters('127.0.0.1')
 
 
 train_simulation_process = Process(target=train_simulation)

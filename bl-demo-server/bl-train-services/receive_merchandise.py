@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import pika
 
 credentials = pika.PlainCredentials('test', 'test')

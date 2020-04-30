@@ -13,12 +13,10 @@ import requests
 # sys.path.append(os.path.abspath('../../bl-bridge-server/bl-bridge-sensor-service'))
 from geo_calculator import Coord, create_west_random_point, create_east_random_point
 
-sys.path.insert(1, os.path.abspath('../bl-vehicle-sensor-service'))
-sys.path.insert(2, os.path.abspath('bl-vehicle-sensor-service'))
-sys.path.insert(3, os.path.abspath('../bl-vehicle-merchandise-service'))
-sys.path.insert(4, os.path.abspath('bl-vehicle-merchandise-service'))
-sys.path.insert(5, os.path.abspath('../bl-bridge-sensor-service'))
-sys.path.insert(6, os.path.abspath('bl-bridge-sensor-service'))
+sys.path.insert(1, os.path.abspath('../bl-vehicle-services'))
+sys.path.insert(2, os.path.abspath('bl-vehicle-services'))
+sys.path.insert(3, os.path.abspath('../bl-bridge-services'))
+sys.path.insert(4, os.path.abspath('bl-bridge-services'))
 
 from send_vehicle_timestamp import send_signal as send_vehicle_signal
 from send_bridge_timestamp import send_signal as send_bridge_signal

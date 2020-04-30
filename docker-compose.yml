@@ -59,7 +59,7 @@ services:
     env_file:
       - bl-central-server/docker-psql/.env
     volumes:
-      - ./docker-psql/init-scripts:/docker-entrypoint-initdb.d
+      -  ./bl-central-server/docker-psql/init-scripts:/docker-entrypoint-initdb.d
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}

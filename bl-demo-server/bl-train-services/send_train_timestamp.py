@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import json
 import sys
 
@@ -15,5 +16,5 @@ def send_signal(host, data):
     channel.exchange_declare(exchange='bl_train_01_sensor_exchange', exchange_type='fanout', durable=True)
     message = ' '.join(sys.argv[1:]) or data_json
     channel.basic_publish(exchange='bl_train_01_sensor_exchange', routing_key='', body=message)
-    print(" [x] Sent %r" % message)
+    print("🚂 ⏲ Sent %r" % message)
     connection.close()
