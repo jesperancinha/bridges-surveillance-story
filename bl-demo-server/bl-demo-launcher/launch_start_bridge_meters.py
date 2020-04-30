@@ -1,10 +1,12 @@
 import json
 import os
+import random
 import sys
 from multiprocessing import Process
 from os import listdir
 from os.path import isfile, join
 from time import sleep
+import time
 
 sys.path.insert(1, os.path.abspath('../bl-bridge-meter-service'))
 sys.path.insert(2, os.path.abspath('bl-bridge-meter-service'))
@@ -14,7 +16,8 @@ from send_bridge_reading import send_meter
 
 def send_bridge_meter_readings(host, f):
     data = json.load(f)
-    data.update({'reading': 10})
+    data.update({'reading': random.randint(18, 28)})
+    data.update({'timeOfReading':  int(time.time()*1000)})
     send_meter(host, data)
 
 
@@ -29,6 +32,7 @@ def lauch_bridge_meters(host):
     for task in allTasks:
         task.join()
     sleep(5)
+
 
 if __name__ == '__main__':
     lauch_bridge_meters("127.0.0.1")

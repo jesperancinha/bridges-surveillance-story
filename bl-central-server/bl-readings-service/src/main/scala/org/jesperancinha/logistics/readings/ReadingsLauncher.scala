@@ -48,9 +48,8 @@ object ReadingsLauncher extends App {
           "device_serial_number TEXT, " +
           "device_type TEXT, " +
           "unit TEXT, " +
-          "periodicity TEXT, " +
-          "timeOfReading BIGINT, " +
-          "reading TEXT)")
+          "time_of_reading BIGINT, " +
+          "reading BIGINT)")
       } finally if (session != null) session.close()
     }
 
@@ -62,6 +61,7 @@ object ReadingsLauncher extends App {
       System.out.println("--- New RDD with " + rdd.partitions.length + " partitions and " + rdd.count + " records")
       val strings = rdd.map(record => record.value()).collect();
       strings.foreach(temperatureString => {
+        System.out.println("--- New RDD id " + rdd.id)
         val temperature = Json.fromJson[Temperature](Json.parse(temperatureString)).get
         val collection = sc.parallelize(Seq((
           UUID.randomUUID(),
@@ -69,12 +69,11 @@ object ReadingsLauncher extends App {
           temperature.deviceSerialNumber,
           temperature.deviceType,
           temperature.unit,
-          temperature.periodicity,
           temperature.timeOfReading,
           temperature.reading
         )))
         collection.saveToCassandra("readings", "temperatures",
-          SomeColumns("id", "device_id", "device_serial_number", "device_type", "unit", "periodicity", "timeOfReading", "reading"))
+          SomeColumns("id", "device_id", "device_serial_number", "device_type", "unit", "time_of_reading", "reading"))
       })
     }
 

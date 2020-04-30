@@ -13,7 +13,7 @@ brew install cassandra
 ```
 
 ## Starting cassandra
-
+Note that some cassandra versions only seem to run well with Java 8
 ```bash
 cassandra
 ```

@@ -4,9 +4,8 @@ case class Temperature(deviceId: Int,
                        deviceSerialNumber: String,
                        deviceType: String,
                        unit: String,
-                       periodicity: String,
-                       timeOfReading: String,
-                       reading: String)
+                       timeOfReading: Long,
+                       reading: Long)
 
 object Temperature {
 
@@ -18,8 +17,7 @@ object Temperature {
       (JsPath \ "deviceSerialNumber").read[String] and
       (JsPath \ "deviceType").read[String] and
       (JsPath \ "unit").read[String] and
-      (JsPath \ "periodicity").read[String] and
-      (JsPath \ "timeOfReading").read[String] and
-      (JsPath \ "reading").read[String]
+      (JsPath \ "timeOfReading").read[Long] and
+      (JsPath \ "reading").read[Long]
     ) (Temperature.apply _)
 }
