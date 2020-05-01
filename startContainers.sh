@@ -20,6 +20,12 @@ cd bl-bridge-server/bl-bridge-temperature-coap
 
 npm run build
 
+cd ..
+
+cd bl-bridge-humidity-mqtt
+
+npm run build
+
 cd ../..
 
 docker-compose up -d --build --remove-orphans

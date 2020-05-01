@@ -6,6 +6,8 @@ rabbitmq-server -detached
 
 rabbitmqctl await_startup
 
+sleep 15
+
 curl -S http://localhost:15672/cli/rabbitmqadmin > /usr/local/bin/rabbitmqadmin
 
 chmod +x /usr/local/bin/rabbitmqadmin
@@ -34,7 +36,7 @@ sourceQueue bridge_01_sensor
 
 mosquitto &
 
-node bl-bridge-temperature-coap/dist/app.js &
+node bl-bridge-temperature-coap/dist/app.js bl_bridge_kafka_server_1 &
 
 node bl-bridge-humidity-mqtt/dist/app.js &
 

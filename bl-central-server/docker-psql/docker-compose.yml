@@ -3,7 +3,7 @@ services:
   postgres:
     hostname: postgres
     build:
-      context: ""
+      context: .
     env_file:
       - .env
     volumes:

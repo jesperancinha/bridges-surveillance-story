@@ -4,6 +4,7 @@
   "description": "Temperature sensor emitter",
   "main": "dist/app.js",
   "scripts": {
+    "build": "tsc",
     "start": "tsc && node dist/app.js",
     "test": "echo \"Warning: no test specified!\""
   },

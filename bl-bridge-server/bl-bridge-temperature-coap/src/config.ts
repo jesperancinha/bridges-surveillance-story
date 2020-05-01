@@ -1,3 +1,3 @@
 export class Config {
-    static kafka_server = 'localhost:9090';
+    static kafka_port = '9092';
 }

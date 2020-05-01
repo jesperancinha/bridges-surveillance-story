@@ -1,9 +1,14 @@
 version: "3.7"
+
+networks:
+  kafka-net:
+    driver: bridge
+
 services:
   bl_central_server:
     hostname: bl_central_server
     build:
-      context: bl-central-server/bl-rabbit-mq/.
+      context: bl-central-server/bl-central-streaming/.
     ports:
       - "15672:15672"
       - "5672:5672"
@@ -40,17 +45,6 @@ services:
       - "15674:15672"
       - "5683:5683/udp"
       - "1883:1883"
-      - "7199:7199"
-      - "7001:7001"
-      - "7000:7000"
-      - "9042:9042"
-      - "9160:9160"
-      - "61620:61620"
-      - "61621:61621"
-      - "8888:8888"
-      - "9090:9090"
-      - "9091:9091"
-      - "9092:9092"
 
   postgres:
     hostname: postgres
@@ -59,10 +53,75 @@ services:
     env_file:
       - bl-central-server/docker-psql/.env
     volumes:
-      -  ./bl-central-server/docker-psql/init-scripts:/docker-entrypoint-initdb.d
+      - ./bl-central-server/docker-psql/init-scripts:/docker-entrypoint-initdb.d
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_MULTIPLE_DATABASES=bllogistics
     ports:
       - "5433:5432"
+
+  bl_central_cassandra:
+    hostname: bl_central_cassandra
+    image:
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+        reservations:
+          memory: 2G
+    ports:
+      - "9042:9042"
+
+  bl_central_zookeeper_server:
+    hostname: bl_central_zookeeper_server
+    image: 'bitnami/zookeeper:latest'
+    networks:
+      - kafka-net
+    ports:
+      - '2181:2181'
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+
+  bl_bridge_kafka_server_1:
+    hostname: bl_bridge_kafka_server_1
+    image: 'bitnami/kafka:latest'
+    networks:
+      - kafka-net
+    ports:
+      - '9092:9092'
+    environment:
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=bl_central_zookeeper_server:2181
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092
+      - ALLOW_PLAINTEXT_LISTENER=yes
+    depends_on:
+      - bl_central_zookeeper_server
+
+
+  bl_bridge_kafka_server_2:
+    hostname: bl_bridge_kafka_server_2
+    image: 'bitnami/kafka:latest'
+    networks:
+      - kafka-net
+    ports:
+      - '9093:9092'
+    environment:
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=bl_central_zookeeper_server:2181
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9093
+      - ALLOW_PLAINTEXT_LISTENER=yes
+    depends_on:
+      - bl_central_zookeeper_server
+
+  bl_bridge_kafka_server_3:
+    hostname: bl_bridge_kafka_server_2
+    image: 'bitnami/kafka:latest'
+    networks:
+      - kafka-net
+    ports:
+      - '9094:9092'
+    environment:
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=bl_central_zookeeper_server:2181
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9094
+      - ALLOW_PLAINTEXT_LISTENER=yes
+    depends_on:
+      - bl_central_zookeeper_server

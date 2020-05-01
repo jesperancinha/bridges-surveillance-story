@@ -2,10 +2,10 @@ import kafka from 'kafka-node';
 import {Config} from "./config";
 import {Topics} from './topics';
 
-let produce = (data: object = {}) => {
+let produce = (host: string, data: object = {}) => {
     try {
         const Producer = kafka.Producer;
-        const client = new kafka.KafkaClient({kafkaHost: Config.kafka_server});
+        const client = new kafka.KafkaClient({kafkaHost: host + ":" + Config.kafka_port});
         const producer = new Producer(client);
         const kafka_topic = Topics.temperature;
         const jsonMessage = [{

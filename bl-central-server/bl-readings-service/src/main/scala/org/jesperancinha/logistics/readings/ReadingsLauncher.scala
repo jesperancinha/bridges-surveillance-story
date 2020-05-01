@@ -4,6 +4,7 @@ import java.util.UUID
 
 import com.datastax.spark.connector._
 import com.datastax.spark.connector.cql.CassandraConnector
+import com.typesafe.config.ConfigFactory
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.apache.kafka.common.serialization.StringDeserializer
 import org.apache.spark.SparkConf
@@ -14,15 +15,38 @@ import play.api.libs.json.Json
 object ReadingsLauncher extends App {
 
   override def main(args: Array[String]): Unit = {
+    val DEMO: String = "demo"
+    val LOCAL: String = "local"
+
+    val env: String = args.length match {
+      case 0 => LOCAL
+      case _ => args(0) match {
+        case DEMO => DEMO
+        case _ =>
+          LOCAL
+      }
+    }
+
+    val config = ConfigFactory.load("application.conf").getConfig("org.jesperancinha.logistics")
+    val envConfig = config.getConfig(env)
+    val sparkConfig = config.getConfig("spark")
+    val appName = sparkConfig.getString("app-name")
+    val kafkaHost1 = envConfig.getString("kafka-host-1")
+    val kafkaHost2 = envConfig.getString("kafka-host-2")
+    val kafkaHost3 = envConfig.getString("kafka-host-3")
+    val cassandraHost = envConfig.getString("cassandra-host")
+    println(appName)
+
     val sparkConf = new SparkConf
     sparkConf.setAppName("WordCountingApp")
     sparkConf.setMaster("local[*]")
+    sparkConf.set("spark.cassandra.connection.host", cassandraHost)
 
     val streamingContext = new StreamingContext(sparkConf, Durations.seconds(10))
     val sc = streamingContext.sparkContext
 
     val kafkaParams = Map[String, Object](
-      "bootstrap.servers" -> "localhost:9090,localhost:9091,localhost:9092",
+      "bootstrap.servers" -> (kafkaHost1 + ":9092," + kafkaHost2 + ":9093," + kafkaHost3 + ":9094"),
       "key.deserializer" -> classOf[StringDeserializer],
       "value.deserializer" -> classOf[StringDeserializer],
       "group.id" -> "0",
@@ -38,7 +62,7 @@ object ReadingsLauncher extends App {
     val connector = CassandraConnector.apply(sc)
 
     try {
-      val session = connector.openSession
+      val session = connector.openSession()
       try {
         session.execute("DROP KEYSPACE IF EXISTS readings")
         session.execute("CREATE KEYSPACE readings WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 1}")

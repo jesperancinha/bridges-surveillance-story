@@ -8,10 +8,16 @@ docker-compose down
 
 docker stop docker-psql_postgres_1
 
-cd docker-psql
+cd bl-central-server/docker-psql
 
 docker-compose down
 
-cd ..
+cd ../..
+
+cd bl-central-server/cassandra
+
+docker-compose down
+
+cd ../..
 
 ./stopMacOs.sh

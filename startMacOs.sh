@@ -9,6 +9,7 @@ rm -rf /tmp/zookeeper
 ./copyFiles.sh
 
 #zookeeper-server-start /usr/local/etc/kafka/zookeeper.properties &
+#/usr/local/etc/kafka/bin/zookeeper-server-start.sh /usr/local/etc/kafka/config/zookeeper.properties &
 zkServer start /usr/local/etc/kafka/zookeeper.properties &
 kafka-server-start /usr/local/etc/kafka/server0.properties &
 kafka-server-start /usr/local/etc/kafka/server1.properties &
