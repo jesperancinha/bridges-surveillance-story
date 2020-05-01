@@ -32,6 +32,8 @@ COPY zookeeper/*.* /usr/local/etc/kafka/config/
 
 COPY startKafka.sh /root
 
+COPY startZookeeper.sh /root
+
 ENTRYPOINT ["/root/entrypoint.sh"]
 
 #RabbitMQ

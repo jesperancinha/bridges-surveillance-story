@@ -36,11 +36,13 @@ sourceQueue bridge_01_sensor
 
 mosquitto &
 
-node bl-bridge-temperature-coap/dist/app.js bl_bridge_kafka_server_1 &
+node bl-bridge-temperature-coap/dist/app.js &
 
 node bl-bridge-humidity-mqtt/dist/app.js &
 
 ./startZookeeper.sh &
+
+sleep 5
 
 ./startKafka.sh &
 

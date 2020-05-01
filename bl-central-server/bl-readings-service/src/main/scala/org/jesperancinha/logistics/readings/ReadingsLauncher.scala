@@ -38,10 +38,10 @@ object ReadingsLauncher extends App {
     println(appName)
 
     val sparkConf = new SparkConf
-    sparkConf.setAppName("WordCountingApp")
+    sparkConf.setAppName("BridgeLogisticsReader")
     sparkConf.setMaster("local[*]")
     sparkConf.set("spark.cassandra.connection.host", cassandraHost)
-
+    sparkConf.set("spark.local.dir", "/tmp/spark-temp");
     val streamingContext = new StreamingContext(sparkConf, Durations.seconds(10))
     val sc = streamingContext.sparkContext
 
@@ -85,19 +85,23 @@ object ReadingsLauncher extends App {
       System.out.println("--- New RDD with " + rdd.partitions.length + " partitions and " + rdd.count + " records")
       val strings = rdd.map(record => record.value()).collect();
       strings.foreach(temperatureString => {
-        System.out.println("--- New RDD id " + rdd.id)
-        val temperature = Json.fromJson[Temperature](Json.parse(temperatureString)).get
-        val collection = sc.parallelize(Seq((
-          UUID.randomUUID(),
-          temperature.deviceId,
-          temperature.deviceSerialNumber,
-          temperature.deviceType,
-          temperature.unit,
-          temperature.timeOfReading,
-          temperature.reading
-        )))
-        collection.saveToCassandra("readings", "temperatures",
-          SomeColumns("id", "device_id", "device_serial_number", "device_type", "unit", "time_of_reading", "reading"))
+        try {
+          System.out.println("--- New RDD id " + rdd.id)
+          val temperature = Json.fromJson[Temperature](Json.parse(temperatureString)).get
+          val collection = sc.parallelize(Seq((
+            UUID.randomUUID(),
+            temperature.deviceId,
+            temperature.deviceSerialNumber,
+            temperature.deviceType,
+            temperature.unit,
+            temperature.timeOfReading,
+            temperature.reading
+          )))
+          collection.saveToCassandra("readings", "temperatures",
+            SomeColumns("id", "device_id", "device_serial_number", "device_type", "unit", "time_of_reading", "reading"))
+        } catch {
+          case e: java.util.NoSuchElementException => println("This data doesn't make sense"+ e.getMessage)
+        }
       })
     }
 

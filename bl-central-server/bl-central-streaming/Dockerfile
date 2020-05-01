@@ -16,4 +16,8 @@ COPY entrypoint.sh /root
 
 ENTRYPOINT ["/root/entrypoint.sh"]
 
+# RabbitMQ
 EXPOSE 5672 15671 15672
+
+# Cassandra
+EXPOSE 9042

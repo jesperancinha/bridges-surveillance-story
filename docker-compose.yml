@@ -12,6 +12,13 @@ services:
     ports:
       - "15672:15672"
       - "5672:5672"
+      - "9042:9042"
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+        reservations:
+          memory: 2G
 
   bl_central_server_apps:
     hostname: bl_central_server_apps
@@ -45,6 +52,9 @@ services:
       - "15674:15672"
       - "5683:5683/udp"
       - "1883:1883"
+      - "9092:9092"
+      - "9093:9093"
+      - "9094:9094"
 
   postgres:
     hostname: postgres
@@ -60,68 +70,3 @@ services:
       - POSTGRES_MULTIPLE_DATABASES=bllogistics
     ports:
       - "5433:5432"
-
-  bl_central_cassandra:
-    hostname: bl_central_cassandra
-    image:
-    deploy:
-      resources:
-        limits:
-          memory: 2G
-        reservations:
-          memory: 2G
-    ports:
-      - "9042:9042"
-
-  bl_central_zookeeper_server:
-    hostname: bl_central_zookeeper_server
-    image: 'bitnami/zookeeper:latest'
-    networks:
-      - kafka-net
-    ports:
-      - '2181:2181'
-    environment:
-      - ALLOW_ANONYMOUS_LOGIN=yes
-
-  bl_bridge_kafka_server_1:
-    hostname: bl_bridge_kafka_server_1
-    image: 'bitnami/kafka:latest'
-    networks:
-      - kafka-net
-    ports:
-      - '9092:9092'
-    environment:
-      - KAFKA_CFG_ZOOKEEPER_CONNECT=bl_central_zookeeper_server:2181
-      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092
-      - ALLOW_PLAINTEXT_LISTENER=yes
-    depends_on:
-      - bl_central_zookeeper_server
-
-
-  bl_bridge_kafka_server_2:
-    hostname: bl_bridge_kafka_server_2
-    image: 'bitnami/kafka:latest'
-    networks:
-      - kafka-net
-    ports:
-      - '9093:9092'
-    environment:
-      - KAFKA_CFG_ZOOKEEPER_CONNECT=bl_central_zookeeper_server:2181
-      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9093
-      - ALLOW_PLAINTEXT_LISTENER=yes
-    depends_on:
-      - bl_central_zookeeper_server
-
-  bl_bridge_kafka_server_3:
-    hostname: bl_bridge_kafka_server_2
-    image: 'bitnami/kafka:latest'
-    networks:
-      - kafka-net
-    ports:
-      - '9094:9092'
-    environment:
-      - KAFKA_CFG_ZOOKEEPER_CONNECT=bl_central_zookeeper_server:2181
-      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9094
-      - ALLOW_PLAINTEXT_LISTENER=yes
-    depends_on:
-      - bl_central_zookeeper_server
