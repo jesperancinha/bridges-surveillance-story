@@ -54,10 +54,15 @@ object ReadingsLauncher extends App {
       "enable.auto.commit" -> (true: java.lang.Boolean)
     )
 
-    val topics: Array[String] = Array("TEMPERATURE")
-    val stream: org.apache.spark.streaming.dstream.InputDStream[ConsumerRecord[String, String]]
+    val temperatureTopics: Array[String] = Array("TEMPERATURE")
+    val temperatureStream: org.apache.spark.streaming.dstream.InputDStream[ConsumerRecord[String, String]]
     = KafkaUtils.createDirectStream(streamingContext, LocationStrategies.PreferConsistent,
-      ConsumerStrategies.Subscribe[String, String](topics, kafkaParams))
+      ConsumerStrategies.Subscribe[String, String](temperatureTopics, kafkaParams))
+
+    val humidityTopics: Array[String] = Array("HUMIDITY")
+    val humidityStream: org.apache.spark.streaming.dstream.InputDStream[ConsumerRecord[String, String]]
+    = KafkaUtils.createDirectStream(streamingContext, LocationStrategies.PreferConsistent,
+      ConsumerStrategies.Subscribe[String, String](humidityTopics, kafkaParams))
 
     val connector = CassandraConnector.apply(sc)
 
@@ -74,6 +79,14 @@ object ReadingsLauncher extends App {
           "unit TEXT, " +
           "time_of_reading BIGINT, " +
           "reading BIGINT)")
+        session.execute("CREATE TABLE readings.humidity (" +
+          "id UUID PRIMARY KEY, " +
+          "device_id INT, " +
+          "device_serial_number TEXT, " +
+          "device_type TEXT, " +
+          "unit TEXT, " +
+          "time_of_reading BIGINT, " +
+          "reading BIGINT)")
       } finally if (session != null) session.close()
     }
 
@@ -81,7 +94,7 @@ object ReadingsLauncher extends App {
     val file_collect = rdd.collect().take(100)
     file_collect.foreach(println(_))
 
-    stream.foreachRDD { rdd =>
+    temperatureStream.foreachRDD { rdd =>
       System.out.println("--- New RDD with " + rdd.partitions.length + " partitions and " + rdd.count + " records")
       val strings = rdd.map(record => record.value()).collect();
       strings.foreach(temperatureString => {
@@ -105,9 +118,33 @@ object ReadingsLauncher extends App {
       })
     }
 
+    humidityStream.foreachRDD { rdd =>
+      System.out.println("--- New RDD with " + rdd.partitions.length + " partitions and " + rdd.count + " records")
+      val strings = rdd.map(record => record.value()).collect();
+      strings.foreach(humidityString => {
+        try {
+          System.out.println("--- New RDD id " + rdd.id)
+          val humidity = Json.fromJson[Humidity](Json.parse(humidityString)).get
+          val collection = sc.parallelize(Seq((
+            UUID.randomUUID(),
+            humidity.deviceId,
+            humidity.deviceSerialNumber,
+            humidity.deviceType,
+            humidity.unit,
+            humidity.timeOfReading,
+            humidity.reading
+          )))
+          collection.saveToCassandra("readings", "humidity",
+            SomeColumns("id", "device_id", "device_serial_number", "device_type", "unit", "time_of_reading", "reading"))
+        } catch {
+          case e: java.util.NoSuchElementException => println("This data doesn't make sense"+ e.getMessage)
+        }
+      })
+    }
+
     println("***************************************************************************************************************")
-    println(stream.id)
-    println(stream.count())
+    println(temperatureStream.id)
+    println(temperatureStream.count())
     println("***************************************************************************************************************")
 
     streamingContext.start

@@ -1,6 +1,6 @@
 {
   "deviceId": 5,
   "deviceSerialNumber": "847583745962034088580",
-  "deviceType": "Thermometer",
-  "unit": "CELSIUS"
+  "deviceType": "Hygrometer",
+  "unit": "PERCENTAGE"
 }

@@ -21,6 +21,7 @@
   "dependencies": {
     "@types/node": "^13.13.4",
     "express": "^4.17.1",
+    "kafka-node": "^5.0.0",
     "mqtt": "^3.0.0",
     "node-cron": "^2.0.3",
     "ts-loader": "^6.2.2",
