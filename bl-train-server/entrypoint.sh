@@ -33,4 +33,10 @@ function sourceQueue(){
 sourceQueue train_01_merchandise
 sourceQueue train_01_sensor
 
+./startZookeeper.sh &
+
+sleep 5
+
+./startKafka.sh &
+
 tail -f /dev/null

@@ -1,4 +1,4 @@
-FROM jesperancinha/je-rabbitmq:0.0.1
+FROM jesperancinha/je-streams:0.0.1
 
 WORKDIR /root
 
@@ -13,6 +13,10 @@ RUN rabbitmq-plugins enable rabbitmq_federation_management
 RUN rabbitmq-plugins enable rabbitmq_shovel rabbitmq_shovel_management
 
 COPY entrypoint.sh /root
+
+COPY startKafka.sh /root
+
+COPY startZookeeper.sh /root
 
 ENTRYPOINT ["/root/entrypoint.sh"]
 

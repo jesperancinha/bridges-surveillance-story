@@ -28,4 +28,10 @@ npm run build
 
 cd ../..
 
+cd bl-train-server/bl-train-people-mqtt
+
+npm run build
+
+cd ../..
+
 docker-compose up -d --build --remove-orphans
