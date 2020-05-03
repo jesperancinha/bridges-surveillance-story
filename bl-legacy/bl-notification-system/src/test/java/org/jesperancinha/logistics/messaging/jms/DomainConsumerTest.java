@@ -8,7 +8,6 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.testng.annotations.Test;
 
 public class DomainConsumerTest extends Arquillian {
-    ;
 
     @Deployment
     public static JavaArchive createDeployment() {

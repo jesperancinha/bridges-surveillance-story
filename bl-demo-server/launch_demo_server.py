@@ -8,6 +8,10 @@ import requests
 
 sys.path.insert(1, os.path.abspath('bl-core-service'))
 sys.path.insert(2, os.path.abspath('../bl-core-service'))
+sys.path.insert(3, os.path.abspath('bl-demo-server/bl-core-service'))
+
+if os.path.exists("bl-demo-server"):
+    os.chdir("bl-demo-server")
 
 from launch_start_train import start_train
 from launch_start_vehicle import start_vehicle
@@ -39,13 +43,16 @@ bridge_meters_simulation_process.start()
 
 URL_OPEN = "http://localhost:9000/api/bridge/logistics/schedules/open/52.347293/4.912372"
 
+simulation_ready = False
 while True:
     try:
-        print("Simulation ongoing. Press Ctr-C to interrupt it!")
-        open = requests.get(url=URL_OPEN)
+        print(("🟢" if simulation_ready else "🟠") + " Simulation ongoing. Press Ctr-C to interrupt it!")
+        open = requests.get(url=URL_OPEN, timeout=5)
         print("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
-        print("Vehicle bridge status: " + ("open" if open.json() else "closed"))
+        print("🌉 Vehicle bridge status: " + ("🟢 open" if open.json() else "🔴 closed"))
         print("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
+        simulation_ready = True
     except:
-        print("‼️ Fail ‼️ - Connection to service failed! Making another attempt in 10 seconds")
+        simulation_ready = False
+        print("🔴 Bridge Scheduling Service not ready yet. Press Ctr-C to stop. Retry in 10 seconds...")
     sleep(10)

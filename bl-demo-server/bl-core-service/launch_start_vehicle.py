@@ -17,6 +17,8 @@ sys.path.insert(1, os.path.abspath('../bl-vehicle-services'))
 sys.path.insert(2, os.path.abspath('bl-vehicle-services'))
 sys.path.insert(3, os.path.abspath('../bl-bridge-services'))
 sys.path.insert(4, os.path.abspath('bl-bridge-services'))
+sys.path.insert(5, os.path.abspath('bl-demo-server/bl-vehicle-services'))
+sys.path.insert(6, os.path.abspath('bl-demo-server/bl-bridge-services'))
 
 from send_vehicle_timestamp import send_signal as send_vehicle_signal
 from send_bridge_timestamp import send_signal as send_bridge_signal
@@ -82,29 +84,42 @@ def check_in_out(host, time_to_get_to_bridge, time_to_get_to_station, origin, d_
     vehicle_message_process_to_bridge = Process(target=pulses, args=[host, origin, d_lat, d_lon])
     vehicle_message_process_to_bridge.start()
     sleep(time_to_get_to_bridge)
-    area = requests.get(url=URL_OPEN + str(dest_lat) + "/" + str(dest_lon))
-    while not area.json():
-        area = requests.get(url=URL_OPEN + str(dest_lat) + "/" + str(dest_lon))
-        print(area.json())
-        print("⛔️ 🌉 Bridge is closed!")
-        sleep(1)
-    print("✅ 🌉 Bridge is open!")
-    print("Entering Bridge...")
-    send_checkin_message(host, origin)
-    print("🚚 🔶 Checked In!")
-    sleep(5)
-    vehicle_message_process_to_bridge.terminate()
-    send_checkout_message(host, origin)
-    print("🚚 🟩 Checked Out!")
-    print("🚚 🛣 Leaving Bridge...")
-    vehicle_message_process_to_station = Process(target=pulses, args=[host, origin, d_lat2, d_lon2])
-    vehicle_message_process_to_station.start()
-    sleep(time_to_get_to_station)
-    vehicle_message_process_to_station.terminate()
+    success = False
+    while not success:
+        try:
+            area = requests.get(url=URL_OPEN + str(dest_lat) + "/" + str(dest_lon), timeout=5)
+            while not area.json():
+                area = requests.get(url=URL_OPEN + str(dest_lat) + "/" + str(dest_lon), timeout=5)
+                print("⛔️ 🌉 Bridge is closed!")
+                sleep(1)
+            print("✅ 🌉 Bridge is open!")
+            print("🚚 Entering Bridge...")
+            send_checkin_message(host, origin)
+            print("🚚 🔶 Checked In!")
+            sleep(5)
+            vehicle_message_process_to_bridge.terminate()
+            send_checkout_message(host, origin)
+            print("🚚 🟩 Checked Out!")
+            print("🚚 🛣 Leaving Bridge...")
+            vehicle_message_process_to_station = Process(target=pulses, args=[host, origin, d_lat2, d_lon2])
+            vehicle_message_process_to_station.start()
+            sleep(time_to_get_to_station)
+            vehicle_message_process_to_station.terminate()
+            success = True
+        except:
+            print("🔴 Bridge Scheduling Service not ready yet. Press Ctr-C to stop. Retry in 10 seconds...")
+            sleep(10)
 
 
 def pulses(host, origin, d_lat, d_lon):
-    send_merchandise_message(host, origin, 'LOADED')
+    success = False
+    while not success:
+        try:
+            send_merchandise_message(host, origin, 'LOADED')
+            success = True
+        except:
+            print("🔴 Vehicle Merchandise queue not ready yet. Press Ctr-C to stop. Retry in 10 seconds...")
+            sleep(10)
     while True:
         sleep(1)
         origin.delta(d_lat, d_lon)
@@ -156,7 +171,6 @@ def start_vehicle(host):
 
     vehicle_checkin_checkout_process = Process(target=check_in_out, args=[host, time_to_get_to_bridge, time_to_get_to_station,
                                                                           origin, d_lat, d_lon, d_lat2, d_lon2])
-
     print("Time to get to bridge - " + str(time_to_get_to_bridge))
     print("Time to get back to central - " + str(time_to_get_to_station))
 

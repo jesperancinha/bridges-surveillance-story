@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import json
+from time import sleep
 
 from coapthon.client.helperclient import HelperClient
 
@@ -12,9 +13,16 @@ def send_meter(host, data):
     client = HelperClient(server=(host, port))
     dumps = json.dumps(data)
     print("🌡 Sending reading" + dumps)
-    response = client.post(path, dumps)
-    print("🌡 Result" + str.join(" ", response.pretty_print().splitlines()))
-    client.stop()
+    success = False
+    while not success:
+        try:
+            response = client.post(path, dumps, timeout=5)
+            print("🌡 Result" + str.join(" ", response.pretty_print().splitlines()))
+            client.stop()
+            success = True
+        except:
+            print("🔴 Temperature CoAP service not ready yet. Press Ctr-C to stop. Retry in 10 seconds...")
+            sleep(10)
 
 
 if __name__ == '__main__':

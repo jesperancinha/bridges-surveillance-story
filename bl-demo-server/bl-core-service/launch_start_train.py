@@ -15,6 +15,8 @@ sys.path.insert(1, os.path.abspath('../bl-train-services'))
 sys.path.insert(2, os.path.abspath('bl-train-services'))
 sys.path.insert(3, os.path.abspath('../bl-bridge-services'))
 sys.path.insert(4, os.path.abspath('bl-bridge-services'))
+sys.path.insert(5, os.path.abspath('bl-demo-server/bl-train-services'))
+sys.path.insert(6, os.path.abspath('bl-demo-server/bl-bridge-services'))
 
 from send_train_timestamp import send_signal as send_train_signal
 from send_bridge_timestamp import send_signal  as send_bridge_signal
@@ -70,16 +72,15 @@ def get_bridge_checkout_data(coord):
 
 
 def check_in_out(host, time_to_get_to_bridge, time_to_get_to_station, origin, d_lat, d_lon, d_lat2, d_lon2):
+    print("🚂 🛤 Train is underway. Just left central statin 🏫")
     success = False
     while (not success):
         try:
             send_merchandise_message(host, origin, 'LOADED')
             success = True
         except:
-            print("‼️ Fail ‼️ - Connection to service failed! Making another attempt in 10 seconds")
+            print("🔴 Train Merchandise queue not ready yet. Press Ctr-C to stop. Retry in 10 seconds...")
             sleep(10)
-
-    print("🚂 🛤 Train is underway. Just left central statin 🏫")
     train_message_process = Process(target=pulses, args=[host, origin, d_lat, d_lon])
     train_message_process.start()
     sleep(time_to_get_to_bridge)
@@ -108,7 +109,15 @@ def send_merchandise_message(host, origin, status):
     with open('../bl-simulation-data/train.json') as json_file:
         data = json.load(json_file)
         data[0].update({'status': status})
-        send_train_merchandise(host, data)
+        success = False
+        while not success:
+            try:
+                send_train_merchandise(host, data)
+                success = True
+            except:
+                print("🔴 Train Merchandise queue error. Press Ctr-C to stop. Retry in 10 seconds...")
+                sleep(10)
+
         print("🚂 Train Merchandise sent! " + str(current_time()))
         print("🚂 Train location: " + str(origin))
 

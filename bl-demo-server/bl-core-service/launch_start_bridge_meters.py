@@ -10,6 +10,7 @@ from time import sleep
 
 sys.path.insert(1, os.path.abspath('../bl-bridge-services'))
 sys.path.insert(2, os.path.abspath('bl-bridge-services'))
+sys.path.insert(3, os.path.abspath('bl-demo-server/bl-bridge-services'))
 
 from send_bridge_temperature_reading import send_meter as send_temperature
 from send_bridge_humidity_reading import send_meter as send_humidity

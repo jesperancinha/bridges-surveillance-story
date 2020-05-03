@@ -56,4 +56,3 @@ def generate_passengers(quantity=10):
         i += 1
     print(json.dumps(passenger_json))
     return passenger_json
-
