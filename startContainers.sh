@@ -4,6 +4,12 @@ docker-compose down
 
 docker stop docker-psql_postgres_1
 
+cd bl-demo-server/bl-core-service
+
+python launch_generate_people.py
+
+cd ../..
+
 cd bl-central-server/bl-sensor-data-collector
 
 mvn clean install -Pdemo -DskipTests

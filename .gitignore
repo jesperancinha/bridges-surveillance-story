@@ -17,3 +17,6 @@ dist
 
 ## Python builds
 *.pyc
+
+## BL Generated files
+passengers.json

@@ -11,6 +11,7 @@ import org.jesperancinha.logistics.jpa.model.Carriage;
 import org.jesperancinha.logistics.jpa.model.Company;
 import org.jesperancinha.logistics.jpa.model.Container;
 import org.jesperancinha.logistics.jpa.model.Freight;
+import org.jesperancinha.logistics.jpa.model.Passenger;
 import org.jesperancinha.logistics.jpa.model.Product;
 import org.jesperancinha.logistics.jpa.model.Train;
 import org.jesperancinha.logistics.jpa.model.Vehicle;
@@ -20,6 +21,7 @@ import org.jesperancinha.logistics.jpa.repositories.CompanyRepository;
 import org.jesperancinha.logistics.jpa.repositories.ContainerRepository;
 import org.jesperancinha.logistics.jpa.repositories.FreightRepository;
 import org.jesperancinha.logistics.jpa.repositories.OpeningTimeRepository;
+import org.jesperancinha.logistics.jpa.repositories.PassengerRepository;
 import org.jesperancinha.logistics.jpa.repositories.ProductRepository;
 import org.jesperancinha.logistics.jpa.repositories.TrainRepository;
 import org.jesperancinha.logistics.jpa.repositories.VehicleRepository;
@@ -60,10 +62,12 @@ public class BridgeLogisticsInitializer implements CommandLineRunner {
 
     private final CompanyRepository companyRepository;
 
+    private final PassengerRepository passengerRepository;
+
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     public BridgeLogisticsInitializer(BridgeRepository bridgeRepository, CarriageRepository carriageRepository, ContainerRepository containerRepository, FreightRepository freightRepository, ProductRepository productRepository, TrainRepository trainRepository,
-        VehicleRepository vehicleRepository, OpeningTimeRepository openingTimeRepository, CompanyRepository companyRepository) {
+        VehicleRepository vehicleRepository, OpeningTimeRepository openingTimeRepository, CompanyRepository companyRepository, PassengerRepository passengerRepository) {
         this.bridgeRepository = bridgeRepository;
         this.carriageRepository = carriageRepository;
         this.containerRepository = containerRepository;
@@ -73,6 +77,7 @@ public class BridgeLogisticsInitializer implements CommandLineRunner {
         this.vehicleRepository = vehicleRepository;
         this.openingTimeRepository = openingTimeRepository;
         this.companyRepository = companyRepository;
+        this.passengerRepository = passengerRepository;
         JacksonAnnotationIntrospector implicitRecordAI = new JacksonAnnotationIntrospector() {
             @Override
             public String findImplicitPropertyName(AnnotatedMember m) {
@@ -112,6 +117,8 @@ public class BridgeLogisticsInitializer implements CommandLineRunner {
 
         stream(objectMapper.readValue(getClass().getResourceAsStream("/vehicles.json"), Vehicle[].class)).forEach(vehicleRepository::save);
 
+        stream(objectMapper.readValue(getClass().getResourceAsStream("/passengers/passengers.json"), Passenger[].class)).forEach(passengerRepository::save);
+
         stream(objectMapper.readValue(getClass().getResourceAsStream("/freight.json"), FreightDto[].class)).map(freightDto -> Freight.builder()
             .id(freightDto.id())
             .name(freightDto.name())
@@ -122,8 +129,10 @@ public class BridgeLogisticsInitializer implements CommandLineRunner {
                     .orElse(null))
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList()))
-            .supplier(companyRepository.findById(freightDto.supplierId()).orElse(null))
-            .vendor(companyRepository.findById(freightDto.vendorId()).orElse(null))
+            .supplier(companyRepository.findById(freightDto.supplierId())
+                .orElse(null))
+            .vendor(companyRepository.findById(freightDto.vendorId())
+                .orElse(null))
             .build())
             .forEach(freightRepository::save);
 
@@ -137,8 +146,10 @@ public class BridgeLogisticsInitializer implements CommandLineRunner {
                     .orElse(null))
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList()))
-            .supplier(companyRepository.findById(trainDto.supplierId()).orElse(null))
-            .vendor(companyRepository.findById(trainDto.vendorId()).orElse(null))
+            .supplier(companyRepository.findById(trainDto.supplierId())
+                .orElse(null))
+            .vendor(companyRepository.findById(trainDto.vendorId())
+                .orElse(null))
             .build())
             .forEach(trainRepository::save);
 
