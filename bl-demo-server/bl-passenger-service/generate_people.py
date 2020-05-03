@@ -2,7 +2,7 @@
 import json
 from random import randint
 
-PASSENGER_ROOT = "../../bl-simulation-data/passengers/"
+PASSENGER_ROOT = "./../bl-simulation-data/passengers/"
 
 genders = list()
 mother_names = list()

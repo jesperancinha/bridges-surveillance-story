@@ -26,8 +26,6 @@ RUN rm /usr/local/etc/kafka/config/server.properties
 
 COPY kafka/*.* /usr/local/etc/kafka/config/
 
-COPY kafka/*.* /usr/local/etc/kafka/config/
-
 COPY zookeeper/*.* /usr/local/etc/kafka/config/
 
 COPY startKafka.sh /root

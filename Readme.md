@@ -212,6 +212,7 @@ pip install pebble
 pip install pika
 pip install coapthon
 pip install paho-mqtt
+pip install kafka-python
 ```
 
 ## [Hints & Tricks](https://github.com/jesperancinha/project-signer/blob/master/project-signer-templates/Hints%26Tricks.md)
@@ -313,6 +314,7 @@ pip install requests
 pip install CoAPthon
 pip install coapthon
 pip install paho-mqtt
+pip install kafka-python
 ```
 
 -   Docker logs

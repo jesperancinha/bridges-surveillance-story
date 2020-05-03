@@ -21,6 +21,8 @@ sys.path.insert(6, os.path.abspath('bl-demo-server/bl-bridge-services'))
 from send_train_timestamp import send_signal as send_train_signal
 from send_bridge_timestamp import send_signal  as send_bridge_signal
 from send_merchandise import send_merchandise as send_train_merchandise
+from launch_generate_people import generate_all_passengers
+from send_people_readings import send_people
 
 
 def current_time():
@@ -71,7 +73,7 @@ def get_bridge_checkout_data(coord):
     }
 
 
-def check_in_out(host, time_to_get_to_bridge, time_to_get_to_station, origin, d_lat, d_lon, d_lat2, d_lon2):
+def check_in_out(host, time_to_get_to_bridge, time_to_get_to_station, origin, d_lat, d_lon, d_lat2, d_lon2, passengers):
     print("🚂 🛤 Train is underway. Just left central statin 🏫")
     success = False
     while (not success):
@@ -81,7 +83,7 @@ def check_in_out(host, time_to_get_to_bridge, time_to_get_to_station, origin, d_
         except:
             print("🔴 Train Merchandise queue not ready yet. Press Ctr-C to stop. Retry in 10 seconds...")
             sleep(10)
-    train_message_process = Process(target=pulses, args=[host, origin, d_lat, d_lon])
+    train_message_process = Process(target=pulses, args=[host, origin, d_lat, d_lon, passengers])
     train_message_process.start()
     sleep(time_to_get_to_bridge)
     print("🚂 🌉 Train entering Bridge...")
@@ -92,23 +94,33 @@ def check_in_out(host, time_to_get_to_bridge, time_to_get_to_station, origin, d_
     send_checkout_message(host, origin)
     print("🚂 Train Checked Out!")
     print("🚂 Train Leaving Bridge...")
-    train_message_process = Process(target=pulses, args=[host, origin, d_lat2, d_lon2])
+    train_message_process = Process(target=pulses, args=[host, origin, d_lat2, d_lon2, passengers])
     train_message_process.start()
     sleep(time_to_get_to_station)
     train_message_process.terminate()
 
 
-def pulses(host, origin, d_lat, d_lon):
+def pulses(host, origin, d_lat, d_lon, passengers):
     while True:
         sleep(1)
         origin.delta(d_lat, d_lon)
         send_merchandise_message(host, origin, 'INTRANSIT')
+        send_passenger_messages(host, origin, 'INTRANSIT', passengers)
+
+
+def send_passenger_messages(host, origin, param, passengers):
+    for passenger in passengers:
+        passenger.update({'lat': origin.lat})
+        passenger.update({'lon': origin.lon})
+    send_people(host, passengers)
 
 
 def send_merchandise_message(host, origin, status):
     with open('../bl-simulation-data/train.json') as json_file:
         data = json.load(json_file)
         data[0].update({'status': status})
+        data[0].update({'lat': origin.lat})
+        data[0].update({'lon': origin.lon})
         success = False
         while not success:
             try:
@@ -156,8 +168,16 @@ def start_train(host):
     print(origin)
     print(station)
 
+    passengers = generate_all_passengers(300)
+
+    for passenger in passengers:
+        passenger.update({"unit": "kg"})
+        passenger.update({"weight": random.randint(40, 120)})
+
+    print(passengers)
+
     train_checkin_checkout_process = Process(target=check_in_out, args=[host, time_to_get_to_bridge, time_to_get_to_station,
-                                                                        origin, d_lat, d_lon, d_lat2, d_lon2])
+                                                                        origin, d_lat, d_lon, d_lat2, d_lon2, passengers])
 
     print("Time to get to bridge - " + str(time_to_get_to_bridge))
     print("Time to get back to station - " + str(time_to_get_to_station))

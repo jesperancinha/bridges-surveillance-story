@@ -12,6 +12,8 @@ public class MerchandiseLogConverter {
             .vendor(merchandiseLog.getVendor())
             .timestamp(merchandiseLog.getTimestamp())
             .transportPackage(merchandiseLog.getTransportPackage())
+            .lat(merchandiseLog.getLat())
+            .lon(merchandiseLog.getLon())
             .build();
     }
 }

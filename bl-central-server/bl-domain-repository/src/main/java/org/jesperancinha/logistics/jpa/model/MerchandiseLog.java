@@ -6,12 +6,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.jesperancinha.logistics.jpa.types.Status;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.math.BigDecimal;
 
 @Entity
 @Data
@@ -40,4 +42,11 @@ public class MerchandiseLog {
 
     @ManyToOne
     private ProductCargo productCargo;
+
+    @Column(precision = 10,
+        scale = 6)
+    private BigDecimal lat;
+    @Column(precision = 10,
+        scale = 6)
+    private BigDecimal lon;
 }

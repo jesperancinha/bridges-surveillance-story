@@ -103,6 +103,8 @@ public class VehicleMerchandiseReceiver {
                                         .transportPackage(transportPackage1)
                                         .productCargo(productCargoDb)
                                         .status(vehicleMerchandiseDto.status())
+                                        .lat(vehicleMerchandiseDto.lat())
+                                        .lon(vehicleMerchandiseDto.lon())
                                         .build();
                                     transportPackage1.getProductCargos()
                                         .add(productCargoDb);

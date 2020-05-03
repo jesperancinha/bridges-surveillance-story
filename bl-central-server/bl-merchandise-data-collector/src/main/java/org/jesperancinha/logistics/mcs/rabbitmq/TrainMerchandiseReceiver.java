@@ -105,6 +105,8 @@ public class TrainMerchandiseReceiver {
                                         .transportPackage(transportPackage1)
                                         .productCargo(productCargoDb)
                                         .status(trainMerchandiseDto.status())
+                                        .lat(trainMerchandiseDto.lat())
+                                        .lon(trainMerchandiseDto.lon())
                                         .build();
                                     transportPackage1.getProductCargos().add(productCargoDb);
                                     merchandiseLogRepository.save(merchandiseLog);
