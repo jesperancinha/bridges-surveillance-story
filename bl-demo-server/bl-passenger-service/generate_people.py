@@ -54,7 +54,6 @@ def generate_passengers(quantity=10):
         passenger.update({"gender": gender})
         passenger_json.append(passenger)
         i += 1
+    print(json.dumps(passenger_json))
     return passenger_json
 
-passengers = generate_passengers(70)
-print(json.dumps(passengers))

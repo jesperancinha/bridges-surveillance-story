@@ -34,6 +34,17 @@
   },
   {
     "id": 4,
+    "type": "people",
+    "brand": "SEAPEOPLE",
+    "passengers": 150,
+    "axleLoad": 30,
+    "tare": 25,
+    "volume": 120,
+    "unitWeight": "ton",
+    "unitVolume": "m3"
+  },
+  {
+    "id": 5,
     "type": "main",
     "brand": "ZARCHONIC",
     "axleLoad": 50,
