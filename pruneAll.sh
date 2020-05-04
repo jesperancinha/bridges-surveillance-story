@@ -2,7 +2,7 @@
 
 ./stopMacOs.sh
 
-cd docker-psql
+cd bl-central-psql
 
 docker-compose down
 
@@ -10,9 +10,9 @@ cd ..
 
 docker-compose down
 
-docker stop docker-psql_postgres_1
+docker stop bl-central-psql_postgres_1
 
-docker rm docker-psql_postgres_1
+docker rm bl-central-psql_postgres_1
 
 docker rmi bridge-logistics_bl_train_01_server
 

@@ -1,4 +1,4 @@
-FROM jesperancinha/je-rabbitmq:0.0.1
+FROM jesperancinha/je-streams:0.0.1
 
 WORKDIR /root
 
@@ -18,6 +18,3 @@ ENTRYPOINT ["/root/entrypoint.sh"]
 
 # RabbitMQ
 EXPOSE 5672 15671 15672
-
-# Cassandra
-EXPOSE 9042

@@ -12,13 +12,6 @@ services:
     ports:
       - "15672:15672"
       - "5672:5672"
-      - "9042:9042"
-    deploy:
-      resources:
-        limits:
-          memory: 2G
-        reservations:
-          memory: 2G
 
   bl_train_01_server:
     hostname: bl_train_01_server
@@ -28,6 +21,7 @@ services:
       - "15673:15672"
       - "5673:5672"
       - "9098:9098"
+      - "9099:9099"
 
   bl_vehicle_01_server:
     hostname: bl_vehicle_01_server
@@ -47,15 +41,17 @@ services:
       - "5683:5683/udp"
       - "1883:1883"
       - "9092:9092"
+      - "9093:9093"
+      - "9094:9094"
 
-  postgres:
-    hostname: postgres
+  bl-central-psql:
+    hostname: bl-central-psql
     build:
-      context: bl-central-server/docker-psql/.
+      context: bl-central-server/bl-central-psql/.
     env_file:
-      - bl-central-server/docker-psql/.env
+      - bl-central-server/bl-central-psql/.env
     volumes:
-      - ./bl-central-server/docker-psql/init-scripts:/docker-entrypoint-initdb.d
+      - ./bl-central-server/bl-central-psql/init-scripts:/docker-entrypoint-initdb.d
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
@@ -70,7 +66,7 @@ services:
     ports:
       - "9000:9000"
     depends_on:
-      - postgres
+      - bl-central-psql
       - bl_central_server
       - bl_train_01_server
       - bl_vehicle_01_server

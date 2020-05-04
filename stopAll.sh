@@ -6,9 +6,9 @@ docker rm bl-bridge-server-container
 
 docker-compose down
 
-docker stop docker-psql_postgres_1
+docker stop bl-central-psql_postgres_1
 
-cd bl-central-server/docker-psql
+cd bl-central-server/bl-central-psql
 
 docker-compose down
 

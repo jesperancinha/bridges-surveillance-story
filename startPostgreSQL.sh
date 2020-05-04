@@ -2,7 +2,7 @@
 
 docker-compose down
 
-cd bl-central-server/docker-psql
+cd bl-central-server/bl-central-psql
 
 docker-compose down
 

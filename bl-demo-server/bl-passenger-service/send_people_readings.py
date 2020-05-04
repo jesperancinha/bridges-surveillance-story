@@ -17,9 +17,9 @@ def send_people(host, passengers):
                 while not success:
                     try:
                         json_message = json.dumps(passenger)
-                        print("🧍🧍 Sending " + json_message + " ...")
+                        # print("🧍🧍 Sending " + json_message + " ...")
                         producer.send('PEOPLE', json_message)
-                        print("🧍🧍 Sent " + json_message + "!")
+                        # print("🧍🧍 Sent " + json_message + "!")
                         success = True
                     except:
                         print("🔴 Passenger service not ready yet. Press Ctr-C to stop. Retry in 10 seconds...")
