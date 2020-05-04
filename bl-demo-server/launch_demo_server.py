@@ -38,8 +38,8 @@ vehicle_simulation_process = Process(target=vehicle_simulation)
 bridge_meters_simulation_process = Process(target=bridge_meter_simulation)
 
 train_simulation_process.start()
-vehicle_simulation_process.start()
-bridge_meters_simulation_process.start()
+# vehicle_simulation_process.start()
+# bridge_meters_simulation_process.start()
 
 URL_OPEN = "http://localhost:9000/api/bridge/logistics/schedules/open/52.347293/4.912372"
 

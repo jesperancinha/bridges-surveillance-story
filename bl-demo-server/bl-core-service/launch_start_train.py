@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import functools
 import json
 import os
 import random
@@ -174,7 +175,15 @@ def start_train(host):
         passenger.update({"unit": "kg"})
         passenger.update({"weight": random.randint(40, 120)})
 
-    print(passengers)
+    print("------")
+    print(passengers[299]["weight"])
+    print("------")
+
+    total_passenger_weight = functools.reduce(lambda a, b:
+                                              a + int(b["weight"])
+                                              , passengers, 0)
+
+    print("Passengers total weight is " + str(total_passenger_weight))
 
     train_checkin_checkout_process = Process(target=check_in_out, args=[host, time_to_get_to_bridge, time_to_get_to_station,
                                                                         origin, d_lat, d_lon, d_lat2, d_lon2, passengers])

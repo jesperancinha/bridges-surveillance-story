@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-cd bl-demo-server/bl-core-service
+cd bl-demo-server
 
-python launch_generate_people.py
+python bl-core-service/launch_generate_people.py
 
-cd ../..
+cd ..
