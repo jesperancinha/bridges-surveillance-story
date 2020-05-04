@@ -1,4 +1,4 @@
-# bl-vehicle-server
+# bl-sensor-data-collector
 
 ## About me 👨🏽‍💻🚀
 
