@@ -21,14 +21,16 @@ def send_people(host, passengers):
                         producer.send('PEOPLE', json_message)
                         # print("🧍🧍 Sent " + json_message + "!")
                         success = True
-                    except:
+                    except Exception as err:
+                        print(err)
                         print("🔴 Passenger service not ready yet. Press Ctr-C to stop. Retry in 10 seconds...")
+                        print("🔴 " + str(err))
                         sleep(10)
             success = True
-        except:
+        except Exception as err:
             print("🔴 Passenger service not ready yet. Press Ctr-C to stop. Retry in 10 seconds...")
+            print("🔴 " + str(err))
             sleep(10)
-
 
 
 print("🧍🧍 Passengers sent!")
