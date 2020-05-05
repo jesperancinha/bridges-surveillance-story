@@ -175,13 +175,48 @@ def start_train(host):
         passenger.update({"unit": "kg"})
         passenger.update({"weight": random.randint(40, 120)})
 
-    print("------")
-    print(passengers[299]["weight"])
-    print("------")
-
     total_passenger_weight = functools.reduce(lambda a, b:
                                               a + int(b["weight"])
                                               , passengers, 0)
+
+    with open('../bl-simulation-data/carriages.json') as carriages_json:
+        with open('../bl-simulation-data/train.json') as trains_json:
+            data = json.load(trains_json)
+            carriages = data[0]["composition"]
+            no_package_carriages = filter(lambda x: not "packageId" in x, carriages)
+            json_carriages = json.load(carriages_json)
+            train_carriages = map(lambda y:
+                                  filter(lambda z:
+                                         z["id"] == y["carriageId"],
+                                         json_carriages)[0], no_package_carriages)
+            just_people_train_carriages = list(filter(lambda x: x["type"] == "people", train_carriages))
+            no_toilet_carriages = list(filter(lambda x: x["toilet"] == False, just_people_train_carriages))
+            cis_passengers = filter(lambda x: x["gender"] == "Cis Man" or x["gender"] == "Cis Woman", passengers)
+            no_toilet_carriages_capacity = functools.reduce(lambda a, b:
+                                                            a + int(b["passengers"])
+                                                            , no_toilet_carriages, 0)
+            storyline_cis_max_cap = no_toilet_carriages_capacity / 2
+            no_toilet_carriages_number = len(no_toilet_carriages)
+            current_carriage_index = 0
+            cis_passengers_cap = cis_passengers[0: storyline_cis_max_cap]
+            for passenger in cis_passengers_cap:
+                current_carriage = no_toilet_carriages[current_carriage_index]
+                passenger.update({"carriageId": current_carriage["id"]})
+                current_carriage_index += 1
+                if current_carriage_index >= no_toilet_carriages_number:
+                    current_carriage_index = 0
+
+            total_carriages_number = len(just_people_train_carriages)
+            current_carriage_index = 0
+            for passenger in passengers:
+                while not "carriageId" in passenger:
+                    current_carriage = just_people_train_carriages[current_carriage_index]
+                    passenger.update({"carriageId": current_carriage["id"]})
+                    current_carriage_index += 1
+                    if current_carriage_index >= total_carriages_number:
+                        current_carriage_index = 0
+
+        print(passengers)
 
     print("Passengers total weight is " + str(total_passenger_weight))
 

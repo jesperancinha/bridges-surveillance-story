@@ -48,10 +48,20 @@ Events can be anything that may happen in a configured range around the bridge
 2. For merchandise, a development area will be created called MCS(Merchandise Control Service).  
 3. For bridge timetables and ranges, a development area will be created called DCS(Domain Control Service).  
 
-PLEASE NOTE: Java 14 has been released in March. I started this project last year and I had not yet decided as to which Java version I would be mostly interested in using. For now it will be Java 14. Intellij didn't have this support in March 2019. Yet it's early access program version did. In order to be able to run this in Intellij you must either get the April version (comming soon...) or download the following:
 
--   [Intellij EAP(Early Access Program)](https://www.jetbrains.com/idea/nextversion/?_ga=2.179813472.597851686.1584783010-460061110.1578427207#section=mac)
+## Installation notes
 
+-   Java 14 has been released in March. I started this project last year and I had not yet decided as to which Java version I would be mostly interested in using. For now it will be Java 14. Intellij didn't have this support in March 2019. Yet it's early access program version did. In order to be able to run this in Intellij you must either get the April version (comming soon...) or download the following:
+
+    -   [Intellij EAP(Early Access Program)](https://www.jetbrains.com/idea/nextversion/?_ga=2.179813472.597851686.1584783010-460061110.1578427207#section=mac)
+
+-   Cassandra resource consumption is very high and it competes with the RabbitMQ and Kafka streams of this demo. Considering common machines, you are expected to have an anonymous login able Cassandra installation on your machine
+
+    -   Cassandra for MAC-OS (Make sure that when you start Cassandra, that you do so in a Java 8 environment):
+        ```bash
+        brew install cassandra
+        cassandra
+        ``` 
 
 This application is inspired by the TV Series - [The Bridge](https://www.imdb.com/title/tt1733785/)
 

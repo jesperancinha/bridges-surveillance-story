@@ -28,6 +28,7 @@
     "passengers": 150,
     "axleLoad": 30,
     "tare": 25,
+    "toilet": true,
     "volume": 120,
     "unitWeight": "ton",
     "unitVolume": "m3"
@@ -39,6 +40,7 @@
     "passengers": 150,
     "axleLoad": 30,
     "tare": 25,
+    "toilet": false,
     "volume": 120,
     "unitWeight": "ton",
     "unitVolume": "m3"

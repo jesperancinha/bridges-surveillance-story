@@ -21,16 +21,22 @@ from launch_start_bridge_meters import start_bridge_meters
 def train_simulation():
     while True:
         start_train('localhost')
+        print("🚟 Finished train DEMO!. Starting a new one in 10 seconds... Press Ctr-C to stop")
+        sleep(10)
 
 
 def vehicle_simulation():
     while True:
         start_vehicle('localhost')
+        print("🚟 Finished vehicle DEMO!. Starting a new one in 10 seconds... Press Ctr-C to stop")
+        sleep(10)
 
 
 def bridge_meter_simulation():
     while True:
         start_bridge_meters('127.0.0.1')
+        print("🚟 Finished bridge meter DEMO!. Starting a new one in 10 seconds... Press Ctr-C to stop")
+        sleep(10)
 
 
 train_simulation_process = Process(target=train_simulation)
