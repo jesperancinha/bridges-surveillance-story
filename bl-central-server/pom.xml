@@ -31,11 +31,10 @@
     </properties>
     <modules>
         <module>bl-domain-repository</module>
-        <module>bl-domain-control-service</module>
-        <module>bl-passenger-control-service</module>
         <module>bl-merchandise-data-collector</module>
         <module>bl-web-app</module>
-        <module>bl-readings-service</module>
+        <module>bl-meters-readings-service</module>
+        <module>bl-passengers-readings-service</module>
         <module>bl-readings-aggregator-service</module>
         <module>bl-readings-agg-last-service</module>
         <module>bl-sensor-data-collector</module>

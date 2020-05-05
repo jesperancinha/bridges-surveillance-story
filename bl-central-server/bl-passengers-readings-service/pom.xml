@@ -9,8 +9,8 @@
         <version>0.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>bl-readings-service</artifactId>
-    <name>Bridge Logistics Readings Service</name>
+    <artifactId>bl-passengers-readings-service</artifactId>
+    <name>Bridge Logistics Passenger Readings Service</name>
 
     <dependencies>
         <dependency>
