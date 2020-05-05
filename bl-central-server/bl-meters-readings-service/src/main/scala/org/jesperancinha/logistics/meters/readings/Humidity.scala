@@ -1,4 +1,4 @@
-package org.jesperancinha.logistics.readings
+package org.jesperancinha.logistics.meters.readings
 
 case class Humidity(deviceId: Int,
                     deviceSerialNumber: String,

@@ -1,4 +1,4 @@
-package org.jesperancinha.logistics.readings
+package org.jesperancinha.logistics.meters.readings
 
 object AggregatorLauncher extends App {
 

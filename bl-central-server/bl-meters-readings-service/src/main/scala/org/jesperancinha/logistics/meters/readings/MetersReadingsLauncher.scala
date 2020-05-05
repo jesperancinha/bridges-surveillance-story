@@ -1,4 +1,4 @@
-package org.jesperancinha.logistics.readings
+package org.jesperancinha.logistics.meters.readings
 
 import java.util.UUID
 
@@ -12,7 +12,7 @@ import org.apache.spark.streaming.kafka010.{ConsumerStrategies, KafkaUtils, Loca
 import org.apache.spark.streaming.{Durations, StreamingContext}
 import play.api.libs.json.Json
 
-object ReadingsLauncher extends App {
+object MetersReadingsLauncher extends App {
 
   override def main(args: Array[String]): Unit = {
     val DEMO: String = "demo"
@@ -69,9 +69,9 @@ object ReadingsLauncher extends App {
     try {
       val session = connector.openSession()
       try {
-        session.execute("DROP KEYSPACE IF EXISTS readings")
-        session.execute("CREATE KEYSPACE readings WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 1}")
-        session.execute("CREATE TABLE readings.temperatures (" +
+//        session.execute("DROP KEYSPACE IF EXISTS readings")
+        session.execute("CREATE KEYSPACE IF NOT EXISTS readings WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 1}")
+        session.execute("CREATE TABLE IF NOT EXISTS readings.temperatures (" +
           "id UUID PRIMARY KEY, " +
           "device_id INT, " +
           "device_serial_number TEXT, " +
@@ -79,7 +79,7 @@ object ReadingsLauncher extends App {
           "unit TEXT, " +
           "time_of_reading BIGINT, " +
           "reading BIGINT)")
-        session.execute("CREATE TABLE readings.humidity (" +
+        session.execute("CREATE TABLE IF NOT EXISTS readings.humidity (" +
           "id UUID PRIMARY KEY, " +
           "device_id INT, " +
           "device_serial_number TEXT, " +

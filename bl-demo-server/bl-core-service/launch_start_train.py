@@ -109,10 +109,12 @@ def pulses(host, origin, d_lat, d_lon, passengers):
         send_passenger_messages(host, origin, 'INTRANSIT', passengers)
 
 
-def send_passenger_messages(host, origin, param, passengers):
+def send_passenger_messages(host, origin, status, passengers):
     for passenger in passengers:
         passenger.update({'lat': origin.lat})
         passenger.update({'lon': origin.lon})
+        passenger.update({'status': status})
+        passenger.update({'timestamp': current_time()})
     send_people(host, passengers)
 
 

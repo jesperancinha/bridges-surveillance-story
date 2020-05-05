@@ -18,7 +18,7 @@ def send_people(host, passengers):
                     try:
                         json_message = json.dumps(passenger)
                         # print("🧍🧍 Sending " + json_message + " ...")
-                        producer.send('PEOPLE', json_message)
+                        producer.send('PASSENGER', json_message)
                         # print("🧍🧍 Sent " + json_message + "!")
                         success = True
                     except Exception as err:
