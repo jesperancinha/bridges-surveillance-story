@@ -18,6 +18,8 @@ services:
       - "5673:5672"
       - "9098:9098"
       - "9099:9099"
+      - "9100:9100"
+      - "9101:9101"
 
   bl_vehicle_01_server:
     hostname: bl_vehicle_01_server

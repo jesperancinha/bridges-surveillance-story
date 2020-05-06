@@ -34,6 +34,8 @@ object PassengersReadingsLauncher extends App {
     val appName = sparkConfig.getString("app-name")
     val kafkaHost1 = envConfig.getString("kafka-host-1")
     val kafkaHost2 = envConfig.getString("kafka-host-2")
+    val kafkaHost3 = envConfig.getString("kafka-host-3")
+    val kafkaHost4 = envConfig.getString("kafka-host-4")
     val cassandraHost = envConfig.getString("cassandra-host")
     println(appName)
 
@@ -46,7 +48,7 @@ object PassengersReadingsLauncher extends App {
     val sc = streamingContext.sparkContext
 
     val kafkaParams = Map[String, Object](
-      "bootstrap.servers" -> (kafkaHost1 + ":9098," + kafkaHost2 + ":9099"),
+      "bootstrap.servers" -> (kafkaHost1 + ":9098," + kafkaHost2 + ":9099," + kafkaHost2 + ":9100 ," + kafkaHost2 + ":9101"),
       "key.deserializer" -> classOf[StringDeserializer],
       "value.deserializer" -> classOf[StringDeserializer],
       "group.id" -> "0",
@@ -90,36 +92,39 @@ object PassengersReadingsLauncher extends App {
       System.out.println("--- New RDD with " + rdd.partitions.length + " partitions and " + rdd.count + " records")
       val strings = rdd.map(record => record.value()).collect();
       strings.foreach(temperatureString => {
-        try {
-          System.out.println("--- New RDD id " + rdd.id)
-          val passenger = Json.fromJson[Passenger](Json.parse(temperatureString)).get
-          val collection = sc.parallelize(Seq((
-            UUID.randomUUID(),
-            passenger.id,
-            passenger.firstName,
-            passenger.lastName,
-            passenger.gender,
-            passenger.carriageId,
-            passenger.weight,
-            passenger.unit,
-            passenger.status,
-            passenger.lat,
-            passenger.lon,
-            passenger.timeOfReading
-          )))
-          collection.saveToCassandra("readings", "passengers",
-            SomeColumns("id",
-              "passenger_id", "first_name", "last_name", "gender",
-              "carriage_id",
-              "weight",
-              "unit",
-              "status",
-              "lat",
-              "lon",
-              "time_of_reading"))
-        } catch {
-          case e: java.util.NoSuchElementException => println("This data doesn't make sense" + e.getMessage)
-        }
+        System.out.println("--- New RDD id " + rdd.id)
+        val passengeres = Json.fromJson[Array[Passenger]](Json.parse(temperatureString)).get
+        passengeres.foreach(passenger => {
+          try {
+            val collection = sc.parallelize(Seq((
+              UUID.randomUUID(),
+              passenger.id,
+              passenger.firstName,
+              passenger.lastName,
+              passenger.gender,
+              passenger.carriageId,
+              passenger.weight,
+              passenger.unit,
+              passenger.status,
+              passenger.lat,
+              passenger.lon,
+              passenger.timeOfReading
+            )))
+            collection.saveToCassandra("readings", "passengers",
+              SomeColumns("id",
+                "passenger_id", "first_name", "last_name", "gender",
+                "carriage_id",
+                "weight",
+                "unit",
+                "status",
+                "lat",
+                "lon",
+                "time_of_reading"))
+          }
+          catch {
+            case e: java.util.NoSuchElementException => println("This data doesn't make sense" + e.getMessage)
+          }
+        })
       })
     }
 
@@ -131,4 +136,5 @@ object PassengersReadingsLauncher extends App {
     streamingContext.start
     streamingContext.awaitTermination()
   }
+
 }

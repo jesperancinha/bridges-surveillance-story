@@ -43,11 +43,20 @@ train_simulation_process = Process(target=train_simulation)
 vehicle_simulation_process = Process(target=vehicle_simulation)
 bridge_meters_simulation_process = Process(target=bridge_meter_simulation)
 
+URL_OPEN = "http://localhost:9000/api/bridge/logistics/schedules/open/52.347293/4.912372"
+
+simulation_ready = False
+while not simulation_ready:
+    try:
+        open = requests.get(url=URL_OPEN, timeout=5)
+        simulation_ready = True
+    except:
+        print("🔴 Simulation not ready yet. Press Ctr-C to stop. Retry in 10 seconds...")
+        sleep(10)
+
 train_simulation_process.start()
 vehicle_simulation_process.start()
 bridge_meters_simulation_process.start()
-
-URL_OPEN = "http://localhost:9000/api/bridge/logistics/schedules/open/52.347293/4.912372"
 
 simulation_ready = False
 while True:

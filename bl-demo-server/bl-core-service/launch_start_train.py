@@ -26,59 +26,9 @@ from launch_generate_people import generate_all_passengers
 from send_people_readings import send_people
 
 
-def current_time():
-    return int(round(time.time() * 1000))
-
-
-def get_train_checkin_data(coord, weight, carriage_id):
-    return {
-        'id': 1,
-        'source': 'TRAIN',
-        'type': 'CHECKIN',
-        'timestamp': current_time(),
-        'lat': coord.lat,
-        'lon': coord.lon,
-        'weight': weight,
-        'carriageId': carriage_id
-    }
-
-
-def get_train_checkout_data(coord, weight, carriage_id):
-    return {
-        'id': 1,
-        'source': 'TRAIN',
-        'type': 'CHECKOUT',
-        'timestamp': current_time(),
-        'lat': coord.lat,
-        'lon': coord.lon,
-        'weight': weight,
-        'carriageId': carriage_id
-    }
-
-
-def get_bridge_checkin_data(coord):
-    return {
-        'id': 2,
-        'source': 'BRIDGE',
-        'type': 'CHECKIN',
-        'timestamp': current_time(),
-        'lat': coord.lat,
-        'lon': coord.lon
-    }
-
-
-def get_bridge_checkout_data(coord):
-    return {
-        'id': 2,
-        'source': 'BRIDGE',
-        'type': 'CHECKOUT',
-        'timestamp': current_time(),
-        'lat': coord.lat,
-        'lon': coord.lon
-    }
-
-
-def check_in_out(host, time_to_get_to_bridge, time_to_get_to_station, origin, d_lat, d_lon, d_lat2, d_lon2, passengers, train):
+def check_in_out(host, time_to_get_to_bridge, time_to_get_to_station, origin,
+                 d_lat, d_lon, d_lat2, d_lon2,
+                 passengers, train, criminal, victim):
     print("🚂 🛤 Train is underway. Just left central statin 🏫")
     success = False
     while (not success):
@@ -88,28 +38,66 @@ def check_in_out(host, time_to_get_to_bridge, time_to_get_to_station, origin, d_
         except:
             print("🔴 Train Merchandise queue not ready yet. Press Ctr-C to stop. Retry in 10 seconds...")
             sleep(10)
-    train_message_process = Process(target=pulses, args=[host, origin, d_lat, d_lon, passengers, train])
+    train_message_process = Process(target=pulses, args=[host, origin, d_lat, d_lon, train])
+    train_passenger_process = Process(target=pulses_passengers, args=[host, origin, passengers])
+    train_passenger_process.start()
     train_message_process.start()
     sleep(time_to_get_to_bridge)
     print("🚂 🌉 Train entering Bridge...")
-    send_checkin_message(host, origin, train)
+    send_checkin_message(host, origin, train, criminal, victim)
     print("🚂 Train Checked In!")
+
     sleep(5)
     train_message_process.terminate()
-    send_checkout_message(host, origin, train)
+
+    send_checkout_message(host, origin, train, criminal, victim)
     print("🚂 Train Checked Out!")
     print("🚂 Train Leaving Bridge...")
-    train_message_process = Process(target=pulses, args=[host, origin, d_lat2, d_lon2, passengers, train])
+    train_message_process = Process(target=pulses, args=[host, origin, d_lat2, d_lon2, train])
     train_message_process.start()
     sleep(time_to_get_to_station)
     train_message_process.terminate()
+    train_passenger_process.terminate()
 
 
-def pulses(host, origin, d_lat, d_lon, passengers, train):
+def current_time():
+    return int(round(time.time() * 1000))
+
+
+def get_train_check_in_out_data(coord, weight, carriage_id, status):
+    return {
+        'id': 1,
+        'source': 'TRAIN',
+        'type': status,
+        'timestamp': current_time(),
+        'lat': coord.lat,
+        'lon': coord.lon,
+        'weight': weight,
+        'carriageId': carriage_id
+    }
+
+
+def get_bridge_check_in_out_data(coord, status):
+    return {
+        'id': 2,
+        'source': 'BRIDGE',
+        'type': status,
+        'timestamp': current_time(),
+        'lat': coord.lat,
+        'lon': coord.lon
+    }
+
+
+def pulses(host, origin, d_lat, d_lon, train):
     while True:
         sleep(1)
         origin.delta(d_lat, d_lon)
         send_merchandise_message(host, origin, train, 'INTRANSIT')
+
+
+def pulses_passengers(host, origin, passengers):
+    while True:
+        sleep(10)
         send_passenger_messages(host, origin, 'INTRANSIT', passengers)
 
 
@@ -126,6 +114,8 @@ def send_merchandise_message(host, origin, train, status):
     train[0].update({'status': status})
     train[0].update({'lat': origin.lat})
     train[0].update({'lon': origin.lon})
+    for carriage in train[0]["composition"]:
+        send_train_signal(host, get_train_check_in_out_data(origin, carriage["weight"], carriage["carriageId"], 'INTRANSIT'))
     success = False
     while not success:
         try:
@@ -139,17 +129,33 @@ def send_merchandise_message(host, origin, train, status):
     print("🚂 Train location: " + str(origin))
 
 
-def send_checkin_message(host, origin, train):
+def send_checkin_message(host, origin, train, criminal, victim):
+    carriage_toilet = list(filter(lambda x: x["carriageId"] == criminal["carriageId"] - 1, train[0]["composition"]))[0]
+    carriage_current = list(filter(lambda x: x["carriageId"] == criminal["carriageId"], train[0]["composition"]))[0]
+    print("🚂 Carriage with toilet " + str(carriage_toilet))
+    print("🚂 Carriage without toilet " + str(carriage_current))
+    carriage_toilet.update({"weight": carriage_toilet["weight"] + criminal["weight"] + victim["weight"]})
+    carriage_current.update({"weight": carriage_current["weight"] - criminal["weight"] -victim["weight"]})
+    print("🚂 Carriage with toilet after moving" + str(carriage_toilet))
+    print("🚂 Carriage without toilet after moving" + str(carriage_current))
     for carriage in train[0]["composition"]:
-        send_train_signal(host, get_train_checkin_data(origin, carriage["weight"], carriage["carriageId"]))
-        send_bridge_signal(host, get_bridge_checkin_data(origin))
+        send_train_signal(host, get_train_check_in_out_data(origin, carriage["weight"], carriage["carriageId"], 'CHECKIN'))
+        send_bridge_signal(host, get_bridge_check_in_out_data(origin, 'CHECKIN'))
         print("Train Check In sent!")
 
 
-def send_checkout_message(host, origin, train):
+def send_checkout_message(host, origin, train, criminal, victim):
+    carriage_toilet = list(filter(lambda x: x["carriageId"] == criminal["carriageId"] - 1, train[0]["composition"]))[0]
+    carriage_current = list(filter(lambda x: x["carriageId"] == criminal["carriageId"], train[0]["composition"]))[0]
+    print("🚂 Carriage with toilet " + str(carriage_toilet))
+    print("🚂 Carriage without toilet " + str(carriage_current))
+    carriage_toilet.update({"weight": carriage_toilet["weight"] - criminal["weight"] - victim["weight"]})
+    carriage_current.update({"weight": carriage_current["weight"] + criminal["weight"]})
+    print("🚂 Carriage with toilet after moving" + str(carriage_toilet))
+    print("🚂 Carriage without toilet after moving" + str(carriage_current))
     for carriage in train[0]["composition"]:
-        send_train_signal(host, get_train_checkout_data(origin, carriage["weight"], carriage["carriageId"]))
-        send_bridge_signal(host, get_bridge_checkout_data(origin))
+        send_train_signal(host, get_train_check_in_out_data(origin, carriage["weight"], carriage["carriageId"], 'CHECKOUT'))
+        send_bridge_signal(host, get_bridge_check_in_out_data(origin, 'CHECKOUT'))
         print("Train Check Out sent!")
 
 
@@ -230,9 +236,21 @@ def start_train(host):
 
             print("🚂 Generated train composition: " + str(train))
 
+            shared_carriage = just_people_train_carriages[1]
+            print(shared_carriage)
+            all_non_toilet_passengers = filter(lambda x: x["carriageId"] == shared_carriage["id"], passengers)
+            all_non_toilet_cis_passengers = filter(lambda x: x["gender"] == "Cis Man" or x["gender"] == "Cis Woman", all_non_toilet_passengers)
+            all_non_toilet_non_cis_passengers = filter(lambda x: x["gender"] != "Cis Man" and x["gender"] != "Cis Woman", all_non_toilet_passengers)
+
+            criminal = list(all_non_toilet_cis_passengers)[random.randint(0, len(list(all_non_toilet_cis_passengers)) - 1)]
+            victim = list(all_non_toilet_non_cis_passengers)[random.randint(0, len(list(all_non_toilet_non_cis_passengers)) - 1)]
+
+            print("🚂 Criminal " + str(criminal))
+            print("🚂 Victim  " + str(victim))
             data[0]["composition"] = train
             train_checkin_checkout_process = Process(target=check_in_out, args=[host, time_to_get_to_bridge, time_to_get_to_station,
-                                                                                origin, d_lat, d_lon, d_lat2, d_lon2, passengers, data])
+                                                                                origin, d_lat, d_lon, d_lat2, d_lon2,
+                                                                                passengers, data, criminal, victim])
 
             print("Time to get to bridge - " + str(time_to_get_to_bridge))
             print("Time to get back to station - " + str(time_to_get_to_station))

@@ -2,7 +2,7 @@
 
 java -jar --enable-preview -Dspring.profiles.active=demo bl-web-app.jar &
 
-sleep 10
+sleep 20
 
 java -jar --enable-preview -Dspring.profiles.active=demo bl-sensor-data-collector.jar &
 
