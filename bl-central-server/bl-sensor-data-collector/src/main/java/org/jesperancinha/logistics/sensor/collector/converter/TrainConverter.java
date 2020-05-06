@@ -12,6 +12,8 @@ public class TrainConverter {
             .train(train)
             .lat(trainLogDto.lat())
             .lon(trainLogDto.lon())
+            .weight(trainLogDto.weight())
+            .carriageId(trainLogDto.carriageId())
             .build();
     }
 }

@@ -30,25 +30,29 @@ def current_time():
     return int(round(time.time() * 1000))
 
 
-def get_train_checkin_data(coord):
+def get_train_checkin_data(coord, weight, carriage_id):
     return {
         'id': 1,
         'source': 'TRAIN',
         'type': 'CHECKIN',
         'timestamp': current_time(),
         'lat': coord.lat,
-        'lon': coord.lon
+        'lon': coord.lon,
+        'weight': weight,
+        'carriageId': carriage_id
     }
 
 
-def get_train_checkout_data(coord):
+def get_train_checkout_data(coord, weight, carriage_id):
     return {
         'id': 1,
         'source': 'TRAIN',
         'type': 'CHECKOUT',
         'timestamp': current_time(),
         'lat': coord.lat,
-        'lon': coord.lon
+        'lon': coord.lon,
+        'weight': weight,
+        'carriageId': carriage_id
     }
 
 
@@ -88,11 +92,11 @@ def check_in_out(host, time_to_get_to_bridge, time_to_get_to_station, origin, d_
     train_message_process.start()
     sleep(time_to_get_to_bridge)
     print("🚂 🌉 Train entering Bridge...")
-    send_checkin_message(host, origin)
+    send_checkin_message(host, origin, train)
     print("🚂 Train Checked In!")
     sleep(5)
     train_message_process.terminate()
-    send_checkout_message(host, origin)
+    send_checkout_message(host, origin, train)
     print("🚂 Train Checked Out!")
     print("🚂 Train Leaving Bridge...")
     train_message_process = Process(target=pulses, args=[host, origin, d_lat2, d_lon2, passengers, train])
@@ -119,32 +123,34 @@ def send_passenger_messages(host, origin, status, passengers):
 
 
 def send_merchandise_message(host, origin, train, status):
-        train[0].update({'status': status})
-        train[0].update({'lat': origin.lat})
-        train[0].update({'lon': origin.lon})
-        success = False
-        while not success:
-            try:
-                send_train_merchandise(host, train)
-                success = True
-            except:
-                print("🔴 Train Merchandise queue error. Press Ctr-C to stop. Retry in 10 seconds...")
-                sleep(10)
+    train[0].update({'status': status})
+    train[0].update({'lat': origin.lat})
+    train[0].update({'lon': origin.lon})
+    success = False
+    while not success:
+        try:
+            send_train_merchandise(host, train)
+            success = True
+        except:
+            print("🔴 Train Merchandise queue error. Press Ctr-C to stop. Retry in 10 seconds...")
+            sleep(10)
 
-        print("🚂 Train Merchandise sent! " + str(current_time()))
-        print("🚂 Train location: " + str(origin))
-
-
-def send_checkin_message(host, origin):
-    send_train_signal(host, get_train_checkin_data(origin))
-    send_bridge_signal(host, get_bridge_checkin_data(origin))
-    print("Train Check In sent!")
+    print("🚂 Train Merchandise sent! " + str(current_time()))
+    print("🚂 Train location: " + str(origin))
 
 
-def send_checkout_message(host, origin):
-    send_train_signal(host, get_train_checkout_data(origin))
-    send_bridge_signal(host, get_bridge_checkout_data(origin))
-    print("Train Check Out sent!")
+def send_checkin_message(host, origin, train):
+    for carriage in train[0]["composition"]:
+        send_train_signal(host, get_train_checkin_data(origin, carriage["weight"], carriage["carriageId"]))
+        send_bridge_signal(host, get_bridge_checkin_data(origin))
+        print("Train Check In sent!")
+
+
+def send_checkout_message(host, origin, train):
+    for carriage in train[0]["composition"]:
+        send_train_signal(host, get_train_checkout_data(origin, carriage["weight"], carriage["carriageId"]))
+        send_bridge_signal(host, get_bridge_checkout_data(origin))
+        print("Train Check Out sent!")
 
 
 def start_train(host):
@@ -174,17 +180,17 @@ def start_train(host):
     for passenger in passengers:
         passenger.update({"unit": "kg"})
         passenger.update({"weight": random.randint(40, 120)})
-
-    total_passenger_weight = functools.reduce(lambda a, b:
-                                              a + int(b["weight"])
-                                              , passengers, 0)
+    #
+    # total_passenger_weight = functools.reduce(lambda a, b:
+    #                                           a + int(b["weight"])
+    #                                           , passengers, 0)
 
     with open('../bl-simulation-data/carriages.json') as carriages_json:
         with open('../bl-simulation-data/train.json') as trains_json:
             data = json.load(trains_json)
             train = data[0]["composition"]
             carriages = train
-            no_package_carriages = filter(lambda x: not "packageId" in x, carriages)
+            no_package_carriages = filter(lambda x: not "products" in x, carriages)
             json_carriages = json.load(carriages_json)
             train_carriages = map(lambda y:
                                   filter(lambda z:
@@ -224,8 +230,9 @@ def start_train(host):
 
             print("🚂 Generated train composition: " + str(train))
 
+            data[0]["composition"] = train
             train_checkin_checkout_process = Process(target=check_in_out, args=[host, time_to_get_to_bridge, time_to_get_to_station,
-                                                                                origin, d_lat, d_lon, d_lat2, d_lon2, passengers, train])
+                                                                                origin, d_lat, d_lon, d_lat2, d_lon2, passengers, data])
 
             print("Time to get to bridge - " + str(time_to_get_to_bridge))
             print("Time to get back to station - " + str(time_to_get_to_station))

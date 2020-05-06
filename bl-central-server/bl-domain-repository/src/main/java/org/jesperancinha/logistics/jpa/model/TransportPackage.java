@@ -41,4 +41,5 @@ public class TransportPackage {
     @ManyToOne
     private Container container;
 
+    private Long weight;
 }

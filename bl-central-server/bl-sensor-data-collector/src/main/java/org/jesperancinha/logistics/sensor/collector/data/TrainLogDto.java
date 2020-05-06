@@ -7,5 +7,7 @@ public record TrainLogDto(Long id,
     String type,
     Long timestamp,
     BigDecimal lat,
-    BigDecimal lon) {
+    BigDecimal lon,
+    Long weight,
+    Long carriageId) {
 }

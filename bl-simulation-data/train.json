@@ -27,13 +27,16 @@
         ]
       },
       {
-        "carriageId": 3
+        "carriageId": 3,
+        "packageId": 666111
       },
       {
-        "carriageId": 4
+        "carriageId": 4,
+        "packageId": 666222
       },
       {
-        "carriageId": 5
+        "carriageId": 5,
+        "packageId": 666333
       }
     ]
   }

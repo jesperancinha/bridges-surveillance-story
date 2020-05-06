@@ -11,10 +11,10 @@ import java.util.List;
 
 public record TrainMerchandiseDto(@Id @NonNull Long id,
     @NonNull String name,
-    @NonNull Long supplierId,
+    Long supplierId,
+    Long vendorId,
     TrainType type,
     Status status,
-    @NonNull Long vendorId,
     @NonNull List<CarrierDto>composition,
     BigDecimal lat,
     BigDecimal lon) {

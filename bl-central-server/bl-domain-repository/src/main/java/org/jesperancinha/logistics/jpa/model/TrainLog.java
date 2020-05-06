@@ -33,4 +33,6 @@ public class TrainLog {
     private BigDecimal lon;
     private Long timestamp;
     private String checkInOut;
+    private Long weight;
+    private Long carriageId;
 }

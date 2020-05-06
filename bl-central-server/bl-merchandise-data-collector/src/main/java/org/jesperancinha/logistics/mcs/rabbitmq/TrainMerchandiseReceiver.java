@@ -21,10 +21,10 @@ import org.springframework.stereotype.Component;
 import java.nio.charset.Charset;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.concurrent.CountDownLatch;
 import java.util.stream.Stream;
 
-import static java.util.Objects.nonNull;
 import static org.jesperancinha.logistics.jpa.types.Status.DELIVERED;
 
 @Slf4j
@@ -49,8 +49,8 @@ public class TrainMerchandiseReceiver {
 
     private final CarriageRepository carriageRepository;
 
-    public TrainMerchandiseReceiver(Gson gson, MerchandiseLogRepository merchandiseLogRepository, MerchandiseRepository merchandiseRepository, ProductRepository productRepository, TransportPackageRepository transportPackageRepository, CompanyRepository companyRepository,
-        ProductCargoRepository productCargoRepository, CarriageRepository carriageRepository) {
+    public TrainMerchandiseReceiver(Gson gson, MerchandiseLogRepository merchandiseLogRepository, MerchandiseRepository merchandiseRepository, ProductRepository productRepository, TransportPackageRepository transportPackageRepository,
+        CompanyRepository companyRepository, ProductCargoRepository productCargoRepository, CarriageRepository carriageRepository) {
         this.gson = gson;
         this.merchandiseLogRepository = merchandiseLogRepository;
         this.merchandiseRepository = merchandiseRepository;
@@ -68,52 +68,67 @@ public class TrainMerchandiseReceiver {
             final TrainMerchandiseDto[] trainMerchandiseDtos = gson.fromJson(messageString, TrainMerchandiseDto[].class);
             Stream.of(trainMerchandiseDtos)
                 .forEach(trainMerchandiseDto -> {
-                    final Company supplier = companyRepository.findById(trainMerchandiseDto.supplierId())
-                        .orElse(null);
-                    final Company vendor = companyRepository.findById(trainMerchandiseDto.vendorId())
-                        .orElse(null);
+                    final Company supplier;
+                    if (Objects.nonNull(trainMerchandiseDto.supplierId())) {
+                        supplier = companyRepository.findById(trainMerchandiseDto.supplierId())
+                            .orElse(null);
+                    } else {
+                        supplier = null;
+                    }
+
+                    final Company vendor;
+                    if (Objects.nonNull(trainMerchandiseDto.vendorId())) {
+                        vendor = companyRepository.findById(trainMerchandiseDto.vendorId())
+                            .orElse(null);
+                    } else {
+                        vendor = null;
+                    }
 
                     trainMerchandiseDto.composition()
                         .parallelStream()
-                        .filter(carrierDto -> nonNull(carrierDto.packageId()))
                         .forEach(carrierDto -> {
                             final Long packageId = carrierDto.packageId();
                             final TransportPackage transportPackage = TransportPackage.builder()
                                 .id(packageId)
                                 .supplier(supplier)
                                 .vendor(vendor)
+                                .weight(carrierDto.weight())
                                 .carriage(carriageRepository.findById(carrierDto.carriageId())
                                     .orElse(null))
                                 .productCargos(new ArrayList<>())
                                 .build();
                             final TransportPackage transportPackage1 = transportPackageRepository.save(transportPackage);
-                            carrierDto.products()
-                                .parallelStream()
-                                .forEach(productInTransitDto -> {
-                                    final Product product = productRepository.findById(productInTransitDto.productId())
-                                        .orElse(null);
-                                    final ProductCargo productCargo = ProductCargo.builder()
-                                        .product(product)
-                                        .quantity(productInTransitDto.quantity())
-                                        .build();
-                                    final ProductCargo productCargoDb = productCargoRepository.save(productCargo);
-                                    final MerchandiseLog merchandiseLog = MerchandiseLog.builder()
-                                        .supplier(supplier)
-                                        .vendor(vendor)
-                                        .timestamp(Instant.now()
-                                            .toEpochMilli())
-                                        .transportPackage(transportPackage1)
-                                        .productCargo(productCargoDb)
-                                        .status(trainMerchandiseDto.status())
-                                        .lat(trainMerchandiseDto.lat())
-                                        .lon(trainMerchandiseDto.lon())
-                                        .build();
-                                    transportPackage1.getProductCargos().add(productCargoDb);
-                                    merchandiseLogRepository.save(merchandiseLog);
-                                    if (merchandiseLog.getStatus() == DELIVERED) {
-                                        merchandiseRepository.save(MerchandiseLogConverter.toMerchandise(merchandiseLog));
-                                    }
-                                });
+                            if (Objects.nonNull(carrierDto.products())) {
+                                carrierDto.products()
+                                    .parallelStream()
+                                    .forEach(productInTransitDto -> {
+                                        final Product product = productRepository.findById(productInTransitDto.productId())
+                                            .orElse(null);
+                                        final ProductCargo productCargo = ProductCargo.builder()
+                                            .product(product)
+                                            .quantity(productInTransitDto.quantity())
+                                            .build();
+                                        final ProductCargo productCargoDb = productCargoRepository.save(productCargo);
+                                        final MerchandiseLog merchandiseLog = MerchandiseLog.builder()
+                                            .supplier(supplier)
+                                            .vendor(vendor)
+                                            .timestamp(Instant.now()
+                                                .toEpochMilli())
+                                            .transportPackage(transportPackage1)
+                                            .productCargo(productCargoDb)
+                                            .status(trainMerchandiseDto.status())
+                                            .lat(trainMerchandiseDto.lat())
+                                            .lon(trainMerchandiseDto.lon())
+                                            .build();
+                                        transportPackage1.getProductCargos()
+                                            .add(productCargoDb);
+                                        merchandiseLogRepository.save(merchandiseLog);
+                                        if (merchandiseLog.getStatus() == DELIVERED) {
+                                            merchandiseRepository.save(MerchandiseLogConverter.toMerchandise(merchandiseLog));
+                                        }
+                                    });
+
+                            }
                             transportPackageRepository.save(transportPackage1);
 
                         });
