@@ -35,7 +35,7 @@ sourceQueue train_01_sensor
 
 ./startZookeeper.sh &
 
-sleep 5
+sleep 10
 
 ./startKafka.sh &
 

@@ -117,8 +117,9 @@ def pulses(host, origin, d_lat, d_lon):
         try:
             send_merchandise_message(host, origin, 'LOADED')
             success = True
-        except:
+        except Exception as err:
             print("🔴 Vehicle Merchandise queue not ready yet. Press Ctr-C to stop. Retry in 10 seconds...")
+            print("🔴 " + str(err))
             sleep(10)
     while True:
         sleep(1)

@@ -22,7 +22,6 @@ def send_people(host, passengers):
                         # print("🧍🧍 Sent " + json_message + "!")
                         success = True
                     except Exception as err:
-                        print(err)
                         print("🔴 Passenger service not ready yet. Press Ctr-C to stop. Retry in 10 seconds...")
                         print("🔴 " + str(err))
                         sleep(10)

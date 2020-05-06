@@ -28,4 +28,5 @@ public class Carriage {
     private Long volume;
     private String unitWeight;
     private String unitVolume;
+    private Boolean toilet;
 }

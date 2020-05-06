@@ -1,11 +1,5 @@
 version: "3.7"
 
-networks:
-  cassandra-net:
-    driver: bridge
-  central-net:
-    driver: bridge
-
 services:
   bl_central_server:
     hostname: bl_central_server
@@ -14,8 +8,6 @@ services:
     ports:
       - "15672:15672"
       - "5672:5672"
-    networks:
-      - central-net
 
   bl_train_01_server:
     hostname: bl_train_01_server
@@ -26,8 +18,6 @@ services:
       - "5673:5672"
       - "9098:9098"
       - "9099:9099"
-    networks:
-      - central-net
 
   bl_vehicle_01_server:
     hostname: bl_vehicle_01_server
@@ -36,8 +26,6 @@ services:
     ports:
       - "15675:15672"
       - "5675:5672"
-    networks:
-      - central-net
 
   bl_bridge_01_server:
     hostname: bl_bridge_01_server
@@ -51,8 +39,6 @@ services:
       - "9092:9092"
       - "9093:9093"
       - "9094:9094"
-    networks:
-      - central-net
 
   bl_central_psql:
     hostname: bl_central_psql
@@ -68,8 +54,6 @@ services:
       - POSTGRES_MULTIPLE_DATABASES=bllogistics
     ports:
       - "5433:5432"
-    networks:
-      - central-net
 
 # NOTE: Cassandra consumes a lot of resources. If you have a very high capacity machine, please use this container. Otherwise, use cassandra from the outside.
 #  bl_central_cassandra:
@@ -102,6 +86,4 @@ services:
       - bl_central_server
       - bl_train_01_server
       - bl_vehicle_01_server
-    networks:
-      - central-net
 

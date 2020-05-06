@@ -1,11 +1,12 @@
 package org.jesperancinha.logistics.passengers.readings
 
 case class Passenger(id: Long,
-                     lastName: String,
                      firstName: String,
+                     lastName: String,
                      gender: String,
                      carriageId: Long,
                      weight: Long,
+                     unit: String,
                      status: String,
                      lat: Float,
                      lon: Float,
@@ -23,6 +24,7 @@ object Passenger {
       (JsPath \ "gender").read[String] and
       (JsPath \ "carriageId").read[Long] and
       (JsPath \ "weight").read[Long] and
+      (JsPath \ "unit").read[String] and
       (JsPath \ "status").read[String] and
       (JsPath \ "lat").read[Float] and
       (JsPath \ "lon").read[Float] and

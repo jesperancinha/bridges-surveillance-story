@@ -65,8 +65,8 @@ object PassengersReadingsLauncher extends App {
       val session = connector.openSession()
       try {
         //        session.execute("DROP KEYSPACE IF EXISTS readings")
-        session.execute("CREATE KEYSPACE readings WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 1}")
-        session.execute("CREATE TABLE readings.passengers (" +
+        session.execute("CREATE KEYSPACE IF NOT EXISTS readings WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 1}")
+        session.execute("CREATE TABLE IF NOT EXISTS readings.passengers (" +
           "id UUID PRIMARY KEY, " +
           "passenger_id BIGINT, " +
           "first_name TEXT, " +
@@ -74,6 +74,8 @@ object PassengersReadingsLauncher extends App {
           "gender TEXT, " +
           "carriage_id BIGINT, " +
           "weight BIGINT, " +
+          "unit TEXT, " +
+          "status TEXT, " +
           "lat DECIMAL, " +
           "lon DECIMAL, " +
           "time_of_reading BIGINT)")
@@ -99,6 +101,7 @@ object PassengersReadingsLauncher extends App {
             passenger.gender,
             passenger.carriageId,
             passenger.weight,
+            passenger.unit,
             passenger.status,
             passenger.lat,
             passenger.lon,
@@ -109,6 +112,7 @@ object PassengersReadingsLauncher extends App {
               "passenger_id", "first_name", "last_name", "gender",
               "carriage_id",
               "weight",
+              "unit",
               "status",
               "lat",
               "lon",

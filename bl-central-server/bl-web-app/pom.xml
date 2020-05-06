@@ -33,7 +33,6 @@
         <dependency>
             <groupId>org.jesperancinha.logistics</groupId>
             <artifactId>bl-domain-repository</artifactId>
-            <version>0.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.postgresql</groupId>

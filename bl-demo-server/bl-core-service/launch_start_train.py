@@ -114,7 +114,7 @@ def send_passenger_messages(host, origin, status, passengers):
         passenger.update({'lat': origin.lat})
         passenger.update({'lon': origin.lon})
         passenger.update({'status': status})
-        passenger.update({'timestamp': current_time()})
+        passenger.update({'timeOfReading': current_time()})
     send_people(host, passengers)
 
 
