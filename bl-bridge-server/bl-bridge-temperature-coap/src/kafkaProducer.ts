@@ -27,7 +27,7 @@ let produce = (host: string, data: object = {}) => {
         producer.on('error', function (err) {
             console.log(err);
             console.log('[kafka-producer -> ' + kafka_topic + ']: connection errored');
-            throw err;
+            // throw err;
         });
     } catch (e) {
         console.log(e);

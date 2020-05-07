@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import json
+import random
 from random import randint
 
 PASSENGER_ROOT = "./../bl-simulation-data/passengers/"
@@ -126,3 +126,7 @@ def generate_storyline_passengers(quantity=10):
         i += 1
     # print(json.dumps(passenger_json))
     return passenger_json
+
+
+def generate_mother_name(last_name):
+    return mother_names[random.randint(0, len(mother_names) - 1)] + " " + last_name
