@@ -336,6 +336,16 @@ pip install kafka-python
 docker container logs --details bridge-logistics_bl_central_cassandra_1 
 ```
 
+## Murder in the Orient Express
+
+Since this project about bridges and trains and because I love the [Murder on the Orient Express](https://www.imdb.com/title/tt0071877/) film and the tv series [The Bridge](https://www.imdb.com/title/tt1733785/?ref_=fn_al_tt_1), I've created a game about. This game mean't to be not only entertaining, but also a way for you to learn the basics of various streaming mechanisms and master your skills. This is the setting:
+
+> There hads been a gruesome crime committed over a bridge. You are the detective.
+> You have find out the murderer fast and accurately otherwise he will be at large and take over the world.
+> The crime you will be looking it may look like a hate crime, but it can mean much more...
+
+More details comming soon...
+
 ## Domain
 
 -   [UIC classification of goods wagons](https://en.wikipedia.org/wiki/UIC_classification_of_goods_wagons)
