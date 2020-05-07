@@ -94,8 +94,30 @@ if __name__ == '__main__':
     # Unblock this if you want to cheat 😉
     # print(train_result_value)
 
+    mother_of_the_victim = train_result_value["mother_victim"]
+    victim = train_result_value["victim"]
+    suspects = train_result_value["suspects"]
     print("After the train arrived to the station, one passenger didn't check out.")
     print("The police makes a public announcement that a body has been found on the bridge.")
     print("In the statement, police say that the body parts are spread between the bridge and the river and that the full body has not been recovered yet")
     print("Furthermore, it is also announced that the train station will shut down all travelling through the bridge")
-    print("A few days later, the police contacts the victims mother, miss " + train_result_value["mother_victim"])
+    print("A few days later, the police contacts the victims mother, miss " + mother_of_the_victim)
+    print("Detective - Miss " + mother_of_the_victim + " I have to ask you one more time. Are you sure you want to talk now?")
+    print(mother_of_the_victim + " - Yes. I'm sure! My child was the best thing in this world. A perfect soul. I don't understand what happened, but I want to find their killer.")
+    print("Detective - Their?")
+    print(mother_of_the_victim + " - My child was different. He didn't want to be called a boy nor he wanted to be called a girl. He called himself a '" + victim["gender"] + "'")
+    print("Detective - That is very interesting madam. Did he... sorry, did they had enemies?")
+    print(mother_of_the_victim + " - They did had enemies, Detective. He got multiple time issues at work because he was so different. He got fired a couple of times because of it. Still he fought so much...")
+    print("Detective - I understand. For me it's just important to get enough important dat to track down the killer. Can you name someone?")
+    print(mother_of_the_victim + " - I have no idea, they never told me anything about work. Only that people took advantage of their sympathy and ingenuity. Their heart was just bigger than that.")
+    print("Detective - Hold on madam, I have a phone call. Hello? Really?!?!? Are you sure you got the right one?")
+
+    print("Who do you think committed the murder?")
+    x = input()
+    if x in suspects:
+        if len(suspects) > 1:
+            print("Unfortunately more investigation needs to be done. These are the suspects:" + str(suspects))
+        else:
+            print("Correct!")
+    else:
+        print("Fail!")

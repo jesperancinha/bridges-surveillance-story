@@ -31,4 +31,4 @@ def send_meter(host, data):
 
 if __name__ == '__main__':
     for i in range(0, 100):
-        send_meter('127.0.0.1', {"Dsfdsfdsbfkjdwbfjklasbflkdsklfsdklfdsklfhsdhkf":"sdfkidsfhjdsifhjiosdjfiosdjiofjioejfiojqeiofjioewjfjiweijfiowejoi"})
+        send_meter('127.0.0.1', {"Dsfdsfdsbfkjdwbfjklasbflkdsklfsdklfdsklfhsdhkf": "sdfkidsfhjdsifhjiosdjfiosdjiofjioejfiojqeiofjioewjfjiweijfiowejoi"})
