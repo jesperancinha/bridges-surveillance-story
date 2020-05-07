@@ -101,6 +101,7 @@ if __name__ == '__main__':
     suspects_names = map(lambda y: y["firstName"] + " " + y["lastName"], suspects)
     victims_name = victim["firstName"] + " " + victim["lastName"]
     criminal_name = criminal["firstName"] + " " + criminal["lastName"]
+    print("Chapter I - The Murder")
     print("After the train arrived to the station, one passenger didn't check out.")
     print("The police makes a public announcement that a body has been found on the bridge.")
     print("In the statement, police say that the body parts are spread between the bridge and the river and that the full body has not been recovered yet")
@@ -119,10 +120,11 @@ if __name__ == '__main__':
     print("Detective - Hold on madam, I have a phone call. Hello? Really?!?!? Are you sure you got the right one?")
 
     x = raw_input("Who do you think committed the murder? ")
-    print(suspects_names)
+
+    print("We have these suspects: " + str(suspects_names))
     if x in suspects_names:
         if len(suspects) > 1:
-            print("Unfortunately more investigation needs to be done. These are the suspects:" + str(suspects))
+            print("You got the suspect right! Unfortunately more investigation needs to be done. These are all the suspects:" + str(suspects_names))
         else:
             print("Correct!")
     else:

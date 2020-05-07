@@ -51,6 +51,32 @@ Events can be anything that may happen in a configured range around the bridge
 2. For merchandise, a development area will be created called MCS(Merchandise Control Service).  
 3. For bridge timetables and ranges, a development area will be created called DCS(Domain Control Service).  
 
+## Murder in the Orient Express
+
+Since this project is about bridges and trains and because I love the [Murder on the Orient Express](https://www.imdb.com/title/tt0071877/) film and the tv series [The Bridge](https://www.imdb.com/title/tt1733785/?ref_=fn_al_tt_1), I've created a game about it. This game is mean't to be, not only entertaining, but also a way for you to learn the basics of various streaming mechanisms and master your skills. This is the setting:
+
+> There has been a gruesome crime committed over a bridge. You are the detective.
+> You have find out the murderer fast and accurately otherwise he will be at large and take over the world.
+> The crime you will be looking it may look like a hate crime, but it can mean much more...
+
+More details coming soon...
+
+Steps:
+1.   Go to PSQL database on schema `bllogistics` in table `trains_log`. Filter by `check_in_out='CHECKIN' or check_in_out='CHECKOUT'`
+2.   Calculate the difference in weight
+3.   Go to Cassandra database on keyspace `readings` in table `passengers`. Filter by the weight you find. These are the suspects
+4.   If you only have one suspect. Then congratulations you have found the murderer.
+5.   Type your answer in the following format `firstName` + ` ` + `lastName`
+
+## Modules
+
+-   [bl-central-server](./bl-central-server): The central server containing all centralizable data
+-   [bl-bridge-server](./bl-bridge-server): A server installed on each bridge
+-   [bl-train-server](./bl-train-server): A server installed on each train
+-   [bl-vehicle-server](./bl-vehicle-server): A server installed on each vehicle
+-   [bl-timetable-generator](./bl-vehicle-server): Utility to generate the bridge timetables
+-   [bl-demo-server](./bl-demo-server): This server ensures that a simulated train passes through the bridge
+-   [bl-legacy](./bl-legacy): Legacy software intended useful to share, but not in use
 
 ## Installation notes
 
@@ -67,16 +93,6 @@ Events can be anything that may happen in a configured range around the bridge
         ``` 
 
 This application is inspired by the TV Series - [The Bridge](https://www.imdb.com/title/tt1733785/)
-
-## Modules
-
--   [bl-central-server](./bl-central-server): The central server containing all centralizable data
--   [bl-bridge-server](./bl-bridge-server): A server installed on each bridge
--   [bl-train-server](./bl-train-server): A server installed on each train
--   [bl-vehicle-server](./bl-vehicle-server): A server installed on each vehicle
--   [bl-timetable-generator](./bl-vehicle-server): Utility to generate the bridge timetables
--   [bl-demo-server](./bl-demo-server): This server ensures that a simulated train passes through the bridge
--   [bl-legacy](./bl-legacy): Legacy software intended useful to shar but not in use
 
 ## Constraints
 
@@ -335,16 +351,6 @@ pip install kafka-python
 ```bash
 docker container logs --details bridge-logistics_bl_central_cassandra_1 
 ```
-
-## Murder in the Orient Express
-
-Since this project is about bridges and trains and because I love the [Murder on the Orient Express](https://www.imdb.com/title/tt0071877/) film and the tv series [The Bridge](https://www.imdb.com/title/tt1733785/?ref_=fn_al_tt_1), I've created a game about it. This game is mean't to be, not only entertaining, but also a way for you to learn the basics of various streaming mechanisms and master your skills. This is the setting:
-
-> There has been a gruesome crime committed over a bridge. You are the detective.
-> You have find out the murderer fast and accurately otherwise he will be at large and take over the world.
-> The crime you will be looking it may look like a hate crime, but it can mean much more...
-
-More details coming soon...
 
 ## Domain
 
