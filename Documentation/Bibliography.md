@@ -4,3 +4,12 @@ https://www.crunchbase.com/organization/rabbit-technologies#section-overview
 https://www.amqp.org/
 https://www.cloudamqp.com/blog/2015-05-18-part1-rabbitmq-for-beginners-what-is-rabbitmq.html
 https://en.wikipedia.org/wiki/Advanced_Message_Queuing_Protocol
+https://spring.io/blog/2010/06/14/understanding-amqp-the-protocol-used-by-rabbitmq/
+https://thenewstack.io/mqtt-protocol-iot/
+https://en.wikipedia.org/wiki/Constrained_Application_Protocol
+https://coap.technology/
+https://iottestware.readthedocs.io/en/master/coap_rfc.html
+https://datatracker.ietf.org/doc/rfc7252/
+https://www.trustradius.com/message-oriented-middleware#overview
+https://qconlondon.com/london-2007/speakers/show_speakerddb0.html?oid=180
+https://www.dpstele.com/snmp/transition/how-does-mediation-work.php
