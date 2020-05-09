@@ -2,16 +2,8 @@ Agender
 Androgyne
 Androgynous
 Bigender
-Cis
-Cisgender
-Cis Female
-Cis Male
 Cis Man
 Cis Woman
-Cisgender Female
-Cisgender Male
-Cisgender Man
-Cisgender Woman
 Female to Male
 FTM
 Gender Fluid

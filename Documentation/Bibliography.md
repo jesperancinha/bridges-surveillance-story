@@ -13,3 +13,5 @@ https://datatracker.ietf.org/doc/rfc7252/
 https://www.trustradius.com/message-oriented-middleware#overview
 https://qconlondon.com/london-2007/speakers/show_speakerddb0.html?oid=180
 https://www.dpstele.com/snmp/transition/how-does-mediation-work.php
+https://www.techopedia.com/definition/2415/ingress-traffic
+https://www.cloudamqp.com/blog/2019-12-12-when-to-use-rabbitmq-or-apache-kafka.html

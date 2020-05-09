@@ -26,7 +26,7 @@ with open("%snon-woman.txt" % PASSENGER_ROOT) as file_in:
     for line in file_in:
         non_woman_names.append(line.rstrip())
 
-with open("%slast-names" % PASSENGER_ROOT) as file_in:
+with open("%slast-names.txt" % PASSENGER_ROOT) as file_in:
     for line in file_in:
         last_names.append(line.rstrip())
 
