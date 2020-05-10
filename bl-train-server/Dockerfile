@@ -27,7 +27,7 @@ COPY startZookeeper.sh /root
 ENTRYPOINT ["/root/entrypoint.sh"]
 
 # RabbitMQ
-EXPOSE 5673 15671 15673
+EXPOSE 5673 15673
 
 # Kafka
 EXPOSE 9098 9099 9100 9101

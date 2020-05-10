@@ -38,7 +38,7 @@ object MetersReadingsLauncher extends App {
     println(appName)
 
     val sparkConf = new SparkConf
-    sparkConf.setAppName("BridgeLogisticsReader")
+    sparkConf.setAppName("MetersBridgeLogisticsReader")
     sparkConf.setMaster("local[*]")
     sparkConf.set("spark.cassandra.connection.host", cassandraHost)
     sparkConf.set("spark.local.dir", "/tmp/spark-temp");
@@ -118,6 +118,10 @@ object MetersReadingsLauncher extends App {
       })
     }
 
+    val rddH = sc.cassandraTable("readings", "humidity")
+    val file_collectH = rddH.collect().take(100)
+    file_collectH.foreach(println(_))
+
     humidityStream.foreachRDD { rdd =>
       System.out.println("--- New RDD with " + rdd.partitions.length + " partitions and " + rdd.count + " records")
       val strings = rdd.map(record => record.value()).collect();
@@ -145,6 +149,11 @@ object MetersReadingsLauncher extends App {
     println("***************************************************************************************************************")
     println(temperatureStream.id)
     println(temperatureStream.count())
+    println("***************************************************************************************************************")
+
+    println("***************************************************************************************************************")
+    println(humidityStream.id)
+    println(humidityStream.count())
     println("***************************************************************************************************************")
 
     streamingContext.start

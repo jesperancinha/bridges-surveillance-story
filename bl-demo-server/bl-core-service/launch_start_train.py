@@ -186,7 +186,7 @@ def start_train(host):
 
     for passenger in passengers:
         passenger.update({"unit": "kg"})
-        passenger.update({"weight": random.randint(40, 120)})
+        passenger.update({"weight": random.randint(40, 300)})
     #
     # total_passenger_weight = functools.reduce(lambda a, b:
     #                                           a + int(b["weight"])

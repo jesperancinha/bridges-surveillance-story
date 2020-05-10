@@ -57,6 +57,18 @@ services:
     ports:
       - "5433:5432"
 
+  bl_central_server_apps:
+    hostname: bl_central_server_apps
+    build:
+      context: bl-central-server/.
+    ports:
+      - "9000:9000"
+    depends_on:
+      - bl_central_psql
+      - bl_central_server
+      - bl_train_01_server
+      - bl_vehicle_01_server
+
 # NOTE: Cassandra consumes a lot of resources. If you have a very high capacity machine, please use this container. Otherwise, use cassandra from the outside.
 #  bl_central_cassandra:
 #    hostname: bl_central_cassandra
@@ -75,17 +87,5 @@ services:
 #          memory: 2G
 #        reservations:
 #          memory: 2G
-
-  bl_central_server_apps:
-    hostname: bl_central_server_apps
-    build:
-      context: bl-central-server/.
-    ports:
-      - "9000:9000"
-    depends_on:
 #      - bl_central_cassandra
-      - bl_central_psql
-      - bl_central_server
-      - bl_train_01_server
-      - bl_vehicle_01_server
 

@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+./stopMacOs.sh
+
 docker stop bl-bridge-server-container
 
 docker rm bl-bridge-server-container
@@ -20,4 +22,3 @@ docker-compose down
 
 cd ../..
 
-./stopMacOs.sh

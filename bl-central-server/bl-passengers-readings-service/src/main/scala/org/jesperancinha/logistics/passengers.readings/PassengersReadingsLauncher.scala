@@ -34,13 +34,11 @@ object PassengersReadingsLauncher extends App {
     val appName = sparkConfig.getString("app-name")
     val kafkaHost1 = envConfig.getString("kafka-host-1")
     val kafkaHost2 = envConfig.getString("kafka-host-2")
-    val kafkaHost3 = envConfig.getString("kafka-host-3")
-    val kafkaHost4 = envConfig.getString("kafka-host-4")
     val cassandraHost = envConfig.getString("cassandra-host")
     println(appName)
 
     val sparkConf = new SparkConf
-    sparkConf.setAppName("BridgeLogisticsReader")
+    sparkConf.setAppName("PassengerBridgeLogisticsReader")
     sparkConf.setMaster("local[*]")
     sparkConf.set("spark.cassandra.connection.host", cassandraHost)
     sparkConf.set("spark.local.dir", "/tmp/spark-temp");

@@ -53,7 +53,7 @@ Events can be anything that may happen in a configured range around the bridge
 2. For merchandise, a development area will be created called MCS(Merchandise Control Service).  
 3. For bridge timetables and ranges, a development area will be created called DCS(Domain Control Service).  
 
-## Murder in the Orient Express
+## A detective case
 
 Since this project is about bridges and trains and because I love the [Murder on the Orient Express](https://www.imdb.com/title/tt0071877/) film and the tv series [The Bridge](https://www.imdb.com/title/tt1733785/?ref_=fn_al_tt_1), I've created a game about it. This game is mean't to be, not only entertaining, but also a way for you to learn the basics of various streaming mechanisms and master your skills. This is the setting:
 
@@ -69,6 +69,8 @@ Steps:
 3.   Go to Cassandra database on keyspace `readings` in table `passengers`. Filter by the weight you find. These are the suspects
 4.   If you only have one suspect. Then congratulations you have found the murderer.
 5.   Type your answer in the following format `firstName` + ` ` + `lastName`
+
+Note that the story I’ve created is purely fictional. Any similarity between events and the characters generated and the locations described is purely coincidental. It is practically impossible to make a random scenario that doesn’t have anything in common with anyone’s personal life. This is the reason why it is so important that the reader of this article understands that. This is also the reason why all the names in this exercise are automatically randomly generated, precisely to reduce the possibility of such similarities to occur.
 
 ## Modules
 
