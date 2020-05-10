@@ -15,3 +15,6 @@ https://qconlondon.com/london-2007/speakers/show_speakerddb0.html?oid=180
 https://www.dpstele.com/snmp/transition/how-does-mediation-work.php
 https://www.techopedia.com/definition/2415/ingress-traffic
 https://www.cloudamqp.com/blog/2019-12-12-when-to-use-rabbitmq-or-apache-kafka.html
+https://www.cloudamqp.com/blog/2015-09-03-part4-rabbitmq-for-beginners-exchanges-routing-keys-bindings.html
+https://blog.cloudera.com/scalability-of-kafka-messaging-using-consumer-groups/
+ 
