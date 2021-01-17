@@ -1,0 +1,28 @@
+## Intellij
+.idea
+*.iml
+
+## Build
+target
+
+## ActiveMQ
+activemq-data
+
+## Node JS Build
+node_modules
+dist
+
+## MACOS
+.DS_Store
+
+## Python builds
+*.pyc
+
+## BL Generated files
+passengers.json
+
+## Source files
+last-names.txt
+mother-names.txt
+non-man.txt
+non-woman.txt

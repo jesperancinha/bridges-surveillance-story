@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "Monster wheels",
+    "supplierId": "1",
+    "vendorId": "2",
+    "composition": [
+      {
+        "containerId": 1,
+        "packageId": 546372,
+        "products": [
+          {
+            "productId": 1,
+            "quantity": 2500000
+          }
+        ]
+      }
+    ]
+  }
+]

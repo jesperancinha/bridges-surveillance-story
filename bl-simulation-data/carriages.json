@@ -1,0 +1,55 @@
+[
+  {
+    "id": 1,
+    "type": "cargo",
+    "brand": "MUSKY",
+    "capacity": 40,
+    "axleLoad": 20,
+    "tare": 20,
+    "volume": 53,
+    "unitWeight": "ton",
+    "unitVolume": "m3"
+  },
+  {
+    "id": 2,
+    "type": "cargo",
+    "brand": "BULGERDY",
+    "capacity": 56,
+    "axleLoad": 30,
+    "tare": 25,
+    "volume": 60,
+    "unitWeight": "ton",
+    "unitVolume": "m3"
+  },
+  {
+    "id": 3,
+    "type": "people",
+    "brand": "SEAPEOPLE",
+    "passengers": 150,
+    "axleLoad": 30,
+    "tare": 25,
+    "toilet": true,
+    "volume": 120,
+    "unitWeight": "ton",
+    "unitVolume": "m3"
+  },
+  {
+    "id": 4,
+    "type": "people",
+    "brand": "SEAPEOPLE",
+    "passengers": 150,
+    "axleLoad": 30,
+    "tare": 25,
+    "toilet": false,
+    "volume": 120,
+    "unitWeight": "ton",
+    "unitVolume": "m3"
+  },
+  {
+    "id": 5,
+    "type": "main",
+    "brand": "ZARCHONIC",
+    "axleLoad": 50,
+    "tare": 100
+  }
+]

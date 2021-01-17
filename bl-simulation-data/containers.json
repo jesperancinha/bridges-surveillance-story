@@ -1,0 +1,13 @@
+[
+  {
+    "id": 1,
+    "brand": "BULGERDY",
+    "model": "WASCATANWUHIA",
+    "type": "trailer",
+    "capacity": 56,
+    "tare": 25,
+    "volume": 60,
+    "unitWeight": "ton",
+    "unitVolume": "m3"
+  }
+]

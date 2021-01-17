@@ -1,0 +1,43 @@
+[
+  {
+    "id": 1,
+    "name": "IC 1",
+    "type": "INTERCITY",
+    "supplierId": "1",
+    "vendorId": "2",
+    "composition": [
+      {
+        "carriageId": 1,
+        "packageId": 545835,
+        "products": [
+          {
+            "productId": 1,
+            "quantity": 2500000
+          }
+        ]
+      },
+      {
+        "carriageId": 2,
+        "packageId": 985243,
+        "products": [
+          {
+            "productId": 2,
+            "quantity": 2500000
+          }
+        ]
+      },
+      {
+        "carriageId": 3,
+        "packageId": 666111
+      },
+      {
+        "carriageId": 4,
+        "packageId": 666222
+      },
+      {
+        "carriageId": 5,
+        "packageId": 666333
+      }
+    ]
+  }
+]

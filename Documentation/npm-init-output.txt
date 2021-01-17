@@ -1,0 +1,36 @@
+10:32 $ npm init
+This utility will walk you through creating a package.json file.
+It only covers the most common items, and tries to guess sensible defaults.
+
+See `npm help json` for definitive documentation on these fields
+and exactly what they do.
+
+Use `npm install <pkg>` afterwards to install a package and
+save it as a dependency in the package.json file.
+
+Press ^C at any time to quit.
+package name: (bl-bridge-broadcaster)
+version: (1.0.0)
+description: This project sends messages from the bridge to the local kafka bus
+entry point: (app.ts)
+test command:
+git repository:
+keywords:
+author: João Esperacinha
+license: (ISC)
+About to write to /Users/jofisaes/dev/src/jofisaes/bridge-logistics/bl-bridge-server/bl-bridge-broadcaster/package.json:
+
+{
+  "name": "bl-bridge-broadcaster",
+  "version": "1.0.0",
+  "description": "This project sends messages from the bridge to the local kafka bus",
+  "main": "app.ts",
+  "scripts": {
+    "test": "echo \"Warning: no test specified!\""
+  },
+  "author": "João Esperacinha",
+  "license": "ISC"
+}
+
+
+Is this OK? (yes) yes
