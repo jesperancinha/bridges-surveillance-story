@@ -46,7 +46,7 @@ brew upgrade sbt
 -   [Apache Spark - Lightning-fast unified analytics engine](https://spark.apache.org/)
 -   [Apache Spark - Monitoring and Instrumentation](https://spark.apache.org/docs/latest/monitoring.html)
 
-## About me 👨🏽‍💻🚀
+## About me 👨🏽‍💻🚀🏳️‍🌈
 
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-20/JEOrgLogo-20.png "João Esperancinha Homepage")](http://joaofilipesabinoesperancinha.nl)
 [![Twitter Follow](https://img.shields.io/twitter/follow/joaofse?label=João%20Esperancinha&style=social "Twitter")](https://twitter.com/joaofse)
