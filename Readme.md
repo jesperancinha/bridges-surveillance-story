@@ -381,6 +381,7 @@ docker container logs --details bridge-logistics_bl_central_cassandra_1
 
 ## References
 
+-   [Java 16 Records with JPA and jOOQ](https://72.services/java-16-records-with-jpa-and-jooq/)
 -   [JDK 17 - What's new features in Java 17](https://www.techgeeknext.com/java/java17-features)
 -   [Spring Tips: Java 14 (or: Can Your Java Do This?)](https://spring.io/blog/2020/03/11/spring-tips-java-14-or-can-your-java-do-this)
 -   [Share Link Generator!](http://sharelinkgenerator.com/)
