@@ -31,8 +31,8 @@ In standalone.xml make sure your resources are correctly configured.
 Also make sure you download the right adapter for your JBoss/Wildfly configuration.  
 I am currentlyt using the following:
 
-1. [activemq-rar-5.10.0.rar](https://search.maven.org/search?q=a:activemq-rar) | [direct download](https://search.maven.org/remotecontent?filepath=org/apache/activemq/activemq-rar/5.15.9/activemq-rar-5.15.9.rar)
-2. [Wildfly Server 16.0.0 Final](https://wildfly.org/downloads) | [direct download](https://download.jboss.org/wildfly/16.0.0.Final/wildfly-16.0.0.Final.zip)
+1.  [activemq-rar-5.10.0.rar](https://search.maven.org/search?q=a:activemq-rar) | [direct download](https://search.maven.org/remotecontent?filepath=org/apache/activemq/activemq-rar/5.15.9/activemq-rar-5.15.9.rar)
+2.  [Wildfly Server 16.0.0 Final](https://wildfly.org/downloads) | [direct download](https://download.jboss.org/wildfly/16.0.0.Final/wildfly-16.0.0.Final.zip)
 
 Remember to run your wilfly version with  **--add-modules=java.se** as a VM switch.
 

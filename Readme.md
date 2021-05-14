@@ -29,20 +29,20 @@
 This application uses event sourcing to serve the logistics for a bridge management system.
 This is what in general this project is responsible for
 
-1.   Count passengers going through a bridge
-2.   Register transport type
-3.   Register merchandise before crossing the bridge
-4.   Register events per configured range area
-5.   Inform trains of the train Schedule changes
+1.  Count passengers going through a bridge
+2.  Register transport type
+3.  Register merchandise before crossing the bridge
+4.  Register events per configured range area
+5.  Inform trains of the train Schedule changes
 
 Passengers are registered by numbers and if they they carry extra merchandise or a bike
 Transport can be a train, bus, boat, bike, truck, etc.
 Merchandise should registered if it's destined to commercial exchanges.
 Events can be anything that may happen in a configured range around the bridge
 
-1. For passengers, a development area will be created called PCS(Passenger Control Service).  
-2. For merchandise, a development area will be created called MCS(Merchandise Control Service).  
-3. For bridge timetables and ranges, a development area will be created called DCS(Domain Control Service).  
+1.  For passengers, a development area will be created called PCS(Passenger Control Service).  
+2.  For merchandise, a development area will be created called MCS(Merchandise Control Service).  
+3.  For bridge timetables and ranges, a development area will be created called DCS(Domain Control Service).  
 
 This project is also the official support project of my article on medium:
 
@@ -65,11 +65,11 @@ Since this project is about bridges and trains and because I love the [Murder on
 More details coming soon...
 
 Steps:
-1.   Go to PSQL database on schema `bllogistics` in table `trains_log`. Filter by `check_in_out='CHECKIN' or check_in_out='CHECKOUT'`
-2.   Calculate the difference in weight
-3.   Go to Cassandra database on keyspace `readings` in table `passengers`. Filter by the weight you find. These are the suspects
-4.   If you only have one suspect. Then congratulations you have found the murderer.
-5.   Type your answer in the following format `firstName` + ` ` + `lastName`
+1.  Go to PSQL database on schema `bllogistics` in table `trains_log`. Filter by `check_in_out='CHECKIN' or check_in_out='CHECKOUT'`
+2.  Calculate the difference in weight
+3.  Go to Cassandra database on keyspace `readings` in table `passengers`. Filter by the weight you find. These are the suspects
+4.  If you only have one suspect. Then congratulations you have found the murderer.
+5.  Type your answer in the following format `firstName` + ` ` + `lastName`
 
 Note that the story I’ve created is purely fictional. Any similarity between events and the characters generated and the locations described is purely coincidental. It is practically impossible to make a random scenario that doesn’t have anything in common with anyone’s personal life. This is the reason why it is so important that the reader of this article understands that. This is also the reason why all the names in this exercise are automatically randomly generated, precisely to reduce the possibility of such similarities to occur.
 You DO NEED to generate the names first. By running file [passenger_generator.py](./bl-simulation-data/passenger_generator.py), you will find 4 files in the [passengers](./bl-simulation-data/passengers) folder.
@@ -109,15 +109,15 @@ This application is inspired by the TV Series - [The Bridge](https://www.imdb.co
 
 ## Constraints
 
-1. Vehicles which will cross the bridge when they are open. Bridges are considered to be open, when the bridge plates are down. If the bridge plates are up, then the bridge is said to be closed. Bridges may also be closed at other times and for other reasons. When a bridge is closed, it cannot be crossed, regardless of the state of its plates.
-2. Trains go over static bridges which are mostly open. They can be closed for exceptional reasons.
-3. When trains go over bridge, we need to know how long the whole train took to cross it.
-4. When vehicles go over the bridge, we need to know how long vehicle took to cross it.
-5. We also need to know the complete weight being passed accross the bridge in regards to merchansise.
-6. We aso need to know the complete weight being passed accross the bridge in regards to people.
-7. The exact number of people will be an aproximation and will be a result from a triangulation of passing through heat sensors and light sensors.
-8. Time tables and merchandise exchanges will be done via RabbitMQ.
-9. Sensor information will be sent via Kafka.
+1.  Vehicles which will cross the bridge when they are open. Bridges are considered to be open, when the bridge plates are down. If the bridge plates are up, then the bridge is said to be closed. Bridges may also be closed at other times and for other reasons. When a bridge is closed, it cannot be crossed, regardless of the state of its plates.
+2.  Trains go over static bridges which are mostly open. They can be closed for exceptional reasons.
+3.  When trains go over bridge, we need to know how long the whole train took to cross it.
+4.  When vehicles go over the bridge, we need to know how long vehicle took to cross it.
+5.  We also need to know the complete weight being passed accross the bridge in regards to merchansise.
+6.  We aso need to know the complete weight being passed accross the bridge in regards to people.
+7.  The exact number of people will be an aproximation and will be a result from a triangulation of passing through heat sensors and light sensors.
+8.  Time tables and merchandise exchanges will be done via RabbitMQ.
+9.  Sensor information will be sent via Kafka.
 10. People data will be sent via Kafka Streams.
 11. All Kafka streamed information will be handle via Apache Spark.
 12. Bridge opening times are subject to conflict detection. Upon detecting one coflict between opening times. The bridge remains closed until the conflict becomes resolved.

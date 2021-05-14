@@ -63,7 +63,7 @@ oc apply -f bl-train-server-deployment.yaml
 
 -   [RABBIT MQ: CREATING QUEUE, EXCHANGE AND BINDINGS FROM A COMMAND LINE](https://www.scommerce-mage.com/blog/rabbitmq-creating-queues-and-bindings-from-a-command-line.html)
 -   [Cluster migration with RabbitMQ Queue Federation](https://www.cloudamqp.com/blog/2015-07-08-migrate-between-plans-rabbitmq-queue-federation.html)
--   [Chapter 8. Cross-cluster message distribution](https://livebook.manning.com/book/rabbitmq-in-depth/chapter-8/)
+-   [Chapter 8.  Cross-cluster message distribution](https://livebook.manning.com/book/rabbitmq-in-depth/chapter-8/)
 -   [Understand Federation in RabbitMQ - RabbitMQ Federation Plugin](https://jee-appy.blogspot.com/2018/08/setup-rabbitmq-exchange-federation.html)
 
 ## About me 👨🏽‍💻🚀🏳️‍🌈
