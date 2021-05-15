@@ -37,7 +37,7 @@ This is what in general this project is responsible for
 
 Passengers are registered by numbers and if they they carry extra merchandise or a bike
 Transport can be a train, bus, boat, bike, truck, etc.
-Merchandise should registered if it's destined to commercial exchanges.
+Merchandise should be registered if it's destined to commercial exchanges.
 Events can be anything that may happen in a configured range around the bridge
 
 1.  For passengers, a development area will be created called PCS(Passenger Control Service).  
@@ -59,10 +59,7 @@ and my article on my blog page at:
 Since this project is about bridges and trains and because I love the [Murder on the Orient Express](https://www.imdb.com/title/tt0071877/) film and the tv series [The Bridge](https://www.imdb.com/title/tt1733785/?ref_=fn_al_tt_1), I've created a game about it. This game is mean't to be, not only entertaining, but also a way for you to learn the basics of various streaming mechanisms and master your skills. This is the setting:
 
 > There has been a gruesome crime committed over a bridge. You are the detective.
-> You have find out the murderer fast and accurately otherwise he will be at large and take over the world.
-> The crime you will be looking it may look like a hate crime, but it can mean much more...
-
-More details coming soon...
+> You have to find out the criminal fast and accurately otherwise he will be at large and take over the world.
 
 Steps:
 1.  Go to PSQL database on schema `bllogistics` in table `trains_log`. Filter by `check_in_out='CHECKIN' or check_in_out='CHECKOUT'`
