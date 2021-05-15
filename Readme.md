@@ -1,9 +1,16 @@
 # Bridge Management Logistics
 
+---
+
 [![Generic badge](https://img.shields.io/static/v1.svg?label=GitLab&message=Bridge%20Management%20Logistics&color=informational)](https://gitlab.com/jesperancinha/bridge-logistics)
+
 [![Build Status](https://travis-ci.com/jesperancinha/bridge-logistics.svg?branch=master)](https://travis-ci.com/jesperancinha/bridge-logistics)
+[![Gitlab pipeline status (branch)](https://img.shields.io/gitlab/pipeline/jesperancinha/bridge-logistics/master)](https://gitlab.com/jesperancinha/bridge-logistics/pipelines)
+
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/9663f8cd66764af3b551e76c13ea7833)](https://www.codacy.com/gl/jesperancinha/bridge-logistics/dashboard?utm_source=gitlab.com&amp;utm_medium=referral&amp;utm_content=jesperancinha/bridge-logistics&amp;utm_campaign=Badge_Grade)
 [![codebeat badge](https://codebeat.co/badges/42f50b94-393c-4637-86cd-1ee6412995c6)](https://codebeat.co/projects/gitlab-com-jesperancinha-bridge-logistics-master)
+
+---
 
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/docker-50.png "Docker")](https://www.docker.com/)
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/docker-compose-50.png "Docker Compose")](https://docs.docker.com/compose/)
