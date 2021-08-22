@@ -23,9 +23,9 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "bridge")
-@NamedQuery(name = "Bridge.findBridgeBySquareBoundary",
-    query = "select b from Bridge b" + " where b.lat>=:latWest and b.lat<=:latEast and b.lon<=:lonNorth and b.lon>=:lonSouth")
-public class  Bridge {
+@NamedQuery(name = "Bridge.findBridgeBySquareBoundary", query = "select b from Bridge b"
+    + " where b.lat>=:latWest and b.lat<=:latEast and b.lon<=:lonNorth and b.lon>=:lonSouth")
+public class Bridge {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -36,11 +36,9 @@ public class  Bridge {
     private String countryCode;
     private String unitLength;
     private Long length;
-    @Column(precision = 10,
-        scale = 6)
+    @Column(precision = 10, scale = 6)
     private BigDecimal lat;
-    @Column(precision = 10,
-        scale = 6)
+    @Column(precision = 10, scale = 6)
     private BigDecimal lon;
     private Long radius;
     private String type;

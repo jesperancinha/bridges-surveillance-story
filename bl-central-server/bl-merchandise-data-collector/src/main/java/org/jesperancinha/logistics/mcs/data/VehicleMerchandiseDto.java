@@ -8,7 +8,8 @@ import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.util.List;
 
-public record VehicleMerchandiseDto(@Id @NonNull Long id,
+public record VehicleMerchandiseDto(
+    @NonNull Long id,
     @NonNull String name,
     Status status,
     @NonNull Long supplierId,

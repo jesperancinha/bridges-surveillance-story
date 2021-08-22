@@ -43,10 +43,8 @@ public class MerchandiseLog {
     @ManyToOne
     private ProductCargo productCargo;
 
-    @Column(precision = 10,
-        scale = 6)
+    @Column(precision = 10, scale = 6)
     private BigDecimal lat;
-    @Column(precision = 10,
-        scale = 6)
+    @Column(precision = 10, scale = 6)
     private BigDecimal lon;
 }

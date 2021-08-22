@@ -29,11 +29,8 @@ public class Freight {
     private String name;
     private String type;
     @ManyToMany
-    @JoinTable(name = "freight_container",
-        joinColumns = @JoinColumn(name = "freight_id",
-            referencedColumnName = "id"),
-        inverseJoinColumns = @JoinColumn(name = "container_id",
-            referencedColumnName = "id"))
+    @JoinTable(name = "freight_container", joinColumns = @JoinColumn(name = "freight_id", referencedColumnName = "id"),
+        inverseJoinColumns = @JoinColumn(name = "container_id", referencedColumnName = "id"))
     private List<Container> containers;
 
     @ManyToOne

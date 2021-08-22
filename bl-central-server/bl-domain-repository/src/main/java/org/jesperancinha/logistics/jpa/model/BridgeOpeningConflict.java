@@ -23,8 +23,6 @@ public class BridgeOpeningConflict {
     private Long id;
     private String message;
     @ManyToMany(cascade = ALL)
-    @JoinColumn(name = "bridge_id",
-        nullable = false,
-        updatable = false)
+    @JoinColumn(name = "bridge_id", nullable = false, updatable = false)
     private List<BridgeOpeningTime> relatedOpeningTime;
 }

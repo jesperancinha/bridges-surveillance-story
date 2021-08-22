@@ -5,17 +5,17 @@ import org.jesperancinha.logistics.jpa.types.Status;
 import org.jesperancinha.logistics.jpa.types.TrainType;
 import org.springframework.lang.NonNull;
 
-import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.util.List;
 
-public record TrainMerchandiseDto(@Id @NonNull Long id,
+public record TrainMerchandiseDto(
+    @NonNull Long id,
     @NonNull String name,
     Long supplierId,
     Long vendorId,
     TrainType type,
     Status status,
-    @NonNull List<CarrierDto>composition,
+    @NonNull List<CarrierDto> composition,
     BigDecimal lat,
     BigDecimal lon) {
     @Builder

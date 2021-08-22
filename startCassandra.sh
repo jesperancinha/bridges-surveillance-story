@@ -2,7 +2,7 @@
 
 docker-compose down
 
-cd bl-central-server/cassandra
+cd bl-central-server/cassandra || exit
 
 docker-compose down
 

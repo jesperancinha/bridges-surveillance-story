@@ -11,8 +11,10 @@ from generate_people import generate_storyline_passengers, generate_mother_name 
 def generate_all_passengers(passengers):
     return generate_storyline_passengers(passengers)
 
+
 def generate_mother_name(last_name):
     return generate_storyline_mother_name(last_name)
+
 
 if __name__ == '__main__':
     passengers = generate_storyline_passengers(300)

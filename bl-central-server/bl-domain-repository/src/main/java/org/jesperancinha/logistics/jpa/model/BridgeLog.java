@@ -24,8 +24,7 @@ public class BridgeLog {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @ManyToOne(optional = false)
-    @JoinColumn(name = "bridgeId",
-        nullable = false)
+    @JoinColumn(name = "bridgeId", nullable = false)
     private Bridge bridge;
     private Long timestamp;
     private String checkInOut;

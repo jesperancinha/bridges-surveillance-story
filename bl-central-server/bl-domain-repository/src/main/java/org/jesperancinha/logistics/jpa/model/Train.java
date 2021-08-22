@@ -29,11 +29,8 @@ public class Train {
     private String name;
     private String type;
     @ManyToMany
-    @JoinTable(name = "train_container",
-        joinColumns = @JoinColumn(name = "train_id",
-            referencedColumnName = "id"),
-        inverseJoinColumns = @JoinColumn(name = "carriage_id",
-            referencedColumnName = "id"))
+    @JoinTable(name = "train_container", joinColumns = @JoinColumn(name = "train_id", referencedColumnName = "id"),
+        inverseJoinColumns = @JoinColumn(name = "carriage_id", referencedColumnName = "id"))
     private List<Carriage> carriages;
 
     @ManyToOne

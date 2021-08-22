@@ -26,10 +26,7 @@ public class VehicleLog {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @ManyToOne(optional = false)
-    @JoinColumn(name = "vehicle_id",
-        referencedColumnName = "id",
-        nullable = false,
-        updatable = false)
+    @JoinColumn(name = "vehicle_id", referencedColumnName = "id", nullable = false, updatable = false)
     private Vehicle vehicle;
     private BigDecimal lat;
     private BigDecimal lon;

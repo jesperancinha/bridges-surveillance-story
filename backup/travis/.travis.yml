@@ -1,0 +1,27 @@
+language: java
+jdk:
+  - openjdk15
+env:
+  - NODE_VERSION=12 CC=clang CXX=clang++
+before_install:
+  - nvm install $NODE_VERSION
+before_script:
+  - cd bl-bridge-server/bl-bridge-humidity-mqtt && npm install && cd ../..
+  - cd bl-bridge-server/bl-bridge-temperature-coap && npm install && cd ../..
+  - cd bl-train-server/bl-train-people-mqtt && npm install && cd ../..
+  - cd bl-demo-server/bl-bridge-services && python -m py_compile *.py && cd ../..
+  - cd bl-demo-server/bl-core-service && python -m py_compile *.py && cd ../..
+  - cd bl-demo-server/bl-passenger-service && python -m py_compile *.py && cd ../..
+  - cd bl-demo-server/bl-train-services && python -m py_compile *.py && cd ../..
+  - cd bl-demo-server/bl-vehicle-services && python -m py_compile *.py && cd ../..
+  - cd bl-demo-server && python -m py_compile *.py && cd ..
+script:
+  - cd bl-bridge-server/bl-bridge-humidity-mqtt && npm test && cd ../..
+  - cd bl-bridge-server/bl-bridge-humidity-mqtt && npm run build && cd ../..
+  - cd bl-bridge-server/bl-bridge-temperature-coap && npm test && cd ../..
+  - cd bl-bridge-server/bl-bridge-temperature-coap && npm run build && cd ../..
+  - cd bl-train-server/bl-train-people-mqtt && npm test && cd ../..
+  - cd bl-train-server/bl-train-people-mqtt && npm run build && cd ../..
+notifications:
+  email:
+    on_success: "never"
