@@ -92,7 +92,6 @@ Just remember that each line must be a single name.
 -   [bl-vehicle-server](./bl-vehicle-server): A server installed on each vehicle
 -   [bl-timetable-generator](./bl-vehicle-server): Utility to generate the bridge timetables
 -   [bl-demo-server](./bl-demo-server): This server ensures that a simulated train passes through the bridge
--   [bl-legacy](./bl-legacy): Legacy software intended useful to share, but not in use
 
 ## Installation notes
 

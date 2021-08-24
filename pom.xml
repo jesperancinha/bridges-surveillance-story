@@ -30,8 +30,9 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <maven.compiler.source>15</maven.compiler.source>
-        <maven.compiler.target>15</maven.compiler.target>
+        <java.version>16</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
         <maven.compiler>3.8.0</maven.compiler>
         <maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
         <maven-war-plugin.version>3.2.3</maven-war-plugin.version>
@@ -56,7 +57,7 @@
         <junit.version>4.13.1</junit.version>
         <assertj-core.version>3.11.1</assertj-core.version>
 
-        <lombok.version>1.18.8</lombok.version>
+        <lombok.version>1.18.20</lombok.version>
         <failOnMissingWebXml>false</failOnMissingWebXml>
 
         <arquillian-bom.version>1.5.0.Final</arquillian-bom.version>
@@ -198,7 +199,6 @@
         <module>bl-bridge-server</module>
         <module>bl-train-server</module>
         <module>bl-vehicle-server</module>
-        <module>bl-legacy</module>
         <module>bl-demo-server</module>
     </modules>
 </project>

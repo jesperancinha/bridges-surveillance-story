@@ -87,15 +87,15 @@ public class BridgeLogisticsInitializer implements CommandLineRunner {
                         return m.getDeclaringClass()
                             .getRecordComponents()[parameter.getIndex()].getName();
                     }
-                    if (m instanceof AnnotatedMember member) {
-                        for (RecordComponent recordComponent : m.getDeclaringClass()
-                            .getRecordComponents()) {
-                            if (recordComponent.getName()
-                                .equals(member.getName())) {
-                                return member.getName();
-                            }
-                        }
-                    }
+//                    if (m instanceof AnnotatedMember member) {
+//                        for (RecordComponent recordComponent : m.getDeclaringClass()
+//                            .getRecordComponents()) {
+//                            if (recordComponent.getName()
+//                                .equals(member.getName())) {
+//                                return member.getName();
+//                            }
+//                        }
+//                    }
                 }
                 return super.findImplicitPropertyName(m);
             }

@@ -1,7 +1,0 @@
-{
-  "deviceId": 1,
-  "deviceSerialNumber": "943750274901479313423",
-  "deviceType": "Thermometer",
-  "unit": "CELSIUS",
-  "periodicity": "*/5 * * * *"
-}
