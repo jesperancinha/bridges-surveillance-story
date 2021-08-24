@@ -86,12 +86,24 @@ Just remember that each line must be a single name.
 
 ## Modules
 
--   [bl-central-server](./bl-central-server): The central server containing all centralizable data
--   [bl-bridge-server](./bl-bridge-server): A server installed on each bridge
--   [bl-train-server](./bl-train-server): A server installed on each train
--   [bl-vehicle-server](./bl-vehicle-server): A server installed on each vehicle
--   [bl-timetable-generator](./bl-vehicle-server): Utility to generate the bridge timetables
--   [bl-demo-server](./bl-demo-server): This server ensures that a simulated train passes through the bridge
+- [bl-central-server](./bl-central-server): The central server containing all centralized data
+  - [bl-domain-repository](./bl-central-server/bl-domain-repository) - Java
+  - [bl-merchandise-data-collector](./bl-central-server/bl-merchandise-data-collector) - Java
+  - [bl-meters-readings-service](./bl-central-server/bl-meters-readings-service) - Scala
+  - [bl-passengers-readings-service](./bl-central-server/bl-passengers-readings-service) - Scala
+  - [bl-readings-agg-last-service](./bl-central-server/bl-readings-agg-last-service) - Scala
+  - [bl-readings-aggregator-service](./bl-central-server/bl-readings-aggregator-service) - Scala
+  - [bl-sensor-data-collector](./bl-central-server/bl-sensor-data-collector) - Java
+  - [bl-web-app](./bl-central-server/bl-web-app) - Java
+  - [bl-web-ui](./bl-central-server/bl-web-ui) - Angular
+  - [bl-central-cassandra](./bl-central-server/bl-central-cassandra) - Cassandra
+  - [bl-central-psql](./bl-central-server/bl-central-psql) - Postgresql
+  - [bl-central-streaming](./bl-central-server/bl-central-streaming) - RabbitMQ
+- [bl-bridge-server](./bl-bridge-server): A server installed on each bridge
+- [bl-train-server](./bl-train-server): A server installed on each train
+- [bl-vehicle-server](./bl-vehicle-server): A server installed on each vehicle
+- [bl-timetable-generator](./bl-vehicle-server): Utility to generate the bridge timetables
+- [bl-demo-server](./bl-demo-server): This server ensures that a simulated train passes through the bridge
 
 ## Installation notes
 
@@ -226,30 +238,6 @@ kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partit
 kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic WINDDIRECTION
 ```
 
-### Setting up OpenShift [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/openshift-50.png)](https://manage.openshift.com/)
-
--   Open an account
-
-    -   [Openshift online](https://manage.openshift.com/)
-
--   Setup OKD (Original Community Distribution of Kubernetes)
-
-    -   [OKD](https://www.okd.io/index.html)
-
--   Install Minishift
-
-```bash
-brew cask install minishift
-brew cask install --force minishift
-minishift addons install --defaults
-minishift addons enable admin-user
-minishift start --vm-driver=virtualbox
-brew install openshift-cli
-oc adm policy --as system:admin add-cluster-role-to-user cluster-admin developer
-minishift console
-oc create rolebinding default-view --clusterrole=view --serviceaccount=mancalaje:default --namespace=mancalaje
-```
-
 ## Python libraries
 
 ```bash
@@ -259,115 +247,7 @@ pip install pika
 pip install coapthon
 pip install paho-mqtt
 pip install kafka-python
-```
-
-## [Hints & Tricks](https://github.com/jesperancinha/project-signer/blob/master/project-signer-templates/Hints%26Tricks.md)
-
--   [pbcopy](http://sweetme.at/2013/11/17/copy-to-and-paste-from-the-clipboard-on-the-mac-osx-command-line/)
-
-```bash
-curl -L "http://coolsite.com" | pbcopy
-```
-
--   [SDKMAN!](https://sdkman.io/install)
-
--   Install java versions with [SDKMan](https://sdkman.io/) for MAC-OS and Linux based systems
-
-```bash
-curl -s "https://get.sdkman.io" | bash
-source "$HOME/.sdkman/bin/sdkman-init.sh"
-sdk install java 8.0.242.hs-adpt
-sdk install java 11.0.6.hs-adpt
-sdk install java 12.0.2.hs-adpt
-sdk install java 13.0.2.hs-adpt
-sdk install java 14.0.0.hs-adpt
-```
-
--   Install java versions without [SDKMan](https://sdkman.io/) for [ubuntu prompt for windows](https://www.microsoft.com/en-us/p/ubuntu/9nblggh4msv6?activetab=pivot:overviewtab).
-
-```bash
-apt-get -y update
-apt-get -y upgrade
-apt -y install apt-transport-https ca-certificates wget dirmngr gnupg software-properties-common
-wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | apt-key add -
-add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/
-apt -y update
-apt -y install openjdk-11-jdk
-apt install openjdk-13-jdk
-apt -y install adoptopenjdk-8-hotspot
-apt -y autoremove
-```
-
-- .bashrc file to get Gradle, GitPrompt, [SDKMAN](https://sdkman.io/) and some handy aliases in a Windows environment with [MinGW](http://www.mingw.org/).
-
-```bash
-if [ -f "/root/.bash-git-prompt/gitprompt.sh" ]; then
-    GIT_PROMPT_ONLY_IN_REPO=1
-    source /root/.bash-git-prompt/gitprompt.sh
-fi
-
-alias java8="sdk use java 8.0.242.hs-adpt"
-alias java11="sdk use java  11.0.6.hs-adpt"
-alias java12="sdk use java 12.0.2.hs-adpt"
-alias java13="sdk use java 13.0.2.hs-adpt"
-alias java14="sdk use java 14.0.0.hs-adpt"
-alias m2disable="rm ~/.m2/settings.xml"
-alias m2enable="cp /your_repo_folder/settings.xml ~/.m2/"
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/root/.sdkman"
-[[ -s "/root/.sdkman/bin/sdkman-init.sh" ]] && source "/root/.sdkman/bin/sdkman-init.sh"
-```
-
-- .bashrc file to get Gradle, GitPrompt and some handy aliases in a Windows environment with [ubuntu prompt for windows](https://www.microsoft.com/en-us/p/ubuntu/9nblggh4msv6?activetab=pivot:overviewtab).
-
-```bash
-if [ -f "/root/.bash-git-prompt/gitprompt.sh" ]; then
-    GIT_PROMPT_ONLY_IN_REPO=1
-    source /root/.bash-git-prompt/gitprompt.sh
-fi
-
-alias java8="export JAVA_HOME=/usr/lib/jvm/adoptopenjdk-8-hotspot-amd64 && update-java-alternatives -s adoptopenjdk-8-hotspot-amd64"
-alias java11="export JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64 && update-java-alternatives -s java-1.11.0-openjdk-amd64"
-if [[ -d /usr/lib/jvm/java-13-oracle ]]
-then
-    alias java13="export JAVA_HOME=/usr/lib/jvm/java-13-oracle && update-java-alternatives -s java-13-oracle"
-elif [[ -d /usr/lib/jvm/java-1.13.0-openjdk-amd64 ]]
-then
-    alias java13="export JAVA_HOME=/usr/lib/jvm/java-1.13.0-openjdk-amd64 && update-java-alternatives -s java-1.13.0-openjdk-amd64"
-else
-    echo "Java13 not found!"
-fi
-```
-
--   Upgrade [YARN](https://yarnpkg.com/)
-
-```bash
-curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
-```
-
--   Remove Docker-machine
-
-NOTE: This process will remove old docker-machine installations.
-User [Docker-Desktop](https://www.docker.com/products/docker-desktop) instead.
-
-```bash
-brew uninstall docker-machine-driver-vmware
-brew uninstall --force docker-machine
-docker system prune -a
-```
-
--   Python libraries
-
-```bash
-pip install futures
-pip install pebble
-pip install pika
 pip install requests
-pip install CoAPthon
-pip install coapthon
-pip install paho-mqtt
-pip install kafka-python
 ```
 
 -   Docker logs
@@ -375,6 +255,10 @@ pip install kafka-python
 ```bash
 docker container logs --details bridge-logistics_bl_central_cassandra_1 
 ```
+
+## Review Logs
+
+Follow the updates on the [ReviewLogs](./ReviewLogs.md) file.
 
 ## Domain
 
