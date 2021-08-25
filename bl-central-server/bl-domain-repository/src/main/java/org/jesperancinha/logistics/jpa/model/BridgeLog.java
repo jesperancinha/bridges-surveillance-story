@@ -2,8 +2,11 @@ package org.jesperancinha.logistics.jpa.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import org.hibernate.Hibernate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,9 +15,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.util.Objects;
 
 @Entity
-@Data
+@Getter
+@Setter
+@ToString
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -24,8 +30,23 @@ public class BridgeLog {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @ManyToOne(optional = false)
-    @JoinColumn(name = "bridgeId", nullable = false)
+    @JoinColumn(name = "bridgeId",
+            nullable = false)
     private Bridge bridge;
     private Long timestamp;
     private String checkInOut;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        BridgeLog bridgeLog = (BridgeLog) o;
+
+        return Objects.equals(id, bridgeLog.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getBridge(), getTimestamp(), getCheckInOut());
+    }
 }
