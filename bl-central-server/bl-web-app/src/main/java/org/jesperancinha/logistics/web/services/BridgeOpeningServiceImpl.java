@@ -34,8 +34,8 @@ public class BridgeOpeningServiceImpl implements BridgeOpeningService {
 
         SquareBoundary squareBoundary = geoCalculator.calculateSquareBoundary(lat, lon, BigDecimal.ONE);
         List<BridgeOpeningTime> bridgeByLatAndLonUnderRadius = openingTimeRepository.findBridgeBySquareBoundaryUnderRadius(squareBoundary.westLatitude(), squareBoundary.eastLatitude(), squareBoundary.northLongitude(), squareBoundary.southLongitude(),
-            Instant.now()
-                .toEpochMilli());
+                Instant.now()
+                        .toEpochMilli());
 
         return bridgeByLatAndLonUnderRadius != null && bridgeByLatAndLonUnderRadius.size() == 1;
 
@@ -64,8 +64,8 @@ public class BridgeOpeningServiceImpl implements BridgeOpeningService {
      * @return
      */
     public Map<BridgeDto, Map<BridgeOpeningTimeDto, BridgeOpeningConflictDto>> getAllConflicts(List<BridgeOpeningTimeDto> allOpeningTimes) {
-        Map<BridgeDto, List<BridgeOpeningTimeDto>> openingTimes = allOpeningTimes.stream()
-            .collect(Collectors.groupingBy(BridgeOpeningTimeDto::bridge));
+        final var openingTimes = allOpeningTimes.stream()
+                .collect(Collectors.groupingBy(BridgeOpeningTimeDto::bridge));
         return detectAllConflicts(openingTimes);
     }
 
@@ -78,12 +78,12 @@ public class BridgeOpeningServiceImpl implements BridgeOpeningService {
     public Map<BridgeDto, Map<BridgeOpeningTimeDto, BridgeOpeningConflictDto>> detectAllConflicts(Map<BridgeDto, List<BridgeOpeningTimeDto>> openingTimes) {
         Map<BridgeDto, Map<BridgeOpeningTimeDto, BridgeOpeningConflictDto>> allConflicts = new HashMap<>();
         openingTimes.forEach((bridgeName, bridgeOeningTimes) -> Generator.combination(bridgeOeningTimes)
-            .simple(2)
-            .stream()
-            .map(combination -> Generator.permutation(combination)
-                .simple())
-            .flatMap(IGenerator::stream)
-            .forEach(comb -> findConflictInATwoListBridgeOpeningTimes(allConflicts, comb)));
+                .simple(2)
+                .stream()
+                .map(combination -> Generator.permutation(combination)
+                        .simple())
+                .flatMap(IGenerator::stream)
+                .forEach(comb -> findConflictInATwoListBridgeOpeningTimes(allConflicts, comb)));
 
         return allConflicts;
     }
@@ -101,7 +101,7 @@ public class BridgeOpeningServiceImpl implements BridgeOpeningService {
         Map<BridgeOpeningTimeDto, BridgeOpeningConflictDto> currentBridgeConflicts = createOrGetBridgeOpeningDtoBridgeOpeningConflictMap(allConflicts, bridge);
         BridgeOpeningConflictDto bridgeOpeningConflictDto = createOrGetBridgeOpeningConflict(currentBridgeConflicts, opening1);
         bridgeOpeningConflictDto.relatedOpeningTimes()
-            .addAll(Arrays.asList(opening1, opening2));
+                .addAll(Arrays.asList(opening1, opening2));
         if (currentBridgeConflicts.get(opening1) != null) {
             bridgeOpeningConflictDto = sanitize(bridgeOpeningConflictDto);
             currentBridgeConflicts.put(opening1, bridgeOpeningConflictDto);
@@ -113,8 +113,8 @@ public class BridgeOpeningServiceImpl implements BridgeOpeningService {
         BridgeOpeningConflictDto bridgeOpeningConflictDto = currentBridgeConflicts.get(opening1);
         if (Objects.isNull(bridgeOpeningConflictDto)) {
             bridgeOpeningConflictDto = BridgeOpeningConflictDto.builder()
-                .relatedOpeningTimes(new ArrayList<>())
-                .build();
+                    .relatedOpeningTimes(new ArrayList<>())
+                    .build();
             currentBridgeConflicts.put(opening1, bridgeOpeningConflictDto);
         }
         return bridgeOpeningConflictDto;
@@ -136,16 +136,16 @@ public class BridgeOpeningServiceImpl implements BridgeOpeningService {
      */
     private BridgeOpeningConflictDto sanitize(BridgeOpeningConflictDto currentBridgeConflicts) {
         return BridgeOpeningConflictDto.builder()
-            .message(currentBridgeConflicts.message())
-            .relatedOpeningTimes(currentBridgeConflicts.relatedOpeningTimes()
-                .stream()
-                .sorted((ot1, ot2) -> ot1.openingTime()
-                    .isAfter(ot2.openingTime()) ?
-                    1 :
-                    0)
-                .distinct()
-                .collect(Collectors.toList()))
-            .build();
+                .message(currentBridgeConflicts.message())
+                .relatedOpeningTimes(currentBridgeConflicts.relatedOpeningTimes()
+                        .stream()
+                        .sorted((ot1, ot2) -> ot1.openingTime()
+                                .isAfter(ot2.openingTime()) ?
+                                1 :
+                                0)
+                        .distinct()
+                        .collect(Collectors.toList()))
+                .build();
     }
 
     private boolean hasConflicts(BridgeOpeningTimeDto opening1, BridgeOpeningTimeDto opening2) {
@@ -154,15 +154,15 @@ public class BridgeOpeningServiceImpl implements BridgeOpeningService {
 
     private boolean hasConflictsByOrder(BridgeOpeningTimeDto opening1, BridgeOpeningTimeDto opening2) {
         if (opening1.bridge()
-            .equals(opening2.bridge())) {
+                .equals(opening2.bridge())) {
             if (opening1.closingTime()
-                .isAfter((opening2.openingTime())) && opening1.openingTime()
-                .isBefore(opening2.openingTime())) {
+                    .isAfter((opening2.openingTime())) && opening1.openingTime()
+                    .isBefore(opening2.openingTime())) {
                 return true;
             } else
                 return opening1.openingTime()
-                    .isBefore(opening2.openingTime()) && opening1.closingTime()
-                    .isAfter(opening2.closingTime());
+                        .isBefore(opening2.openingTime()) && opening1.closingTime()
+                        .isAfter(opening2.closingTime());
         }
         return false;
     }
