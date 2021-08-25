@@ -114,8 +114,8 @@ Just remember that each line must be a single name.
 
 ```bash
 sdk upgrade
-sdk install java 15.0.1.hs-adpt
-sdk use java 15.0.1.hs-adpt
+sdk install 16.0.1.hs-adpt
+sdk use 16.0.1.hs-adpt
 ```
 
 -   Cassandra resource consumption is very high and it competes with the RabbitMQ and Kafka streams of this demo. Considering common machines, you are expected to have an anonymous login able Cassandra installation on your machine

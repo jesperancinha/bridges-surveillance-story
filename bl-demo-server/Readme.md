@@ -11,7 +11,7 @@ This submodule represents a simulation of what would happen when:
 4.  The last carriage passes through the last sensor on the bridge
    - The bridge sends a message to central with timestamp
 
-All messages are triangulated at central and the database gaps are autopmatically filled out.
+All messages are triangulated at central and the database gaps are automatically filled out.
 The train server is also updated.
 
 ## About me 👨🏽‍💻🚀🏳️‍🌈

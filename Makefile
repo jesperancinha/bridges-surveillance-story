@@ -1,9 +1,9 @@
 build:
 	cd bl-demo-server && python bl-core-service/launch_generate_people.py
 	mvn clean install -Pdemo -DskipTests
-	cd bl-bridge-server/bl-bridge-temperature-coap && npm run build
-	cd bl-bridge-server/bl-bridge-humidity-mqtt && npm run build
-	cd bl-train-server/bl-train-people-mqtt && npm run build
+	cd bl-bridge-server/bl-bridge-temperature-coap && yarn install && npm run build
+	cd bl-bridge-server/bl-bridge-humidity-mqtt && yarn install && npm run build
+	cd bl-train-server/bl-train-people-mqtt && yarn install && npm run build
 build-maven:
 	mvn clean install -Pdemo -DskipTests
 test:
