@@ -89,7 +89,7 @@ Just remember that each line must be a single name.
 
 ## Modules
 
-- [bl-central-server](./bl-central-server): The central server containing all centralized data
+-   [bl-central-server](./bl-central-server): The central server containing all centralized data
   - [bl-domain-repository](./bl-central-server/bl-domain-repository) - Java
   - [bl-merchandise-data-collector](./bl-central-server/bl-merchandise-data-collector) - Java
   - [bl-meters-readings-service](./bl-central-server/bl-meters-readings-service) - Scala
@@ -102,11 +102,11 @@ Just remember that each line must be a single name.
   - [bl-central-cassandra](./bl-central-server/bl-central-cassandra) - Cassandra
   - [bl-central-psql](./bl-central-server/bl-central-psql) - Postgresql
   - [bl-central-streaming](./bl-central-server/bl-central-streaming) - RabbitMQ
-- [bl-bridge-server](./bl-bridge-server): A server installed on each bridge
-- [bl-train-server](./bl-train-server): A server installed on each train
-- [bl-vehicle-server](./bl-vehicle-server): A server installed on each vehicle
-- [bl-timetable-generator](./bl-vehicle-server): Utility to generate the bridge timetables
-- [bl-demo-server](./bl-demo-server): This server ensures that a simulated train passes through the bridge
+-   [bl-bridge-server](./bl-bridge-server): A server installed on each bridge
+-   [bl-train-server](./bl-train-server): A server installed on each train
+-   [bl-vehicle-server](./bl-vehicle-server): A server installed on each vehicle
+-   [bl-timetable-generator](./bl-vehicle-server): Utility to generate the bridge timetables
+-   [bl-demo-server](./bl-demo-server): This server ensures that a simulated train passes through the bridge
 
 ## Installation notes
 
