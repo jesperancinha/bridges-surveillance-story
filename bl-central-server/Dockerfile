@@ -1,4 +1,4 @@
-FROM jesperancinha/je-all-build-jdk-14:0.0.1
+FROM adoptopenjdk/openjdk16
 
 WORKDIR /root
 
