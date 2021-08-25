@@ -9,6 +9,10 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/9663f8cd66764af3b551e76c13ea7833)](https://www.codacy.com/gl/jesperancinha/bridge-logistics/dashboard?utm_source=gitlab.com&amp;utm_medium=referral&amp;utm_content=jesperancinha/bridge-logistics&amp;utm_campaign=Badge_Grade)
 [![codebeat badge](https://codebeat.co/badges/42f50b94-393c-4637-86cd-1ee6412995c6)](https://codebeat.co/projects/gitlab-com-jesperancinha-bridge-logistics-master)
 
+[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/9663f8cd66764af3b551e76c13ea7833)](https://www.codacy.com/gl/jesperancinha/bridge-logistics/dashboard?utm_source=gitlab.com&utm_medium=referral&utm_content=jesperancinha/bridge-logistics&utm_campaign=Badge_Coverage)
+[![codecov](https://codecov.io/gl/jesperancinha/bridge-logistics/branch/master/graph/badge.svg)](https://codecov.io/gh/jesperancinha/bridge-logistics)
+[![Coverage Status](https://coveralls.io/repos/gitlab/jesperancinha/bridge-logistics/badge.svg?branch=308d48726bfbe4e98da944b1f0543b07112ae552)](https://coveralls.io/gitlab/jesperancinha/bridge-logistics?branch=308d48726bfbe4e98da944b1f0543b07112ae552)
+
 ---
 
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/docker-50.png "Docker")](https://www.docker.com/)
