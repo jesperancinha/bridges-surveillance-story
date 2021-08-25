@@ -5,8 +5,8 @@ import lombok.Builder;
 import java.util.List;
 
 public record ContainerFullDto(Long containerId,
-    Long packageId,
-    List<ProductDto>products) {
+                               Long packageId,
+                               List<ProductDto> products) {
     @Builder
     public ContainerFullDto {
     }

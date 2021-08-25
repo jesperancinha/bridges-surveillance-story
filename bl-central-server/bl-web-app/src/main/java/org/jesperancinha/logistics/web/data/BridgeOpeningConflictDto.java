@@ -9,7 +9,7 @@ import java.util.List;
  * It will accumulate all conflicts found in reference to the first element in the list
  */
 public record BridgeOpeningConflictDto(String message,
-    List<BridgeOpeningTimeDto>relatedOpeningTimes) {
+                                       List<BridgeOpeningTimeDto> relatedOpeningTimes) {
     @Builder
     public BridgeOpeningConflictDto {
     }
