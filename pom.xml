@@ -69,13 +69,8 @@
         <maven-war-plugin.version>3.2.3</maven-war-plugin.version>
         <kotlin.version>1.5.21</kotlin.version>
 
-        <spring-boot-autoconfigure.version>2.2.4.RELEASE</spring-boot-autoconfigure.version>
         <spring-boot-starter-amqp.version>2.2.2.RELEASE</spring-boot-starter-amqp.version>
-        <spring-boot-starter-web.version>2.2.4.RELEASE</spring-boot-starter-web.version>
-        <spring-boot-maven-plugin.version>2.2.6.RELEASE</spring-boot-maven-plugin.version>
-        <spring-boot-starter-test.version>2.2.4.RELEASE</spring-boot-starter-test.version>
         <spring-rabbit-test.version>2.2.5.RELEASE</spring-rabbit-test.version>
-        <spring-boot-starter-data-jpa.version>2.2.4.RELEASE</spring-boot-starter-data-jpa.version>
 
         <activemq.version>5.15.11</activemq.version>
         <amqp-client.version>5.7.1</amqp-client.version>
@@ -118,29 +113,8 @@
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-autoconfigure</artifactId>
-                <version>${spring-boot-autoconfigure.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-amqp</artifactId>
                 <version>${spring-boot-starter-amqp.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-web</artifactId>
-                <version>${spring-boot-starter-web.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-data-jpa</artifactId>
-                <version>${spring-boot-starter-data-jpa.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-test</artifactId>
-                <scope>test</scope>
-                <version>${spring-boot-starter-test.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.amqp</groupId>
