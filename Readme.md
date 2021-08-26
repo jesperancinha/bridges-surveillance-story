@@ -253,10 +253,30 @@ pip install kafka-python
 pip install requests
 ```
 
--   Docker logs
+## Docker Troubleshooting
+
+- Check logs
 
 ```bash
 docker container logs --details bridge-logistics_bl_central_cassandra_1 
+```
+
+- List running containers
+
+```shell
+docker ps --format '{{.ID}} - {{.Names}}' 
+```
+
+- List all containers
+
+```shell
+docker ps -a  --format '{{.ID}} - {{.Names}}' 
+```
+
+- Stop all containers manually
+
+```shell
+docker ps --format '{{.ID}}' | xargs docker stop
 ```
 
 ## Review Logs

@@ -8,76 +8,75 @@ services:
     ports:
       - "15672:15672"
       - "5672:5672"
-
-  bl_train_01_server:
-    hostname: bl_train_01_server
-    build:
-      context: bl-train-server/.
-    ports:
-      - "15673:15672"
-      - "5673:5672"
-      - "9098:9098"
-      - "9099:9099"
-      - "9100:9100"
-      - "9101:9101"
-
-  bl_vehicle_01_server:
-    hostname: bl_vehicle_01_server
-    build:
-      context: bl-vehicle-server/.
-    ports:
-      - "15675:15672"
-      - "5675:5672"
-
-  bl_bridge_01_server:
-    hostname: bl_bridge_01_server
-    build:
-      context: bl-bridge-server/.
-    ports:
-      - "5674:5672"
-      - "15674:15672"
-      - "5683:5683/udp"
-      - "1883:1883"
-      - "9092:9092"
-      - "9093:9093"
-      - "9094:9094"
-
-  bl_central_psql:
-    hostname: bl_central_psql
-    build:
-      context: bl-central-server/bl-central-psql/.
-    env_file:
-      - bl-central-server/bl-central-psql/.env
-    volumes:
-      - ./bl-central-server/bl-central-psql/init-scripts:/docker-entrypoint-initdb.d
-    environment:
-      - POSTGRES_USER=${DB_USER}
-      - POSTGRES_PASSWORD=${DB_PASSWORD}
-      - POSTGRES_MULTIPLE_DATABASES=bllogistics
-    ports:
-      - "5433:5432"
-
-  bl_central_server_apps:
-    hostname: bl_central_server_apps
-    build:
-      context: bl-central-server/.
-    ports:
-      - "9000:9000"
-    depends_on:
-      - bl_central_psql
-      - bl_central_server
-      - bl_train_01_server
-      - bl_vehicle_01_server
-
-# NOTE: Cassandra consumes a lot of resources. If you have a very high capacity machine, please use this container. Otherwise, use cassandra from the outside.
-  bl_central_cassandra:
-    hostname: bl_central_cassandra
-    image: bitnami/cassandra:latest
-    ports:
-      - "7000:7000"
-      - "7001:7001"
-      - "7199:7199"
-      - "9042:9042"
-      - "9160:9160"
-
-
+#
+#  bl_train_01_server:
+#    hostname: bl_train_01_server
+#    build:
+#      context: bl-train-server/.
+#    ports:
+#      - "15673:15672"
+#      - "5673:5672"
+#      - "9098:9098"
+#      - "9099:9099"
+#      - "9100:9100"
+#      - "9101:9101"
+#
+#  bl_vehicle_01_server:
+#    hostname: bl_vehicle_01_server
+#    build:
+#      context: bl-vehicle-server/.
+#    ports:
+#      - "15675:15672"
+#      - "5675:5672"
+#
+#  bl_bridge_01_server:
+#    hostname: bl_bridge_01_server
+#    build:
+#      context: bl-bridge-server/.
+#    ports:
+#      - "5674:5672"
+#      - "15674:15672"
+#      - "5683:5683/udp"
+#      - "1883:1883"
+#      - "9092:9092"
+#      - "9093:9093"
+#      - "9094:9094"
+#
+#  bl_central_psql:
+#    hostname: bl_central_psql
+#    build:
+#      context: bl-central-server/bl-central-psql/.
+#    env_file:
+#      - bl-central-server/bl-central-psql/.env
+#    volumes:
+#      - ./bl-central-server/bl-central-psql/init-scripts:/docker-entrypoint-initdb.d
+#    environment:
+#      - POSTGRES_USER=${DB_USER}
+#      - POSTGRES_PASSWORD=${DB_PASSWORD}
+#      - POSTGRES_MULTIPLE_DATABASES=bllogistics
+#    ports:
+#      - "5433:5432"
+#
+#  bl_central_server_apps:
+#    hostname: bl_central_server_apps
+#    build:
+#      context: bl-central-server/.
+#    ports:
+#      - "9000:9000"
+#    depends_on:
+#      - bl_central_psql
+#      - bl_central_server
+#      - bl_train_01_server
+#      - bl_vehicle_01_server
+#
+#  bl_central_cassandra:
+#    hostname: bl_central_cassandra
+#    image: bitnami/cassandra:latest
+#    ports:
+#      - "7000:7000"
+#      - "7001:7001"
+#      - "7199:7199"
+#      - "9042:9042"
+#      - "9160:9160"
+#
+#

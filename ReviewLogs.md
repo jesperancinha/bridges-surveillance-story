@@ -2,13 +2,15 @@
 
 ## Roadmap to v2.0.0
 
-- Replace custom containers
 - Update storyline
 - Python unit tests
 - Extend Scala tests
 - Update and organize dependencies
 - Update instructions
 - Make Demo play easy and seamless
+
+- Replace custom containers
+- Re-dockerize by splitting
 
 2021/08/25 
 - Update to JDK16

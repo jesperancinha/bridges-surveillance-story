@@ -26,5 +26,13 @@ build-docker: stop no-test build-npm
 	docker-compose up -d --build --remove-orphans
 stop:
 	docker-compose down
+docker-delete:
+	docker-compose down
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl_" | xargs docker stop
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl_" | xargs docker rm
 prune-all:
 	docker system prune --all
+show:
+	docker ps -a  --format '{{.ID}} - {{.Names}} - {{.Status}}'
+logs-central-server:
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_server" | xargs docker logs

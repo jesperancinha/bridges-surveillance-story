@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
-rabbitmq-plugins enable rabbitmq_management
-
 rabbitmq-server -detached
+
+rabbitmqctl await_startup
+
+rabbitmq-plugins enable rabbitmq_management
 
 rabbitmqctl await_startup
 
 curl -S http://localhost:15672/cli/rabbitmqadmin > /usr/local/bin/rabbitmqadmin
 
 chmod +x /usr/local/bin/rabbitmqadmin
-
-ln -s /usr/bin/python3 /usr/bin/python
 
 rabbitmqctl add_user test test
 
