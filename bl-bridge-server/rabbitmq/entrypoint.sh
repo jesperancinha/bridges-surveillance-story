@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+rabbitmq-server -detached
+
+rabbitmqctl await_startup
+
 rabbitmq-plugins enable rabbitmq_management
 
 rabbitmq-server -detached
@@ -33,18 +37,6 @@ function sourceQueue(){
 }
 
 sourceQueue bridge_01_sensor
-
-mosquitto &
-
-node bl-bridge-temperature-coap/dist/app.js &
-
-node bl-bridge-humidity-mqtt/dist/app.js &
-
-./startZookeeper.sh &
-
-sleep 5
-
-./startKafka.sh &
 
 tail -f /dev/null
 

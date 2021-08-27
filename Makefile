@@ -57,5 +57,5 @@ docker-cleanup: docker-delete
 prune-all: stop
 	docker system prune --all
 stop:
-	docker-compose down
+	docker-compose down --remove-orphans
 

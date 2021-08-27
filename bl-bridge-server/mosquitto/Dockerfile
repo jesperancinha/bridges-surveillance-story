@@ -1,0 +1,6 @@
+FROM eclipse-mosquitto:2.0.11
+
+ENV LANG=C.UTF-8
+
+#MQTT
+EXPOSE 1883
