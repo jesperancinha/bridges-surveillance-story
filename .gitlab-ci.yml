@@ -60,53 +60,58 @@ cache:
     - master
 verify:
   <<: *verify
+#
+#maven-build:
+#  stage: build
+#  script:
+#    - if [ ! -f ci_settings.xml ];
+#        then echo "CI settings missing\! If deploying to GitLab Maven Repository, please see https://docs.gitlab.com/ee/user/project/packages/maven_repository.html#creating-maven-packages-with-gitlab-cicd for instructions.";
+#      fi
+#    - 'mvn clean install jacoco:report | grep -v "com.github.dockerjava.zerodep.shaded.org.apache.hc.client5.http.wire"'
+#
+#npm-bl-bridge-temperature-coap:
+#  image: node:6.3.0
+#  stage: build
+#  script:
+#    - cd bl-bridge-server/bl-bridge-temperature-coap && npm run test
+#
+#npm-bl-bridge-humidity-mqtt:
+#  image: node:6.3.0
+#  stage: build
+#  script:
+#    - cd bl-bridge-server/bl-bridge-humidity-mqtt && npm run test
+#
+#npm-bl-train-people-mqtt:
+#  image: node:6.3.0
+#  stage: build
+#  script:
+#    - cd bl-train-server/bl-train-people-mqtt && npm run test
+#
+#coveralls:
+#  stage: coverage
+#  script:
+#    - 'mvn package coveralls:report -DrepoToken=$COVERALLS_REPO_TOKEN | grep -v "com.github.dockerjava.zerodep.shaded.org.apache.hc.client5.http.wire"'
+#  only:
+#    - master
+#codecov:
+#  stage: coverage
+#  script:
+#    - 'bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN'
+#  only:
+#    - master
+#codacy:
+#  stage: coverage
+#  script:
+#    - 'bash <(curl -Ls https://coverage.codacy.com/get.sh) report -l Java $(find **/jacoco*.xml -printf ''-r %p '')'
+#  only:
+#    - master
 
-maven-build:
-  stage: build
-  script:
-    - if [ ! -f ci_settings.xml ];
-        then echo "CI settings missing\! If deploying to GitLab Maven Repository, please see https://docs.gitlab.com/ee/user/project/packages/maven_repository.html#creating-maven-packages-with-gitlab-cicd for instructions.";
-      fi
-    - 'mvn clean install jacoco:report | grep -v "com.github.dockerjava.zerodep.shaded.org.apache.hc.client5.http.wire"'
-
-npm-bl-bridge-temperature-coap:
-  image: node:6.3.0
-  stage: build
-  script:
-    - cd bl-bridge-server/bl-bridge-temperature-coap && npm run test
-
-npm-bl-bridge-humidity-mqtt:
-  image: node:6.3.0
-  stage: build
-  script:
-    - cd bl-bridge-server/bl-bridge-humidity-mqtt && npm run test
-
-npm-bl-train-people-mqtt:
-  image: node:6.3.0
-  stage: build
-  script:
-    - cd bl-train-server/bl-train-people-mqtt && npm run test
-
-coveralls:
-  stage: coverage
-  script:
-    - 'mvn package coveralls:report -DrepoToken=$COVERALLS_REPO_TOKEN | grep -v "com.github.dockerjava.zerodep.shaded.org.apache.hc.client5.http.wire"'
-  only:
-    - master
-codecov:
-  stage: coverage
-  script:
-    - 'bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN'
-  only:
-    - master
-codacy:
-  stage: coverage
-  script:
-    - 'bash <(curl -Ls https://coverage.codacy.com/get.sh) report -l Java $(find **/jacoco*.xml -printf ''-r %p '')'
-  only:
-    - master
+before_script:
+  - docker info
 
 docker-compose:
   stage: docker-compose
   script:
+    - curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    - chmod +x /usr/local/bin/docker-compose
     - docker-compose up -d --build --remove-orphans
