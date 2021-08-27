@@ -146,7 +146,7 @@ This application is inspired by the TV Series - [The Bridge](https://www.imdb.co
 
 ## Installation
 
-In [Documentation](./Documentation), you will find support materials for this project.
+In [Documentation](./docs), you will find support materials for this project.
 
 -   Hosts
 When making tests with spark agains the dockerized environment, Kafka will have to reply back. For that we need this mapping:
@@ -158,9 +158,9 @@ When making tests with spark agains the dockerized environment, Kafka will have 
 
 -   [bridge-logistics-jms](bridge-logistics-jms/Readme.md)
 
-## [Overview](Documentation/Overview.md)
+## [Overview](dev/src/jofisaes/bridge-logistics/docs/Overview.md)
 
-## [Requirements Change Log](Documentation/ChangeLog.md)
+## [Requirements Change Log](dev/src/jofisaes/bridge-logistics/docs/ChangeLog.md)
 
 ## Status: [Under development](https://github.com/jesperancinha/project-signer/blob/master/project-signer-templates/UnderConstruction.md)
 
@@ -283,52 +283,68 @@ docker ps --format '{{.ID}}' | xargs docker stop
 
 Follow the updates on the [ReviewLogs](./ReviewLogs.md) file.
 
-## Domain
-
--   [UIC classification of goods wagons](https://en.wikipedia.org/wiki/UIC_classification_of_goods_wagons)
--   [DB Cargon freight wagons](https://nl.dbcargo.com/resource/blob/1430008/9767e97bb070ccbbf77efd84e7d64948/freight_wagon_catalog_v2011-data.pdf)
--   [How are freight cars classifed by IR?](https://www.irfca.org/faq/faq-stock2.html)
--   [Hornby Wagons](https://www.hornby.com/uk-en/)
--   [Goods wagon](https://en.wikipedia.org/wiki/Goods_wagon)
--   [Python online compiler](https://www.programiz.com/python-programming/online-compiler/)
-
 ## References
 
--   [Java 16 Records with JPA and jOOQ](https://72.services/java-16-records-with-jpa-and-jooq/)
--   [JDK 17 - What's new features in Java 17](https://www.techgeeknext.com/java/java17-features)
--   [Spring Tips: Java 14 (or: Can Your Java Do This?)](https://spring.io/blog/2020/03/11/spring-tips-java-14-or-can-your-java-do-this)
--   [Share Link Generator!](http://sharelinkgenerator.com/)
--   [Docker Desktop for Mac](https://hub.docker.com/editions/community/docker-ce-desktop-mac)
--   [Kafka vs. RabbitMQ: Architecture, Performance & Use Cases](https://www.upsolver.com/blog/kafka-versus-rabbitmq-architecture-performance-use-case)
--   [Real-Time Analysis of Popular Uber Locations using Apache APIs: Spark Structured Streaming, Machine Learning, Kafka and MapR Database](https://mapr.com/blog/real-time-analysis-popular-uber-locations-spark-structured-streaming-machine-learning-kafka-and-mapr-db/)
--   [IoT architecture: building blocks and how they work](https://www.scnsoft.com/blog/iot-architecture-in-a-nutshell-and-how-it-works)
--   [Top 15 Standard IoT Protocols That You Must Know About](https://www.ubuntupit.com/top-15-standard-iot-protocols-that-you-must-know-about/)
--   [Using Apache Kafka as a Scalable, Event-Driven Backbone for Service Architectures](https://www.confluent.io/blog/apache-kafka-for-service-architectures/)
--   [MQTT](https://www.npmjs.com/package/mqtt)
--   [Internet of Things: Where Does the Data Go?](https://www.wired.com/insights/2015/03/internet-things-data-go/)
--   [Apache Kafka Documentation](https://kafka.apache.org/documentation/)
--   [Apache Kafka Installation on Mac using Homebrew](https://medium.com/@Ankitthakur/apache-kafka-installation-on-mac-using-homebrew-a367cdefd273 )
--   [Offset Management For Apache Kafka With Apache Spark Streaming](https://blog.cloudera.com/offset-management-for-apache-kafka-with-apache-spark-streaming/)
--   [Confluent Tutorial: Creating a Streaming Data Pipeline](https://docs.confluent.io/current/streams/quickstart.html)
--   [Spark Streaming + Kafka Integration Guide (Kafka broker version 0.10.0 or higher)](https://spark.apache.org/docs/2.2.0/streaming-kafka-0-10-integration.html)
--   [Spark Streaming Programming Guide](https://spark.apache.org/docs/2.2.0/streaming-programming-guide.html)
--   [Apache Spark Tutorial](https://www.javatpoint.com/apache-spark-tutorial)
--   [Java EE vs Spring Testing](https://antoniogoncalves.org/2018/01/16/java-ee-vs-spring-testing/)
--   [Arquillian JUnit5 Hacks](https://github.com/OndroMih/arquillian-junit5-hacks)
--   [Java Libhunt Arquillian Alternatives](https://java.libhunt.com/arquillian-github-com-alternatives)
--   [Eclipse EE4J](https://projects.eclipse.org/projects/ee4j)
--   [Arquillian](http://arquillian.org/)
--   [Java™ EE at a Glance](https://www.oracle.com/java/technologies/java-ee-glance.html)
--   [JMS vs RabbitMQ](https://dzone.com/articles/jms-vs-rabbitmq)
--   [Get Started with RabbitMQ](https://www.rabbitmq.com/getstarted.html)
--   [Microservice Architecture by Kong](https://microservices.io/)
--   [Integrate ActiveMQ with WildFly](http://www.mastertheboss.com/jboss-server/jboss-jms/integrate-activemq-with-wildfly)
--   [SQL Server Table and Column Naming Conventions](https://www.codeproject.com/Articles/1065295/SQL-Server-Table-and-Column-Naming-Conventions)
--   [The Power of a Good SQL Naming Convention](https://www.xaprb.com/blog/2008/10/26/the-power-of-a-good-sql-naming-convention/)
--   [Integration Testing for Java EE](https://www.oracle.com/technetwork/articles/java/integrationtesting-487452.html)
--   [How to create Docker Images with a Dockerfile](https://www.howtoforge.com/tutorial/how-to-create-docker-images-with-dockerfile/)
--   [How to create a Docker image for PostgreSQL and persist data](https://www.andreagrandi.it/2015/02/21/how-to-create-a-docker-image-for-postgresql-and-persist-data/)
--   [Dockerize PostgreSQL](https://docs.docker.com/engine/examples/postgresql_service/)
+- [What is Apache Kafka? Why is it so popular? Should you use it?](https://techbeacon.com/app-dev-testing/what-apache-kafka-why-it-so-popular-should-you-use-it)
+- [RabbitMQ](https://en.wikipedia.org/wiki/RabbitMQ#History)
+- [Rabbit Technologies](https://www.crunchbase.com/organization/rabbit-technologies#section-overview)
+- [Advanced Message Queuing Protocol](https://www.amqp.org/)
+- [RabbitMQ for beginners - What is RabbitMQ?](https://www.cloudamqp.com/blog/2015-05-18-part1-rabbitmq-for-beginners-what-is-rabbitmq.html)
+- [Advanced Message Queuing Protocol](https://en.wikipedia.org/wiki/Advanced_Message_Queuing_Protocol)
+- [Understanding AMQP, the protocol used by RabbitMQ](https://spring.io/blog/2010/06/14/understanding-amqp-the-protocol-used-by-rabbitmq/)
+- [Get to Know MQTT: The Messaging Protocol for the Internet of Things](https://thenewstack.io/mqtt-protocol-iot/)
+- [Constrained Application Protocol](https://en.wikipedia.org/wiki/Constrained_Application_Protocol)
+- [RFC 7252 Constrained Application Protocol](https://coap.technology/)
+- [CoAP RFC 7252](https://iottestware.readthedocs.io/en/master/coap_rfc.html)
+- [The Constrained Application Protocol (CoAP)](https://datatracker.ietf.org/doc/rfc7252/)
+- [Message Oriented Middleware](https://www.trustradius.com/message-oriented-middleware#overview)
+- [John O' Hara, Chairman - AMQP Working Group](https://qconlondon.com/london-2007/speakers/show_speakerddb0.html?oid=180)
+- [How does protocol mediation work?](https://www.dpstele.com/snmp/transition/how-does-mediation-work.php)
+- [Ingress Traffic](https://www.techopedia.com/definition/2415/ingress-traffic)
+- [When to use RabbitMQ or Apache Kafka](https://www.cloudamqp.com/blog/2019-12-12-when-to-use-rabbitmq-or-apache-kafka.html)
+- [Part 4: RabbitMQ Exchanges, routing keys and bindings](https://www.cloudamqp.com/blog/2015-09-03-part4-rabbitmq-for-beginners-exchanges-routing-keys-bindings.html)
+- [Scalability of Kafka Messaging using Consumer Groups](https://blog.cloudera.com/scalability-of-kafka-messaging-using-consumer-groups/)
+- [UIC classification of goods wagons](https://en.wikipedia.org/wiki/UIC_classification_of_goods_wagons)
+- [DB Cargon freight wagons](https://nl.dbcargo.com/resource/blob/1430008/9767e97bb070ccbbf77efd84e7d64948/freight_wagon_catalog_v2011-data.pdf)
+- [How are freight cars classifed by IR?](https://www.irfca.org/faq/faq-stock2.html)
+- [Hornby Wagons](https://www.hornby.com/uk-en/)
+- [Goods wagon](https://en.wikipedia.org/wiki/Goods_wagon)
+- [Python online compiler](https://www.programiz.com/python-programming/online-compiler/)
+- [Java 16 Records with JPA and jOOQ](https://72.services/java-16-records-with-jpa-and-jooq/)
+- [JDK 17 - What's new features in Java 17](https://www.techgeeknext.com/java/java17-features)
+- [Spring Tips: Java 14 (or: Can Your Java Do This?)](https://spring.io/blog/2020/03/11/spring-tips-java-14-or-can-your-java-do-this)
+- [Share Link Generator!](http://sharelinkgenerator.com/)
+- [Docker Desktop for Mac](https://hub.docker.com/editions/community/docker-ce-desktop-mac)
+- [Kafka vs. RabbitMQ: Architecture, Performance & Use Cases](https://www.upsolver.com/blog/kafka-versus-rabbitmq-architecture-performance-use-case)
+- [Real-Time Analysis of Popular Uber Locations using Apache APIs: Spark Structured Streaming, Machine Learning, Kafka and MapR Database](https://mapr.com/blog/real-time-analysis-popular-uber-locations-spark-structured-streaming-machine-learning-kafka-and-mapr-db/)
+- [IoT architecture: building blocks and how they work](https://www.scnsoft.com/blog/iot-architecture-in-a-nutshell-and-how-it-works)
+- [Top 15 Standard IoT Protocols That You Must Know About](https://www.ubuntupit.com/top-15-standard-iot-protocols-that-you-must-know-about/)
+- [Using Apache Kafka as a Scalable, Event-Driven Backbone for Service Architectures](https://www.confluent.io/blog/apache-kafka-for-service-architectures/)
+- [MQTT](https://www.npmjs.com/package/mqtt)
+- [Internet of Things: Where Does the Data Go?](https://www.wired.com/insights/2015/03/internet-things-data-go/)
+- [Apache Kafka Documentation](https://kafka.apache.org/documentation/)
+- [Apache Kafka Installation on Mac using Homebrew](https://medium.com/@Ankitthakur/apache-kafka-installation-on-mac-using-homebrew-a367cdefd273 )
+- [Offset Management For Apache Kafka With Apache Spark Streaming](https://blog.cloudera.com/offset-management-for-apache-kafka-with-apache-spark-streaming/)
+- [Confluent Tutorial: Creating a Streaming Data Pipeline](https://docs.confluent.io/current/streams/quickstart.html)
+- [Spark Streaming + Kafka Integration Guide (Kafka broker version 0.10.0 or higher)](https://spark.apache.org/docs/2.2.0/streaming-kafka-0-10-integration.html)
+- [Spark Streaming Programming Guide](https://spark.apache.org/docs/2.2.0/streaming-programming-guide.html)
+- [Apache Spark Tutorial](https://www.javatpoint.com/apache-spark-tutorial)
+- [Java EE vs Spring Testing](https://antoniogoncalves.org/2018/01/16/java-ee-vs-spring-testing/)
+- [Arquillian JUnit5 Hacks](https://github.com/OndroMih/arquillian-junit5-hacks)
+- [Java Libhunt Arquillian Alternatives](https://java.libhunt.com/arquillian-github-com-alternatives)
+- [Eclipse EE4J](https://projects.eclipse.org/projects/ee4j)
+- [Arquillian](http://arquillian.org/)
+- [Java™ EE at a Glance](https://www.oracle.com/java/technologies/java-ee-glance.html)
+- [JMS vs RabbitMQ](https://dzone.com/articles/jms-vs-rabbitmq)
+- [Get Started with RabbitMQ](https://www.rabbitmq.com/getstarted.html)
+- [Microservice Architecture by Kong](https://microservices.io/)
+- [Integrate ActiveMQ with WildFly](http://www.mastertheboss.com/jboss-server/jboss-jms/integrate-activemq-with-wildfly)
+- [SQL Server Table and Column Naming Conventions](https://www.codeproject.com/Articles/1065295/SQL-Server-Table-and-Column-Naming-Conventions)
+- [The Power of a Good SQL Naming Convention](https://www.xaprb.com/blog/2008/10/26/the-power-of-a-good-sql-naming-convention/)
+- [Integration Testing for Java EE](https://www.oracle.com/technetwork/articles/java/integrationtesting-487452.html)
+- [How to create Docker Images with a Dockerfile](https://www.howtoforge.com/tutorial/how-to-create-docker-images-with-dockerfile/)
+- [How to create a Docker image for PostgreSQL and persist data](https://www.andreagrandi.it/2015/02/21/how-to-create-a-docker-image-for-postgresql-and-persist-data/)
+- [Dockerize PostgreSQL](https://docs.docker.com/engine/examples/postgresql_service/)
 
 ## About me 👨🏽‍💻🚀🏳️‍🌈
 

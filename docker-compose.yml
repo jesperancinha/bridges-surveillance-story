@@ -8,19 +8,35 @@ services:
     ports:
       - "15672:15672"
       - "5672:5672"
-#
-#  bl_train_01_server:
-#    hostname: bl_train_01_server
-#    build:
-#      context: bl-train-server/.
-#    ports:
-#      - "15673:15672"
-#      - "5673:5672"
-#      - "9098:9098"
-#      - "9099:9099"
-#      - "9100:9100"
-#      - "9101:9101"
-#
+
+  bl_train_01_rabbitmq_server:
+    hostname: bl_train_01_rabbitmq_server
+    build:
+      context: bl-train-server/rabbitmq/.
+    ports:
+      - "15673:15672"
+      - "5673:5672"
+
+  bl_train_01_zookeeper_server:
+    hostname: bl_train_01_zookeeper_server
+    build:
+      context: bl-train-server/zookeeper/.
+    ports:
+      - "2181:2181"
+
+  bl_train_01_kafka_server:
+    hostname: bl_train_01_kafka_server
+    build:
+      context: bl-train-server/kafka/.
+    ports:
+      - "9098:9098"
+      - "9099:9099"
+      - "9100:9100"
+      - "9101:9101"
+    depends_on:
+      - bl_train_01_zookeeper_server
+
+
 #  bl_vehicle_01_server:
 #    hostname: bl_vehicle_01_server
 #    build:
@@ -66,7 +82,7 @@ services:
 #    depends_on:
 #      - bl_central_psql
 #      - bl_central_server
-#      - bl_train_01_server
+#      - bl_train_01_rabbitmq_server
 #      - bl_vehicle_01_server
 #
 #  bl_central_cassandra:

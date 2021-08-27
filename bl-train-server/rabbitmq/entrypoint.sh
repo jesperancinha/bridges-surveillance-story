@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
-rabbitmq-plugins enable rabbitmq_management
-
 rabbitmq-server -detached
+
+rabbitmqctl await_startup
+
+rabbitmq-plugins enable rabbitmq_management
 
 rabbitmqctl await_startup
 
@@ -32,13 +34,5 @@ function sourceQueue(){
 
 sourceQueue train_01_merchandise
 sourceQueue train_01_sensor
-
-sleep 5
-
-./startZookeeper.sh &
-
-sleep 5
-
-./startKafka.sh &
 
 tail -f /dev/null

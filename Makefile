@@ -24,15 +24,34 @@ docker-databases: stop local
 build-images:
 build-docker: stop no-test build-npm
 	docker-compose up -d --build --remove-orphans
-stop:
-	docker-compose down
-docker-delete:
-	docker-compose down
-	docker ps -a --format '{{.ID}}' -q --filter="name=bl_" | xargs docker stop
-	docker ps -a --format '{{.ID}}' -q --filter="name=bl_" | xargs docker rm
-prune-all:
-	docker system prune --all
 show:
 	docker ps -a  --format '{{.ID}} - {{.Names}} - {{.Status}}'
 logs-central-server:
 	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_server" | xargs docker logs
+logs-central-server-tail:
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_server" | xargs docker logs -f
+logs-kafka-server:
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl_train_01_kafka_server" | xargs docker logs
+logs-kafka-server-tail:
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl_train_01_kafka_server" | xargs docker logs -f
+logs-zookeeper-server:
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl_train_01_zookeeper_server" | xargs docker logs
+logs-zookeeper-server-tail:
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl_train_01_zookeeper_server" | xargs docker logs -f
+docker-delete-idle:
+	docker ps --format '{{.ID}}' -q --filter="name=bl_" | xargs docker rm
+docker-delete: stop
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl_" | xargs docker stop
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl_" | xargs docker rm
+docker-cleanup: docker-delete
+	docker rmi bridge-logistics_bl_train_01_rabbitmq_server
+	docker rmi bridge-logistics_bl_train_01_kafka_server
+	docker rmi bridge-logistics_bl_train_01_zookeeper_server
+	docker rmi bridge-logistics_bl_vehicle_01_server
+	docker rmi bridge-logistics_bl_central_server
+	docker rmi bridge-logistics_postgres
+prune-all: stop
+	docker system prune --all
+stop:
+	docker-compose down
+

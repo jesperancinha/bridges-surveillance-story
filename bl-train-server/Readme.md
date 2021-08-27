@@ -1,6 +1,8 @@
 # bl-train-server
 
-## Build container
+## Build containers
+
+### bl_train_server_01_rabbitmq
 
 ```bash
 docker stop bl-train-container
@@ -41,7 +43,7 @@ rabbitmq-plugins enable rabbitmq_federation_management
 
 guest/guest
 
-## Minishift [![alt text](../Documentation/bl-openshift-s.png)](https://manage.openshift.com/)
+## Minishift [![alt text](dev/src/jofisaes/bridge-logistics/docs/bl-openshift-s.png)](https://manage.openshift.com/)
 
 ```bash
 minishift start --vm-driver=virtualbox --memory=3G
