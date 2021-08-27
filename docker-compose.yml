@@ -37,13 +37,13 @@ services:
       - bl_train_01_zookeeper_server
 
 
-#  bl_vehicle_01_server:
-#    hostname: bl_vehicle_01_server
-#    build:
-#      context: bl-vehicle-server/.
-#    ports:
-#      - "15675:15672"
-#      - "5675:5672"
+  bl_vehicle_01_server:
+    hostname: bl_vehicle_01_server
+    build:
+      context: bl-vehicle-server/.
+    ports:
+      - "15675:15672"
+      - "5675:5672"
 #
 #  bl_bridge_01_server:
 #    hostname: bl_bridge_01_server
