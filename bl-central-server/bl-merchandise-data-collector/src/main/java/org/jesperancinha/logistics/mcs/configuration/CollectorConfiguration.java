@@ -1,6 +1,6 @@
 package org.jesperancinha.logistics.mcs.configuration;
 
-import com.google.gson.Gson;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
@@ -19,8 +19,8 @@ public abstract class CollectorConfiguration {
     private String host;
 
     @Bean
-    Gson gson() {
-        return new Gson();
+    public ObjectMapper objectMapper() {
+        return new ObjectMapper();
     }
 
     protected SimpleMessageListenerContainer getSimpleMessageListenerContainer(MessageListenerAdapter listenerAdapter, String vHost, String queueName) {

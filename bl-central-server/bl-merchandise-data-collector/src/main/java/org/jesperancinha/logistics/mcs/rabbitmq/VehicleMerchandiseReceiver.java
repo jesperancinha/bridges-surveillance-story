@@ -1,6 +1,6 @@
 package org.jesperancinha.logistics.mcs.rabbitmq;
 
-import com.google.gson.Gson;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.jesperancinha.logistics.jpa.model.Company;
 import org.jesperancinha.logistics.jpa.model.MerchandiseLog;
@@ -30,7 +30,7 @@ import static org.jesperancinha.logistics.jpa.types.Status.DELIVERED;
 @Component
 public class VehicleMerchandiseReceiver {
 
-    private final Gson gson;
+    private final ObjectMapper objectMapper;
 
     private final CountDownLatch latch = new CountDownLatch(1);
 
@@ -48,9 +48,9 @@ public class VehicleMerchandiseReceiver {
 
     private final ContainerRepository containerRepository;
 
-    public VehicleMerchandiseReceiver(Gson gson, MerchandiseLogRepository merchandiseLogRepository, MerchandiseRepository merchandiseRepository, ProductRepository productRepository, TransportPackageRepository transportPackageRepository,
-        CompanyRepository companyRepository, ProductCargoRepository productCargoRepository, ContainerRepository containerRepository) {
-        this.gson = gson;
+    public VehicleMerchandiseReceiver(ObjectMapper objectMapper, MerchandiseLogRepository merchandiseLogRepository, MerchandiseRepository merchandiseRepository, ProductRepository productRepository, TransportPackageRepository transportPackageRepository,
+                                      CompanyRepository companyRepository, ProductCargoRepository productCargoRepository, ContainerRepository containerRepository) {
+        this.objectMapper = objectMapper;
         this.merchandiseLogRepository = merchandiseLogRepository;
         this.merchandiseRepository = merchandiseRepository;
         this.productRepository = productRepository;
@@ -64,60 +64,60 @@ public class VehicleMerchandiseReceiver {
         String messageString = new String(message, Charset.defaultCharset());
         System.out.println("Received <" + messageString + ">");
         try {
-            final VehicleMerchandiseDto[] vehicleMerchandiseDtos = gson.fromJson(messageString, VehicleMerchandiseDto[].class);
+            final VehicleMerchandiseDto[] vehicleMerchandiseDtos = objectMapper.readValue(messageString, VehicleMerchandiseDto[].class);
             Stream.of(vehicleMerchandiseDtos)
-                .forEach(vehicleMerchandiseDto -> {
-                    final Company supplier = companyRepository.findById(vehicleMerchandiseDto.supplierId())
-                        .orElse(null);
-                    final Company vendor = companyRepository.findById(vehicleMerchandiseDto.vendorId())
-                        .orElse(null);
+                    .forEach(vehicleMerchandiseDto -> {
+                        final Company supplier = companyRepository.findById(vehicleMerchandiseDto.supplierId())
+                                .orElse(null);
+                        final Company vendor = companyRepository.findById(vehicleMerchandiseDto.vendorId())
+                                .orElse(null);
 
-                    vehicleMerchandiseDto.composition()
-                        .parallelStream()
-                        .forEach(containerDto -> {
-                            final Long packageId = containerDto.packageId();
-                            final TransportPackage transportPackage = TransportPackage.builder()
-                                .id(packageId)
-                                .supplier(supplier)
-                                .vendor(vendor)
-                                .container(containerRepository.findById(containerDto.containerId())
-                                    .orElse(null))
-                                .productCargos(new ArrayList<>())
-                                .build();
-                            final TransportPackage transportPackage1 = transportPackageRepository.save(transportPackage);
-                            containerDto.products()
+                        vehicleMerchandiseDto.composition()
                                 .parallelStream()
-                                .forEach(productInTransitDto -> {
-                                    final Product product = productRepository.findById(productInTransitDto.productId())
-                                        .orElse(null);
-                                    final ProductCargo productCargo = ProductCargo.builder()
-                                        .product(product)
-                                        .quantity(productInTransitDto.quantity())
-                                        .build();
-                                    final ProductCargo productCargoDb = productCargoRepository.save(productCargo);
-                                    final MerchandiseLog merchandiseLog = MerchandiseLog.builder()
-                                        .supplier(supplier)
-                                        .vendor(vendor)
-                                        .timestamp(Instant.now()
-                                            .toEpochMilli())
-                                        .transportPackage(transportPackage1)
-                                        .productCargo(productCargoDb)
-                                        .status(vehicleMerchandiseDto.status())
-                                        .lat(vehicleMerchandiseDto.lat())
-                                        .lon(vehicleMerchandiseDto.lon())
-                                        .build();
-                                    transportPackage1.getProductCargos()
-                                        .add(productCargoDb);
-                                    merchandiseLogRepository.save(merchandiseLog);
-                                    if (merchandiseLog.getStatus() == DELIVERED) {
-                                        merchandiseRepository.save(MerchandiseLogConverter.toMerchandise(merchandiseLog));
-                                    }
-                                });
-                            transportPackageRepository.save(transportPackage1);
+                                .forEach(containerDto -> {
+                                    final Long packageId = containerDto.packageId();
+                                    final TransportPackage transportPackage = TransportPackage.builder()
+                                            .id(packageId)
+                                            .supplier(supplier)
+                                            .vendor(vendor)
+                                            .container(containerRepository.findById(containerDto.containerId())
+                                                    .orElse(null))
+                                            .productCargos(new ArrayList<>())
+                                            .build();
+                                    final TransportPackage transportPackage1 = transportPackageRepository.save(transportPackage);
+                                    containerDto.products()
+                                            .parallelStream()
+                                            .forEach(productInTransitDto -> {
+                                                final Product product = productRepository.findById(productInTransitDto.productId())
+                                                        .orElse(null);
+                                                final ProductCargo productCargo = ProductCargo.builder()
+                                                        .product(product)
+                                                        .quantity(productInTransitDto.quantity())
+                                                        .build();
+                                                final ProductCargo productCargoDb = productCargoRepository.save(productCargo);
+                                                final MerchandiseLog merchandiseLog = MerchandiseLog.builder()
+                                                        .supplier(supplier)
+                                                        .vendor(vendor)
+                                                        .timestamp(Instant.now()
+                                                                .toEpochMilli())
+                                                        .transportPackage(transportPackage1)
+                                                        .productCargo(productCargoDb)
+                                                        .status(vehicleMerchandiseDto.status())
+                                                        .lat(vehicleMerchandiseDto.lat())
+                                                        .lon(vehicleMerchandiseDto.lon())
+                                                        .build();
+                                                transportPackage1.getProductCargos()
+                                                        .add(productCargoDb);
+                                                merchandiseLogRepository.save(merchandiseLog);
+                                                if (merchandiseLog.getStatus() == DELIVERED) {
+                                                    merchandiseRepository.save(MerchandiseLogConverter.toMerchandise(merchandiseLog));
+                                                }
+                                            });
+                                    transportPackageRepository.save(transportPackage1);
 
-                        });
-                    latch.countDown();
-                });
+                                });
+                        latch.countDown();
+                    });
         } catch (Exception e) {
             log.error("Error receiving message!", e);
         }

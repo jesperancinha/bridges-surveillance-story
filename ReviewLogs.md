@@ -2,6 +2,7 @@
 
 ## Roadmap to v2.0.0
 
+- Remove EmbeddedPostgres and use TestContainers
 - Update storyline
 - Python unit tests
 - Extend Scala tests
