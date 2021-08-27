@@ -18,6 +18,7 @@ stages:
   - codacy
   - verify
   - test
+  - docker-compose
 
 variables:
   # This will suppress any download for dependencies and plugins or upload messages which would clutter the console log.
@@ -104,3 +105,8 @@ codacy:
     - 'bash <(curl -Ls https://coverage.codacy.com/get.sh) report -l Java $(find **/jacoco*.xml -printf ''-r %p '')'
   only:
     - master
+
+docker-compose:
+  stage: docker-compose
+  script:
+    - make docker
