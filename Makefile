@@ -54,6 +54,8 @@ docker-cleanup: docker-delete
 	docker rmi bridge-logistics_bl_vehicle_01_server
 	docker rmi bridge-logistics_bl_central_server
 	docker rmi bridge-logistics_postgres
+docker-delete-apps: stop
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_server_apps" | xargs docker rm
 prune-all: stop
 	docker system prune --all
 stop:

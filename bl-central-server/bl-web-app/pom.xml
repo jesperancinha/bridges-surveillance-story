@@ -110,6 +110,14 @@
         </profile>
     </profiles>
     <build>
+        <resources>
+            <resource>
+                <directory>../../bl-simulation-data</directory>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

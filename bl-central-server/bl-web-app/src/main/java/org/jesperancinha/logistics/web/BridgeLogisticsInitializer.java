@@ -31,8 +31,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
-import java.lang.reflect.RecordComponent;
 import java.time.Instant;
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -41,7 +41,7 @@ import static java.util.Arrays.stream;
 
 @Component
 @Slf4j
-@Profile({ "local", "demo" })
+@Profile({"local", "demo"})
 public class BridgeLogisticsInitializer implements CommandLineRunner {
 
     private final BridgeRepository bridgeRepository;
@@ -67,7 +67,7 @@ public class BridgeLogisticsInitializer implements CommandLineRunner {
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     public BridgeLogisticsInitializer(BridgeRepository bridgeRepository, CarriageRepository carriageRepository, ContainerRepository containerRepository, FreightRepository freightRepository, ProductRepository productRepository, TrainRepository trainRepository,
-        VehicleRepository vehicleRepository, OpeningTimeRepository openingTimeRepository, CompanyRepository companyRepository, PassengerRepository passengerRepository) {
+                                      VehicleRepository vehicleRepository, OpeningTimeRepository openingTimeRepository, CompanyRepository companyRepository, PassengerRepository passengerRepository) {
         this.bridgeRepository = bridgeRepository;
         this.carriageRepository = carriageRepository;
         this.containerRepository = containerRepository;
@@ -82,20 +82,11 @@ public class BridgeLogisticsInitializer implements CommandLineRunner {
             @Override
             public String findImplicitPropertyName(AnnotatedMember m) {
                 if (m.getDeclaringClass()
-                    .isRecord()) {
+                        .isRecord()) {
                     if (m instanceof AnnotatedParameter parameter) {
                         return m.getDeclaringClass()
-                            .getRecordComponents()[parameter.getIndex()].getName();
+                                .getRecordComponents()[parameter.getIndex()].getName();
                     }
-//                    if (m instanceof AnnotatedMember member) {
-//                        for (RecordComponent recordComponent : m.getDeclaringClass()
-//                            .getRecordComponents()) {
-//                            if (recordComponent.getName()
-//                                .equals(member.getName())) {
-//                                return member.getName();
-//                            }
-//                        }
-//                    }
                 }
                 return super.findImplicitPropertyName(m);
             }
@@ -105,70 +96,70 @@ public class BridgeLogisticsInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        stream(objectMapper.readValue(getClass().getResourceAsStream("/bridges.json"), Bridge[].class)).forEach(bridgeRepository::save);
+        bridgeRepository.saveAll(Arrays.asList(objectMapper.readValue(getClass().getResourceAsStream("/bridges.json"), Bridge[].class)));
 
-        stream(objectMapper.readValue(getClass().getResourceAsStream("/companies.json"), Company[].class)).forEach(companyRepository::save);
+        companyRepository.saveAll(Arrays.asList(objectMapper.readValue(getClass().getResourceAsStream("/companies.json"), Company[].class)));
 
-        stream(objectMapper.readValue(getClass().getResourceAsStream("/carriages.json"), Carriage[].class)).forEach(carriageRepository::save);
+        carriageRepository.saveAll(Arrays.asList(objectMapper.readValue(getClass().getResourceAsStream("/carriages.json"), Carriage[].class)));
 
-        stream(objectMapper.readValue(getClass().getResourceAsStream("/containers.json"), Container[].class)).forEach(containerRepository::save);
+        containerRepository.saveAll(Arrays.asList(objectMapper.readValue(getClass().getResourceAsStream("/containers.json"), Container[].class)));
 
-        stream(objectMapper.readValue(getClass().getResourceAsStream("/products.json"), Product[].class)).forEach(productRepository::save);
+        productRepository.saveAll(Arrays.asList(objectMapper.readValue(getClass().getResourceAsStream("/products.json"), Product[].class)));
 
-        stream(objectMapper.readValue(getClass().getResourceAsStream("/vehicles.json"), Vehicle[].class)).forEach(vehicleRepository::save);
+        vehicleRepository.saveAll(Arrays.asList(objectMapper.readValue(getClass().getResourceAsStream("/vehicles.json"), Vehicle[].class)));
 
-        stream(objectMapper.readValue(getClass().getResourceAsStream("/passengers/passengers.json"), Passenger[].class)).forEach(passengerRepository::save);
+        passengerRepository.saveAll(Arrays.asList(objectMapper.readValue(getClass().getResourceAsStream("/passengers/passengers.json"), Passenger[].class)));
 
         stream(objectMapper.readValue(getClass().getResourceAsStream("/freight.json"), FreightDto[].class)).map(freightDto -> Freight.builder()
-            .id(freightDto.id())
-            .name(freightDto.name())
-            .type(freightDto.type())
-            .containers(freightDto.composition()
-                .stream()
-                .map(containerFullDto -> containerRepository.findById(containerFullDto.containerId())
-                    .orElse(null))
-                .filter(Objects::nonNull)
-                .collect(Collectors.toList()))
-            .supplier(companyRepository.findById(freightDto.supplierId())
-                .orElse(null))
-            .vendor(companyRepository.findById(freightDto.vendorId())
-                .orElse(null))
-            .build())
-            .forEach(freightRepository::save);
+                        .id(freightDto.id())
+                        .name(freightDto.name())
+                        .type(freightDto.type())
+                        .containers(freightDto.composition()
+                                .stream()
+                                .map(containerFullDto -> containerRepository.findById(containerFullDto.containerId())
+                                        .orElse(null))
+                                .filter(Objects::nonNull)
+                                .collect(Collectors.toList()))
+                        .supplier(companyRepository.findById(freightDto.supplierId())
+                                .orElse(null))
+                        .vendor(companyRepository.findById(freightDto.vendorId())
+                                .orElse(null))
+                        .build())
+                .forEach(freightRepository::save);
 
         stream(objectMapper.readValue(getClass().getResourceAsStream("/train.json"), TrainDto[].class)).map(trainDto -> Train.builder()
-            .id(trainDto.id())
-            .name(trainDto.name())
-            .type(trainDto.type())
-            .carriages(trainDto.composition()
-                .stream()
-                .map(carriageFullDto -> carriageRepository.findById(carriageFullDto.carriageId())
-                    .orElse(null))
-                .filter(Objects::nonNull)
-                .collect(Collectors.toList()))
-            .supplier(companyRepository.findById(trainDto.supplierId())
-                .orElse(null))
-            .vendor(companyRepository.findById(trainDto.vendorId())
-                .orElse(null))
-            .build())
-            .forEach(trainRepository::save);
+                        .id(trainDto.id())
+                        .name(trainDto.name())
+                        .type(trainDto.type())
+                        .carriages(trainDto.composition()
+                                .stream()
+                                .map(carriageFullDto -> carriageRepository.findById(carriageFullDto.carriageId())
+                                        .orElse(null))
+                                .filter(Objects::nonNull)
+                                .collect(Collectors.toList()))
+                        .supplier(companyRepository.findById(trainDto.supplierId())
+                                .orElse(null))
+                        .vendor(companyRepository.findById(trainDto.vendorId())
+                                .orElse(null))
+                        .build())
+                .forEach(trainRepository::save);
 
         bridgeRepository.findAll()
-            .forEach(bridge -> {
-                final Instant now = Instant.now();
-                final long millisToAdd = 10000;
-                IntStream.range(0, 200)
-                    .boxed()
-                    .map(integer -> BridgeOpeningTime.builder()
-                        .id((long) integer)
-                        .bridge(bridge)
-                        .openingTime(now.plusMillis(millisToAdd * integer * 2)
-                            .toEpochMilli())
-                        .closingTime(now.plusMillis(millisToAdd * (integer * 2 + 1))
-                            .toEpochMilli())
-                        .build())
-                    .forEach(openingTimeRepository::save);
-            });
+                .forEach(bridge -> {
+                    final Instant now = Instant.now();
+                    final long millisToAdd = 10000;
+                    IntStream.range(0, 200)
+                            .boxed()
+                            .map(integer -> BridgeOpeningTime.builder()
+                                    .id((long) integer)
+                                    .bridge(bridge)
+                                    .openingTime(now.plusMillis(millisToAdd * integer * 2)
+                                            .toEpochMilli())
+                                    .closingTime(now.plusMillis(millisToAdd * (integer * 2 + 1))
+                                            .toEpochMilli())
+                                    .build())
+                            .forEach(openingTimeRepository::save);
+                });
 
     }
 
