@@ -32,7 +32,7 @@ public class VehicleMerchandiseReceiver {
 
     private final Gson gson;
 
-    private CountDownLatch latch = new CountDownLatch(1);
+    private final CountDownLatch latch = new CountDownLatch(1);
 
     private final MerchandiseLogRepository merchandiseLogRepository;
 
