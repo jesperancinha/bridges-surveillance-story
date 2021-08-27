@@ -109,4 +109,4 @@ codacy:
 docker-compose:
   stage: docker-compose
   script:
-    - make docker
+    - docker-compose up -d --build --remove-orphans
