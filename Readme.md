@@ -316,7 +316,8 @@ Note that while a version is ongoing as of now with 2.0.0., there are constant c
 
 I hope you enjoyed this repository. If you did please buy me a coffee which enables me to constantly improve and make new free content regularly for everyone. Thank you so much!
 
-<a href="https://www.buymeacoffee.com/jesperancinha"><img height="50px" src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=jesperancinha&button_colour=013220&font_colour=ffffff&font_family=Cookie&outline_colour=ffffff&coffee_colour=FFDD00"></a>
+<a href="https://www.buymeacoffee.com/jesperancinha"><img height="50px" src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=jesperancinha&button_colour=046c46&font_colour=ffffff&font_family=Cookie&outline_colour=ffffff&coffee_colour=FFDD00"></a>
+
 ## References
 
 - [What is Apache Kafka? Why is it so popular? Should you use it?](https://techbeacon.com/app-dev-testing/what-apache-kafka-why-it-so-popular-should-you-use-it)
