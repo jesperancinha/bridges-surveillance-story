@@ -1,6 +1,7 @@
 package org.jesperancinha.logistics.sensor.collector.rabbitmq;
 
-import com.google.gson.Gson;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.jesperancinha.logistics.jpa.repositories.TrainRepository;
 import org.jesperancinha.logistics.jpa.repositories.TrainsLogRepository;
@@ -16,10 +17,10 @@ import java.util.concurrent.CountDownLatch;
 @Slf4j
 @Component
 @ConditionalOnProperty(name = "bridge.logistics.train.sensor.active",
-    matchIfMissing = true)
+        matchIfMissing = true)
 public class TrainSensorReceiver {
 
-    private final Gson gson;
+    private final ObjectMapper objectMapper;
 
     private final TrainsLogRepository trainsLogRepository;
 
@@ -27,18 +28,18 @@ public class TrainSensorReceiver {
 
     private final CountDownLatch latch = new CountDownLatch(1);
 
-    public TrainSensorReceiver(Gson gson, TrainsLogRepository trainsLogRepository, TrainRepository trainRepository) {
-        this.gson = gson;
+    public TrainSensorReceiver(ObjectMapper objectMapper, TrainsLogRepository trainsLogRepository, TrainRepository trainRepository) {
+        this.objectMapper = objectMapper;
         this.trainsLogRepository = trainsLogRepository;
         this.trainRepository = trainRepository;
     }
 
-    public void receiveMessage(byte[] message) {
-        String messageString = new String(message, Charset.defaultCharset());
-        TrainLogDto trainLogDto = gson.fromJson(messageString, TrainLogDto.class);
+    public void receiveMessage(byte[] message) throws JsonProcessingException {
+        final var messageString = new String(message, Charset.defaultCharset());
+        final var trainLogDto = objectMapper.readValue(messageString, TrainLogDto.class);
         if (Objects.nonNull(trainLogDto.id())) {
             trainsLogRepository.save(TrainConverter.toModel(trainLogDto, trainRepository.findById(trainLogDto.id())
-                .orElse(null)));
+                    .orElse(null)));
             System.out.println("Received <" + messageString + ">");
         } else {
             System.out.println("Received <" + messageString + ">");

@@ -1,6 +1,6 @@
 package org.jesperancinha.logistics.sensor.collector.configuration;
 
-import com.google.gson.Gson;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -8,8 +8,8 @@ import org.springframework.context.annotation.Configuration;
 public class DataCollectorConfiguration {
 
     @Bean
-    Gson gson() {
-        return new Gson();
+    public ObjectMapper objectMapper() {
+        return new ObjectMapper();
     }
 
 }

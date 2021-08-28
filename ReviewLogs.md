@@ -2,6 +2,7 @@
 
 ## Roadmap to v2.0.0
 
+- Use a Log framework and remove System outs
 - Remove GSON due to incompatibility issue
 - Remove EmbeddedPostgres and use TestContainers
 - Update storyline

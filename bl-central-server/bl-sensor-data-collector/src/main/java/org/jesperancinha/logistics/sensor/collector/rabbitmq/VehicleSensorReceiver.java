@@ -1,6 +1,7 @@
 package org.jesperancinha.logistics.sensor.collector.rabbitmq;
 
-import com.google.gson.Gson;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.jesperancinha.logistics.jpa.repositories.VehicleLogRepository;
 import org.jesperancinha.logistics.jpa.repositories.VehicleRepository;
@@ -16,10 +17,10 @@ import java.util.concurrent.CountDownLatch;
 @Slf4j
 @Component
 @ConditionalOnProperty(name = "bridge.logistics.vehicle.sensor.active",
-    matchIfMissing = true)
+        matchIfMissing = true)
 public class VehicleSensorReceiver {
 
-    private final Gson gson;
+    private final ObjectMapper objectMapper;
 
     private final VehicleLogRepository vehicleLogRepository;
 
@@ -27,19 +28,19 @@ public class VehicleSensorReceiver {
 
     private final CountDownLatch latch = new CountDownLatch(1);
 
-    public VehicleSensorReceiver(Gson gson, VehicleLogRepository vehicleLogRepository, VehicleRepository vehicleRepository) {
-        this.gson = gson;
+    public VehicleSensorReceiver(final ObjectMapper objectMapper, VehicleLogRepository vehicleLogRepository, VehicleRepository vehicleRepository) {
+        this.objectMapper = objectMapper;
         this.vehicleLogRepository = vehicleLogRepository;
         this.vehicleRepository = vehicleRepository;
     }
 
-    public void receiveMessage(byte[] message) {
+    public void receiveMessage(byte[] message) throws JsonProcessingException {
         String messageString = new String(message, Charset.defaultCharset());
-        VehicleLogDto vehicleLogDto = gson.fromJson(messageString, VehicleLogDto.class);
+        VehicleLogDto vehicleLogDto = objectMapper.readValue(messageString, VehicleLogDto.class);
 
         if (Objects.nonNull(vehicleLogDto.id())) {
             vehicleLogRepository.save(VehicleConverter.toModel(vehicleLogDto, vehicleRepository.findById(vehicleLogDto.id())
-                .orElse(null)));
+                    .orElse(null)));
             System.out.println("Received <" + messageString + ">");
         } else {
             System.out.println("Received <" + messageString + ">");

@@ -11,6 +11,11 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 public class VehicleMerchandiseReceiverTest {
 
+    /**
+     * GSON doesn't parse to record correctly with current version.
+     * Records are marked as final and GSON doesn't like that.
+     * When during a version update, the build fails because of this unit test, it will most likely mean that the step towards GSON can be done.
+     */
     @Test
     public void testGSONParsing_whenJson_thenParseOkWithRecords() {
         final var gson = new Gson();
