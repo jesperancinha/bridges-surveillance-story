@@ -312,6 +312,12 @@ I hope you enjoyed the article and that you were able to start this demo.
 I try my best to make these demos run as smoothly as possible. This is why I actually invite you to open an issue on this repo, should you run into difficulties running this demo, playing the game or even if you just have some suggestions for improvement.
 Note that while a version is ongoing as of now with 2.0.0., there are constant changes until an official tagged release.
 
+## Buy me a coffee
+
+I hope you enjoyed this repository. If you did please buy me a coffee which enables me to constantly improve and make new free content regularly for everyone. Thank you so much!
+
+<a href="https://www.buymeacoffee.com/jesperancinha" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+
 ## References
 
 - [What is Apache Kafka? Why is it so popular? Should you use it?](https://techbeacon.com/app-dev-testing/what-apache-kafka-why-it-so-popular-should-you-use-it)
