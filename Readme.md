@@ -108,6 +108,29 @@ Just remember that each line must be a single name.
 -   [bl-timetable-generator](./bl-vehicle-server): Utility to generate the bridge timetables
 -   [bl-demo-server](./bl-demo-server): This server ensures that a simulated train passes through the bridge
 
+
+## How to quickly start
+
+Make sure you have enough resources and that you are running [Docker desktop](https://www.docker.com/products/docker-desktop) or any other [docker engine](https://docs.docker.com/engine/install/ubuntu/),  and try running: 
+
+```shell
+make docker
+```
+
+if you with to stop everything then run:
+
+```shell
+make stop
+```
+
+and if you want to remove everything then run:
+
+```shell
+make docker-delete
+```
+
+Please check the [Makefile](./Makefile) and make sure you understand the available options before calling them.
+
 ## Installation notes
 
 -   This installation has been tested with SDK-Man and Java version 
@@ -282,6 +305,12 @@ docker ps --format '{{.ID}}' | xargs docker stop
 ## Review Logs
 
 Follow the updates on the [ReviewLogs](./ReviewLogs.md) file.
+
+## Author notes
+
+I hope you enjoyed the article and that you were able to start this demo.
+I try my best to make these demos run as smoothly as possible. This is why I actually invite you to open an issue on this repo, should you run into difficulties running this demo, playing the game or even if you just have some suggestions for improvement.
+Note that while a version is ongoing as of now with 2.0.0., there are constant changes until an official tagged release.
 
 ## References
 

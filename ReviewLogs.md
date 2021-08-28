@@ -2,6 +2,7 @@
 
 ## Roadmap to v2.0.0
 
+- Remove GSON due to incompatibility issue
 - Remove EmbeddedPostgres and use TestContainers
 - Update storyline
 - Python unit tests
