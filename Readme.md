@@ -316,7 +316,9 @@ Note that while a version is ongoing as of now with 2.0.0., there are constant c
 
 I hope you enjoyed this repository. If you did please buy me a coffee which enables me to constantly improve and make new free content regularly for everyone. Thank you so much!
 
-<a href="https://www.buymeacoffee.com/jesperancinha" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="max-height: 50px !important" ></a>
+<div style="max-height: 50px">
+<a href="https://www.buymeacoffee.com/jesperancinha" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+</div>
 
 ## References
 
