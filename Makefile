@@ -48,16 +48,25 @@ docker-delete: stop
 	docker ps -a --format '{{.ID}}' -q --filter="name=bl_" | xargs docker stop
 	docker ps -a --format '{{.ID}}' -q --filter="name=bl_" | xargs docker rm
 docker-cleanup: docker-delete
+	docker images -q | xargs docker rmi
 	docker rmi bridge-logistics_bl_train_01_rabbitmq_server
 	docker rmi bridge-logistics_bl_train_01_kafka_server
 	docker rmi bridge-logistics_bl_train_01_zookeeper_server
+	docker rmi bridge-logistics_bl_bridge_01_kafka_server
+	docker rmi bridge-logistics_bl_bridge_01_rabbitmq_server
+	docker rmi bridge-logistics_bl_bridge_01_temperature_coap_server
+	docker rmi bridge-logistics_bl_bridge_01_humidity_mqtt_server
 	docker rmi bridge-logistics_bl_vehicle_01_server
 	docker rmi bridge-logistics_bl_central_server
 	docker rmi bridge-logistics_postgres
+	docker rmi bridge-logistics_bl_central_server_apps
 docker-delete-apps: stop
 	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_server_apps" | xargs docker rm
+	docker rmi bridge-logistics_bl_central_server_apps
 prune-all: stop
 	docker system prune --all
+	docker builder prune
+	docker system prune --all --force --volumes
 stop:
 	docker-compose down --remove-orphans
 

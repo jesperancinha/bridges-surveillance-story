@@ -147,3 +147,13 @@ docker ps -a  --format '{{.ID}} - {{.Names}}'
 ```shell
 docker ps --format '{{.ID}}' | xargs docker stop
 ```
+
+## Remove postgres
+
+### Mac-OS
+
+```shell
+cd /Library/PostgreSQL/11
+cd /Library/PostgreSQL/13
+open open uninstall-postgres.app
+```
