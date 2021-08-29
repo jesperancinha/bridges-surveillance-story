@@ -64,6 +64,8 @@ docker-delete-apps: stop
 	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_server_apps" | xargs docker rm
 	docker rmi bridge-logistics_bl_central_server_apps
 prune-all: stop
+	docker ps -a --format '{{.ID}}' -q | xargs docker stop
+	docker ps -a --format '{{.ID}}' -q | xargs docker rm
 	docker system prune --all
 	docker builder prune
 	docker system prune --all --force --volumes

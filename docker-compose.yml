@@ -1,6 +1,7 @@
 version: "3.7"
 
 services:
+
   bl_central_server:
     hostname: bl_central_server
     build:
@@ -35,7 +36,6 @@ services:
       - "9101:9101"
     depends_on:
       - bl_train_01_zookeeper_server
-
 
   bl_vehicle_01_server:
     hostname: bl_vehicle_01_server
@@ -115,10 +115,7 @@ services:
 
   bl_central_cassandra:
     hostname: bl_central_cassandra
-    image: bitnami/cassandra:3.11.11
+    build:
+      context: bl-central-server/bl-central-cassandra/.
     ports:
-      - "7000:7000"
-      - "7001:7001"
-      - "7199:7199"
       - "9042:9042"
-      - "9160:9160"
