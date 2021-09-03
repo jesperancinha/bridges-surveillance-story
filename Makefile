@@ -68,7 +68,7 @@ prune-all: stop
 	docker ps -a --format '{{.ID}}' -q | xargs docker rm
 	docker system prune --all
 	docker builder prune
-	docker system prune --all --force --volumes
+	docker system prune --all --volumes
 stop:
 	docker-compose down --remove-orphans
 
