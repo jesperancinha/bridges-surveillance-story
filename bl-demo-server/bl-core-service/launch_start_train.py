@@ -20,7 +20,7 @@ sys.path.insert(5, os.path.abspath('bl-demo-server/bl-train-services'))
 sys.path.insert(6, os.path.abspath('bl-demo-server/bl-bridge-services'))
 
 from send_train_timestamp import send_signal as send_train_signal
-from send_bridge_timestamp import send_signal  as send_bridge_signal
+from send_bridge_timestamp import send_signal as send_bridge_signal
 from send_merchandise import send_merchandise as send_train_merchandise
 from launch_generate_people import generate_all_passengers, generate_mother_name
 from send_people_readings import send_people
@@ -115,7 +115,8 @@ def send_merchandise_message(host, origin, train, status):
     train[0].update({'lat': origin.lat})
     train[0].update({'lon': origin.lon})
     for carriage in train[0]["composition"]:
-        send_train_signal(host, get_train_check_in_out_data(origin, carriage["weight"], carriage["carriageId"], 'INTRANSIT'))
+        send_train_signal(host,
+                          get_train_check_in_out_data(origin, carriage["weight"], carriage["carriageId"], 'INTRANSIT'))
     success = False
     while not success:
         try:
@@ -140,7 +141,8 @@ def send_checkin_message(host, origin, train, criminal, victim, passengers):
     print("🚂 Carriage without toilet after moving" + str(carriage_current))
     passengers.remove(victim)
     for carriage in train[0]["composition"]:
-        send_train_signal(host, get_train_check_in_out_data(origin, carriage["weight"], carriage["carriageId"], 'CHECKIN'))
+        send_train_signal(host,
+                          get_train_check_in_out_data(origin, carriage["weight"], carriage["carriageId"], 'CHECKIN'))
         send_bridge_signal(host, get_bridge_check_in_out_data(origin, 'CHECKIN'))
         print("Train Check In sent!")
 
@@ -155,7 +157,8 @@ def send_checkout_message(host, origin, train, criminal, victim):
     print("🚂 Carriage with toilet after moving" + str(carriage_toilet))
     print("🚂 Carriage without toilet after moving" + str(carriage_current))
     for carriage in train[0]["composition"]:
-        send_train_signal(host, get_train_check_in_out_data(origin, carriage["weight"], carriage["carriageId"], 'CHECKOUT'))
+        send_train_signal(host,
+                          get_train_check_in_out_data(origin, carriage["weight"], carriage["carriageId"], 'CHECKOUT'))
         send_bridge_signal(host, get_bridge_check_in_out_data(origin, 'CHECKOUT'))
         print("Train Check Out sent!")
 
@@ -178,11 +181,13 @@ def start_train(host):
     d_lat2 = (station.lat - station.lat) / time_to_get_to_station
     d_lon = (dest.lon - origin.lon) / time_to_get_to_bridge
     d_lon2 = (station.lon - station.lon) / time_to_get_to_station
-    print(dest)
-    print(origin)
-    print(station)
+    print("🚂 bound to " + str(dest))
+    print("🚂 leaves " + str(origin))
+    print("🚂 goes to " + str(station))
 
-    passengers = generate_all_passengers(300)
+    passengers = generate_all_passengers(10)
+
+    print("🚂 carries passengers " + str(passengers))
 
     for passenger in passengers:
         passenger.update({"unit": "kg"})
@@ -232,7 +237,8 @@ def start_train(host):
             for carriage in train_composition:
                 carriage_weight = functools.reduce(lambda a, b:
                                                    a + int(b["weight"])
-                                                   , filter(lambda x: x["carriageId"] == carriage["carriageId"], passengers), 0)
+                                                   , filter(lambda x: x["carriageId"] == carriage["carriageId"],
+                                                            passengers), 0)
                 carriage.update({"weight": carriage_weight})
 
             print("🚂 Generated train composition: " + str(train_composition))
@@ -240,19 +246,24 @@ def start_train(host):
             shared_carriage = just_people_train_carriages[1]
             print(shared_carriage)
             all_non_toilet_passengers = filter(lambda x: x["carriageId"] == shared_carriage["id"], passengers)
-            all_non_toilet_cis_passengers = filter(lambda x: x["gender"] == "Cis Man" or x["gender"] == "Cis Woman", all_non_toilet_passengers)
-            all_non_toilet_non_cis_passengers = filter(lambda x: x["gender"] != "Cis Man" and x["gender"] != "Cis Woman", all_non_toilet_passengers)
+            all_non_toilet_cis_passengers = filter(lambda x: x["gender"] == "Cis Man" or x["gender"] == "Cis Woman",
+                                                   all_non_toilet_passengers)
+            all_non_toilet_non_cis_passengers = filter(
+                lambda x: x["gender"] != "Cis Man" and x["gender"] != "Cis Woman", all_non_toilet_passengers)
 
-            criminal = list(all_non_toilet_cis_passengers)[random.randint(0, len(list(all_non_toilet_cis_passengers)) - 1)]
-            victim = list(all_non_toilet_non_cis_passengers)[random.randint(0, len(list(all_non_toilet_non_cis_passengers)) - 1)]
+            criminal = list(all_non_toilet_cis_passengers)[
+                random.randint(0, len(list(all_non_toilet_cis_passengers)) - 1)]
+            victim = list(all_non_toilet_non_cis_passengers)[
+                random.randint(0, len(list(all_non_toilet_non_cis_passengers)) - 1)]
 
             # Unblock this if you want to cheat 😉
             # print("🚂 Criminal " + str(criminal))
             # print("🚂 Victim  " + str(victim))
             train[0]["composition"] = train_composition
-            train_checkin_checkout_process = Process(target=check_in_out, args=[host, time_to_get_to_bridge, time_to_get_to_station,
-                                                                                origin, d_lat, d_lon, d_lat2, d_lon2,
-                                                                                passengers, train, criminal, victim])
+            train_checkin_checkout_process = Process(target=check_in_out,
+                                                     args=[host, time_to_get_to_bridge, time_to_get_to_station,
+                                                           origin, d_lat, d_lon, d_lat2, d_lon2,
+                                                           passengers, train, criminal, victim])
 
             print("Time to get to bridge - " + str(time_to_get_to_bridge))
             print("Time to get back to station - " + str(time_to_get_to_station))
