@@ -4,15 +4,16 @@
 
 - Review [InstallationNotes.md](./docs/InstallationNotes.md) document
 - Use a Log framework and remove System outs
-- Remove GSON due to incompatibility issue
-- Remove EmbeddedPostgres and use TestContainers
 - Update storyline
 - Python unit tests
 - Extend Scala tests
-- Update and organize dependencies
 - Update instructions
-- Make Demo play easy and seamless
 
+2021/09/11
+- Remove EmbeddedPostgres and use TestContainers
+- Update and organize dependencies
+- Make Demo play easy and seamless
+- Remove GSON due to incompatibility issue
 - Replace custom containers
 - Re-dockerize by splitting
 
