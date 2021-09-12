@@ -18,6 +18,8 @@ local: no-test
 	mkdir -p bin
 no-test:
 	mvn clean install -DskipTests
+docker-clean:
+	docker-compose rm -svf
 docker:
 	docker-compose up -d --build --remove-orphans
 docker-databases: stop local
@@ -30,10 +32,14 @@ logs-central-server:
 	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_server" | xargs docker logs
 logs-central-server-tail:
 	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_server" | xargs docker logs -f
-logs-kafka-server:
+logs-train-kafka-server:
 	docker ps -a --format '{{.ID}}' -q --filter="name=bl_train_01_kafka_server" | xargs docker logs
-logs-kafka-server-tail:
+logs-train-kafka-server-tail:
 	docker ps -a --format '{{.ID}}' -q --filter="name=bl_train_01_kafka_server" | xargs docker logs -f
+logs-bridge-kafka-server:
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl_bridge_01_kafka_server" | xargs docker logs
+logs-bridge-kafka-server-tail:
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl_bridge_01_kafka_server" | xargs docker logs -f
 logs-zookeeper-server:
 	docker ps -a --format '{{.ID}}' -q --filter="name=bl_train_01_zookeeper_server" | xargs docker logs
 logs-zookeeper-server-tail:
@@ -42,6 +48,23 @@ logs-rabbitmq-server:
 	docker ps -a --format '{{.ID}}' -q --filter="name=bl_train_01_rabbitmq_server" | xargs docker logs
 logs-rabbitmq-server-tail:
 	docker ps -a --format '{{.ID}}' -q --filter="name=bl_train_01_rabbitmq_server" | xargs docker logs -f
+logs-cassandra-server:
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_cassandra" | xargs docker logs
+logs-cassandra-server-tail:
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_cassandra" | xargs docker logs -f
+docker-dependent:
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl_train_01_kafka_server" | xargs docker restart
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl_bridge_01_kafka_server" | xargs docker restart
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_cassandra" | xargs docker restart
+docker-train:
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl_train_01_kafka_server" | xargs docker stop
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl_train_01_kafka_server" | xargs docker start
+docker-bridge:
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl_bridge_01_kafka_server" | xargs docker stop
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl_bridge_01_kafka_server" | xargs docker start
+docker-cassandra:
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_cassandra" | xargs docker stop
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_cassandra" | xargs docker start
 docker-delete-idle:
 	docker ps --format '{{.ID}}' -q --filter="name=bl_" | xargs docker rm
 docker-delete: stop

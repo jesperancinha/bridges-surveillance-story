@@ -5,4 +5,4 @@ ENV LANG=C.UTF-8
 COPY *.properties /opt/bitnami/zookeeper/config
 
 # Zookeeper
-EXPOSE 2182
+EXPOSE 2181
