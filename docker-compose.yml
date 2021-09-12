@@ -119,3 +119,4 @@ services:
       context: bl-central-server/bl-central-cassandra/.
     ports:
       - "9042:9042"
+      - "7199:7199"

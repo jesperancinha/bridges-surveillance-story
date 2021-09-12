@@ -92,8 +92,8 @@ Just remember that each line must be a single name.
 ### Docker Images
 
 1. [bl-central-server](./bl-central-server): The central server containing all centralized data
-   1.[bl-central-cassandra](./bl-central-server/bl-central-cassandra) - Cassandra database image   
-   2.[bl-central-psql](./bl-central-server/bl-central-psql) - Postgres database image ()   
+   1.[bl-central-cassandra](./bl-central-server/bl-central-cassandra) - Cassandra database image (Contains calculated and dynamic data)
+   2.[bl-central-psql](./bl-central-server/bl-central-psql) - Postgres database image (Contains static  information about passengers, vehicles, trains and bridges)   
    3.[bl-central-streaming](./bl-central-server/bl-central-streaming) - RabbitMQ strams for train, vehicle and bridge   
 
 ### Libraries
