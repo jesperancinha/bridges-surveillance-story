@@ -8,6 +8,6 @@ COPY dist /usr/local/bin/bl-bridge-humidity-mqtt/dist
 
 COPY node_modules /usr/local/bin/bl-bridge-humidity-mqtt/node_modules
 
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
-
 COPY entrypoint.sh /usr/local/bin
+
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
