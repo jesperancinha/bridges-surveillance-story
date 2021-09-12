@@ -53,7 +53,7 @@ This is what in general this project is responsible for
 4.  Register events per configured range area
 5.  Inform trains of the train Schedule changes
 
-Passengers are registered by numbers and if they they carry extra merchandise or a bike
+Passengers are registered by numbers and if they carry extra merchandise or a bike
 Transport can be a train, bus, boat, bike, truck, etc.
 Merchandise should be registered if it's destined to commercial exchanges.
 Events can be anything that may happen in a configured range around the bridge
