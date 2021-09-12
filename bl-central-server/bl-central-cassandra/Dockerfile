@@ -10,7 +10,7 @@ RUN yum -y install java
 
 COPY datastax.repo  /etc/yum.repos.d/datastax.repo
 
-RUN yum -y install dsc20
+RUN yum -y install dsc22
 
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 

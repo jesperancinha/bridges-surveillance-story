@@ -1,17 +1,17 @@
 package org.jesperancinha.logistics.readings
 
-import java.util.UUID
-
 import com.datastax.spark.connector._
 import com.datastax.spark.connector.cql.CassandraConnector
 import com.typesafe.config.ConfigFactory
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.apache.kafka.common.serialization.StringDeserializer
-import org.apache.spark.SparkConf
 import org.apache.spark.streaming.kafka010.{ConsumerStrategies, KafkaUtils, LocationStrategies}
 import org.apache.spark.streaming.{Durations, StreamingContext}
+import org.apache.spark.{SparkConf, SparkContext}
 import org.jesperancinha.logistics.passengers.readings.Passenger
 import play.api.libs.json.Json
+
+import java.util.UUID
 
 object PassengersReadingsLauncher extends App {
 
@@ -41,7 +41,15 @@ object PassengersReadingsLauncher extends App {
     sparkConf.setAppName("PassengerBridgeLogisticsReader")
     sparkConf.setMaster("local[*]")
     sparkConf.set("spark.cassandra.connection.host", cassandraHost)
+    sparkConf.set("spark.cassandra.connection.port", "9042")
     sparkConf.set("spark.local.dir", "/tmp/spark-temp");
+    sparkConf.set("spark.cassandra.auth.username", "cassandra")
+    sparkConf.set("spark.cassandra.auth.password", "cassandra")
+    sparkConf.set("spark.cassandra.connection.timeoutMS", "10000")
+//    val streamingContext = new StreamingContext(sparkConf, Durations.seconds(10))
+//    val sc = new SparkContext("local[*]", "PassengerBridgeLogisticsReader", sparkConf)
+//    val streamingContext = new StreamingContext(sc, Durations.seconds(10))
+
     val streamingContext = new StreamingContext(sparkConf, Durations.seconds(10))
     val sc = streamingContext.sparkContext
 

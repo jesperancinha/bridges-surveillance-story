@@ -9,6 +9,16 @@
 - Extend Scala tests
 - Update instructions
 
+- Update Scala dependencies
+- Make Cassandra stable
+- Include Apache Spark in docker images
+- Error: 
+```java
+Caused by: java.lang.reflect.InaccessibleObjectException: 
+								Unable to make private java.nio.DirectByteBuffer(long,int) accessible: 
+module java.base does not "opens java.nio" to unnamed module @654b5005
+```
+								
 2021/09/11
 - Remove EmbeddedPostgres and use TestContainers
 - Update and organize dependencies
