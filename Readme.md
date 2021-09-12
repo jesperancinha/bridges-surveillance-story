@@ -89,24 +89,37 @@ Just remember that each line must be a single name.
 
 ## Modules
 
--   [bl-central-server](./bl-central-server): The central server containing all centralized data
-  - [bl-domain-repository](./bl-central-server/bl-domain-repository) - Java
-  - [bl-merchandise-data-collector](./bl-central-server/bl-merchandise-data-collector) - Java
-  - [bl-meters-readings-service](./bl-central-server/bl-meters-readings-service) - Scala
-  - [bl-passengers-readings-service](./bl-central-server/bl-passengers-readings-service) - Scala
-  - [bl-readings-agg-last-service](./bl-central-server/bl-readings-agg-last-service) - Scala
-  - [bl-readings-aggregator-service](./bl-central-server/bl-readings-aggregator-service) - Scala
-  - [bl-sensor-data-collector](./bl-central-server/bl-sensor-data-collector) - Java
-  - [bl-web-app](./bl-central-server/bl-web-app) - Java
-  - [bl-web-ui](./bl-central-server/bl-web-ui) - Angular
-  - [bl-central-cassandra](./bl-central-server/bl-central-cassandra) - Cassandra
-  - [bl-central-psql](./bl-central-server/bl-central-psql) - Postgresql
-  - [bl-central-streaming](./bl-central-server/bl-central-streaming) - RabbitMQ
--   [bl-bridge-server](./bl-bridge-server): A server installed on each bridge
--   [bl-train-server](./bl-train-server): A server installed on each train
--   [bl-vehicle-server](./bl-vehicle-server): A server installed on each vehicle
--   [bl-timetable-generator](./bl-vehicle-server): Utility to generate the bridge timetables
--   [bl-demo-server](./bl-demo-server): This server ensures that a simulated train passes through the bridge
+### Docker Images
+
+1. [bl-central-server](./bl-central-server): The central server containing all centralized data
+   1.[bl-central-cassandra](./bl-central-server/bl-central-cassandra) - Cassandra database image   
+   2.[bl-central-psql](./bl-central-server/bl-central-psql) - Postgres database image ()   
+   3.[bl-central-streaming](./bl-central-server/bl-central-streaming) - RabbitMQ strams for train, vehicle and bridge   
+
+### Libraries
+
+1. [bl-central-server](./bl-central-server): The central server containing all centralized data
+   1. [bl-domain-repository](./bl-central-server/bl-domain-repository) - Java
+
+### Services
+
+1. [bl-central-server](./bl-central-server): The central server containing all centralized data
+   1. [bl-merchandise-data-collector](./bl-central-server/bl-merchandise-data-collector) - Java
+   2. [bl-meters-readings-service](./bl-central-server/bl-meters-readings-service) - Scala
+   3. [bl-passengers-readings-service](./bl-central-server/bl-passengers-readings-service) - Scala
+   4. [bl-readings-agg-last-service](./bl-central-server/bl-readings-agg-last-service) - Scala
+   5. [bl-readings-aggregator-service](./bl-central-server/bl-readings-aggregator-service) - Scala
+   6. [bl-sensor-data-collector](./bl-central-server/bl-sensor-data-collector) - Java
+   7. [bl-web-app](./bl-central-server/bl-web-app) - Java
+   8. [bl-web-ui](./bl-central-server/bl-web-ui) - Angular
+
+2. [bl-bridge-server](./bl-bridge-server): A server installed on each bridge
+
+3. [bl-train-server](./bl-train-server): A server installed on each train
+
+4. [bl-vehicle-server](./bl-vehicle-server): A server installed on each vehicle
+
+5. [bl-demo-server](./bl-demo-server): This server ensures that a simulated train passes through the bridge. It will use all different container ports to execute the simulation and create a different case everytime the simulation is run.
 
 
 ## How to quickly start
@@ -130,6 +143,21 @@ make docker-delete
 ```
 
 Please check the [Makefile](./Makefile) and make sure you understand the available options before calling them.
+
+Before running the demo you need to create a virtual environment in order to run Python 2 instead of Python 3:
+
+```shell
+make venv
+source venv/bin/activate
+make venv-install
+```
+
+Make sure you are still in virtual environment (venv). If not, run the command `source venv/bin/activate` again.
+To start the demo please run script [startDemo.sh](./startDemo.sh) from root, or use:
+
+```shell
+make demo
+```
 
 This application is inspired by the TV Series - [The Bridge](https://www.imdb.com/title/tt1733785/)
 
@@ -162,6 +190,27 @@ sdk use java 16.0.1.hs-adpt
 If you want to install everything locally without the help of containers then please check help file [InstallationNotes.md](./docs/InstallationNotes.md).
 Further Documentation is available at the [wiki](https://gitlab.com/jesperancinha/bridge-logistics/-/wikis/Installation-notes).
 
+Install python libraries:
+
+```shell
+pip install virtualenv
+pip install virtualenvwrapper
+```
+
+Install virtualenv:
+
+```shell
+virtualenv venv --python=python2.7
+source venv/bin/activate
+pip install requests
+pip install pika
+pip install enum
+pip install kafka
+pip install coapthon
+pip install mqtt
+pip install paho-mqtt
+exit
+```
 
 ## Review Logs
 

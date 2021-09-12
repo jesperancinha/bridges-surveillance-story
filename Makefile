@@ -71,4 +71,18 @@ prune-all: stop
 	docker system prune --all --volumes
 stop:
 	docker-compose down --remove-orphans
-
+venv:
+	pip install virtualenv
+	pip install virtualenvwrapper
+	virtualenv venv --python=python2.7
+venv-install:
+	pip install requests
+	pip install pika
+	pip install enum
+	pip install kafka
+	pip install coapthon
+	pip install mqtt
+	pip install paho-mqtt
+	exit
+demo:
+	python bl-demo-server/launch_demo_server.py
