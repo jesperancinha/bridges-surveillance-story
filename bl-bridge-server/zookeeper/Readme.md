@@ -8,5 +8,5 @@
 ## Testing
 
 ```shell
-telnet localhost 2182
+telnet localhost 2181
 ```

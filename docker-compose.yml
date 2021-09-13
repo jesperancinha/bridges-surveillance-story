@@ -23,7 +23,7 @@ services:
     build:
       context: bl-train-server/zookeeper/.
     ports:
-      - "2181:2181"
+      - "2182:2181"
 
   bl_train_01_kafka_server:
     hostname: bl_train_01_kafka_server
@@ -77,7 +77,7 @@ services:
     build:
       context: bl-bridge-server/zookeeper/.
     ports:
-      - "2182:2181"
+      - "2181:2181"
 
   bl_bridge_01_kafka_server:
     hostname: bl_bridge_01_kafka_server
@@ -114,9 +114,17 @@ services:
       - bl_vehicle_01_server
 
   bl_central_cassandra:
-    hostname: bl_central_cassandra
-    build:
-      context: bl-central-server/bl-central-cassandra/.
+    image: cassandra:3.11.2
     ports:
       - "9042:9042"
-      - "7199:7199"
+    environment:
+      - "MAX_HEAP_SIZE=128M"
+      - "HEAP_NEWSIZE=128M"
+    restart: always
+    volumes:
+      - ./out/cassandra_data:/var/lib/cassandra
+    healthcheck:
+      test: ["CMD", "cqlsh", "-u cassandra", "-p cassandra" ,"-e describe keyspaces"]
+      interval: 15s
+      timeout: 10s
+      retries: 10

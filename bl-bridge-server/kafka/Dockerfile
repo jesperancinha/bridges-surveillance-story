@@ -1,4 +1,4 @@
-FROM bitnami/kafka:2.8.0
+FROM confluentinc/cp-kafka
 
 WORKDIR /usr/local/bin
 
@@ -6,7 +6,7 @@ ENV LANG=C.UTF-8
 
 COPY startKafka.sh /usr/local/bin/
 
-COPY *.properties /opt/bitnami/kafka/config/
+COPY *.properties /opt/kafka/config/
 
 COPY entrypoint.sh /usr/local/bin/
 

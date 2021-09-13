@@ -30,3 +30,8 @@ Perform configuration for TEST only! (0.0.0.0 is not an acceptable production co
 ```shell
 sed -i 's/listen_address: localhost/listen_address: 0.0.0.0/g' cassandra.yaml 
 ```
+
+## References
+
+-   [Init script for Cassandra with docker-compose](https://newbedev.com/init-script-for-cassandra-with-docker-compose)
+-   [Running Cassandra in Docker](https://www.datastax.com/learn/apache-cassandra-operations-in-kubernetes/running-a-cassandra-application-in-docker#docker-images)
