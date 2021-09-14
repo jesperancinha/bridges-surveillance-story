@@ -11,6 +11,6 @@ COPY *.properties /opt/kafka/config/
 COPY entrypoint.sh /usr/local/bin/
 
 #Kafka
-EXPOSE 9092 9093 9094
+EXPOSE 9092 9093
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]

@@ -68,6 +68,8 @@ docker-cassandra:
 	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_cassandra" | xargs docker start
 docker-stats:
 	docker stats bl_central_server bl_central_server bl_train_01_kafka_server bl_vehicle_01_server bl_bridge_01_sensors_server bl_bridge_01_mosquitto_server bl_bridge_01_rabbitmq_server bl_bridge_01_kafka_server bl_central_psql bl_central_server_apps bl_central_cassandra bl_train_01_rabbitmq_server
+docker-stats-simple:
+	docker stats bl_central_server bl_central_server bl_train_01_kafka_server bl_vehicle_01_server bl_bridge_01_sensors_server bl_bridge_01_mosquitto_server bl_bridge_01_rabbitmq_server bl_bridge_01_kafka_server bl_central_psql bl_central_server_apps bl_train_01_rabbitmq_server
 docker-delete-idle:
 	docker ps --format '{{.ID}}' -q --filter="name=bl_" | xargs docker rm
 docker-delete: stop

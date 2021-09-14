@@ -13,7 +13,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 200M
+          memory: 100M
         reservations:
           memory: 100M
 
@@ -28,7 +28,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 500M
+          memory: 400M
         reservations:
           memory: 250M
 
@@ -40,15 +40,14 @@ services:
     ports:
       - "9098:9098"
       - "9099:9099"
-      - "9100:9100"
-      - "9101:9101"
     deploy:
       resources:
         limits:
-          memory: 800M
+          memory: 900M
           cpus: '1'
         reservations:
-          memory: 400M
+          memory: 900M
+          cpus: '1'
 
   bl_vehicle_01_server:
     hostname: bl_vehicle_01_server
@@ -102,7 +101,7 @@ services:
       resources:
         limits:
           cpus: '0.1'
-          memory: 500M
+          memory: 400M
 
   bl_bridge_01_kafka_server:
     hostname: bl_bridge_01_kafka_server
@@ -112,14 +111,14 @@ services:
     ports:
       - "9092:9092"
       - "9093:9093"
-      - "9094:9094"
     deploy:
       resources:
         limits:
+          memory: 900M
           cpus: '1'
-          memory: 800M
         reservations:
-          memory: 400M
+          memory: 900M
+          cpus: '1'
 
   bl_central_psql:
     hostname: bl_central_psql
@@ -153,26 +152,29 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.1'
+          cpus: '0.5'
           memory: 400M
 
-  bl_central_cassandra:
-    hostname: bl_central_cassandra
-    container_name: bl_central_cassandra
-    build:
-      context: bl-central-server/bl-central-cassandra/.
-    ports:
-      - "9042:9042"
-    environment:
-      - "MAX_HEAP_SIZE=64M"
-      - "HEAP_NEWSIZE=64M"
-    healthcheck:
-      test: ["CMD", "cqlsh", "-u cassandra", "-p cassandra" ,"-e describe keyspaces"]
-      interval: 15s
-      timeout: 10s
-      retries: 10
-    deploy:
-      resources:
-        limits:
-          cpus: '1'
-          memory: 500M
+#  bl_central_cassandra:
+#    hostname: bl_central_cassandra
+#    container_name: bl_central_cassandra
+#    build:
+#      context: bl-central-server/bl-central-cassandra/.
+#    ports:
+#      - "9042:9042"
+#    environment:
+#      - "MAX_HEAP_SIZE=64M"
+#      - "HEAP_NEWSIZE=64M"
+#    healthcheck:
+#      test: ["CMD", "cqlsh", "-u cassandra", "-p cassandra" ,"-e describe keyspaces"]
+#      interval: 15s
+#      timeout: 10s
+#      retries: 10
+#    deploy:
+#      resources:
+#        limits:
+#          memory: 1000M
+#          cpus: '1'
+#        reservations:
+#          memory: 1000M
+#          cpus: '1'
