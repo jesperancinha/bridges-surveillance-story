@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-sleep 10
+sleep 60
 
 java -jar --enable-preview -Dspring.profiles.active=demo bl-web-app.jar &
 

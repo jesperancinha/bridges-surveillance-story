@@ -56,8 +56,10 @@ if __name__ == '__main__':
             simulation_ready = True
         except:
             print("🔴 Simulation not ready yet. Press Ctr-C to stop. Retry in 10 seconds...")
-            print("ℹ️ Make sure you wait enough time for docker-compose to start. If the demo doesn't start, "
-                  "please open an issue for me in the Gitlab repo.")
+            print("ℹ️ Make sure you wait enough time for docker-compose to start.")
+            print("ℹ️ Check file Checkups.md for troubleshooting purposes.")
+            print("ℹ️ If the demo doesn't start, please open an issue for me in the Gitlab repo: "
+                  "https://gitlab.com/jesperancinha/bridge-logistics/-/issues")
             sleep(10)
 
     train_simulation_process.start()

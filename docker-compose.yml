@@ -60,7 +60,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.1'
+          cpus: '0.5'
           memory: 500M
 
   bl_bridge_01_sensors_server:
@@ -73,7 +73,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.1'
+          cpus: '0.5'
           memory: 50M
 
   bl_bridge_01_mosquitto_server:
@@ -86,7 +86,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.1'
+          cpus: '0.5'
           memory: 10M
 
   bl_bridge_01_rabbitmq_server:
@@ -100,7 +100,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.1'
+          cpus: '0.5'
           memory: 400M
 
   bl_central_psql:
@@ -117,7 +117,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.1'
+          cpus: '0.5'
           memory: 50M
 
   bl_central_server_apps:

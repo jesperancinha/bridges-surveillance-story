@@ -30,16 +30,12 @@ build-docker: stop no-test build-npm
 show:
 	docker ps -a  --format '{{.ID}} - {{.Names}} - {{.Status}}'
 logs-central-server:
-	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_server" | xargs docker logs
+	docker logs bl_central_server
 logs-central-server-tail:
-	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_server" | xargs docker logs -f
-logs-train-kafka-server:
+	docker logs -f bl_central_server
+logs-central-kafka-server:
 	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_kafka_server" | xargs docker logs
-logs-train-kafka-server-tail:
-	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_kafka_server" | xargs docker logs -f
-logs-bridge-kafka-server:
-	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_kafka_server" | xargs docker logs
-logs-bridge-kafka-server-tail:
+logs-central-kafka-server-tail:
 	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_kafka_server" | xargs docker logs -f
 logs-zookeeper-server:
 	docker ps -a --format '{{.ID}}' -q --filter="name=bl_train_01_zookeeper_server" | xargs docker logs
@@ -53,6 +49,8 @@ logs-cassandra-server:
 	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_cassandra" | xargs docker logs
 logs-cassandra-server-tail:
 	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_cassandra" | xargs docker logs -f
+docker-apps:
+	docker restart bl_central_server_apps
 docker-dependent:
 	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_kafka_server" | xargs docker restart
 	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_kafka_server" | xargs docker restart
