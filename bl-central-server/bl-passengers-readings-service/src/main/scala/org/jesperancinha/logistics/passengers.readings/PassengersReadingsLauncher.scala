@@ -54,7 +54,7 @@ object PassengersReadingsLauncher extends App {
     val sc = streamingContext.sparkContext
 
     val kafkaParams = Map[String, Object](
-      "bootstrap.servers" -> (kafkaHost1 + ":9098," + kafkaHost2 + ":9099," + kafkaHost2 + ":9100 ," + kafkaHost2 + ":9101"),
+      "bootstrap.servers" -> (kafkaHost1 + ":9098," + kafkaHost2 + ":9099"),
       "key.deserializer" -> classOf[StringDeserializer],
       "value.deserializer" -> classOf[StringDeserializer],
       "group.id" -> "0",

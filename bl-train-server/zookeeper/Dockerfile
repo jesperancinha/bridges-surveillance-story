@@ -1,4 +1,4 @@
-FROM zookeeper:3.7.0
+FROM confluentinc/cp-zookeeper
 
 ENV LANG=C.UTF-8
 

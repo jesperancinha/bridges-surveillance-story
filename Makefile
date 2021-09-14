@@ -21,6 +21,7 @@ no-test:
 docker-clean:
 	docker-compose rm -svf
 docker:
+	rm -rf out
 	docker-compose up -d --build --remove-orphans
 docker-databases: stop local
 build-images:
@@ -65,6 +66,8 @@ docker-bridge:
 docker-cassandra:
 	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_cassandra" | xargs docker stop
 	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_cassandra" | xargs docker start
+docker-stats:
+	docker stats bl_central_server bl_central_server bl_train_01_kafka_server bl_vehicle_01_server bl_bridge_01_sensors_server bl_bridge_01_mosquitto_server bl_bridge_01_rabbitmq_server bl_bridge_01_kafka_server bl_central_psql bl_central_server_apps bl_central_cassandra
 docker-delete-idle:
 	docker ps --format '{{.ID}}' -q --filter="name=bl_" | xargs docker rm
 docker-delete: stop
