@@ -12,7 +12,7 @@ def send_meter(host, data):
 
     client = HelperClient(server=(host, port))
     dumps = json.dumps(data)
-    print("🌡 Sending reading" + dumps)
+    print("🌡 Sending temperature reading" + dumps)
     success = False
     tries = 5
     while not success and tries > 0:
@@ -27,6 +27,7 @@ def send_meter(host, data):
             if not str(err).strip() == "":
                 print("🔴 " + str(err))
             sleep(10)
+    print("🌡 Sent temperature reading" + dumps)
 
 
 if __name__ == '__main__':

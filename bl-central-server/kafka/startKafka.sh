@@ -8,3 +8,4 @@ sleep 4
 /usr/bin/kafka-topics --create --zookeeper localhost:2181 --replication-factor 2 --partitions 2 --topic HUMIDITY
 /usr/bin/kafka-topics --create --zookeeper localhost:2181 --replication-factor 2 --partitions 2 --topic WINDSPEED
 /usr/bin/kafka-topics --create --zookeeper localhost:2181 --replication-factor 2 --partitions 2 --topic WINDDIRECTION
+/usr/bin/kafka-topics --create --zookeeper localhost:2181 --replication-factor 2 --partitions 4 --topic PASSENGER

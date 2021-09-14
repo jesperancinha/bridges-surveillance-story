@@ -14,7 +14,7 @@ def send_people(host, passengers):
             tries -= 1
             json_message = json.dumps(passengers)
             print("🧍🧍 Sending passengers..." + host)
-            producer = KafkaProducer(bootstrap_servers=[host + ':9098', host + ':9099', host + ':9100', host + ':9101'])
+            producer = KafkaProducer(bootstrap_servers=[host + ':9092', host + ':9093'])
             # print("🧍🧍 Sending " + str(json_message) + " ...")
             producer.send('PASSENGER', json_message)
             # print("🧍🧍 Sent " + json_message + "!")

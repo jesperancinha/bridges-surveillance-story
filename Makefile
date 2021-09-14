@@ -34,13 +34,13 @@ logs-central-server:
 logs-central-server-tail:
 	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_server" | xargs docker logs -f
 logs-train-kafka-server:
-	docker ps -a --format '{{.ID}}' -q --filter="name=bl_train_01_kafka_server" | xargs docker logs
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_kafka_server" | xargs docker logs
 logs-train-kafka-server-tail:
-	docker ps -a --format '{{.ID}}' -q --filter="name=bl_train_01_kafka_server" | xargs docker logs -f
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_kafka_server" | xargs docker logs -f
 logs-bridge-kafka-server:
-	docker ps -a --format '{{.ID}}' -q --filter="name=bl_bridge_01_kafka_server" | xargs docker logs
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_kafka_server" | xargs docker logs
 logs-bridge-kafka-server-tail:
-	docker ps -a --format '{{.ID}}' -q --filter="name=bl_bridge_01_kafka_server" | xargs docker logs -f
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_kafka_server" | xargs docker logs -f
 logs-zookeeper-server:
 	docker ps -a --format '{{.ID}}' -q --filter="name=bl_train_01_zookeeper_server" | xargs docker logs
 logs-zookeeper-server-tail:
@@ -54,22 +54,22 @@ logs-cassandra-server:
 logs-cassandra-server-tail:
 	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_cassandra" | xargs docker logs -f
 docker-dependent:
-	docker ps -a --format '{{.ID}}' -q --filter="name=bl_train_01_kafka_server" | xargs docker restart
-	docker ps -a --format '{{.ID}}' -q --filter="name=bl_bridge_01_kafka_server" | xargs docker restart
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_kafka_server" | xargs docker restart
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_kafka_server" | xargs docker restart
 	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_cassandra" | xargs docker restart
 docker-train:
-	docker ps -a --format '{{.ID}}' -q --filter="name=bl_train_01_kafka_server" | xargs docker stop
-	docker ps -a --format '{{.ID}}' -q --filter="name=bl_train_01_kafka_server" | xargs docker start
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_kafka_server" | xargs docker stop
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_kafka_server" | xargs docker start
 docker-bridge:
-	docker ps -a --format '{{.ID}}' -q --filter="name=bl_bridge_01_kafka_server" | xargs docker stop
-	docker ps -a --format '{{.ID}}' -q --filter="name=bl_bridge_01_kafka_server" | xargs docker start
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_kafka_server" | xargs docker stop
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_kafka_server" | xargs docker start
 docker-cassandra:
 	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_cassandra" | xargs docker stop
 	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_cassandra" | xargs docker start
 docker-stats:
-	docker stats bl_central_server bl_central_server bl_train_01_kafka_server bl_vehicle_01_server bl_bridge_01_sensors_server bl_bridge_01_mosquitto_server bl_bridge_01_rabbitmq_server bl_bridge_01_kafka_server bl_central_psql bl_central_server_apps bl_central_cassandra bl_train_01_rabbitmq_server
+	docker stats bl_central_server bl_central_server bl_central_kafka_server bl_vehicle_01_server bl_bridge_01_sensors_server bl_bridge_01_mosquitto_server bl_bridge_01_rabbitmq_server bl_central_kafka_server bl_central_psql bl_central_server_apps bl_central_cassandra bl_train_01_rabbitmq_server
 docker-stats-simple:
-	docker stats bl_central_server bl_central_server bl_train_01_kafka_server bl_vehicle_01_server bl_bridge_01_sensors_server bl_bridge_01_mosquitto_server bl_bridge_01_rabbitmq_server bl_bridge_01_kafka_server bl_central_psql bl_central_server_apps bl_train_01_rabbitmq_server
+	docker stats bl_central_server bl_central_server bl_central_kafka_server bl_vehicle_01_server bl_bridge_01_sensors_server bl_bridge_01_mosquitto_server bl_bridge_01_rabbitmq_server bl_central_kafka_server bl_central_psql bl_central_server_apps bl_train_01_rabbitmq_server
 docker-delete-idle:
 	docker ps --format '{{.ID}}' -q --filter="name=bl_" | xargs docker rm
 docker-delete: stop
@@ -78,9 +78,9 @@ docker-delete: stop
 docker-cleanup: docker-delete
 	docker images -q | xargs docker rmi
 	docker rmi bridge-logistics_bl_train_01_rabbitmq_server
-	docker rmi bridge-logistics_bl_train_01_kafka_server
+	docker rmi bridge-logistics_bl_central_kafka_server
 	docker rmi bridge-logistics_bl_train_01_zookeeper_server
-	docker rmi bridge-logistics_bl_bridge_01_kafka_server
+	docker rmi bridge-logistics_bl_central_kafka_server
 	docker rmi bridge-logistics_bl_bridge_01_rabbitmq_server
 	docker rmi bridge-logistics_bl_bridge_01_temperature_coap_server
 	docker rmi bridge-logistics_bl_bridge_01_humidity_mqtt_server
