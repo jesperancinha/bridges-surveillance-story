@@ -9,6 +9,7 @@
 - Extend Scala tests
 - Update instructions
 
+2021/09/14
 - Update Scala dependencies
 - Make Cassandra stable
 - Include Apache Spark in docker images

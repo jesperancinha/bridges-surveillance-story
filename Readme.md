@@ -154,7 +154,7 @@ make venv-install
 ```
 
 Make sure you are still in virtual environment (venv). If not, run the command `source venv/bin/activate` again.
-To start the demo please run script [startDemo.sh](./startDemo.sh) from root, or use:
+To start the demo please run:
 
 ```shell
 make demo
