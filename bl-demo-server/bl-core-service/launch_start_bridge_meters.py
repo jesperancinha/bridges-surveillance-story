@@ -32,13 +32,16 @@ def send_bridge_humidity_meter_readings(host, f):
 
 def start_bridge_meters(host):
     allTasks = []
-    files_in_dir = [f for f in listdir('../bl-simulation-data/bridge') if isfile(join('../bl-simulation-data/bridge', f))]
+    files_in_dir = [f for f in listdir('../bl-simulation-data/bridge') if
+                    isfile(join('../bl-simulation-data/bridge', f))]
     for file in files_in_dir:
         with open('../bl-simulation-data/bridge/' + file, 'r') as f:
-            send_bridge_meter_simulation_process = Process(target=send_bridge_temperature_meter_readings, args=[host, f])
+            send_bridge_meter_simulation_process = Process(target=send_bridge_temperature_meter_readings,
+                                                           args=[host, f])
             send_bridge_meter_simulation_process.start()
             allTasks.append(send_bridge_meter_simulation_process)
-    files_in_dir = [f for f in listdir('../bl-simulation-data/bridge/humidity') if isfile(join('../bl-simulation-data/bridge/humidity/', f))]
+    files_in_dir = [f for f in listdir('../bl-simulation-data/bridge/humidity') if
+                    isfile(join('../bl-simulation-data/bridge/humidity/', f))]
     for file in files_in_dir:
         with open('../bl-simulation-data/bridge/humidity/' + file, 'r') as f:
             send_bridge_meter_simulation_process = Process(target=send_bridge_humidity_meter_readings, args=[host, f])

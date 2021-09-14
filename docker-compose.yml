@@ -10,6 +10,12 @@ services:
     ports:
       - "15672:15672"
       - "5672:5672"
+    deploy:
+      resources:
+        limits:
+          memory: 200M
+        reservations:
+          memory: 100M
 
   bl_train_01_rabbitmq_server:
     hostname: bl_train_01_rabbitmq_server
@@ -19,6 +25,12 @@ services:
     ports:
       - "15673:15672"
       - "5673:5672"
+    deploy:
+      resources:
+        limits:
+          memory: 500M
+        reservations:
+          memory: 250M
 
   bl_train_01_kafka_server:
     hostname: bl_train_01_kafka_server
@@ -30,6 +42,13 @@ services:
       - "9099:9099"
       - "9100:9100"
       - "9101:9101"
+    deploy:
+      resources:
+        limits:
+          memory: 800M
+          cpus: '1'
+        reservations:
+          memory: 400M
 
   bl_vehicle_01_server:
     hostname: bl_vehicle_01_server
@@ -39,6 +58,11 @@ services:
     ports:
       - "15675:15672"
       - "5675:5672"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 500M
 
   bl_bridge_01_sensors_server:
     hostname: bl_bridge_01_sensors_server
@@ -47,6 +71,11 @@ services:
       context: bl-bridge-server/.
     ports:
       - "5683:5683/udp"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 50M
 
   bl_bridge_01_mosquitto_server:
     hostname: bl_bridge_01_mosquitto_server
@@ -55,6 +84,11 @@ services:
       context: bl-bridge-server/mosquitto/.
     ports:
       - "1883:1883"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 10M
 
   bl_bridge_01_rabbitmq_server:
     hostname: bl_bridge_01_rabbitmq_server
@@ -64,6 +98,11 @@ services:
     ports:
       - "5674:5672"
       - "15674:15672"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 500M
 
   bl_bridge_01_kafka_server:
     hostname: bl_bridge_01_kafka_server
@@ -74,6 +113,13 @@ services:
       - "9092:9092"
       - "9093:9093"
       - "9094:9094"
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 800M
+        reservations:
+          memory: 400M
 
   bl_central_psql:
     hostname: bl_central_psql
@@ -86,6 +132,11 @@ services:
       - POSTGRES_MULTIPLE_DATABASES=bllogistics
     ports:
       - "5432:5432"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 50M
 
   bl_central_server_apps:
     hostname: bl_central_server_apps
@@ -99,6 +150,11 @@ services:
       - bl_central_server
       - bl_train_01_rabbitmq_server
       - bl_vehicle_01_server
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 400M
 
   bl_central_cassandra:
     hostname: bl_central_cassandra
@@ -110,10 +166,13 @@ services:
     environment:
       - "MAX_HEAP_SIZE=64M"
       - "HEAP_NEWSIZE=64M"
-    volumes:
-      - ./out/cassandra_data:/var/lib/cassandra
     healthcheck:
       test: ["CMD", "cqlsh", "-u cassandra", "-p cassandra" ,"-e describe keyspaces"]
       interval: 15s
       timeout: 10s
       retries: 10
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 500M

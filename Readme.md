@@ -44,6 +44,7 @@
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/mqtt-50.png "MQTT")](https://mqtt.org//)
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/amqp-50.png "AMQP")](https://www.amqp.org/)
 
+
 This application uses event sourcing to serve the logistics for a bridge management system.
 This is what in general this project is responsible for
 
