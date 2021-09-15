@@ -103,8 +103,10 @@ prune-all: stop
 	docker system prune --all
 	docker builder prune
 	docker system prune --all --volumes
-stop:
+stop: stop-jars
 	docker-compose down --remove-orphans
+stop-jars:
+	./stopRunningJars.sh
 venv:
 	pip install virtualenv
 	pip install virtualenvwrapper
