@@ -107,11 +107,11 @@ Just remember that each line must be a single name.
 
 1. [bl-central-server](./bl-central-server): The central server containing all centralized data
    1. [bl-merchandise-data-collector](./bl-central-server/bl-merchandise-data-collector) - Java service responsible for collecting merchandise info and sending it through RabbitMQ to the centralized services.
-   6. [bl-sensor-data-collector](./bl-central-server/bl-sensor-data-collector) - Java service responsible for collecting check-in and check-out data from trains entering and leaving the bridge and sending it through RabbitMQ to the centralized services.
-   5. [bl-readings-aggregator-service](./bl-central-server/bl-readings-aggregator-service) - Scala aggregation data service for merchandise (?)
-   2. [bl-readings-agg-last-service](./bl-central-server/bl-readings-agg-last-service) - Scala aggregation data service for merchandise (?)
-   4. [bl-passengers-readings-service](./bl-central-server/bl-passengers-readings-service) - Scala service responsible for collecting passenger data from the Kafka (via the train) streams and sending it to cassandra
-   3. [bl-meters-readings-service](./bl-central-server/bl-meters-readings-service) - Scala service responsible for collecting meter data from the Kafka (via the bridge) streams and sending it to cassandra
+   2. [bl-sensor-data-collector](./bl-central-server/bl-sensor-data-collector) - Java service responsible for collecting check-in and check-out data from trains entering and leaving the bridge and sending it through RabbitMQ to the centralized services.
+   3. [bl-readings-aggregator-service](./bl-central-server/bl-readings-aggregator-service) - Scala aggregation data service for merchandise (?)
+   4. [bl-readings-agg-last-service](./bl-central-server/bl-readings-agg-last-service) - Scala aggregation data service for merchandise (?)
+   5. [bl-passengers-readings-service](./bl-central-server/bl-passengers-readings-service) - Scala service responsible for collecting passenger data from the Kafka (via the train) streams and sending it to cassandra
+   6. [bl-meters-readings-service](./bl-central-server/bl-meters-readings-service) - Scala service responsible for collecting meter data from the Kafka (via the bridge) streams and sending it to cassandra
    7. [bl-web-app](./bl-central-server/bl-web-app) - Java (?) - Port 9000
    8. [bl-web-ui](./bl-central-server/bl-web-ui) - Angular (?)
 
