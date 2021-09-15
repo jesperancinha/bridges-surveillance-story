@@ -93,26 +93,27 @@ Just remember that each line must be a single name.
 ### Docker Images
 
 1. [bl-central-server](./bl-central-server): The central server containing all centralized data
-   1.[bl-central-cassandra](./bl-central-server/bl-central-cassandra) - Cassandra database image (Contains calculated and dynamic data)
-   2.[bl-central-psql](./bl-central-server/bl-central-psql) - Postgres database image (Contains static  information about passengers, vehicles, trains and bridges)   
-   3.[bl-central-streaming](./bl-central-server/bl-central-streaming) - RabbitMQ strams for train, vehicle and bridge   
+   1. [bl-central-cassandra](./bl-central-server/bl-central-cassandra) - Cassandra database image (Contains calculated and dynamic data)
+   2. [bl-central-psql](./bl-central-server/bl-central-psql) - Postgres database image (Contains static  information about passengers, vehicles, trains and bridges)   
+   3. [bl-central-streaming](./bl-central-server/bl-central-streaming) - RabbitMQ strams for train, vehicle and bridge
+   4. [kafka](./bl-central-server/kafka) - A kafka streaming engine. It creates topics TEMPERATURE, HUMIDITY, WINDSPEED, WINDDIRECTION, PASSENGER. It is centralized to take data from the bridge and the moving train.
 
 ### Libraries
 
 1. [bl-central-server](./bl-central-server): The central server containing all centralized data
-   1. [bl-domain-repository](./bl-central-server/bl-domain-repository) - Java
+   1. [bl-domain-repository](./bl-central-server/bl-domain-repository) - Java domain model to use in the different Java processes. Contains all the PostgreSQL database model DAO's
 
 ### Services
 
 1. [bl-central-server](./bl-central-server): The central server containing all centralized data
-   1. [bl-merchandise-data-collector](./bl-central-server/bl-merchandise-data-collector) - Java
-   2. [bl-meters-readings-service](./bl-central-server/bl-meters-readings-service) - Scala
-   3. [bl-passengers-readings-service](./bl-central-server/bl-passengers-readings-service) - Scala
-   4. [bl-readings-agg-last-service](./bl-central-server/bl-readings-agg-last-service) - Scala
-   5. [bl-readings-aggregator-service](./bl-central-server/bl-readings-aggregator-service) - Scala
-   6. [bl-sensor-data-collector](./bl-central-server/bl-sensor-data-collector) - Java
-   7. [bl-web-app](./bl-central-server/bl-web-app) - Java
-   8. [bl-web-ui](./bl-central-server/bl-web-ui) - Angular
+   1. [bl-merchandise-data-collector](./bl-central-server/bl-merchandise-data-collector) - Java service responsible for collecting merchandise info and sending it through RabbitMQ to the centralized services.
+   6. [bl-sensor-data-collector](./bl-central-server/bl-sensor-data-collector) - Java service responsible for collecting check-in and check-out data from trains entering and leaving the bridge and sending it through RabbitMQ to the centralized services.
+   5. [bl-readings-aggregator-service](./bl-central-server/bl-readings-aggregator-service) - Scala aggregation data service for merchandise (?)
+   2. [bl-readings-agg-last-service](./bl-central-server/bl-readings-agg-last-service) - Scala aggregation data service for merchandise (?)
+   4. [bl-passengers-readings-service](./bl-central-server/bl-passengers-readings-service) - Scala service responsible for collecting passenger data from the Kafka (via the train) streams and sending it to cassandra
+   3. [bl-meters-readings-service](./bl-central-server/bl-meters-readings-service) - Scala service responsible for collecting meter data from the Kafka (via the bridge) streams and sending it to cassandra
+   7. [bl-web-app](./bl-central-server/bl-web-app) - Java (?) - Port 9000
+   8. [bl-web-ui](./bl-central-server/bl-web-ui) - Angular (?)
 
 2. [bl-bridge-server](./bl-bridge-server): A server installed on each bridge
 
