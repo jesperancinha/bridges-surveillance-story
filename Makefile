@@ -31,6 +31,7 @@ docker-databases: stop local
 build-images:
 build-docker: stop b
 	docker-compose up -d --build --remove-orphans
+clean-docker: docker-clean docker
 show:
 	docker ps -a  --format '{{.ID}} - {{.Names}} - {{.Status}}'
 logs-central-server:

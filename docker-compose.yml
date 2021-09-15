@@ -29,10 +29,10 @@ services:
       resources:
         limits:
           memory: 900M
-          cpus: '1'
+          cpus: '2'
         reservations:
           memory: 900M
-          cpus: '1'
+          cpus: '2'
 
   bl_train_01_rabbitmq_server:
     hostname: bl_train_01_rabbitmq_server
@@ -45,9 +45,9 @@ services:
     deploy:
       resources:
         limits:
-          memory: 300M
+          memory: 250M
         reservations:
-          memory: 300M
+          memory: 250M
 
   bl_vehicle_01_server:
     hostname: bl_vehicle_01_server
@@ -60,9 +60,9 @@ services:
     deploy:
       resources:
         limits:
-          memory: 300M
+          memory: 200M
         reservations:
-          memory: 300M
+          memory: 200M
 
   bl_bridge_01_sensors_server:
     hostname: bl_bridge_01_sensors_server
@@ -101,9 +101,9 @@ services:
     deploy:
       resources:
         limits:
-          memory: 300M
+          memory: 200M
         reservations:
-          memory: 300M
+          memory: 200M
 
   bl_central_psql:
     hostname: bl_central_psql
