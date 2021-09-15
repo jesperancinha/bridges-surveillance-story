@@ -48,7 +48,6 @@ cache:
     - bl-central-server/bl-meters-readings-service/target
     - bl-central-server/bl-passengers-readings-service/target
     - bl-central-server/bl-readings-agg-last-service/target
-    - bl-central-server/bl-readings-aggregator-service/target
     - bl-central-server/bl-sensor-data-collector/target
     - bl-central-server/bl-web-app/target
 

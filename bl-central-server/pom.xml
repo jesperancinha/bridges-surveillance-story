@@ -35,7 +35,6 @@
         <module>bl-web-app</module>
         <module>bl-meters-readings-service</module>
         <module>bl-passengers-readings-service</module>
-        <module>bl-readings-aggregator-service</module>
         <module>bl-readings-agg-last-service</module>
         <module>bl-sensor-data-collector</module>
     </modules>
