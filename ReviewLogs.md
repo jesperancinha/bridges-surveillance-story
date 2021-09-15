@@ -13,9 +13,11 @@
 - Extend Scala tests
 - Update Libraries further
 
+2021/09/16
 - Change storyline
 - Remove unnecessary elements to the case:
   - Vehicle
+- Re-enable all disabled tests
 
 2021/09/15
 - Update to rabbitmq source docker image to `rabbitmq:3.9-management`

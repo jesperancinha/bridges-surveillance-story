@@ -14,7 +14,6 @@ import org.jesperancinha.logistics.jpa.model.Freight;
 import org.jesperancinha.logistics.jpa.model.Passenger;
 import org.jesperancinha.logistics.jpa.model.Product;
 import org.jesperancinha.logistics.jpa.model.Train;
-import org.jesperancinha.logistics.jpa.model.Vehicle;
 import org.jesperancinha.logistics.jpa.repositories.BridgeRepository;
 import org.jesperancinha.logistics.jpa.repositories.CarriageRepository;
 import org.jesperancinha.logistics.jpa.repositories.CompanyRepository;
@@ -24,7 +23,6 @@ import org.jesperancinha.logistics.jpa.repositories.OpeningTimeRepository;
 import org.jesperancinha.logistics.jpa.repositories.PassengerRepository;
 import org.jesperancinha.logistics.jpa.repositories.ProductRepository;
 import org.jesperancinha.logistics.jpa.repositories.TrainRepository;
-import org.jesperancinha.logistics.jpa.repositories.VehicleRepository;
 import org.jesperancinha.logistics.web.data.FreightDto;
 import org.jesperancinha.logistics.web.data.TrainDto;
 import org.springframework.boot.CommandLineRunner;
@@ -56,8 +54,6 @@ public class BridgeLogisticsInitializer implements CommandLineRunner {
 
     private final TrainRepository trainRepository;
 
-    private final VehicleRepository vehicleRepository;
-
     private final OpeningTimeRepository openingTimeRepository;
 
     private final CompanyRepository companyRepository;
@@ -67,14 +63,13 @@ public class BridgeLogisticsInitializer implements CommandLineRunner {
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     public BridgeLogisticsInitializer(BridgeRepository bridgeRepository, CarriageRepository carriageRepository, ContainerRepository containerRepository, FreightRepository freightRepository, ProductRepository productRepository, TrainRepository trainRepository,
-                                      VehicleRepository vehicleRepository, OpeningTimeRepository openingTimeRepository, CompanyRepository companyRepository, PassengerRepository passengerRepository) {
+                                      OpeningTimeRepository openingTimeRepository, CompanyRepository companyRepository, PassengerRepository passengerRepository) {
         this.bridgeRepository = bridgeRepository;
         this.carriageRepository = carriageRepository;
         this.containerRepository = containerRepository;
         this.freightRepository = freightRepository;
         this.productRepository = productRepository;
         this.trainRepository = trainRepository;
-        this.vehicleRepository = vehicleRepository;
         this.openingTimeRepository = openingTimeRepository;
         this.companyRepository = companyRepository;
         this.passengerRepository = passengerRepository;
@@ -105,8 +100,6 @@ public class BridgeLogisticsInitializer implements CommandLineRunner {
         containerRepository.saveAll(Arrays.asList(objectMapper.readValue(getClass().getResourceAsStream("/containers.json"), Container[].class)));
 
         productRepository.saveAll(Arrays.asList(objectMapper.readValue(getClass().getResourceAsStream("/products.json"), Product[].class)));
-
-        vehicleRepository.saveAll(Arrays.asList(objectMapper.readValue(getClass().getResourceAsStream("/vehicles.json"), Vehicle[].class)));
 
         passengerRepository.saveAll(Arrays.asList(objectMapper.readValue(getClass().getResourceAsStream("/passengers/passengers.json"), Passenger[].class)));
 
