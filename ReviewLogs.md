@@ -5,9 +5,15 @@
 - Review [InstallationNotes.md](./docs/InstallationNotes.md) document
 - Use a Log framework and remove System outs
 - Update storyline
+- Kotest tests
+- Mockk tests
 - Python unit tests
 - Extend Scala tests
+
+
+
 - Update instructions
+- Cleanup and removal of unused code
 
 2021/09/14
 - Update Scala dependencies

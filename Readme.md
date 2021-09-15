@@ -108,11 +108,10 @@ Just remember that each line must be a single name.
 1. [bl-central-server](./bl-central-server): The central server containing all centralized data
    1. [bl-merchandise-data-collector](./bl-central-server/bl-merchandise-data-collector) - Java service responsible for collecting merchandise info and sending it through RabbitMQ to the centralized services.
    2. [bl-sensor-data-collector](./bl-central-server/bl-sensor-data-collector) - Java service responsible for collecting check-in and check-out data from trains entering and leaving the bridge and sending it through RabbitMQ to the centralized services.
-   3. [bl-readings-agg-last-service](./bl-central-server/bl-readings-agg-last-service) - Scala aggregation data service for merchandise (?)
-   4. [bl-passengers-readings-service](./bl-central-server/bl-passengers-readings-service) - Scala service responsible for collecting passenger data from the Kafka (via the train) streams and sending it to cassandra
-   5. [bl-meters-readings-service](./bl-central-server/bl-meters-readings-service) - Scala service responsible for collecting meter data from the Kafka (via the bridge) streams and sending it to cassandra
-   6. [bl-web-app](./bl-central-server/bl-web-app) - Java (?) - Port 9000
-   7. [bl-web-ui](./bl-central-server/bl-web-ui) - Angular (?)
+   3. [bl-passengers-readings-service](./bl-central-server/bl-passengers-readings-service) - Scala service responsible for collecting passenger data from the Kafka (via the train) streams and sending it to cassandra
+   4. [bl-meters-readings-service](./bl-central-server/bl-meters-readings-service) - Scala service responsible for collecting meter data from the Kafka (via the bridge) streams and sending it to cassandra
+   5. [bl-web-app](./bl-central-server/bl-web-app) - Java (?) - Port 9000
+   6. [bl-web-ui](./bl-central-server/bl-web-ui) - Angular (?)
 
 2. [bl-bridge-server](./bl-bridge-server): A server installed on each bridge
 

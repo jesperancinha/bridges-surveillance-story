@@ -1,3 +1,4 @@
+b: build
 build: build-npm
 	cd bl-demo-server && python bl-core-service/launch_generate_people.py
 	mvn clean install -Pdemo -DskipTests
