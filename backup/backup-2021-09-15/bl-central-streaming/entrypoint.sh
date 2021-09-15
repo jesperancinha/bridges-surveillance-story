@@ -4,13 +4,15 @@ rabbitmq-server -detached
 
 rabbitmqctl start_app
 
-sleep 1
-
 rabbitmqctl await_startup
 
-rabbitmqctl start_app
+#rabbitmq-plugins enable rabbitmq_management
 
-sleep 1
+#rabbitmqctl await_startup
+
+#rabbitmq-plugins enable --offline rabbitmq_management
+
+rabbitmqctl start_app
 
 rabbitmqctl await_startup
 
@@ -18,9 +20,13 @@ rabbitmq-plugins enable rabbitmq_federation
 
 rabbitmq-plugins enable rabbitmq_federation_management
 
+#rabbitmq-plugins enable rabbitmq_shovel rabbitmq_shovel_management
+
 curl -S http://localhost:15672/cli/rabbitmqadmin > /usr/local/bin/rabbitmqadmin
 
 chmod +x /usr/local/bin/rabbitmqadmin
+
+
 
 rabbitmqctl add_user test test
 
@@ -44,10 +50,10 @@ federate(){
     rabbitmqctl set_policy -p bl_$1_vh --apply-to all bl_$1_policy ".*$1.*" '{"federation-upstream-set":"all"}'
 }
 
-federate train_01_merchandise train_01_rabbitmq
-federate train_01_sensor train_01_rabbitmq
+federate train_01_merchandise train_01
+federate train_01_sensor train_01
 federate vehicle_01_sensor vehicle_01
 federate vehicle_01_merchandise vehicle_01
-federate bridge_01_sensor bridge_01_rabbitmq
+federate bridge_01_sensor bridge_01
 
 tail -f /dev/null

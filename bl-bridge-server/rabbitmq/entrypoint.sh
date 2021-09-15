@@ -1,16 +1,13 @@
 #!/usr/bin/env bash
+rabbitmqctl await_startup
 
 rabbitmq-server -detached
-
-rabbitmqctl await_startup
 
 rabbitmq-plugins enable rabbitmq_management
 
 rabbitmq-server -detached
 
 rabbitmqctl await_startup
-
-sleep 15
 
 curl -S http://localhost:15672/cli/rabbitmqadmin > /usr/local/bin/rabbitmqadmin
 

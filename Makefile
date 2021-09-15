@@ -24,12 +24,12 @@ docker-clean:
 docker:
 	rm -rf out
 	docker-compose up -d --build --remove-orphans
-start-readers:
+start-readers: stop-jars
 	java -jar bl-central-server/bl-passengers-readings-service/target/bl-passengers-readings-service-2.0.0-SNAPSHOT-jar-with-dependencies.jar &
 	java -jar bl-central-server/bl-meters-readings-service/target/bl-meters-readings-service-2.0.0-SNAPSHOT-jar-with-dependencies.jar &
 docker-databases: stop local
 build-images:
-build-docker: stop no-test build-npm
+build-docker: stop b
 	docker-compose up -d --build --remove-orphans
 show:
 	docker ps -a  --format '{{.ID}} - {{.Names}} - {{.Status}}'

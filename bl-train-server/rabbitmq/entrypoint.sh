@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
+rabbitmqctl await_startup
 
 rabbitmq-server -detached
 
-rabbitmqctl await_startup
-
 rabbitmq-plugins enable rabbitmq_management
+
+rabbitmq-server -detached
 
 rabbitmqctl await_startup
 

@@ -79,7 +79,7 @@ I have created an investigation Game. It's not a difficult one to solve. Basic m
 > The suspect jumps off the train while it passes through a connecting bridge
 
 Steps:
-1.  Go to PSQL database on schema `bllogistics` in table `trains_log`. Filter by `check_in_out='CHECKIN' or check_in_out='CHECKOUT'`
+1.  Go to PostgresSQL database on schema `bllogistics` in table `trains_log`. Filter by `check_in_out='CHECKIN' or check_in_out='CHECKOUT'`
 2.  Calculate the difference in weight
 3.  Go to Cassandra database on keyspace `readings` in table `passengers`. Filter by the weight you find. These are the suspects
 4.  If you only have one suspect. Then congratulations you have found the secret agent who stole the bag.
@@ -133,8 +133,9 @@ Just remember that each line must be a single name.
 
 Make sure you have enough resources and that you are running [Docker desktop](https://www.docker.com/products/docker-desktop):
 
-1. At least 6GB available memory
+1. At least 6Gb available memory
 2. At least 8 cores
+3. At least 5Gb to 10Gb of free diskspace
 
 Please check the [Makefile](./Makefile) and make sure you understand the available options before calling them.
 

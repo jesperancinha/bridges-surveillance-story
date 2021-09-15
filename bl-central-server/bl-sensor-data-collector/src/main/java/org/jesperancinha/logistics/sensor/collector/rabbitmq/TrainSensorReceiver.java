@@ -36,14 +36,13 @@ public class TrainSensorReceiver {
 
     public void receiveMessage(byte[] message) throws JsonProcessingException {
         final var messageString = new String(message, Charset.defaultCharset());
+        System.out.println("Received <" + messageString + ">");
         final var trainLogDto = objectMapper.readValue(messageString, TrainLogDto.class);
         if (Objects.nonNull(trainLogDto.id())) {
             trainsLogRepository.save(TrainConverter.toModel(trainLogDto, trainRepository.findById(trainLogDto.id())
                     .orElse(null)));
-            System.out.println("Received <" + messageString + ">");
-        } else {
-            System.out.println("Received <" + messageString + ">");
         }
+        System.out.println("Received <" + messageString + ">");
     }
 
     public CountDownLatch getLatch() {

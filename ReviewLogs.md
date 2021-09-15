@@ -16,6 +16,8 @@
 - Change storyline
 
 2021/09/15
+- Update to rabbitmq source docker image to `rabbitmq:3.9-management`
+- Fix error `management api returned status code 500 - exchange rabbitmq`
 - Review [InstallationNotes.md](./docs/InstallationNotes.md) document
 - Update instructions
 - Cleanup and removal of unused code

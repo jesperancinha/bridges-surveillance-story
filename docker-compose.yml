@@ -13,9 +13,9 @@ services:
     deploy:
       resources:
         limits:
-          memory: 400M
+          memory: 300M
         reservations:
-          memory: 400M
+          memory: 300M
 
   bl_central_kafka_server:
     hostname: bl_central_kafka_server
@@ -45,9 +45,9 @@ services:
     deploy:
       resources:
         limits:
-          memory: 400M
+          memory: 300M
         reservations:
-          memory: 250M
+          memory: 300M
 
   bl_vehicle_01_server:
     hostname: bl_vehicle_01_server
@@ -60,8 +60,9 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.5'
-          memory: 500M
+          memory: 300M
+        reservations:
+          memory: 300M
 
   bl_bridge_01_sensors_server:
     hostname: bl_bridge_01_sensors_server
@@ -100,8 +101,9 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.5'
-          memory: 400M
+          memory: 300M
+        reservations:
+          memory: 300M
 
   bl_central_psql:
     hostname: bl_central_psql
@@ -117,8 +119,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.5'
-          memory: 50M
+          memory: 100M
 
   bl_central_server_apps:
     hostname: bl_central_server_apps
@@ -135,7 +136,6 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '1'
           memory: 500M
         reservations:
           memory: 500M

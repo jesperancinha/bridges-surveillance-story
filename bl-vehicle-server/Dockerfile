@@ -1,4 +1,4 @@
-FROM rabbitmq:3.9
+FROM rabbitmq:3.9-management
 
 WORKDIR /root
 
@@ -10,16 +10,13 @@ RUN apt install curl -y
 
 RUN apt install python3 -y
 
-RUN rabbitmq-plugins enable --offline rabbitmq_management
-
 RUN rabbitmq-plugins enable rabbitmq_federation
 
 RUN rabbitmq-plugins enable rabbitmq_federation_management
 
-RUN rabbitmq-plugins enable rabbitmq_shovel rabbitmq_shovel_management
-
 COPY entrypoint.sh /root
 
-ENTRYPOINT ["/root/entrypoint.sh"]
+#RabbitMQ
+EXPOSE 5675 15675
 
-EXPOSE 5675 15671 15675
+ENTRYPOINT ["/root/entrypoint.sh"]
