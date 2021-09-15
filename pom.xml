@@ -330,7 +330,5 @@
 
     <modules>
         <module>bl-central-server</module>
-        <module>bl-vehicle-server</module>
-        <module>bl-demo-server</module>
     </modules>
 </project>

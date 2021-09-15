@@ -16,17 +16,12 @@ if os.path.exists("bl-demo-server"):
     os.chdir("bl-demo-server")
 
 from launch_start_train import start_train
-from launch_start_vehicle import start_vehicle
 from launch_start_bridge_meters import start_bridge_meters
 
 
 def train_simulation(train_result_simulation):
     value = start_train('localhost')
     train_result_simulation.value = value
-
-
-def vehicle_simulation():
-    start_vehicle('localhost')
 
 
 def bridge_meter_simulation():
@@ -43,7 +38,6 @@ if __name__ == '__main__':
     manager = multiprocessing.Manager()
     train_result = manager.Value(ctypes.c_char_p, "")
     train_simulation_process = Process(target=train_simulation, args=[train_result])
-    vehicle_simulation_process = Process(target=vehicle_simulation)
     bridge_meters_simulation_process = Process(target=bridge_meter_simulation)
     bridge_meters_simulation_process_killer = Process(target=bridge_meter_simulation_killer, args=[bridge_meters_simulation_process])
 
@@ -63,21 +57,18 @@ if __name__ == '__main__':
             sleep(10)
 
     train_simulation_process.start()
-    vehicle_simulation_process.start()
     bridge_meters_simulation_process.start()
     bridge_meters_simulation_process_killer.start()
 
     simulation_ready = False
 
-    while train_simulation_process.is_alive() or vehicle_simulation_process.is_alive() or bridge_meters_simulation_process.is_alive():
+    while train_simulation_process.is_alive() or bridge_meters_simulation_process.is_alive():
         # while train_simulation_process.is_alive():
         try:
             print(("🟢" if simulation_ready else "🟠") + " Simulation ongoing. Press Ctr-C to interrupt it!")
             open = requests.get(url=URL_OPEN, timeout=5)
             print("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
-            print("🌉 Vehicle bridge status: " + ("🟢 open" if open.json() else "🔴 closed"))
             print(("🟢" if train_simulation_process.is_alive() else "🔴") + "Train simulation")
-            print(("🟢" if vehicle_simulation_process.is_alive() else "🔴") + "Vehicle simulation")
             print(("🟢" if bridge_meters_simulation_process.is_alive() else "🔴") + "Bridge simulation")
             print("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
             simulation_ready = True
@@ -88,7 +79,6 @@ if __name__ == '__main__':
 
     print("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
     print(("🟢" if train_simulation_process.is_alive() else "🔴") + "Train simulation")
-    print(("🟢" if vehicle_simulation_process.is_alive() else "🔴") + "Vehicle simulation")
     print(("🟢" if bridge_meters_simulation_process.is_alive() else "🔴") + "Bridge simulation")
     print("-=-=-=-=-=-=-=-=-=- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
 

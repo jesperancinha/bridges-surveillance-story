@@ -28,11 +28,9 @@ services:
     deploy:
       resources:
         limits:
-          memory: 900M
-          cpus: '2'
+          memory: 1000M
         reservations:
-          memory: 900M
-          cpus: '2'
+          memory: 1000M
 
   bl_train_01_rabbitmq_server:
     hostname: bl_train_01_rabbitmq_server
@@ -48,21 +46,6 @@ services:
           memory: 250M
         reservations:
           memory: 250M
-
-  bl_vehicle_01_server:
-    hostname: bl_vehicle_01_server
-    container_name: bl_vehicle_01_server
-    build:
-      context: bl-vehicle-server/.
-    ports:
-      - "15675:15672"
-      - "5675:5672"
-    deploy:
-      resources:
-        limits:
-          memory: 200M
-        reservations:
-          memory: 200M
 
   bl_bridge_01_sensors_server:
     hostname: bl_bridge_01_sensors_server
@@ -132,13 +115,12 @@ services:
       - bl_central_psql
       - bl_central_server
       - bl_train_01_rabbitmq_server
-      - bl_vehicle_01_server
     deploy:
       resources:
         limits:
-          memory: 500M
+          memory: 800M
         reservations:
-          memory: 500M
+          memory: 800M
 
   bl_central_cassandra:
     hostname: bl_central_cassandra
@@ -158,8 +140,8 @@ services:
     deploy:
       resources:
         limits:
-          memory: 1000M
+          memory: 500M
           cpus: '1'
         reservations:
-          memory: 1000M
+          memory: 500M
           cpus: '1'

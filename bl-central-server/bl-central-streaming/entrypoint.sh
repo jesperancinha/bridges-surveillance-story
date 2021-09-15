@@ -46,8 +46,6 @@ federate(){
 
 federate train_01_merchandise train_01_rabbitmq
 federate train_01_sensor train_01_rabbitmq
-federate vehicle_01_sensor vehicle_01
-federate vehicle_01_merchandise vehicle_01
 federate bridge_01_sensor bridge_01_rabbitmq
 
 tail -f /dev/null

@@ -14,6 +14,8 @@
 - Update Libraries further
 
 - Change storyline
+- Remove unnecessary elements to the case:
+  - Vehicle
 
 2021/09/15
 - Update to rabbitmq source docker image to `rabbitmq:3.9-management`
