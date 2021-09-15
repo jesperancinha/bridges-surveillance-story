@@ -96,7 +96,7 @@ Just remember that each line must be a single name.
    1. [bl-central-cassandra](./bl-central-server/bl-central-cassandra) - Cassandra database image (Contains calculated and dynamic data)
    2. [bl-central-psql](./bl-central-server/bl-central-psql) - Postgres database image (Contains static  information about passengers, vehicles, trains and bridges)   
    3. [bl-central-streaming](./bl-central-server/bl-central-streaming) - RabbitMQ strams for train, vehicle and bridge
-   4. [kafka](./bl-central-server/kafka) - A kafka streaming engine. It creates topics TEMPERATURE, HUMIDITY, WINDSPEED, WINDDIRECTION, PASSENGER. It is centralized to take data from the bridge and the moving train.
+   4. [kafka](./bl-central-server/kafka) - A kafka streaming engine. It creates topics TEMPERATURE, HUMIDITY, WINDSPEED, WINDDIRECTION, PASSENGER. It is centralized to take data from the bridge and the moving train. Two brokers make use of ports 9092 and 9093.
 
 ### Libraries
 
@@ -110,8 +110,8 @@ Just remember that each line must be a single name.
    2. [bl-sensor-data-collector](./bl-central-server/bl-sensor-data-collector) - Java service responsible for collecting check-in and check-out data from trains entering and leaving the bridge and sending it through RabbitMQ to the centralized services.
    3. [bl-passengers-readings-service](./bl-central-server/bl-passengers-readings-service) - Scala service responsible for collecting passenger data from the Kafka (via the train) streams and sending it to cassandra
    4. [bl-meters-readings-service](./bl-central-server/bl-meters-readings-service) - Scala service responsible for collecting meter data from the Kafka (via the bridge) streams and sending it to cassandra
-   5. [bl-web-app](./bl-central-server/bl-web-app) - Java (?) - Port 9000
-   6. [bl-web-ui](./bl-central-server/bl-web-ui) - Angular (?)
+   5. [bl-web-app](./bl-central-server/bl-web-app) - Java service which checks if the bridge is open for vehicle crossing. It is open in port 9000
+   6. [bl-web-ui](./bl-central-server/bl-web-ui) - Angular (?) - For future visualizations - Check [ReviewLogs.md](./ReviewLogs.md) for details about Roadmap to version 3.0.0
 
 2. [bl-bridge-server](./bl-bridge-server): A server installed on each bridge
 

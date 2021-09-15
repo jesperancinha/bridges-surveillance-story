@@ -1,5 +1,9 @@
 # Bridge Logistics Review logs
 
+## Roadmap to v3.0.0
+
+- Visual Angular Front-End interface
+
 ## Roadmap to v2.0.0
 
 - Review [InstallationNotes.md](./docs/InstallationNotes.md) document
