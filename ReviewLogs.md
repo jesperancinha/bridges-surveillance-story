@@ -6,16 +6,17 @@
 
 ## Roadmap to v2.0.0
 
-- Review [InstallationNotes.md](./docs/InstallationNotes.md) document
 - Use a Log framework and remove System outs
-- Update storyline
 - Kotest tests
 - Mockk tests
 - Python unit tests
 - Extend Scala tests
+- Update Libraries further
 
+- Change storyline
 
-
+2021/09/15
+- Review [InstallationNotes.md](./docs/InstallationNotes.md) document
 - Update instructions
 - Cleanup and removal of unused code
 

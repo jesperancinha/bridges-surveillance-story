@@ -68,18 +68,21 @@ This project is also the official support project of my article on medium:
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-20/medium-20.png "Medium")](https://medium.com/swlh/the-streaming-bridges-a-kafka-rabbitmq-mqtt-and-coap-example-9077a598169)
 [The streaming bridges — A Kafka, RabbitMQ, MQTT and CoAP example](https://medium.com/swlh/the-streaming-bridges-a-kafka-rabbitmq-mqtt-and-coap-example-9077a598169)
 
+
+**** [Under Construction](./ReviewLogs.md) ****
+
 ## A detective case
 
-Since this project is about bridges and trains and because I love the [Murder on the Orient Express](https://www.imdb.com/title/tt0071877/) film and the tv series [The Bridge](https://www.imdb.com/title/tt1733785/?ref_=fn_al_tt_1), I've created a game about it. This game is mean't to be, not only entertaining, but also a way for you to learn the basics of various streaming mechanisms and master your skills. This is the setting:
+I have created an investigation Game. It's not a difficult one to solve. Basic math will get you through to find the thief.
 
-> There has been a gruesome crime committed over a bridge. You are the detective.
-> You have to find out the criminal fast and accurately otherwise he will be at large and take over the world.
+> A passenger unsuspectingly travelling in a train carrying a leather suitcase with an old 5Kg computer filled with classified information has had its bag stolen.
+> The suspect jumps off the train while it passes through a connecting bridge
 
 Steps:
 1.  Go to PSQL database on schema `bllogistics` in table `trains_log`. Filter by `check_in_out='CHECKIN' or check_in_out='CHECKOUT'`
 2.  Calculate the difference in weight
 3.  Go to Cassandra database on keyspace `readings` in table `passengers`. Filter by the weight you find. These are the suspects
-4.  If you only have one suspect. Then congratulations you have found the murderer.
+4.  If you only have one suspect. Then congratulations you have found the secret agent who stole the bag.
 5.  Type your answer in the following format `firstName` + ` ` + `lastName`
 
 Note that the story I’ve created is purely fictional. Any similarity between events and the characters generated and the locations described is purely coincidental. It is practically impossible to make a random scenario that doesn’t have anything in common with anyone’s personal life. This is the reason why it is so important that the reader of this article understands that. This is also the reason why all the names in this exercise are automatically randomly generated, precisely to reduce the possibility of such similarities to occur.
@@ -114,6 +117,10 @@ Just remember that each line must be a single name.
    6. [bl-web-ui](./bl-central-server/bl-web-ui) - Angular (?) - For future visualizations - Check [ReviewLogs.md](./ReviewLogs.md) for details about Roadmap to version 3.0.0
 
 2. [bl-bridge-server](./bl-bridge-server): A server installed on each bridge
+   1. [bl-bridge-humidity-mqtt](./bl-bridge-server/bl-bridge-humidity-mqtt) - Node JS - Receives humidity readings from the [mosquitto](./bl-bridge-server/mosquitto) broker on port 1883 and sends it to Kafka via the HUMIDITY topic
+   2. [bl-bridge-temperature-coap](./bl-bridge-server/bl-bridge-temperature-coap) - Node JS - Receives temperature readings from a COAP protocol port 5683 and sends it to Kafka via the TEMPERATURE topic
+   3. [mosquitto](./bl-bridge-server/mosquitto) - A simple mosquitto broker with bare minimal configuration and authentication turned off. Opens port 1883 for the [bl-bridge-humidity-mqtt](./bl-bridge-server/bl-bridge-humidity-mqtt) service
+   4. [rabbitmq](./bl-bridge-server/rabbitmq) - The federated RabbitMQ service connecting to the central RabbitMQ services
 
 3. [bl-train-server](./bl-train-server): A server installed on each train
 
@@ -124,42 +131,12 @@ Just remember that each line must be a single name.
 
 ## How to quickly start
 
-Make sure you have enough resources and that you are running [Docker desktop](https://www.docker.com/products/docker-desktop) or any other [docker engine](https://docs.docker.com/engine/install/ubuntu/),  and try running: 
+Make sure you have enough resources and that you are running [Docker desktop](https://www.docker.com/products/docker-desktop):
 
-```shell
-make docker
-```
-
-if you with to stop everything then run:
-
-```shell
-make stop
-```
-
-and if you want to remove everything then run:
-
-```shell
-make docker-delete
-```
+1. At least 6GB available memory
+2. At least 8 cores
 
 Please check the [Makefile](./Makefile) and make sure you understand the available options before calling them.
-
-Before running the demo you need to create a virtual environment in order to run Python 2 instead of Python 3:
-
-```shell
-make venv
-source venv/bin/activate
-make venv-install
-```
-
-Make sure you are still in virtual environment (venv). If not, run the command `source venv/bin/activate` again.
-To start the demo please run:
-
-```shell
-make demo
-```
-
-This application is inspired by the TV Series - [The Bridge](https://www.imdb.com/title/tt1733785/)
 
 This whole demo is quite a heavy example to run. Because it can be difficult to run, given the amount of resources consumed, I have made a [Checkups](./Checkups.md) guide and an example [Guide](./Guide.md) file. Please read through them before running the demo.
 
@@ -169,26 +146,32 @@ This whole demo is quite a heavy example to run. Because it can be difficult to 
 2.  Trains go over static bridges which are mostly open. They can be closed for exceptional reasons.
 3.  When trains go over bridge, we need to know how long the whole train took to cross it.
 4.  When vehicles go over the bridge, we need to know how long vehicle took to cross it.
-5.  We also need to know the complete weight being passed accross the bridge in regards to merchansise.
-6.  We aso need to know the complete weight being passed accross the bridge in regards to people.
-7.  The exact number of people will be an aproximation and will be a result from a triangulation of passing through heat sensors and light sensors.
-8.  Time tables and merchandise exchanges will be done via RabbitMQ.
+5.  We also need to know the complete weight being passed across the bridge in regard to merchandise.
+6.  We aso need to know the complete weight being passed across the bridge in regard to people.
+7.  The exact number of people will be an approximation and will be a result from a triangulation of passing through heat sensors and light sensors.
+8.  Timetables and merchandise exchanges will be done via RabbitMQ.
 9.  Sensor information will be sent via Kafka.
 10. People data will be sent via Kafka Streams.
-11. All Kafka streamed information will be handle via Apache Spark.
-12. Bridge opening times are subject to conflict detection. Upon detecting one coflict between opening times. The bridge remains closed until the conflict becomes resolved.
+11. All Kafka streamed information will be handled via Apache Spark.
+12. Bridge opening times are subject to conflict detection. Upon detecting one conflict between opening times. The bridge remains closed until the conflict becomes resolved.
 13. Conflict registration changes state but never gets removed
 
 ## Installation Notes
 
 To run this demo, you only need to have a docker engine installed or something that comes with it like Docker Desktop.
-Further you need JDK 16. This demo has been tested using [SDK-MAN](https://sdkman.io/) Java SDK version 16.0.1.hs-adpt:
+Further you need JDK 11 and JDK 16. This demo has been tested using [SDK-MAN](https://sdkman.io/) Java SDK version 16.0.1.hs-adpt:
 
 ```shell
-sdk install java 16.0.1.hs-adpt 
-sdk use java 16.0.1.hs-adpt  
+sdk install 11.0.11.hs-adpt
+sdk use 11.0.11.hs-adpt
 ```
 
+```shell
+sdk install java 16.0.1.hs-adpt
+sdk use java 16.0.1.hs-adpt
+```
+
+Use Java 16 as the default. You'll only need Java 11 for the Kafka Readers.
 If you want to install everything locally without the help of containers then please check help file [InstallationNotes.md](./docs/InstallationNotes.md).
 Further Documentation is available at the [wiki](https://gitlab.com/jesperancinha/bridge-logistics/-/wikis/Installation-notes).
 

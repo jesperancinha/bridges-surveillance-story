@@ -56,3 +56,46 @@ make demo
 ## 3. Guides
 
 Check the [Guide.md](./Guide.md) file for log recordings of how I started the Demo.
+
+## 4. In detail
+
+To start containers:
+
+```shell
+make docker
+```
+
+If you with to stop everything then run:
+
+```shell
+make stop
+```
+
+and if you want to remove everything then run:
+
+```shell
+make docker-delete
+```
+
+If you want to get everything clean please use:
+
+```shell
+make prune-all
+```
+
+Please check the [Makefile](./Makefile) and make sure you understand the available options before calling them.
+
+Before running the demo you need to create a virtual environment in order to run Python 2 instead of Python 3:
+
+```shell
+make venv
+source venv/bin/activate
+make venv-install
+```
+
+Make sure you are still in virtual environment (venv). If not, run the command `source venv/bin/activate` again.
+To start the demo please run:
+
+```shell
+make demo
+```
