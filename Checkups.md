@@ -52,3 +52,7 @@ Recheck if they all started well this time and restart the apps container.
 source venv/bin/activate
 make demo
 ```
+
+## 3. Guides
+
+Check the [Guide.md](./Guide.md) file for log recordings of how I started the Demo.

@@ -24,6 +24,9 @@ docker-clean:
 docker:
 	rm -rf out
 	docker-compose up -d --build --remove-orphans
+start-readers:
+	java -jar bl-central-server/bl-passengers-readings-service/target/bl-passengers-readings-service-2.0.0-SNAPSHOT-jar-with-dependencies.jar &
+	java -jar bl-central-server/bl-meters-readings-service/target/bl-meters-readings-service-2.0.0-SNAPSHOT-jar-with-dependencies.jar &
 docker-databases: stop local
 build-images:
 build-docker: stop no-test build-npm
@@ -34,6 +37,10 @@ logs-central-server:
 	docker logs bl_central_server
 logs-central-server-tail:
 	docker logs -f bl_central_server
+logs-apps-server:
+	docker logs bl_central_server_apps
+logs-apps-server-tail:
+	docker logs -f bl_central_server_apps
 logs-central-kafka-server:
 	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_kafka_server" | xargs docker logs
 logs-central-kafka-server-tail:

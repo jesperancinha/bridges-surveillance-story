@@ -118,9 +118,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.2.6.RELEASE</version>
                 <configuration>
-                    <jvmArguments>--enable-preview</jvmArguments>
                     <mainClass>org.jesperancinha.logistics.sensor.collector.DataCollectorLauncher</mainClass>
                 </configuration>
                 <executions>
@@ -137,19 +135,16 @@
                 <configuration>
                     <source>${maven.compiler.source}</source>
                     <target>${maven.compiler.target}</target>
-                    <compilerArgs>--enable-preview</compilerArgs>
                 </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
-                    <argLine>--enable-preview</argLine>
                 </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <configuration>
-                    <argLine>--enable-preview</argLine>
                 </configuration>
             </plugin>
             <plugin>

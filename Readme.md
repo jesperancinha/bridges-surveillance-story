@@ -161,6 +161,8 @@ make demo
 
 This application is inspired by the TV Series - [The Bridge](https://www.imdb.com/title/tt1733785/)
 
+This whole demo is quite a heavy example to run. Because it can be difficult to run, given the amount of resources consumed, I have made a [Checkups](./Checkups.md) guide and an example [Guide](./Guide.md) file. Please read through them before running the demo.
+
 ## Constraints
 
 1.  Vehicles which will cross the bridge when they are open. Bridges are considered to be open, when the bridge plates are down. If the bridge plates are up, then the bridge is said to be closed. Bridges may also be closed at other times and for other reasons. When a bridge is closed, it cannot be crossed, regardless of the state of its plates.

@@ -13,9 +13,9 @@ services:
     deploy:
       resources:
         limits:
-          memory: 100M
+          memory: 400M
         reservations:
-          memory: 100M
+          memory: 400M
 
   bl_central_kafka_server:
     hostname: bl_central_kafka_server
