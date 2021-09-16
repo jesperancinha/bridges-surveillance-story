@@ -117,7 +117,8 @@ Note that the story I’ve created is purely fictional. Any similarity between e
 	4. [bl-meters-readings-service](./bl-central-server/bl-meters-readings-service) - Scala service responsible for collecting meter data from the Kafka (via the bridge) streams and sending it to cassandra
 	5. [bl-web-app](./bl-central-server/bl-web-app) - Java service which checks if the bridge is open for vehicle crossing. It is open in port 9000
 	6. [bl-web-ui](./bl-central-server/bl-web-ui) - Angular (?) - For future visualizations - Check [ReviewLogs.md](./ReviewLogs.md) for details about Roadmap to version 3.0.0
-
+	
+---
 
 2. [bl-bridge-server](./bl-bridge-server): A server installed on each bridge
 	1. [bl-bridge-humidity-mqtt](./bl-bridge-server/bl-bridge-humidity-mqtt) - Node JS - Receives humidity readings from the [mosquitto](./bl-bridge-server/mosquitto) broker on port 1883 and sends it to Kafka via the HUMIDITY topic
@@ -125,10 +126,12 @@ Note that the story I’ve created is purely fictional. Any similarity between e
 	3. [mosquitto](./bl-bridge-server/mosquitto) - A simple mosquitto broker with bare minimal configuration and authentication turned off. Opens port 1883 for the [bl-bridge-humidity-mqtt](./bl-bridge-server/bl-bridge-humidity-mqtt) service
 	4. [rabbitmq](./bl-bridge-server/rabbitmq) - The federated RabbitMQ service connecting to the central RabbitMQ services
 
+---
 
 3. [bl-train-server](./bl-train-server): A server installed on each train
 	1. [rabbitmq](./bl-train-server/rabbitmq): RabbitMQ - RabbitMQ to send sensor information about train checking in and out of the bridge
 
+---
 
 4. [bl-demo-server](./bl-demo-server): This server ensures that a simulated train passes through the bridge. It will use all different container ports to execute the simulation and create a different case everytime the simulation is run.
 
