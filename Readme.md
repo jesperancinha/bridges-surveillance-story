@@ -44,9 +44,7 @@
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/mqtt-50.png "MQTT")](https://mqtt.org//)
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/amqp-50.png "AMQP")](https://www.amqp.org/)
 
-
-This application uses event sourcing to serve the logistics for a bridge management system.
-This is what in general this project is responsible for
+This application uses event sourcing to serve the logistics for a bridge management system.	This is what in general this project is responsible for
 
 1.  Count passengers going through a bridge
 2.  Register transport type
@@ -54,20 +52,16 @@ This is what in general this project is responsible for
 4.  Register events per configured range area
 5.  Inform trains of the train Schedule changes
 
-Passengers are registered by numbers and if they carry extra merchandise or a bike
-Transport can be a train, bus, boat, bike, truck, etc.
-Merchandise should be registered if it's destined to commercial exchanges.
-Events can be anything that may happen in a configured range around the bridge
+Passengers are registered by numbers and if they carry extra merchandise or a bike	Transport can be a train, bus, boat, bike, truck, etc.	Merchandise should be registered if it's destined to commercial exchanges.	Events can be anything that may happen in a configured range around the bridge
 
-1.  For passengers, a development area will be created called PCS(Passenger Control Service).  
-2.  For merchandise, a development area will be created called MCS(Merchandise Control Service).  
-3.  For bridge timetables and ranges, a development area will be created called DCS(Domain Control Service).  
+1.  For passengers, a development area will be created called PCS(Passenger Control Service).
+2.  For merchandise, a development area will be created called MCS(Merchandise Control Service).
+3.  For bridge timetables and ranges, a development area will be created called DCS(Domain Control Service).
 
 This project is also the official support project of my article on medium:
 
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-20/medium-20.png "Medium")](https://medium.com/swlh/the-streaming-bridges-a-kafka-rabbitmq-mqtt-and-coap-example-9077a598169)
 [The streaming bridges — A Kafka, RabbitMQ, MQTT and CoAP example](https://medium.com/swlh/the-streaming-bridges-a-kafka-rabbitmq-mqtt-and-coap-example-9077a598169)
-
 
 **** [Under Construction](./ReviewLogs.md) ****
 
@@ -83,61 +77,60 @@ I have created an investigation Game. It's not a difficult one to solve. Basic m
 You, the player are responsible for finding the secret spy! 🕵️‍ 🔍
 
 Steps:
+
 1. Go to PostgresSQL database on schema `bllogistics` in table `trains_log`. Filter by `check_in_out='CHECKIN' or check_in_out='CHECKOUT'`
-   1. You will find two carriages with different weights at `CHECKIN` and at `CHECKOUT`.
-   2. On carriage has a weight reduction of two people.
-   3. This is because, while passing through the bridge, the `spy` takes the bag from the `special agent` and run to the next carriage.
-   4. The `special agent` follows the `spy` and chases the `spy`.
-   5. In another carriage, there is an increase in weight, but just for the special agent
-   6. The secret spy has escaped through the toilet's window and with precision jumped off the bridge in a parachute.
-   7. The formula is: SPY_WEIGHT = (CARRIAGE_1_CHECKIN_WEIGHT - CARRIAGE_1_CHECKOUT_WEIGHT) - (CARRIAGE_2_CHECKOUT_WEIGHT - CARRIAGE_2_CHECKIN_WEIGHT).
+	1. You will find two carriages with different weights at `CHECKIN` and at `CHECKOUT`.
+	2. On carriage has a weight reduction of two people.
+	3. This is because, while passing through the bridge, the `spy` takes the bag from the `special agent` and run to the next carriage.
+	4. The `special agent` follows the `spy` and chases the `spy`.
+	5. In another carriage, there is an increase in weight, but just for the special agent
+	6. The secret spy has escaped through the toilet's window and with precision jumped off the bridge in a parachute.
+	7. The formula is: SPY_WEIGHT = (CARRIAGE_1_CHECKIN_WEIGHT - CARRIAGE_1_CHECKOUT_WEIGHT) - (CARRIAGE_2_CHECKOUT_WEIGHT - CARRIAGE_2_CHECKIN_WEIGHT).
 2. Calculate the difference in weight
 3. Go to Cassandra database on keyspace `readings` in table `passengers`. Filter by the weight you find. These are the suspects
 4. If you only have one suspect. Then congratulations you have found the secret agent who stole the bag.
 5. Type your answer in the following format `firstName` + ` ` + `lastName`
 
-Note that the story I’ve created is purely fictional. Any similarity between events and the characters generated and the locations described is purely coincidental. It is practically impossible to make a random scenario that doesn’t have anything in common with anyone’s personal life. This is the reason why it is so important that the reader of this article understands that. This is also the reason why all the names in this exercise are automatically randomly generated, precisely to reduce the possibility of such similarities to occur.
-You DO NEED to generate the names first. By running file [passenger_generator.py](./bl-simulation-data/passenger_generator.py), you will find 4 files in the [passengers](./bl-simulation-data/passengers) folder.
-In this file, you will find automatically generated names.
-If you want to make this more fun you can add your own chosen names.
-Just remember that each line must be a single name.
+Note that the story I’ve created is purely fictional. Any similarity between events and the characters generated and the locations described is purely coincidental. It is practically impossible to make a random scenario that doesn’t have anything in common with anyone’s personal life. This is the reason why it is so important that the reader of this article understands that. This is also the reason why all the names in this exercise are automatically randomly generated, precisely to reduce the possibility of such similarities to occur.	You DO NEED to generate the names first. By running file [passenger_generator.py](./bl-simulation-data/passenger_generator.py), you will find 4 files in the [passengers](./bl-simulation-data/passengers) folder.	In this file, you will find automatically generated names.	If you want to make this more fun you can add your own chosen names.	Just remember that each line must be a single name.
 
 ## Modules
 
 ### Docker Images
 
 1. [bl-central-server](./bl-central-server): The central server containing all centralized data
-   1. [bl-central-cassandra](./bl-central-server/bl-central-cassandra) - Cassandra database image (Contains calculated and dynamic data)
-   2. [bl-central-psql](./bl-central-server/bl-central-psql) - Postgres database image (Contains static  information about passengers, vehicles, trains and bridges)   
-   3. [bl-central-streaming](./bl-central-server/bl-central-streaming) - RabbitMQ strams for train, vehicle and bridge
-   4. [kafka](./bl-central-server/kafka) - A kafka streaming engine. It creates topics TEMPERATURE, HUMIDITY, WINDSPEED, WINDDIRECTION, PASSENGER. It is centralized to take data from the bridge and the moving train. Two brokers make use of ports 9092 and 9093.
+	1. [bl-central-cassandra](./bl-central-server/bl-central-cassandra) - Cassandra database image (Contains calculated and dynamic data)
+	2. [bl-central-psql](./bl-central-server/bl-central-psql) - Postgres database image (Contains static information about passengers, vehicles, trains and bridges)
+	3. [bl-central-streaming](./bl-central-server/bl-central-streaming) - RabbitMQ strams for train, vehicle and bridge
+	4. [kafka](./bl-central-server/kafka) - A kafka streaming engine. It creates topics TEMPERATURE, HUMIDITY, WINDSPEED, WINDDIRECTION, PASSENGER. It is centralized to take data from the bridge and the moving train. Two brokers make use of ports 9092 and 9093.
 
 ### Libraries
 
 1. [bl-central-server](./bl-central-server): The central server containing all centralized data
-   1. [bl-domain-repository](./bl-central-server/bl-domain-repository) - Java domain model to use in the different Java processes. Contains all the PostgreSQL database model DAO's
+	1. [bl-domain-repository](./bl-central-server/bl-domain-repository) - Java domain model to use in the different Java processes. Contains all the PostgreSQL database model DAO's
 
 ### Services
 
 1. [bl-central-server](./bl-central-server): The central server containing all centralized data
-   1. [bl-merchandise-data-collector](./bl-central-server/bl-merchandise-data-collector) - Java service responsible for collecting merchandise info and sending it through RabbitMQ to the centralized services.
-   2. [bl-sensor-data-collector](./bl-central-server/bl-sensor-data-collector) - Java service responsible for collecting check-in and check-out data from trains entering and leaving the bridge and sending it through RabbitMQ to the centralized services.
-   3. [bl-passengers-readings-service](./bl-central-server/bl-passengers-readings-service) - Scala service responsible for collecting passenger data from the Kafka (via the train) streams and sending it to cassandra
-   4. [bl-meters-readings-service](./bl-central-server/bl-meters-readings-service) - Scala service responsible for collecting meter data from the Kafka (via the bridge) streams and sending it to cassandra
-   5. [bl-web-app](./bl-central-server/bl-web-app) - Java service which checks if the bridge is open for vehicle crossing. It is open in port 9000
-   6. [bl-web-ui](./bl-central-server/bl-web-ui) - Angular (?) - For future visualizations - Check [ReviewLogs.md](./ReviewLogs.md) for details about Roadmap to version 3.0.0
+	1. [bl-merchandise-data-collector](./bl-central-server/bl-merchandise-data-collector) - Java service responsible for collecting merchandise info and sending it through RabbitMQ to the centralized services.
+	2. [bl-sensor-data-collector](./bl-central-server/bl-sensor-data-collector) - Java service responsible for collecting check-in and check-out data from trains entering and leaving the bridge and sending it through RabbitMQ to the centralized services.
+	3. [bl-passengers-readings-service](./bl-central-server/bl-passengers-readings-service) - Scala service responsible for collecting passenger data from the Kafka (via the train) streams and sending it to cassandra
+	4. [bl-meters-readings-service](./bl-central-server/bl-meters-readings-service) - Scala service responsible for collecting meter data from the Kafka (via the bridge) streams and sending it to cassandra
+	5. [bl-web-app](./bl-central-server/bl-web-app) - Java service which checks if the bridge is open for vehicle crossing. It is open in port 9000
+	6. [bl-web-ui](./bl-central-server/bl-web-ui) - Angular (?) - For future visualizations - Check [ReviewLogs.md](./ReviewLogs.md) for details about Roadmap to version 3.0.0
+
 
 2. [bl-bridge-server](./bl-bridge-server): A server installed on each bridge
-   1. [bl-bridge-humidity-mqtt](./bl-bridge-server/bl-bridge-humidity-mqtt) - Node JS - Receives humidity readings from the [mosquitto](./bl-bridge-server/mosquitto) broker on port 1883 and sends it to Kafka via the HUMIDITY topic
-   2. [bl-bridge-temperature-coap](./bl-bridge-server/bl-bridge-temperature-coap) - Node JS - Receives temperature readings from a COAP protocol port 5683 and sends it to Kafka via the TEMPERATURE topic
-   3. [mosquitto](./bl-bridge-server/mosquitto) - A simple mosquitto broker with bare minimal configuration and authentication turned off. Opens port 1883 for the [bl-bridge-humidity-mqtt](./bl-bridge-server/bl-bridge-humidity-mqtt) service
-   4. [rabbitmq](./bl-bridge-server/rabbitmq) - The federated RabbitMQ service connecting to the central RabbitMQ services
+	1. [bl-bridge-humidity-mqtt](./bl-bridge-server/bl-bridge-humidity-mqtt) - Node JS - Receives humidity readings from the [mosquitto](./bl-bridge-server/mosquitto) broker on port 1883 and sends it to Kafka via the HUMIDITY topic
+	2. [bl-bridge-temperature-coap](./bl-bridge-server/bl-bridge-temperature-coap) - Node JS - Receives temperature readings from a COAP protocol port 5683 and sends it to Kafka via the TEMPERATURE topic
+	3. [mosquitto](./bl-bridge-server/mosquitto) - A simple mosquitto broker with bare minimal configuration and authentication turned off. Opens port 1883 for the [bl-bridge-humidity-mqtt](./bl-bridge-server/bl-bridge-humidity-mqtt) service
+	4. [rabbitmq](./bl-bridge-server/rabbitmq) - The federated RabbitMQ service connecting to the central RabbitMQ services
+
 
 3. [bl-train-server](./bl-train-server): A server installed on each train
-   1. [rabbitmq](./bl-train-server/rabbitmq): RabbitMQ - RabbitMQ to send sensor information about train checking in and out of the bridge
+	1. [rabbitmq](./bl-train-server/rabbitmq): RabbitMQ - RabbitMQ to send sensor information about train checking in and out of the bridge
+
 
 4. [bl-demo-server](./bl-demo-server): This server ensures that a simulated train passes through the bridge. It will use all different container ports to execute the simulation and create a different case everytime the simulation is run.
-
 
 ## How to quickly start
 
@@ -171,8 +164,7 @@ In order to make it easy to understand this example, I've made a [Walkthrough](.
 
 ## Installation Notes
 
-To run this demo, you only need to have a docker engine installed or something that comes with it like Docker Desktop.
-Further you need JDK 11 and JDK 16. This demo has been tested using [SDK-MAN](https://sdkman.io/) Java SDK version 16.0.1.hs-adpt:
+To run this demo, you only need to have a docker engine installed or something that comes with it like Docker Desktop.	Further you need JDK 11 and JDK 16. This demo has been tested using [SDK-MAN](https://sdkman.io/) Java SDK version 16.0.1.hs-adpt:
 
 ```shell
 sdk install 11.0.11.hs-adpt
@@ -184,9 +176,7 @@ sdk install java 16.0.1.hs-adpt
 sdk use java 16.0.1.hs-adpt
 ```
 
-Use Java 16 as the default. You'll only need Java 11 for the Kafka Readers.
-If you want to install everything locally without the help of containers then please check help file [InstallationNotes.md](./docs/InstallationNotes.md).
-Further Documentation is available at the [wiki](https://gitlab.com/jesperancinha/bridge-logistics/-/wikis/Installation-notes).
+Use Java 16 as the default. You'll only need Java 11 for the Kafka Readers.	If you want to install everything locally without the help of containers then please check help file [InstallationNotes.md](./docs/InstallationNotes.md).	Further Documentation is available at the [wiki](https://gitlab.com/jesperancinha/bridge-logistics/-/wikis/Installation-notes).
 
 Install python libraries:
 
@@ -216,9 +206,7 @@ Follow the updates on the [ReviewLogs](./ReviewLogs.md) file.
 
 ## Author notes
 
-I hope you enjoyed the article and that you were able to start this demo.
-I try my best to make these demos run as smoothly as possible. This is why I actually invite you to open an issue on this repo, should you run into difficulties running this demo, playing the game or even if you just have some suggestions for improvement.
-Note that while a version is ongoing as of now with 2.0.0., there are constant changes until an official tagged release.
+I hope you enjoyed the article and that you were able to start this demo.	I try my best to make these demos run as smoothly as possible. This is why I actually invite you to open an issue on this repo, should you run into difficulties running this demo, playing the game or even if you just have some suggestions for improvement.	Note that while a version is ongoing as of now with 2.0.0., there are constant changes until an official tagged release.
 
 ## Buy me a coffee
 
