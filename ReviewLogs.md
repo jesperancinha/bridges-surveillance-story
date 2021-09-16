@@ -13,8 +13,13 @@
 - Extend Scala tests
 - Update Libraries further
 
-2021/09/16
+- Change hardcoded 10 people limitation
 - Change storyline
+  - Original storyline too complicated and difficult to understand
+  - The theme had too many distracting elements from the goal of the story
+  - The simple puzzle introduced did not hold up to the story and the events didn't add up
+
+2021/09/16
 - Remove unnecessary elements to the case:
   - Vehicle
 - Re-enable all disabled tests

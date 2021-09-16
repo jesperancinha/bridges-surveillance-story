@@ -22,13 +22,13 @@ sys.path.insert(6, os.path.abspath('bl-demo-server/bl-bridge-services'))
 from send_train_timestamp import send_signal as send_train_signal
 from send_bridge_timestamp import send_signal as send_bridge_signal
 from send_merchandise import send_merchandise as send_train_merchandise
-from launch_generate_people import generate_all_passengers, generate_mother_name
+from launch_generate_people import generate_all_passengers
 from send_people_readings import send_people
 
 
 def check_in_out(host, time_to_get_to_bridge, time_to_get_to_station, origin,
                  d_lat, d_lon, d_lat2, d_lon2,
-                 passengers, train, criminal, victim):
+                 passengers, train, special_agent , secret_spy):
     print("🚂 🛤 Train is underway. Just left central statin 🏫")
     success = False
     while (not success):
@@ -44,13 +44,13 @@ def check_in_out(host, time_to_get_to_bridge, time_to_get_to_station, origin,
     train_message_process.start()
     sleep(time_to_get_to_bridge)
     print("🚂 🌉 Train entering Bridge...")
-    send_checkin_message(host, origin, train, criminal, victim, passengers)
+    send_checkin_message(host, origin, train, secret_spy, special_agent, passengers)
     print("🚂 Train Checked In!")
 
     sleep(5)
     train_message_process.terminate()
 
-    send_checkout_message(host, origin, train, criminal, victim)
+    send_checkout_message(host, origin, train, secret_spy, special_agent)
     print("🚂 Train Checked Out!")
     print("🚂 Train Leaving Bridge...")
     train_message_process = Process(target=pulses, args=[host, origin, d_lat2, d_lon2, train])
@@ -130,37 +130,39 @@ def send_merchandise_message(host, origin, train, status):
     print("🚂 Train location: " + str(origin))
 
 
-def send_checkin_message(host, origin, train, criminal, victim, passengers):
-    carriage_toilet = list(filter(lambda x: x["carriageId"] == criminal["carriageId"] - 1, train[0]["composition"]))[0]
-    carriage_current = list(filter(lambda x: x["carriageId"] == criminal["carriageId"], train[0]["composition"]))[0]
-    print("🚂 Carriage with toilet " + str(carriage_toilet))
-    print("🚂 Carriage without toilet " + str(carriage_current))
-    carriage_toilet.update({"weight": carriage_toilet["weight"] + criminal["weight"] + victim["weight"]})
-    carriage_current.update({"weight": carriage_current["weight"] - criminal["weight"] - victim["weight"]})
-    print("🚂 Carriage with toilet after moving" + str(carriage_toilet))
-    print("🚂 Carriage without toilet after moving" + str(carriage_current))
-    passengers.remove(victim)
+def send_checkin_message(host, origin, train, secret_spy, special_agent, passengers):
+    carriage_toilet = list(filter(lambda x: x["carriageId"] == secret_spy["carriageId"] - 1, train[0]["composition"]))[
+        0]
+    carriage_current = list(filter(lambda x: x["carriageId"] == secret_spy["carriageId"], train[0]["composition"]))[0]
+    print("🚂 🌉 ⬅️ Carriage with toilet on CHECKIN" + str(carriage_toilet))
+    print("🚂 🌉 ⬅️ Carriage without toilet CHECKIN" + str(carriage_current))
+    carriage_toilet.update({"weight": carriage_toilet["weight"] + secret_spy["weight"] + special_agent["weight"]})
+    carriage_current.update({"weight": carriage_current["weight"] - secret_spy["weight"] - special_agent["weight"]})
+    print("🚂 🌉 ⬅️ Carriage with toilet after moving" + str(carriage_toilet))
+    print("🚂 🌉 ⬅️ Carriage without toilet after moving" + str(carriage_current))
+    passengers.remove(special_agent)
     for carriage in train[0]["composition"]:
         send_train_signal(host,
                           get_train_check_in_out_data(origin, carriage["weight"], carriage["carriageId"], 'CHECKIN'))
         send_bridge_signal(host, get_bridge_check_in_out_data(origin, 'CHECKIN'))
-        print("Train Check In sent!")
+        print("🚂 🌉 ⬅️ Train Check In sent!")
 
 
-def send_checkout_message(host, origin, train, criminal, victim):
-    carriage_toilet = list(filter(lambda x: x["carriageId"] == criminal["carriageId"] - 1, train[0]["composition"]))[0]
-    carriage_current = list(filter(lambda x: x["carriageId"] == criminal["carriageId"], train[0]["composition"]))[0]
-    print("🚂 Carriage with toilet " + str(carriage_toilet))
-    print("🚂 Carriage without toilet " + str(carriage_current))
-    carriage_toilet.update({"weight": carriage_toilet["weight"] - criminal["weight"] - victim["weight"]})
-    carriage_current.update({"weight": carriage_current["weight"] + criminal["weight"]})
-    print("🚂 Carriage with toilet after moving" + str(carriage_toilet))
-    print("🚂 Carriage without toilet after moving" + str(carriage_current))
+def send_checkout_message(host, origin, train, secret_spy, special_agent):
+    carriage_toilet = list(filter(lambda x: x["carriageId"] == secret_spy["carriageId"] - 1, train[0]["composition"]))[
+        0]
+    carriage_current = list(filter(lambda x: x["carriageId"] == secret_spy["carriageId"], train[0]["composition"]))[0]
+    print("🚂 🌉 ➡️ Carriage with toilet on CHECKOUT" + str(carriage_toilet))
+    print("🚂 🌉 ➡️ Carriage without toilet on CHECKOUT " + str(carriage_current))
+    carriage_toilet.update({"weight": carriage_toilet["weight"] - secret_spy["weight"] - special_agent["weight"]})
+    carriage_current.update({"weight": carriage_current["weight"] + special_agent["weight"]})
+    print("🚂 🌉 ➡️ Carriage with toilet after moving" + str(carriage_toilet))
+    print("🚂 🌉 ➡️ Carriage without toilet after moving" + str(carriage_current))
     for carriage in train[0]["composition"]:
         send_train_signal(host,
                           get_train_check_in_out_data(origin, carriage["weight"], carriage["carriageId"], 'CHECKOUT'))
         send_bridge_signal(host, get_bridge_check_in_out_data(origin, 'CHECKOUT'))
-        print("Train Check Out sent!")
+        print("🚂 🌉 ➡️ Train Check Out sent!")
 
 
 def start_train(host):
@@ -209,26 +211,10 @@ def start_train(host):
                                          z["id"] == y["carriageId"],
                                          json_carriages)[0], no_package_carriages)
             just_people_train_carriages = list(filter(lambda x: x["type"] == "people", train_carriages))
-            no_toilet_carriages = list(filter(lambda x: x["toilet"] == False, just_people_train_carriages))
-            cis_passengers = filter(lambda x: x["gender"] == "Cis Man" or x["gender"] == "Cis Woman", passengers)
-            no_toilet_carriages_capacity = functools.reduce(lambda a, b:
-                                                            a + int(b["passengers"])
-                                                            , no_toilet_carriages, 0)
-            storyline_cis_max_cap = no_toilet_carriages_capacity / 2
-            no_toilet_carriages_number = len(no_toilet_carriages)
-            current_carriage_index = 0
-            cis_passengers_cap = cis_passengers[0: storyline_cis_max_cap]
-            for passenger in cis_passengers_cap:
-                current_carriage = no_toilet_carriages[current_carriage_index]
-                passenger.update({"carriageId": current_carriage["id"]})
-                current_carriage_index += 1
-                if current_carriage_index >= no_toilet_carriages_number:
-                    current_carriage_index = 0
-
             total_carriages_number = len(just_people_train_carriages)
             current_carriage_index = 0
             for passenger in passengers:
-                while not "carriageId" in passenger:
+                if not "carriageId" in passenger:
                     current_carriage = just_people_train_carriages[current_carriage_index]
                     passenger.update({"carriageId": current_carriage["id"]})
                     current_carriage_index += 1
@@ -243,27 +229,27 @@ def start_train(host):
 
             print("🚂 Generated train composition: " + str(train_composition))
 
+            # Carriage 1 is hardcoded. This should change in future version
             shared_carriage = just_people_train_carriages[1]
             print(shared_carriage)
-            all_non_toilet_passengers = filter(lambda x: x["carriageId"] == shared_carriage["id"], passengers)
-            all_non_toilet_cis_passengers = filter(lambda x: x["gender"] == "Cis Man" or x["gender"] == "Cis Woman",
-                                                   all_non_toilet_passengers)
-            all_non_toilet_non_cis_passengers = filter(
-                lambda x: x["gender"] != "Cis Man" and x["gender"] != "Cis Woman", all_non_toilet_passengers)
+            all_not_in_toilet_passengers = list(filter(lambda x: x["carriageId"] == shared_carriage["id"], passengers))
 
-            criminal = list(all_non_toilet_cis_passengers)[
-                random.randint(0, len(list(all_non_toilet_cis_passengers)) - 1)]
-            victim = list(all_non_toilet_non_cis_passengers)[
-                random.randint(0, len(list(all_non_toilet_non_cis_passengers)) - 1)]
+            print("🚂 🕺🏻 All people not in the toilet carriage: " + str(all_not_in_toilet_passengers))
+            source_passenger_list = list(all_not_in_toilet_passengers)
+            special_agent = source_passenger_list[
+                random.randint(0, len(source_passenger_list) - 1)]
+            source_passenger_list.remove(special_agent)
+            secret_spy = source_passenger_list[
+                random.randint(0, len(source_passenger_list) - 1)]
 
             # Unblock this if you want to cheat 😉
-            # print("🚂 Criminal " + str(criminal))
-            # print("🚂 Victim  " + str(victim))
+            # print("🚂 Thief / Spy" + str(special_agent))
+            # print("🚂 Secret Agent " + str(secret_spy))
             train[0]["composition"] = train_composition
             train_checkin_checkout_process = Process(target=check_in_out,
                                                      args=[host, time_to_get_to_bridge, time_to_get_to_station,
                                                            origin, d_lat, d_lon, d_lat2, d_lon2,
-                                                           passengers, train, criminal, victim])
+                                                           passengers, train, special_agent, secret_spy])
 
             print("Time to get to bridge - " + str(time_to_get_to_bridge))
             print("Time to get back to station - " + str(time_to_get_to_station))
@@ -274,20 +260,15 @@ def start_train(host):
 
             send_merchandise_message(host, origin, train, 'DELIVERED')
             send_passenger_messages(host, origin, "CHECKOUT", passengers)
-            suspects = list(filter(lambda x: x["weight"] == criminal["weight"], cis_passengers))
+            suspects = list(filter(lambda x: x["weight"] == secret_spy["weight"], passengers))
 
             # Unblock this if you want to cheat 😉
             # print(suspects)
 
-            mother_victim = generate_mother_name(victim["lastName"])
-            mother_criminal = generate_mother_name(criminal["lastName"])
-
             train_result_simulation = {}
-            train_result_simulation.update({"victim": victim})
-            train_result_simulation.update({"criminal": criminal})
+            train_result_simulation.update({"secret_spy": secret_spy})
+            train_result_simulation.update({"special_agent": special_agent})
             train_result_simulation.update({"suspects": suspects})
-            train_result_simulation.update({"mother_victim": mother_victim})
-            train_result_simulation.update({"mother_criminal": mother_criminal})
 
             print(train_result_simulation)
             print("🚂 Arrived at the train central station! 🏫")

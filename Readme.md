@@ -77,13 +77,24 @@ I have created an investigation Game. It's not a difficult one to solve. Basic m
 
 > A passenger unsuspectingly travelling in a train carrying a leather suitcase with an old 5Kg computer filled with classified information has had its bag stolen.
 > The suspect jumps off the train while it passes through a connecting bridge
+> In the far we see a person in a parachute falling down through the air into a boat which catches this person a moves away
+> The passenger, a special agent keeps their cover and worries if this secret spy will ever be caught
+
+You, the player are responsible for finding the secret spy! 🕵️‍ 🔍
 
 Steps:
-1.  Go to PostgresSQL database on schema `bllogistics` in table `trains_log`. Filter by `check_in_out='CHECKIN' or check_in_out='CHECKOUT'`
-2.  Calculate the difference in weight
-3.  Go to Cassandra database on keyspace `readings` in table `passengers`. Filter by the weight you find. These are the suspects
-4.  If you only have one suspect. Then congratulations you have found the secret agent who stole the bag.
-5.  Type your answer in the following format `firstName` + ` ` + `lastName`
+1. Go to PostgresSQL database on schema `bllogistics` in table `trains_log`. Filter by `check_in_out='CHECKIN' or check_in_out='CHECKOUT'`
+   1. You will find two carriages with different weights at `CHECKIN` and at `CHECKOUT`.
+   2. On carriage has a weight reduction of two people.
+   3. This is because, while passing through the bridge, the `spy` takes the bag from the `special agent` and run to the next carriage.
+   4. The `special agent` follows the `spy` and chases the `spy`.
+   5. In another carriage, there is an increase in weight, but just for the special agent
+   6. The secret spy has escaped through the toilet's window and with precision jumped off the bridge in a parachute.
+   7. The formula is: SPY_WEIGHT = (CARRIAGE_1_CHECKIN_WEIGHT - CARRIAGE_1_CHECKOUT_WEIGHT) - (CARRIAGE_2_CHECKOUT_WEIGHT - CARRIAGE_2_CHECKIN_WEIGHT).
+2. Calculate the difference in weight
+3. Go to Cassandra database on keyspace `readings` in table `passengers`. Filter by the weight you find. These are the suspects
+4. If you only have one suspect. Then congratulations you have found the secret agent who stole the bag.
+5. Type your answer in the following format `firstName` + ` ` + `lastName`
 
 Note that the story I’ve created is purely fictional. Any similarity between events and the characters generated and the locations described is purely coincidental. It is practically impossible to make a random scenario that doesn’t have anything in common with anyone’s personal life. This is the reason why it is so important that the reader of this article understands that. This is also the reason why all the names in this exercise are automatically randomly generated, precisely to reduce the possibility of such similarities to occur.
 You DO NEED to generate the names first. By running file [passenger_generator.py](./bl-simulation-data/passenger_generator.py), you will find 4 files in the [passengers](./bl-simulation-data/passengers) folder.

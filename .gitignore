@@ -22,12 +22,6 @@ dist
 ## BL Generated files
 passengers.json
 
-## Source files
-last-names.txt
-mother-names.txt
-non-man.txt
-non-woman.txt
-
 ## Virtualization
 venv
 out
