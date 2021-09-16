@@ -121,6 +121,6 @@ if __name__ == '__main__':
     else:
         print("Wrong!")
         print("You have failed in finding the secret spy!")
-        print(secret_spy_name + "is now free to cause damage to the world. The sensitive information lead to an "
+        print(secret_spy_name + " is now free to cause damage to the world. The sensitive information lead to an "
                                 "escalation in tensions between countries and ultimately a new world war. 🔥")
         print("The world is now in danger!")

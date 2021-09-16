@@ -152,6 +152,10 @@ Please check the [Makefile](./Makefile) and make sure you understand the availab
 
 This whole demo is quite a heavy example to run. Because it can be difficult to run, given the amount of resources consumed, I have made a [Checkups](./Checkups.md) guide and an example [Guide](./Guide.md) file. Please read through them before running the demo.
 
+## Walk through
+
+In order to make it easy to understand this example, I've made a [Walkthrough](./WalkThrough.md) document. This is intended to help understand the basic goal of this example.
+
 ## Constraints
 
 1.  Vehicles which will cross the bridge when they are open. Bridges are considered to be open, when the bridge plates are down. If the bridge plates are up, then the bridge is said to be closed. Bridges may also be closed at other times and for other reasons. When a bridge is closed, it cannot be crossed, regardless of the state of its plates.
