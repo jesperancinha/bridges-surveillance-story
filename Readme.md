@@ -157,19 +157,17 @@ In order to make it easy to understand this example, I've made a [Walkthrough](.
 
 ## Constraints
 
-1.  Vehicles which will cross the bridge when they are open. Bridges are considered to be open, when the bridge plates are down. If the bridge plates are up, then the bridge is said to be closed. Bridges may also be closed at other times and for other reasons. When a bridge is closed, it cannot be crossed, regardless of the state of its plates.
-2.  Trains go over static bridges which are mostly open. They can be closed for exceptional reasons.
-3.  When trains go over bridge, we need to know how long the whole train took to cross it.
-4.  When vehicles go over the bridge, we need to know how long vehicle took to cross it.
-5.  We also need to know the complete weight being passed across the bridge in regard to merchandise.
-6.  We aso need to know the complete weight being passed across the bridge in regard to people.
-7.  The exact number of people will be an approximation and will be a result from a triangulation of passing through heat sensors and light sensors.
-8.  Timetables and merchandise exchanges will be done via RabbitMQ.
-9.  Sensor information will be sent via Kafka.
-10. People data will be sent via Kafka Streams.
-11. All Kafka streamed information will be handled via Apache Spark.
-12. Bridge opening times are subject to conflict detection. Upon detecting one conflict between opening times. The bridge remains closed until the conflict becomes resolved.
-13. Conflict registration changes state but never gets removed
+1. Trains go over static bridges which are mostly open. They can be closed for exceptional reasons.
+2. When trains go over bridge, we need to know how long the whole train took to cross it.
+3. We also need to know the complete weight being passed across the bridge in regard to merchandise.
+4. We aso need to know the complete weight being passed across the bridge in regard to people.
+5. The exact number of people will be an approximation and will be a result from a triangulation of passing through heat sensors and light sensors.
+6. Timetables and merchandise exchanges will be done via RabbitMQ.
+7. Sensor information will be sent via Kafka.
+8. People data will be sent via Kafka Streams.
+9. All Kafka streamed information will be handled via Apache Spark.
+10. Bridge opening times are subject to conflict detection. Upon detecting one conflict between opening times. The bridge remains closed until the conflict becomes resolved.
+11. Conflict registration changes state but never gets removed
 
 ## Installation Notes
 
