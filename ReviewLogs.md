@@ -4,15 +4,16 @@
 
 - Visual Angular Front-End interface
 - Change hardcoded 10 people limitation
-
-## Roadmap to v2.0.0
-
 - Use a Log framework and remove System outs
 - Kotest tests
 - Mockk tests
 - Python unit tests
 - Extend Scala tests
 - Update Libraries further
+
+## Roadmap to v2.0.0
+
+- Prepare release
 
 2021/09/16
 - Change storyline
