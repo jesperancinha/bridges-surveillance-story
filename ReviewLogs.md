@@ -13,9 +13,8 @@
 
 ## Roadmap to v2.0.0
 
+2021/09/16 - Release
 - Prepare release
-
-2021/09/16
 - Change storyline
   - Original storyline too complicated and difficult to understand
   - The theme had too many distracting elements from the goal of the story
