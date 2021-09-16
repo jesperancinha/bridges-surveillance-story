@@ -134,10 +134,9 @@ Just remember that each line must be a single name.
    4. [rabbitmq](./bl-bridge-server/rabbitmq) - The federated RabbitMQ service connecting to the central RabbitMQ services
 
 3. [bl-train-server](./bl-train-server): A server installed on each train
+   1. [rabbitmq](./bl-train-server/rabbitmq): RabbitMQ - RabbitMQ to send sensor information about train checking in and out of the bridge
 
-4. [bl-vehicle-server](./bl-vehicle-server): A server installed on each vehicle
-
-5. [bl-demo-server](./bl-demo-server): This server ensures that a simulated train passes through the bridge. It will use all different container ports to execute the simulation and create a different case everytime the simulation is run.
+4. [bl-demo-server](./bl-demo-server): This server ensures that a simulated train passes through the bridge. It will use all different container ports to execute the simulation and create a different case everytime the simulation is run.
 
 
 ## How to quickly start
