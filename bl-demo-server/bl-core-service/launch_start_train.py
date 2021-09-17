@@ -28,7 +28,7 @@ from send_people_readings import send_people
 
 def check_in_out(host, time_to_get_to_bridge, time_to_get_to_station, origin,
                  d_lat, d_lon, d_lat2, d_lon2,
-                 passengers, train, special_agent , secret_spy):
+                 passengers, train, special_agent, secret_spy):
     print("🚂 🛤 Train is underway. Just left central statin 🏫")
     success = False
     while (not success):
@@ -44,13 +44,13 @@ def check_in_out(host, time_to_get_to_bridge, time_to_get_to_station, origin,
     train_message_process.start()
     sleep(time_to_get_to_bridge)
     print("🚂 🌉 Train entering Bridge...")
-    send_checkin_message(host, origin, train, secret_spy, special_agent, passengers)
+    send_checkin_message(host, origin, train, secret_spy)
     print("🚂 Train Checked In!")
 
     sleep(5)
     train_message_process.terminate()
 
-    send_checkout_message(host, origin, train, secret_spy, special_agent)
+    send_checkout_message(host, origin, train, secret_spy, special_agent, passengers)
     print("🚂 Train Checked Out!")
     print("🚂 Train Leaving Bridge...")
     train_message_process = Process(target=pulses, args=[host, origin, d_lat2, d_lon2, train])
@@ -130,17 +130,13 @@ def send_merchandise_message(host, origin, train, status):
     print("🚂 Train location: " + str(origin))
 
 
-def send_checkin_message(host, origin, train, secret_spy, special_agent, passengers):
-    carriage_toilet = list(filter(lambda x: x["carriageId"] == secret_spy["carriageId"] - 1, train[0]["composition"]))[
-        0]
-    carriage_current = list(filter(lambda x: x["carriageId"] == secret_spy["carriageId"], train[0]["composition"]))[0]
+def send_checkin_message(host, origin, train, secret_spy):
+    toiletCarriageId = secret_spy["carriageId"] - 1
+    carriageId = secret_spy["carriageId"]
+    carriage_toilet = list(filter(lambda x: x["carriageId"] == toiletCarriageId, train[0]["composition"]))[0]
+    carriage_current = list(filter(lambda x: x["carriageId"] == carriageId, train[0]["composition"]))[0]
     print("🚂 🌉 ⬅️ Carriage with toilet on CHECKIN" + str(carriage_toilet))
     print("🚂 🌉 ⬅️ Carriage without toilet CHECKIN" + str(carriage_current))
-    carriage_toilet.update({"weight": carriage_toilet["weight"] + secret_spy["weight"] + special_agent["weight"]})
-    carriage_current.update({"weight": carriage_current["weight"] - secret_spy["weight"] - special_agent["weight"]})
-    print("🚂 🌉 ⬅️ Carriage with toilet after moving" + str(carriage_toilet))
-    print("🚂 🌉 ⬅️ Carriage without toilet after moving" + str(carriage_current))
-    passengers.remove(special_agent)
     for carriage in train[0]["composition"]:
         send_train_signal(host,
                           get_train_check_in_out_data(origin, carriage["weight"], carriage["carriageId"], 'CHECKIN'))
@@ -148,16 +144,20 @@ def send_checkin_message(host, origin, train, secret_spy, special_agent, passeng
         print("🚂 🌉 ⬅️ Train Check In sent!")
 
 
-def send_checkout_message(host, origin, train, secret_spy, special_agent):
-    carriage_toilet = list(filter(lambda x: x["carriageId"] == secret_spy["carriageId"] - 1, train[0]["composition"]))[
-        0]
-    carriage_current = list(filter(lambda x: x["carriageId"] == secret_spy["carriageId"], train[0]["composition"]))[0]
+def send_checkout_message(host, origin, train, secret_spy, special_agent, passengers):
+    carriageId = secret_spy["carriageId"]
+    toiletCarriageId = carriageId - 1
+    carriage_toilet = list(filter(lambda x: x["carriageId"] == toiletCarriageId, train[0]["composition"]))[0]
+    carriage_current = list(filter(lambda x: x["carriageId"] == carriageId, train[0]["composition"]))[0]
     print("🚂 🌉 ➡️ Carriage with toilet on CHECKOUT" + str(carriage_toilet))
     print("🚂 🌉 ➡️ Carriage without toilet on CHECKOUT " + str(carriage_current))
-    carriage_toilet.update({"weight": carriage_toilet["weight"] - secret_spy["weight"] - special_agent["weight"]})
-    carriage_current.update({"weight": carriage_current["weight"] + special_agent["weight"]})
+    carriage_toilet.update({"weight": carriage_toilet["weight"] + special_agent["weight"]})
+    carriage_current.update({"weight": carriage_current["weight"] - special_agent["weight"] - secret_spy["weight"]})
     print("🚂 🌉 ➡️ Carriage with toilet after moving" + str(carriage_toilet))
     print("🚂 🌉 ➡️ Carriage without toilet after moving" + str(carriage_current))
+    secret_spy.update({"carriageId": toiletCarriageId})
+    special_agent.update({"carriageId": toiletCarriageId})
+    passengers.remove(secret_spy)
     for carriage in train[0]["composition"]:
         send_train_signal(host,
                           get_train_check_in_out_data(origin, carriage["weight"], carriage["carriageId"], 'CHECKOUT'))

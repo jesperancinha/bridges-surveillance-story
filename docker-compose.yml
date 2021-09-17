@@ -58,7 +58,7 @@ services:
       resources:
         limits:
           cpus: '0.5'
-          memory: 50M
+          memory: 100M
 
   bl_bridge_01_mosquitto_server:
     hostname: bl_bridge_01_mosquitto_server
@@ -71,7 +71,7 @@ services:
       resources:
         limits:
           cpus: '0.5'
-          memory: 10M
+          memory: 50M
 
   bl_bridge_01_rabbitmq_server:
     hostname: bl_bridge_01_rabbitmq_server
