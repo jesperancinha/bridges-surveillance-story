@@ -5,6 +5,7 @@
 - Visual Angular Front-End interface
 - Change hardcoded 10 people limitation
 - Use a Log framework and remove System outs
+- Create more carriages and make 4 and 3 random carriages
 - Kotest tests
 - Mockk tests
 - Python unit tests
@@ -13,7 +14,11 @@
 
 ## Roadmap to v2.0.0
 
-2021/09/16 - Release
+- Official release after article text review
+
+2021/09/17
+
+2021/09/16 - Pre-Release
 - Prepare release
 - Change storyline
   - Original storyline too complicated and difficult to understand
