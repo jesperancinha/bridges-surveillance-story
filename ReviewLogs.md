@@ -11,6 +11,8 @@
 - Python unit tests
 - Extend Scala tests
 - Update Libraries further
+- Extend Article (Explain readers)
+- Use heartbeat signals to coordinate containers
 
 ## Roadmap to v2.0.0
 
