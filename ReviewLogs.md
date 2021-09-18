@@ -14,6 +14,7 @@
 
 ## Roadmap to v2.0.0
 
+2021/09/18
 - Official release after article text review
 
 2021/09/17
