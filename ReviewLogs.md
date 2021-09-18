@@ -18,6 +18,7 @@
 - Official release after article text review
 
 2021/09/17
+- Document review
 
 2021/09/16 - Pre-Release
 - Prepare release
