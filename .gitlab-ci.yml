@@ -85,18 +85,23 @@ coveralls:
     - 'mvn package coveralls:report -DrepoToken=$COVERALLS_REPO_TOKEN | grep -v "com.github.dockerjava.zerodep.shaded.org.apache.hc.client5.http.wire"'
   only:
     - master
+  allow_failure: true
+
 codecov:
   stage: coverage
   script:
     - 'bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN'
   only:
     - master
+  allow_failure: true
+
 codacy:
   stage: coverage
   script:
     - 'bash <(curl -Ls https://coverage.codacy.com/get.sh) report -l Java $(find **/jacoco*.xml -printf ''-r %p '')'
   only:
     - master
+  allow_failure: true
 
 
 #docker-compose:
