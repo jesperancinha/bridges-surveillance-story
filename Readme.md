@@ -63,6 +63,15 @@ This project is also the official support project of my article on medium:
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-20/medium-20.png "Medium")](https://medium.com/swlh/the-streaming-bridges-a-kafka-rabbitmq-mqtt-and-coap-example-9077a598169)
 [The streaming bridges — A Kafka, RabbitMQ, MQTT and CoAP example](https://medium.com/swlh/the-streaming-bridges-a-kafka-rabbitmq-mqtt-and-coap-example-9077a598169)
 
+
+<div align="center">
+      <a title="The streaming bridges — A Kafka, RabbitMQ, MQTT and CoAP example" href="https://medium.com/swlh/the-streaming-bridges-a-kafka-rabbitmq-mqtt-and-coap-example-9077a598169">
+     <img 
+          src="./docs/images/articles.bridges.intro.jpeg"
+          style="width:100%;">
+      </a>
+</div>
+
 ## A detective case
 
 I have created an investigation Game. It's not a difficult one to solve. Basic math will get you through to find the thief.

@@ -2,10 +2,8 @@ package org.jesperancinha.logistics.mcs;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
@@ -27,7 +25,7 @@ public class TrainMerchandiseReceiverTest {
 
     @BeforeAll
     public static void initialise() throws Exception {
-        try (Connection conn = DriverManager.getConnection(postgreSQLContainer.getJdbcUrl(), "postgres","admin");
+        try (Connection conn = DriverManager.getConnection(postgreSQLContainer.getJdbcUrl(), "postgres", "admin");
         ) {
             Statement statement = conn.createStatement();
             statement.execute("CREATE DATABASE bllogistics");
