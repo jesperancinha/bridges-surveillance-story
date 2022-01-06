@@ -1,3 +1,6 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json"
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "repositories": ["jesperancinha/bridge-logistics"],
+  "platform": "gitlab",
+  "extends": ["docker:disable"]
 }
