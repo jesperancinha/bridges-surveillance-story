@@ -64,7 +64,7 @@
         <kotlin.version>1.5.21</kotlin.version>
 
         <spring-boot-starter-amqp.version>2.2.2.RELEASE</spring-boot-starter-amqp.version>
-        <spring-boot-configuration-processor.version>2.2.0.RELEASE</spring-boot-configuration-processor.version>
+        <spring-boot-configuration-processor.version>2.6.2</spring-boot-configuration-processor.version>
         <spring-rabbit-test.version>2.2.5.RELEASE</spring-rabbit-test.version>
 
         <activemq.version>5.15.11</activemq.version>
