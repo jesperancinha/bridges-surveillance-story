@@ -20,7 +20,7 @@
     "@angular/platform-browser": "~8.0.0",
     "@angular/platform-browser-dynamic": "~8.0.0",
     "@angular/router": "~8.0.0",
-    "@nebular/eva-icons": "^4.0.0-rc.8",
+    "@nebular/eva-icons": "^9.0.0",
     "@nebular/theme": "^9.0.0",
     "eva-icons": "^1.1.1",
     "rxjs": "~6.4.0",
