@@ -77,7 +77,7 @@
         <postgresql.version>42.2.5</postgresql.version>
 
         <kotest.version>4.4.0</kotest.version>
-        <kotest.version>4.4.0</kotest.version>
+        <kotest.version>5.0.3</kotest.version>
         <springmockk.version>3.0.1</springmockk.version>
         <kotest-extensions-spring.version>1.0.0</kotest-extensions-spring.version>
         <mockk.version>1.12.0</mockk.version>
