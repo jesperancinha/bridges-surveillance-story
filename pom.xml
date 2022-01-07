@@ -100,7 +100,7 @@
         <jdbc.version>1.15.3</jdbc.version>
 
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
-        <scala-maven-plugin.version>4.5.4</scala-maven-plugin.version>
+        <scala-maven-plugin.version>4.5.6</scala-maven-plugin.version>
         <compiler-bridge_2.12.version>1.5.7</compiler-bridge_2.12.version>
         <spark.version>3.1.2</spark.version>
         <scala-library.version>2.12.14</scala-library.version>
