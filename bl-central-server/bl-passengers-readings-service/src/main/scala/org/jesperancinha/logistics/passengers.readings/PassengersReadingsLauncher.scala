@@ -14,9 +14,7 @@ import play.api.libs.json.Json
 import java.util.UUID
 
 object PassengersReadingsLauncher extends App {
-
-  override def main(args: Array[String]): Unit = {
-    val DEMO: String = "demo"
+   val DEMO: String = "demo"
     val LOCAL: String = "local"
 
     val env: String = args.length match {
@@ -141,6 +139,4 @@ object PassengersReadingsLauncher extends App {
 
     streamingContext.start
     streamingContext.awaitTermination()
-  }
-
 }
