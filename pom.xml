@@ -9,7 +9,7 @@
     <parent>
         <artifactId>spring-boot-parent</artifactId>
         <groupId>org.springframework.boot</groupId>
-        <version>2.5.4</version>
+        <version>2.6.2</version>
     </parent>
 
     <build>
@@ -58,14 +58,14 @@
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <maven.compiler>3.8.1</maven.compiler>
-        <maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
+        <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
         <maven-failsafe-plugin.version>3.0.0-M5</maven-failsafe-plugin.version>
         <maven-war-plugin.version>3.2.3</maven-war-plugin.version>
-        <kotlin.version>1.5.21</kotlin.version>
+        <kotlin.version>1.6.10</kotlin.version>
 
-        <spring-boot-starter-amqp.version>2.2.2.RELEASE</spring-boot-starter-amqp.version>
-        <spring-boot-configuration-processor.version>2.2.0.RELEASE</spring-boot-configuration-processor.version>
-        <spring-rabbit-test.version>2.2.5.RELEASE</spring-rabbit-test.version>
+        <spring-boot-starter-amqp.version>2.6.2</spring-boot-starter-amqp.version>
+        <spring-boot-configuration-processor.version>2.6.2</spring-boot-configuration-processor.version>
+        <spring-rabbit-test.version>2.4.1</spring-rabbit-test.version>
 
         <activemq.version>5.16.3</activemq.version>
         <amqp-client.version>5.7.1</amqp-client.version>
@@ -74,36 +74,34 @@
         <javaee-api.version>8.0.1</javaee-api.version>
         <slf4j-api.version>1.7.32</slf4j-api.version>
 
-        <postgresql.version>42.2.5</postgresql.version>
+        <postgresql.version>42.3.1</postgresql.version>
 
         <kotest.version>4.4.0</kotest.version>
         <kotest.version>5.0.3</kotest.version>
-        <springmockk.version>3.0.1</springmockk.version>
-        <kotest-extensions-spring.version>1.0.0</kotest-extensions-spring.version>
+        <springmockk.version>3.1.0</springmockk.version>
+        <kotest-extensions-spring.version>1.1.0</kotest-extensions-spring.version>
         <mockk.version>1.12.2</mockk.version>
 
         <lombok.version>1.18.22</lombok.version>
         <failOnMissingWebXml>false</failOnMissingWebXml>
 
         <arquillian-bom.version>1.5.0.Final</arquillian-bom.version>
-        <junit-jupiter-engine.version>5.6.0</junit-jupiter-engine.version>
-        <junit-jupiter-api.version>5.6.0</junit-jupiter-api.version>
         <commons-io.version>1.3.2</commons-io.version>
 
         <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
         <jaxb-api.version>2.3.1</jaxb-api.version>
 
-        <h2.version>1.4.200</h2.version>
+        <h2.version>2.0.206</h2.version>
         <gson.version>2.8.9</gson.version>
         <build-helper-maven-plugin.version>3.2.0</build-helper-maven-plugin.version>
         <testcontainers.version>1.16.2</testcontainers.version>
-        <jdbc.version>1.15.3</jdbc.version>
+        <jdbc.version>1.16.2</jdbc.version>
 
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <scala-maven-plugin.version>4.5.6</scala-maven-plugin.version>
-        <compiler-bridge_2.12.version>1.5.7</compiler-bridge_2.12.version>
-        <spark.version>3.1.2</spark.version>
-        <scala-library.version>2.12.14</scala-library.version>
+        <compiler-bridge_2.12.version>1.6.0</compiler-bridge_2.12.version>
+        <spark.version>3.2.0</spark.version>
+        <scala-library.version>2.13.7</scala-library.version>
         <spark-cassandra-connector_2.12.version>3.1.0</spark-cassandra-connector_2.12.version>
         <joda-time.version>2.10.13</joda-time.version>
         <play-json_2.12.version>2.9.2</play-json_2.12.version>
@@ -245,19 +243,6 @@
                 <groupId>com.google.code.gson</groupId>
                 <artifactId>gson</artifactId>
                 <version>${gson.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.junit.jupiter</groupId>
-                <artifactId>junit-jupiter-engine</artifactId>
-                <version>${junit-jupiter-engine.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.junit.jupiter</groupId>
-                <artifactId>junit-jupiter-api</artifactId>
-                <version>${junit-jupiter-api.version}</version>
-                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>io.mockk</groupId>
