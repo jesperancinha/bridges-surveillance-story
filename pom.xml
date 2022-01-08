@@ -65,8 +65,7 @@
 
         <spring-boot-starter-amqp.version>2.6.2</spring-boot-starter-amqp.version>
         <spring-boot-configuration-processor.version>2.6.2</spring-boot-configuration-processor.version>
-
-        <spring-rabbit-test.version>2.2.5.RELEASE</spring-rabbit-test.version>
+        <spring-rabbit-test.version>2.4.1</spring-rabbit-test.version>
 
         <activemq.version>5.16.3</activemq.version>
         <amqp-client.version>5.7.1</amqp-client.version>
@@ -79,7 +78,7 @@
 
         <kotest.version>4.4.0</kotest.version>
         <kotest.version>5.0.3</kotest.version>
-        <springmockk.version>3.0.1</springmockk.version>
+        <springmockk.version>3.1.0</springmockk.version>
         <kotest-extensions-spring.version>1.1.0</kotest-extensions-spring.version>
         <mockk.version>1.12.2</mockk.version>
 
@@ -88,7 +87,7 @@
 
         <arquillian-bom.version>1.5.0.Final</arquillian-bom.version>
         <junit-jupiter-engine.version>5.6.0</junit-jupiter-engine.version>
-        <junit-jupiter-api.version>5.6.0</junit-jupiter-api.version>
+        <junit-jupiter-api.version>5.8.2</junit-jupiter-api.version>
         <commons-io.version>1.3.2</commons-io.version>
 
         <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
@@ -102,7 +101,7 @@
 
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <scala-maven-plugin.version>4.5.6</scala-maven-plugin.version>
-        <compiler-bridge_2.12.version>1.5.7</compiler-bridge_2.12.version>
+        <compiler-bridge_2.12.version>1.6.0</compiler-bridge_2.12.version>
         <spark.version>3.2.0</spark.version>
         <scala-library.version>2.12.14</scala-library.version>
         <spark-cassandra-connector_2.12.version>3.1.0</spark-cassandra-connector_2.12.version>
