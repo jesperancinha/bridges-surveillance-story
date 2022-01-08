@@ -63,7 +63,7 @@
         <maven-war-plugin.version>3.2.3</maven-war-plugin.version>
         <kotlin.version>1.6.10</kotlin.version>
 
-        <spring-boot-starter-amqp.version>2.2.2.RELEASE</spring-boot-starter-amqp.version>
+        <spring-boot-starter-amqp.version>2.6.2</spring-boot-starter-amqp.version>
         <spring-boot-configuration-processor.version>2.6.2</spring-boot-configuration-processor.version>
         <spring-rabbit-test.version>2.4.1</spring-rabbit-test.version>
 
@@ -86,14 +86,12 @@
         <failOnMissingWebXml>false</failOnMissingWebXml>
 
         <arquillian-bom.version>1.5.0.Final</arquillian-bom.version>
-        <junit-jupiter-engine.version>5.6.0</junit-jupiter-engine.version>
-        <junit-jupiter-api.version>5.8.2</junit-jupiter-api.version>
         <commons-io.version>1.3.2</commons-io.version>
 
         <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
         <jaxb-api.version>2.3.1</jaxb-api.version>
 
-        <h2.version>1.4.200</h2.version>
+        <h2.version>2.0.206</h2.version>
         <gson.version>2.8.9</gson.version>
         <build-helper-maven-plugin.version>3.2.0</build-helper-maven-plugin.version>
         <testcontainers.version>1.16.2</testcontainers.version>
@@ -103,7 +101,7 @@
         <scala-maven-plugin.version>4.5.6</scala-maven-plugin.version>
         <compiler-bridge_2.12.version>1.6.0</compiler-bridge_2.12.version>
         <spark.version>3.2.0</spark.version>
-        <scala-library.version>2.12.14</scala-library.version>
+        <scala-library.version>2.13.7</scala-library.version>
         <spark-cassandra-connector_2.12.version>3.1.0</spark-cassandra-connector_2.12.version>
         <joda-time.version>2.10.13</joda-time.version>
         <play-json_2.12.version>2.9.2</play-json_2.12.version>
@@ -245,19 +243,6 @@
                 <groupId>com.google.code.gson</groupId>
                 <artifactId>gson</artifactId>
                 <version>${gson.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.junit.jupiter</groupId>
-                <artifactId>junit-jupiter-engine</artifactId>
-                <version>${junit-jupiter-engine.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.junit.jupiter</groupId>
-                <artifactId>junit-jupiter-api</artifactId>
-                <version>${junit-jupiter-api.version}</version>
-                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>io.mockk</groupId>
