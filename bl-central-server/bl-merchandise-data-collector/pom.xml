@@ -95,7 +95,7 @@
         </dependency>
     </dependencies>
     <properties>
-        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-compiler-plugin.version>3.9.0</maven-compiler-plugin.version>
     </properties>
 
     <build>
