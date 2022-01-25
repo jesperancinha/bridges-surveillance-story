@@ -75,7 +75,7 @@
 
         <combinatoricslib3.version>3.3.2</combinatoricslib3.version>
         <javaee-api.version>8.0.1</javaee-api.version>
-        <slf4j-api.version>1.7.33</slf4j-api.version>
+        <slf4j-api.version>1.7.35</slf4j-api.version>
 
         <postgresql.version>42.3.1</postgresql.version>
 
