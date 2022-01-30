@@ -25,3 +25,8 @@ passengers.json
 ## Virtualization
 venv
 out
+
+## Coverage
+.coverage
+coverage*.json
+coverage
