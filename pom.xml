@@ -45,21 +45,21 @@
                 <groupId>org.jesperancinha.plugins</groupId>
                 <artifactId>omni-coveragereporter-maven-plugin</artifactId>
                 <version>${omni-coveragereporter-maven-plugin.version}</version>
-<!--                <configuration>-->
-<!--                    <useCoverallsCount>false</useCoverallsCount>-->
-<!--                    <extraSourceFolders>-->
-<!--                        <param>${project.basedir}/bl-bridge-server/bl-bridge-humidity-mqtt</param>-->
-<!--                        <param>${project.basedir}/bl-bridge-server/bl-bridge-temperature-coap</param>-->
-<!--                        <param>${project.basedir}/bl-simulation-data</param>-->
-<!--                        <param>${project.basedir}/bl-demo-server</param>-->
-<!--                        <param>${project.basedir}</param>-->
-<!--                    </extraSourceFolders>-->
-<!--                    <extraReportFolders>-->
-<!--                        <param>${project.basedir}/bl-bridge-server/bl-bridge-humidity-mqtt/coverage</param>-->
-<!--                        <param>${project.basedir}/bl-bridge-server/bl-bridge-temperature-coap/coverage</param>-->
-<!--                        <param>${project.basedir}</param>-->
-<!--                    </extraReportFolders>-->
-<!--                </configuration>-->
+                <configuration>
+                    <useCoverallsCount>false</useCoverallsCount>
+                    <extraSourceFolders>
+                        <param>${project.basedir}/bl-bridge-server/bl-bridge-humidity-mqtt</param>
+                        <param>${project.basedir}/bl-bridge-server/bl-bridge-temperature-coap</param>
+                        <param>${project.basedir}/bl-simulation-data</param>
+                        <param>${project.basedir}/bl-demo-server</param>
+                        <param>${project.basedir}</param>
+                    </extraSourceFolders>
+                    <extraReportFolders>
+                        <param>${project.basedir}/bl-bridge-server/bl-bridge-humidity-mqtt/coverage</param>
+                        <param>${project.basedir}/bl-bridge-server/bl-bridge-temperature-coap/coverage</param>
+                        <param>${project.basedir}</param>
+                    </extraReportFolders>
+                </configuration>
             </plugin>
         </plugins>
     </build>
