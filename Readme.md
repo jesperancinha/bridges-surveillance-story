@@ -11,7 +11,7 @@
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Coverage/9663f8cd66764af3b551e76c13ea7833)](https://www.codacy.com/gl/jesperancinha/bridge-logistics/dashboard?utm_source=gitlab.com&utm_medium=referral&utm_content=jesperancinha/bridge-logistics&utm_campaign=Badge_Coverage)
 [![codecov](https://codecov.io/gl/jesperancinha/bridge-logistics/branch/master/graph/badge.svg)](https://codecov.io/gh/jesperancinha/bridge-logistics)
-[![Coverage Status](https://coveralls.io/repos/gitlab/jesperancinha/bridge-logistics/badge.svg?branch=308d48726bfbe4e98da944b1f0543b07112ae552)](https://coveralls.io/gitlab/jesperancinha/bridge-logistics?branch=308d48726bfbe4e98da944b1f0543b07112ae552)
+[![Coverage Status](https://coveralls.io/repos/gitlab/jesperancinha/bridge-logistics/badge.svg?branch=master)](https://coveralls.io/gitlab/jesperancinha/bridge-logistics?branch=master)
 
 ---
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/java-50.png "Java")](https://www.oracle.com/nl/java/)
