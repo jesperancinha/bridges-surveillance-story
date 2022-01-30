@@ -10,7 +10,7 @@
 [![codebeat badge](https://codebeat.co/badges/42f50b94-393c-4637-86cd-1ee6412995c6)](https://codebeat.co/projects/gitlab-com-jesperancinha-bridge-logistics-master)
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Coverage/9663f8cd66764af3b551e76c13ea7833)](https://www.codacy.com/gl/jesperancinha/bridge-logistics/dashboard?utm_source=gitlab.com&utm_medium=referral&utm_content=jesperancinha/bridge-logistics&utm_campaign=Badge_Coverage)
-[![codecov](https://codecov.io/gl/jesperancinha/bridge-logistics/branch/master/graph/badge.svg)](https://codecov.io/gh/jesperancinha/bridge-logistics)
+[![codecov](https://codecov.io/gl/jesperancinha/bridge-logistics/branch/master/graph/badge.svg?token=OWTM085V5A)](https://codecov.io/gl/jesperancinha/bridge-logistics/branch/master)
 [![Coverage Status](https://coveralls.io/repos/gitlab/jesperancinha/bridge-logistics/badge.svg?branch=master)](https://coveralls.io/gitlab/jesperancinha/bridge-logistics?branch=master)
 
 ---
