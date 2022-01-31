@@ -63,8 +63,9 @@ coverage:
   image: maven:3.8-openjdk-17-slim
   stage: coverage
   script:
-    - npm install jest --global
     - apt update -y
+    - apt install npm
+    - npm install jest --global
     - apt install python3-pip -y
     - 'pip3 install coverage'
     - 'pip3 install pytest'
