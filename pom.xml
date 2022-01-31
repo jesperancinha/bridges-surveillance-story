@@ -85,7 +85,7 @@
         <activemq.version>5.16.3</activemq.version>
         <amqp-client.version>5.7.1</amqp-client.version>
 
-        <combinatoricslib3.version>3.3.2</combinatoricslib3.version>
+        <combinatoricslib3.version>3.3.3</combinatoricslib3.version>
         <javaee-api.version>8.0.1</javaee-api.version>
         <slf4j-api.version>1.7.35</slf4j-api.version>
 
