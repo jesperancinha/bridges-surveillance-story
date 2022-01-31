@@ -49,8 +49,11 @@ node-bl-bridge-sensors:
   script:
     - apt update -y
     - apt install npm -y
-    - cd bl-bridge-server/bl-bridge-temperature-coap && yarn install
-    - cd bl-bridge-server/bl-bridge-humidity-mqtt && yarn install
+    - cd bl-bridge-server/bl-bridge-temperature-coap
+    - yarn install
+    - cd ../..
+    - cd bl-bridge-server/bl-bridge-humidity-mqtt
+    - yarn install
   cache:
     - key: COAP_MQTT
       paths:
