@@ -67,11 +67,11 @@ coverage:
     - apt install python3-pip -y
     - 'pip3 install coverage'
     - 'pip3 install pytest'
-    - mvn clean install jacoco:prepare-agent package jacoco:report
-    - coverage run --source=bl-demo-server -m pytest && coverage json -o coverage-demo.json
-    - coverage run --source=bl-simulation-data -m pytest && coveragejest json -o coverage-simulation.json
     - cd bl-bridge-server/bl-bridge-humidity-mqtt && jest --coverage
     - cd bl-bridge-server/bl-bridge-temperature-coap && jest --coverage
+    - coverage run --source=bl-demo-server -m pytest && coverage json -o coverage-demo.json
+    - coverage run --source=bl-simulation-data -m pytest && coverage json -o coverage-simulation.json
+    - mvn clean install jacoco:prepare-agent package jacoco:report
     - mvn omni-coveragereporter:report
   only:
     - master
