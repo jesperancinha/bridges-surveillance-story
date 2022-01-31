@@ -94,7 +94,7 @@ python-coverage-demo-simulation:
         - coverage-demo.json
         - coverage-simulation.json
 
-coverage-coap-mqtt-node:
+node-coverage-coap-mqtt:
   image: node:16
   stage: coverage
   script:
@@ -114,7 +114,7 @@ coverage-coap-mqtt-node:
        - bl-bridge-server/bl-bridge-temperature-coap/coverage
        - bl-bridge-server/bl-bridge-humidity-mqtt/coverage
 
-coverage-maven:
+maven-coverage:
   image: maven:3.8-openjdk-17-slim
   stage: coverage
   cache:
@@ -159,8 +159,8 @@ reporting:
   only:
     - master
   needs:
-    - coverage-maven
-    - coverage-coap-mqtt-node
+    - maven-coverage
+    - node-coverage-coap-mqtt
     - python-coverage-demo-simulation
 
 
