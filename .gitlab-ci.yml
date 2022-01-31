@@ -71,7 +71,7 @@ npm-bl-bridge-humidity-mqtt:
     - apt update -y
     - apt install npm -y
     - npm install -g yarn
-    - cd bl-bridge-server/bl-bridge-humidity-mqtt && npm install && npm run test
+    - cd bl-bridge-server/bl-bridge-humidity-mqtt && yarn install && npm run test
 
 coverage-python:
   image: maven:3.8-openjdk-17-slim
