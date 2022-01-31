@@ -33,7 +33,9 @@ cache:
     - bl-bridge-server/bl-bridge-temperature-coap
     - bl-bridge-server/bl-bridge-humidity-mqtt
     - bl-demo-server
+    - bl-demo-server/node_modules
     - bl-simulation-data
+    - bl-simulation-data/node_modules
 
 .verify: &verify
   stage: test
