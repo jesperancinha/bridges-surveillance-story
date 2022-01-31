@@ -57,7 +57,7 @@ node-bl-bridge-temperature-coap:
   script:
     - apt update -y
     - apt install npm -y
-    - cd bl-bridge-server/bl-bridge-temperature-coap && yarn install && npm run test
+    - cd bl-bridge-server/bl-bridge-temperature-coap && yarn install
 
 node-bl-bridge-humidity-mqtt:
   image: node:16
@@ -65,7 +65,7 @@ node-bl-bridge-humidity-mqtt:
   script:
     - apt update -y
     - apt install npm -y
-    - cd bl-bridge-server/bl-bridge-humidity-mqtt && yarn install && npm run test
+    - cd bl-bridge-server/bl-bridge-humidity-mqtt && yarn install
 
 maven-build:
   image: maven:3.8-openjdk-17-slim
@@ -103,7 +103,7 @@ coverage-coap-node:
   image: node:16
   stage: coverage
   script:
-    - cd bl-bridge-server/bl-bridge-temperature-coap && yarn install && npm run coverage
+    - cd bl-bridge-server/bl-bridge-temperature-coap && yarn add jest && npm run coverage
   only:
     - master
   needs: ["node-bl-bridge-temperature-coap"]
@@ -112,7 +112,7 @@ coverage-mqtt-node:
   image: node:16
   stage: coverage
   script:
-    - cd bl-bridge-server/bl-bridge-humidity-mqtt && yarn install && npm run coverage
+    - cd bl-bridge-server/bl-bridge-humidity-mqtt && yarn add jest && npm run coverage
   only:
     - master
   needs: ["node-bl-bridge-humidity-mqtt"]
