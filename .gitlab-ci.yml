@@ -144,7 +144,6 @@ reporting:
       paths:
        - coverage-demo.json
        - coverage-simulation.json
-
   script:
     - mvn omni-coveragereporter:report
   only:
