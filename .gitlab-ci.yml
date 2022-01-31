@@ -96,7 +96,6 @@ coverage-coap-node:
   script:
     - apt update -y
     - apt install npm -y
-    - yarn global add jest
     - cd bl-bridge-server/bl-bridge-temperature-coap && jest --coverage
   only:
     - master
@@ -107,7 +106,6 @@ coverage-mqtt-node:
   script:
     - apt update -y
     - apt install npm -y
-    - yarn global add jest
     - cd bl-bridge-server/bl-bridge-humidity-mqtt && jest --coverage
   only:
     - master
