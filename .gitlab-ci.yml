@@ -29,6 +29,8 @@ cache:
     - bl-central-server/bl-passengers-readings-service/target
     - bl-central-server/bl-sensor-data-collector/target
     - bl-central-server/bl-web-app/target
+    - bl-bridge-server/bl-bridge-temperature-coap
+    - bl-bridge-server/bl-bridge-humidity-mqtt
 
 .verify: &verify
   stage: test
@@ -47,17 +49,17 @@ verify:
 #       fi
 #     - 'mvn clean install jacoco:prepare-agent package jacoco:report | grep -v "com.github.dockerjava.zerodep.shaded.org.apache.hc.client5.http.wire"'
 #
-# npm-bl-bridge-temperature-coap:
-#   image: node:6.3.0
-#   stage: build
-#   script:
-#     - cd bl-bridge-server/bl-bridge-temperature-coap && npm run test
-#
-# npm-bl-bridge-humidity-mqtt:
-#   image: node:6.3.0
-#   stage: build
-#   script:
-#     - cd bl-bridge-server/bl-bridge-humidity-mqtt && npm run test
+npm-bl-bridge-temperature-coap:
+  image: node:6.3.0
+  stage: build
+  script:
+    - cd bl-bridge-server/bl-bridge-temperature-coap && npm run test
+
+npm-bl-bridge-humidity-mqtt:
+  image: node:6.3.0
+  stage: build
+  script:
+    - cd bl-bridge-server/bl-bridge-humidity-mqtt && npm run test
 
 coverage:
   image: maven:3.8-openjdk-17-slim
