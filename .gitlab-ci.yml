@@ -63,13 +63,8 @@ coverage:
   image: maven:3.8-openjdk-17-slim
   stage: coverage
   script:
-    - 'python3 -m pip install --upgrade pip'
-    - 'pip install omni-coveragereporter==0.0.0'
-    - 'if [ -f requirements.txt ]; then pip install -r requirements.txt; fi'
     - 'pip3 install coverage'
     - 'pip3 install pytest'
-    - 'pip3 install GitPython'
-    - 'pip3 install requests'
     - mvn clean install jacoco:prepare-agent package jacoco:report
     - coverage run --source=bl-demo-server -m pytest && coverage json -o coverage-demo.json
     - coverage run --source=bl-simulation-data -m pytest && coverage json -o coverage-simulation.json
