@@ -89,6 +89,7 @@ coverage-python:
     - coverage run --source=bl-simulation-data -m pytest && coverage json -o coverage-simulation.json
   only:
     - master
+  needs: []
 
 coverage-coap-node:
   image: node:16
