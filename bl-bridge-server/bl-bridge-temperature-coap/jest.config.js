@@ -2,7 +2,8 @@ module.exports = {
     moduleNameMapper: {
         '^.+.(svg|css)$': 'jest-transform-stub',
     },
+    "testEnvironment": "jsdom",
     "setupFilesAfterEnv": [
-        "<rootDir>/src/setupTests.ts"
+        "<rootDir>/src/setuptests.ts"
     ]
 }
