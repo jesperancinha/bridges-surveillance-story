@@ -24,7 +24,6 @@ image: maven:3-openjdk-16
 cache:
   paths:
     - .m2/repository/
-    - coverage-demo.json
     - coverage-simulation.json
 
 .verify: &verify
@@ -96,6 +95,10 @@ coverage-demo-python:
   only:
     - master
   needs: []
+  cache:
+    - key: DEMO
+      paths:
+        - coverage-demo.json
 
 coverage-simulation-python:
   image: maven:3.8-openjdk-17-slim
@@ -109,6 +112,10 @@ coverage-simulation-python:
   only:
     - master
   needs: []
+  cache:
+    - key: SIMULATION
+      paths:
+        - coverage-simulation.json
 
 coverage-coap-node:
   image: node:16
@@ -173,6 +180,13 @@ reporting:
     - key: COAP
       paths:
        - bl-bridge-server/bl-bridge-temperature-coap/coverage
+    - key: DEMO
+      paths:
+        - coverage-demo.json
+    - key: SIMULATION
+      paths:
+        - coverage-simulation.json
+
   script:
     - mvn omni-coveragereporter:report
   only:
