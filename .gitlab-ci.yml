@@ -3,7 +3,6 @@ services:
 stages:
   - build
   - coverage
-  - aggregator
   - reporting
   - verify
   - test
@@ -25,14 +24,6 @@ image: maven:3-openjdk-16
 cache:
   paths:
     - .m2/repository/
-    - bl-central-server/bl-domain-repository/target
-    - bl-central-server/bl-merchandise-data-collector/target
-    - bl-central-server/bl-meters-readings-service/target
-    - bl-central-server/bl-passengers-readings-service/target
-    - bl-central-server/bl-sensor-data-collector/target
-    - bl-central-server/bl-web-app/target
-    - bl-bridge-server/bl-bridge-temperature-coap/coverage
-    - bl-bridge-server/bl-bridge-humidity-mqtt/coverage
     - coverage-demo.json
     - coverage-simulation.json
 
@@ -61,6 +52,10 @@ node-bl-bridge-temperature-coap:
     - apt update -y
     - apt install npm -y
     - cd bl-bridge-server/bl-bridge-temperature-coap && yarn install
+  cache:
+    - key: COAP
+      paths:
+       - bl-bridge-server/bl-bridge-temperature-coap/coverage
 
 node-bl-bridge-humidity-mqtt:
   image: node:16
@@ -69,10 +64,23 @@ node-bl-bridge-humidity-mqtt:
     - apt update -y
     - apt install npm -y
     - cd bl-bridge-server/bl-bridge-humidity-mqtt && yarn install
+  cache:
+    - key: MQTT
+      paths:
+       - bl-bridge-server/bl-bridge-humidity-mqtt/coverage
 
 maven-build:
   image: maven:3.8-openjdk-17-slim
   stage: build
+  cache:
+    - key: MAVEN
+      paths:
+       - bl-central-server/bl-domain-repository/target
+       - bl-central-server/bl-merchandise-data-collector/target
+       - bl-central-server/bl-meters-readings-service/target
+       - bl-central-server/bl-passengers-readings-service/target
+       - bl-central-server/bl-sensor-data-collector/target
+       - bl-central-server/bl-web-app/target
   script:
     - mvn clean install
 
@@ -110,6 +118,10 @@ coverage-coap-node:
   only:
     - master
   needs: ["node-bl-bridge-temperature-coap"]
+  cache:
+    - key: COAP
+      paths:
+       - bl-bridge-server/bl-bridge-temperature-coap/coverage
 
 coverage-mqtt-node:
   image: node:16
@@ -119,29 +131,59 @@ coverage-mqtt-node:
   only:
     - master
   needs: ["node-bl-bridge-humidity-mqtt"]
+  cache:
+    - key: MQTT
+      paths:
+       - bl-bridge-server/bl-bridge-humidity-mqtt/coverage
 
 coverage-maven:
   image: maven:3.8-openjdk-17-slim
-  stage: aggregator
+  stage: coverage
+  cache:
+    - key: MAVEN
+      paths:
+       - bl-central-server/bl-domain-repository/target
+       - bl-central-server/bl-merchandise-data-collector/target
+       - bl-central-server/bl-meters-readings-service/target
+       - bl-central-server/bl-passengers-readings-service/target
+       - bl-central-server/bl-sensor-data-collector/target
+       - bl-central-server/bl-web-app/target
   script:
     - mvn jacoco:prepare-agent package jacoco:report
   only:
     - master
   needs:
     - maven-build
+
+reporting:
+  image: maven:3.8-openjdk-17-slim
+  stage: 'reporting'
+  cache:
+    - key: MAVEN
+      paths:
+       - bl-central-server/bl-domain-repository/target
+       - bl-central-server/bl-merchandise-data-collector/target
+       - bl-central-server/bl-meters-readings-service/target
+       - bl-central-server/bl-passengers-readings-service/target
+       - bl-central-server/bl-sensor-data-collector/target
+       - bl-central-server/bl-web-app/target
+    - key: MQTT
+      paths:
+       - bl-bridge-server/bl-bridge-humidity-mqtt/coverage
+    - key: COAP
+      paths:
+       - bl-bridge-server/bl-bridge-temperature-coap/coverage
+  script:
+    - mvn omni-coveragereporter:report
+  only:
+    - master
+  needs:
+    - coverage-maven
     - coverage-mqtt-node
     - coverage-coap-node
     - coverage-simulation-python
     - coverage-demo-python
 
-reporting:
-  image: maven:3.8-openjdk-17-slim
-  stage: 'reporting'
-  script:
-    - mvn omni-coveragereporter:report
-  only:
-    - master
-  needs: ["coverage-maven"]
 
 update-dependencies:
   image: renovate/renovate
