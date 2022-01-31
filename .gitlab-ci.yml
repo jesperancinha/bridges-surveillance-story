@@ -24,7 +24,6 @@ image: maven:3-openjdk-16
 cache:
   paths:
     - .m2/repository/
-    - coverage-simulation.json
 
 .verify: &verify
   stage: test
