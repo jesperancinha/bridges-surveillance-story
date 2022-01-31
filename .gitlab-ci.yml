@@ -43,28 +43,18 @@ verify:
 #     - 'mvn clean install jacoco:prepare-agent package jacoco:report | grep -v "com.github.dockerjava.zerodep.shaded.org.apache.hc.client5.http.wire"'
 #
 
-node-bl-bridge-temperature-coap:
+node-bl-bridge-sensors:
   image: node:16
   stage: build
   script:
     - apt update -y
     - apt install npm -y
     - cd bl-bridge-server/bl-bridge-temperature-coap && yarn install
-  cache:
-    - key: COAP
-      paths:
-       - bl-bridge-server/bl-bridge-temperature-coap/coverage
-
-node-bl-bridge-humidity-mqtt:
-  image: node:16
-  stage: build
-  script:
-    - apt update -y
-    - apt install npm -y
     - cd bl-bridge-server/bl-bridge-humidity-mqtt && yarn install
   cache:
-    - key: MQTT
+    - key: COAP_MQTT
       paths:
+       - bl-bridge-server/bl-bridge-temperature-coap/coverage
        - bl-bridge-server/bl-bridge-humidity-mqtt/coverage
 
 maven-build:
@@ -82,7 +72,7 @@ maven-build:
   script:
     - mvn clean install
 
-coverage-demo-python:
+coverage-demo-simulation-python:
   image: maven:3.8-openjdk-17-slim
   stage: coverage
   script:
@@ -91,55 +81,29 @@ coverage-demo-python:
     - pip3 install coverage
     - pip3 install pytest
     - coverage run --source=bl-demo-server -m pytest && coverage json -o coverage-demo.json
-  only:
-    - master
-  needs: []
-  cache:
-    - key: DEMO
-      paths:
-        - coverage-demo.json
-
-coverage-simulation-python:
-  image: maven:3.8-openjdk-17-slim
-  stage: coverage
-  script:
-    - apt update -y
-    - apt install python3-pip -y
-    - pip3 install coverage
-    - pip3 install pytest
     - coverage run --source=bl-simulation-data -m pytest && coverage json -o coverage-simulation.json
   only:
     - master
   needs: []
   cache:
-    - key: SIMULATION
+    - key: DEMO_SIMULATION
       paths:
+        - coverage-demo.json
         - coverage-simulation.json
 
-coverage-coap-node:
+coverage-coap-mqtt-node:
   image: node:16
   stage: coverage
   script:
     - cd bl-bridge-server/bl-bridge-temperature-coap && yarn add jest && npm run coverage
+    - cd bl-bridge-server/bl-bridge-humidity-mqtt && yarn add jest && npm run coverage
   only:
     - master
   needs: ["node-bl-bridge-temperature-coap"]
   cache:
-    - key: COAP
+    - key: COAP_MQTT
       paths:
        - bl-bridge-server/bl-bridge-temperature-coap/coverage
-
-coverage-mqtt-node:
-  image: node:16
-  stage: coverage
-  script:
-    - cd bl-bridge-server/bl-bridge-humidity-mqtt && yarn add jest && npm run coverage
-  only:
-    - master
-  needs: ["node-bl-bridge-humidity-mqtt"]
-  cache:
-    - key: MQTT
-      paths:
        - bl-bridge-server/bl-bridge-humidity-mqtt/coverage
 
 coverage-maven:
@@ -173,17 +137,12 @@ reporting:
        - bl-central-server/bl-passengers-readings-service/target
        - bl-central-server/bl-sensor-data-collector/target
        - bl-central-server/bl-web-app/target
-    - key: MQTT
-      paths:
-       - bl-bridge-server/bl-bridge-humidity-mqtt/coverage
-    - key: COAP
+    - key: COAP_MQTT
       paths:
        - bl-bridge-server/bl-bridge-temperature-coap/coverage
-    - key: DEMO
-      paths:
+       - bl-bridge-server/bl-bridge-humidity-mqtt/coverage
+    - key: DEMO_SIMULATION
         - coverage-demo.json
-    - key: SIMULATION
-      paths:
         - coverage-simulation.json
 
   script:
@@ -192,10 +151,8 @@ reporting:
     - master
   needs:
     - coverage-maven
-    - coverage-mqtt-node
-    - coverage-coap-node
-    - coverage-simulation-python
-    - coverage-demo-python
+    - coverage-coap-mqtt-node
+    - coverage-demo-simulation-python
 
 
 update-dependencies:
