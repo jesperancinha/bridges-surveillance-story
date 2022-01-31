@@ -3,6 +3,7 @@ services:
 stages:
   - build
   - coverage
+  - aggregator
   - reporting
   - verify
   - test
@@ -121,12 +122,17 @@ coverage-mqtt-node:
 
 coverage-maven:
   image: maven:3.8-openjdk-17-slim
-  stage: coverage
+  stage: aggregator
   script:
     - mvn jacoco:prepare-agent package jacoco:report
   only:
     - master
-  needs: ["maven-build"]
+  needs:
+    - maven-build
+    - coverage-mqtt-node
+    - coverage-coap-node
+    - coverage-simulation-python
+    - coverage-demo-python
 
 reporting:
   image: maven:3.8-openjdk-17-slim
@@ -135,7 +141,7 @@ reporting:
     - mvn omni-coveragereporter:report
   only:
     - master
-  needs: ["coverage-maven", "coverage-mqtt-node", "coverage-coap-node", "coverage-demo-python", "coverage-simulation-python"]
+  needs: ["coverage-maven"]
 
 update-dependencies:
   image: renovate/renovate
