@@ -30,12 +30,12 @@ cache:
     - bl-central-server/bl-passengers-readings-service/target
     - bl-central-server/bl-sensor-data-collector/target
     - bl-central-server/bl-web-app/target
+    - bl-bridge-server/bl-bridge-temperature-coap/node_modules
     - bl-bridge-server/bl-bridge-temperature-coap
+    - bl-bridge-server/bl-bridge-humidity-mqtt/node_modules
     - bl-bridge-server/bl-bridge-humidity-mqtt
     - bl-demo-server
-    - bl-demo-server/node_modules
     - bl-simulation-data
-    - bl-simulation-data/node_modules
 
 .verify: &verify
   stage: test
