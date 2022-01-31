@@ -90,7 +90,18 @@ coverage-python:
   only:
     - master
 
-coverage-node:
+coverage-coap-node:
+  image: maven:3.8-openjdk-17-slim
+  stage: coverage
+  script:
+    - apt update -y
+    - apt install npm -y
+    - npm install jest --global
+    - cd bl-bridge-server/bl-bridge-temperature-coap && jest --coverage
+  only:
+    - master
+
+coverage-mqtt-node:
   image: maven:3.8-openjdk-17-slim
   stage: coverage
   script:
@@ -98,7 +109,6 @@ coverage-node:
     - apt install npm -y
     - npm install jest --global
     - cd bl-bridge-server/bl-bridge-humidity-mqtt && jest --coverage
-    - cd bl-bridge-server/bl-bridge-temperature-coap && jest --coverage
   only:
     - master
 

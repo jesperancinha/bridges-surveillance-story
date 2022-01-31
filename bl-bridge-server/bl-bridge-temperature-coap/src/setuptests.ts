@@ -4,3 +4,4 @@
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
 import '@babel/preset-env';
+import '@babel/core';
