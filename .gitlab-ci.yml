@@ -151,8 +151,8 @@ reporting:
        - bl-bridge-server/bl-bridge-humidity-mqtt/coverage
     - key: DEMO_SIMULATION
       paths:
-        - coverage-demo.json
-        - coverage-simulation.json
+       - coverage-demo.json
+       - coverage-simulation.json
 
   script:
     - mvn omni-coveragereporter:report
