@@ -73,7 +73,7 @@ node-bl-bridge-humidity-mqtt:
 
 maven-build:
   image: maven:3.8-openjdk-17-slim
-  stage: coverage
+  stage: build
   script:
     - mvn clean install
 
@@ -94,6 +94,7 @@ coverage-coap-node:
   image: node:16
   stage: coverage
   script:
+    - npm install jest
     - cd bl-bridge-server/bl-bridge-temperature-coap && jest --coverage
   only:
     - master
@@ -102,6 +103,7 @@ coverage-mqtt-node:
   image: node:16
   stage: coverage
   script:
+    - npm install jest
     - cd bl-bridge-server/bl-bridge-humidity-mqtt && jest --coverage
   only:
     - master
