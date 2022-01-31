@@ -97,6 +97,7 @@ coverage-coap-node:
     - cd bl-bridge-server/bl-bridge-temperature-coap && jest --coverage
   only:
     - master
+  needs: ["node-bl-bridge-temperature-coap"]
 
 coverage-mqtt-node:
   image: node:16
@@ -105,6 +106,7 @@ coverage-mqtt-node:
     - cd bl-bridge-server/bl-bridge-humidity-mqtt && jest --coverage
   only:
     - master
+  needs: ["node-bl-bridge-humidity-mqtt"]
 
 coverage-maven:
   image: maven:3.8-openjdk-17-slim
