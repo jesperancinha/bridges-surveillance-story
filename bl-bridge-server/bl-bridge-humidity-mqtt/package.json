@@ -6,7 +6,8 @@
   "scripts": {
     "build": "tsc",
     "start": "tsc && node dist/app.js",
-    "test": "echo \"Warning: no test specified!\""
+    "test": "test",
+    "coverage": "jest --coverage"
   },
   "repository": {
     "type": "git",
