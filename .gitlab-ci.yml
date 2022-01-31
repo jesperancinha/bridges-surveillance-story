@@ -75,7 +75,7 @@ maven-build:
   script:
     - mvn clean install
 
-coverage-demo-simulation-python:
+python-coverage-demo-simulation:
   image: maven:3.8-openjdk-17-slim
   stage: coverage
   script:
@@ -161,7 +161,7 @@ reporting:
   needs:
     - coverage-maven
     - coverage-coap-mqtt-node
-    - coverage-demo-simulation-python
+    - python-coverage-demo-simulation
 
 
 update-dependencies:
