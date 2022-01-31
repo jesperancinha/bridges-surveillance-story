@@ -60,7 +60,7 @@ npm-bl-bridge-humidity-mqtt:
     - cd bl-bridge-server/bl-bridge-humidity-mqtt && npm run test
 
 coverage:
-  image: 3.8-openjdk-17-slim
+  image: maven:3.8-openjdk-17-slim
   stage: coverage
   script:
     - 'python3 -m pip install --upgrade pip'
