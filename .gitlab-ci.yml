@@ -60,7 +60,7 @@ npm-bl-bridge-temperature-coap:
   stage: build
   script:
     - apt update -y
-    - npm install -g yarn
+    - apt install npm -y
     - cd bl-bridge-server/bl-bridge-temperature-coap && yarn install && npm run test
 
 npm-bl-bridge-humidity-mqtt:
