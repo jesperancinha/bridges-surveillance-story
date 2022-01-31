@@ -73,6 +73,12 @@ npm-bl-bridge-humidity-mqtt:
     - npm install -g yarn
     - cd bl-bridge-server/bl-bridge-humidity-mqtt && yarn install && npm run test
 
+maven-build:
+  image: maven:3.8-openjdk-17-slim
+  stage: coverage
+  script:
+    - mvn clean install
+
 coverage-python:
   image: maven:3.8-openjdk-17-slim
   stage: coverage
@@ -102,7 +108,7 @@ coverage-maven:
   image: maven:3.8-openjdk-17-slim
   stage: coverage
   script:
-    - mvn clean install jacoco:prepare-agent package jacoco:report
+    - mvn jacoco:prepare-agent package jacoco:report
   only:
     - master
 
