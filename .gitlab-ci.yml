@@ -94,7 +94,8 @@ coverage-coap-node:
   image: node:16
   stage: coverage
   script:
-    - cd bl-bridge-server/bl-bridge-temperature-coap && npm install jest && jest --coverage
+    - cd bl-bridge-server/bl-bridge-temperature-coap
+    - jest --coverage
   only:
     - master
 
@@ -102,7 +103,8 @@ coverage-mqtt-node:
   image: node:16
   stage: coverage
   script:
-    - cd bl-bridge-server/bl-bridge-humidity-mqtt && npm install jest && jest --coverage
+    - cd bl-bridge-server/bl-bridge-humidity-mqtt
+    - jest --coverage
   only:
     - master
 
