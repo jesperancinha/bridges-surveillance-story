@@ -150,6 +150,7 @@ reporting:
        - bl-bridge-server/bl-bridge-temperature-coap/coverage
        - bl-bridge-server/bl-bridge-humidity-mqtt/coverage
     - key: DEMO_SIMULATION
+      paths:
         - coverage-demo.json
         - coverage-simulation.json
 
