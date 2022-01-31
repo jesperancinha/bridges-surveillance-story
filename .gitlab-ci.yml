@@ -58,12 +58,16 @@ npm-bl-bridge-temperature-coap:
   image: node:6.3.0
   stage: build
   script:
-    - cd bl-bridge-server/bl-bridge-temperature-coap && npm install && npm run test
+    - apt update -y
+    - apt install yarn -y
+    - cd bl-bridge-server/bl-bridge-temperature-coap && yarn install && npm run test
 
 npm-bl-bridge-humidity-mqtt:
   image: node:6.3.0
   stage: build
   script:
+    - apt update -y
+    - apt install yarn -y
     - cd bl-bridge-server/bl-bridge-humidity-mqtt && npm install && npm run test
 
 coverage-python:
