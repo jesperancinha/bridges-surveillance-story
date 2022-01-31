@@ -4,7 +4,7 @@ module.exports = {
     },
     "testEnvironment": "jsdom",
     "setupFilesAfterEnv": [
-        "<rootDir>/src/setuptests.ts"
+        "<rootDir>/src/setupTests.ts"
     ]
 
 }
