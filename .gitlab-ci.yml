@@ -115,6 +115,7 @@ coverage-maven:
     - mvn jacoco:prepare-agent package jacoco:report
   only:
     - master
+  needs: ["maven-build"]
 
 reporting:
   image: maven:3.8-openjdk-17-slim
@@ -123,6 +124,7 @@ reporting:
     - mvn omni-coveragereporter:report
   only:
     - master
+  needs: ["coverage-maven", "coverage-mqtt-node", "coverage-coap-node", "coverage-python"]
 
 update-dependencies:
   image: renovate/renovate
@@ -132,3 +134,4 @@ update-dependencies:
     - renovate
   only:
     - master
+  needs: ["reporting"]
