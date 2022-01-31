@@ -63,6 +63,7 @@ coverage:
   image: maven:3.8-openjdk-17-slim
   stage: coverage
   script:
+    - apt install pip3
     - 'pip3 install coverage'
     - 'pip3 install pytest'
     - mvn clean install jacoco:prepare-agent package jacoco:report
