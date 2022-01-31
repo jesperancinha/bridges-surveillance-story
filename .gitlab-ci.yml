@@ -31,11 +31,9 @@ cache:
     - bl-central-server/bl-sensor-data-collector/target
     - bl-central-server/bl-web-app/target
     - bl-bridge-server/bl-bridge-temperature-coap/node_modules
-    - bl-bridge-server/bl-bridge-temperature-coap
     - bl-bridge-server/bl-bridge-humidity-mqtt/node_modules
-    - bl-bridge-server/bl-bridge-humidity-mqtt
-    - bl-demo-server
-    - bl-simulation-data
+    - coverage-demo.json
+    - coverage-simulation.json
 
 .verify: &verify
   stage: test
@@ -77,7 +75,7 @@ maven-build:
   script:
     - mvn clean install
 
-coverage-python:
+coverage-demo-python:
   image: maven:3.8-openjdk-17-slim
   stage: coverage
   script:
@@ -86,6 +84,18 @@ coverage-python:
     - pip3 install coverage
     - pip3 install pytest
     - coverage run --source=bl-demo-server -m pytest && coverage json -o coverage-demo.json
+  only:
+    - master
+  needs: []
+
+coverage-simulation-python:
+  image: maven:3.8-openjdk-17-slim
+  stage: coverage
+  script:
+    - apt update -y
+    - apt install python3-pip -y
+    - pip3 install coverage
+    - pip3 install pytest
     - coverage run --source=bl-simulation-data -m pytest && coverage json -o coverage-simulation.json
   only:
     - master
@@ -125,7 +135,7 @@ reporting:
     - mvn omni-coveragereporter:report
   only:
     - master
-  needs: ["coverage-maven", "coverage-mqtt-node", "coverage-coap-node", "coverage-python"]
+  needs: ["coverage-maven", "coverage-mqtt-node", "coverage-coap-node", "coverage-demo-python", "coverage-simulation-python"]
 
 update-dependencies:
   image: renovate/renovate
