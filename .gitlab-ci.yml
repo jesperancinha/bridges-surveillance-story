@@ -99,7 +99,7 @@ coverage-coap-mqtt-node:
     - cd bl-bridge-server/bl-bridge-humidity-mqtt && yarn add jest && npm run coverage
   only:
     - master
-  needs: ["node-bl-bridge-temperature-coap"]
+  needs: ["node-bl-bridge-sensors"]
   cache:
     - key: COAP_MQTT
       paths:
