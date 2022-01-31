@@ -98,8 +98,13 @@ coverage-coap-mqtt-node:
   image: node:16
   stage: coverage
   script:
-    - cd bl-bridge-server/bl-bridge-temperature-coap && yarn add jest && npm run coverage
-    - cd bl-bridge-server/bl-bridge-humidity-mqtt && yarn add jest && npm run coverage
+    - cd bl-bridge-server/bl-bridge-temperature-coap
+    - yarn add jest
+    - npm run coverage
+    - cd ../..
+    - cd bl-bridge-server/bl-bridge-humidity-mqtt
+    - yarn add jest
+    - npm run coverage
   only:
     - master
   needs: ["node-bl-bridge-sensors"]
