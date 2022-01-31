@@ -56,7 +56,7 @@ verify:
 #
 
 npm-bl-bridge-temperature-coap:
-  image: node:6.3.0
+  image: node:16
   stage: build
   script:
     - apt update -y
@@ -65,7 +65,7 @@ npm-bl-bridge-temperature-coap:
     - cd bl-bridge-server/bl-bridge-temperature-coap && yarn install && npm run test
 
 npm-bl-bridge-humidity-mqtt:
-  image: node:6.3.0
+  image: node:16
   stage: build
   script:
     - apt update -y
