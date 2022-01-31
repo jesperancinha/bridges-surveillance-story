@@ -30,6 +30,8 @@ cache:
     - bl-central-server/bl-passengers-readings-service/target
     - bl-central-server/bl-sensor-data-collector/target
     - bl-central-server/bl-web-app/target
+    - bl-bridge-server/bl-bridge-temperature-coap/coverage
+    - bl-bridge-server/bl-bridge-humidity-mqtt/coverage
     - coverage-demo.json
     - coverage-simulation.json
 
