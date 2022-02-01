@@ -63,6 +63,70 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>lcov</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jesperancinha.plugins</groupId>
+                        <artifactId>omni-coveragereporter-maven-plugin</artifactId>
+                        <version>${omni-coveragereporter-maven-plugin.version}</version>
+                        <configuration>
+                            <useCoverallsCount>false</useCoverallsCount>
+                            <extraSourceFolders>
+                                <param>${project.basedir}/bl-bridge-server/bl-bridge-humidity-mqtt</param>
+                                <param>${project.basedir}/bl-bridge-server/bl-bridge-temperature-coap</param>
+                                <param>${project.basedir}/bl-simulation-data</param>
+                                <param>${project.basedir}/bl-demo-server</param>
+                                <param>${project.basedir}</param>
+                            </extraSourceFolders>
+                            <extraReportFolders>
+                                <param>${project.basedir}/bl-bridge-server/bl-bridge-humidity-mqtt/coverage</param>
+                                <param>${project.basedir}/bl-bridge-server/bl-bridge-temperature-coap/coverage</param>
+                                <param>${project.basedir}</param>
+                            </extraReportFolders>
+                            <reportRejectList>
+                                <param>clover.xml</param>
+                            </reportRejectList>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>clover</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jesperancinha.plugins</groupId>
+                        <artifactId>omni-coveragereporter-maven-plugin</artifactId>
+                        <version>${omni-coveragereporter-maven-plugin.version}</version>
+                        <configuration>
+                            <useCoverallsCount>false</useCoverallsCount>
+                            <extraSourceFolders>
+                                <param>${project.basedir}/bl-bridge-server/bl-bridge-humidity-mqtt</param>
+                                <param>${project.basedir}/bl-bridge-server/bl-bridge-temperature-coap</param>
+                                <param>${project.basedir}/bl-simulation-data</param>
+                                <param>${project.basedir}/bl-demo-server</param>
+                                <param>${project.basedir}</param>
+                            </extraSourceFolders>
+                            <extraReportFolders>
+                                <param>${project.basedir}/bl-bridge-server/bl-bridge-humidity-mqtt/coverage</param>
+                                <param>${project.basedir}/bl-bridge-server/bl-bridge-temperature-coap/coverage</param>
+                                <param>${project.basedir}</param>
+                            </extraReportFolders>
+                            <reportRejectList>
+                                <param>lcov.info</param>
+                            </reportRejectList>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
     <packaging>pom</packaging>
     <name>Bridge Logistics Parent</name>
 
@@ -122,7 +186,7 @@
         <play-json_2.12.version>2.9.2</play-json_2.12.version>
         <config.version>1.4.1</config.version>
         <jnr-posix.version>3.1.15</jnr-posix.version>
-        <omni-coveragereporter-maven-plugin.version>0.1.1</omni-coveragereporter-maven-plugin.version>
+        <omni-coveragereporter-maven-plugin.version>0.1.3</omni-coveragereporter-maven-plugin.version>
     </properties>
 
     <dependencyManagement>
