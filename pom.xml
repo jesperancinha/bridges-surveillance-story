@@ -153,7 +153,7 @@
         <javaee-api.version>8.0.1</javaee-api.version>
         <slf4j-api.version>1.7.35</slf4j-api.version>
 
-        <postgresql.version>42.3.1</postgresql.version>
+        <postgresql.version>42.3.2</postgresql.version>
 
         <kotest.version>4.4.0</kotest.version>
         <kotest.version>5.1.0</kotest.version>
@@ -184,7 +184,7 @@
         <spark-cassandra-connector_2.12.version>3.1.0</spark-cassandra-connector_2.12.version>
         <joda-time.version>2.10.13</joda-time.version>
         <play-json_2.12.version>2.9.2</play-json_2.12.version>
-        <config.version>1.4.1</config.version>
+        <config.version>1.4.2</config.version>
         <jnr-posix.version>3.1.15</jnr-posix.version>
         <omni-coveragereporter-maven-plugin.version>0.1.5</omni-coveragereporter-maven-plugin.version>
     </properties>
