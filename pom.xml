@@ -153,7 +153,7 @@
         <javaee-api.version>8.0.1</javaee-api.version>
         <slf4j-api.version>1.7.35</slf4j-api.version>
 
-        <postgresql.version>42.3.1</postgresql.version>
+        <postgresql.version>42.3.2</postgresql.version>
 
         <kotest.version>4.4.0</kotest.version>
         <kotest.version>5.1.0</kotest.version>
