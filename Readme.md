@@ -2,7 +2,7 @@
 
 ---
 
-[![Generic badge](https://img.shields.io/static/v1.svg?label=GitLab&message=Bridge%20Management%20Logistics🌉&color=informational)](https://gitlab.com/jesperancinha/bridge-logistics)
+[![Generic badge](https://img.shields.io/static/v1.svg?label=GitLab&message=Bridge%20Management%20Logistics%20🌉&color=informational)](https://gitlab.com/jesperancinha/bridge-logistics)
 
 [![Gitlab pipeline status (branch)](https://img.shields.io/gitlab/pipeline/jesperancinha/bridge-logistics/master)](https://gitlab.com/jesperancinha/bridge-logistics/pipelines)
 
