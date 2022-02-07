@@ -217,12 +217,6 @@ Follow the updates on the [ReviewLogs](./ReviewLogs.md) file.
 
 I hope you enjoyed the article and that you were able to start this demo.	I try my best to make these demos run as smoothly as possible. This is why I actually invite you to open an issue on this repo, should you run into difficulties running this demo, playing the game or even if you just have some suggestions for improvement.	Note that while a version is ongoing as of now with 2.0.0., there are constant changes until an official tagged release.
 
-## Buy me a coffee
-
-I hope you enjoyed this repository. If you did please buy me a coffee which enables me to constantly improve and make new free content regularly for everyone. Thank you so much!
-
-<a href="https://www.buymeacoffee.com/jesperancinha"><img height="50px" src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=jesperancinha&button_colour=046c46&font_colour=ffffff&font_family=Cookie&outline_colour=ffffff&coffee_colour=FFDD00"></a>
-
 ## References
 
 -   [What is Apache Kafka? Why is it so popular? Should you use it?](https://techbeacon.com/app-dev-testing/what-apache-kafka-why-it-so-popular-should-you-use-it)
@@ -285,6 +279,12 @@ I hope you enjoyed this repository. If you did please buy me a coffee which enab
 -   [How to create Docker Images with a Dockerfile](https://www.howtoforge.com/tutorial/how-to-create-docker-images-with-dockerfile/)
 -   [How to create a Docker image for PostgreSQL and persist data](https://www.andreagrandi.it/2015/02/21/how-to-create-a-docker-image-for-postgresql-and-persist-data/)
 -   [Dockerize PostgreSQL](https://docs.docker.com/engine/examples/postgresql_service/)
+
+## Buy me a coffee
+
+I hope you enjoyed this repository. If you did, you can optionally please buy me a coffee, which supports me in constantly improve and make new free content regularly for everyone. Thank you so much!
+
+[![Buy me a coffee](https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20coffee&emoji=&slug=jesperancinha&button_colour=046c46&font_colour=ffffff&font_family=Cookie&outline_colour=ffffff&coffee_colour=FFDD00 "title")](https://www.buymeacoffee.com/jesperancinha)
 
 ## About me 👨🏽‍💻🚀🏳️‍🌈
 
