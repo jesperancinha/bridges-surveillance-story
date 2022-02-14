@@ -1,10 +1,11 @@
 b: build
-coverage:
+coverage-npm:
+	cd bl-bridge-server/bl-bridge-humidity-mqtt && yarn install && jest --coverage
+	cd bl-bridge-server/bl-bridge-temperature-coap && yarn install && jest --coverage
+coverage: coverage-npm
 	mvn clean install jacoco:prepare-agent package jacoco:report
 	coverage run --source=bl-demo-server -m pytest && coverage json -o coverage-demo.json
 	coverage run --source=bl-simulation-data -m pytest && coverage json -o coverage-simulation.json
-	cd bl-bridge-server/bl-bridge-humidity-mqtt && jest --coverage
-	cd bl-bridge-server/bl-bridge-temperature-coap && jest --coverage
 	mvn omni-coveragereporter:report
 build: build-npm
 	cd bl-demo-server && python bl-core-service/launch_generate_people.py
