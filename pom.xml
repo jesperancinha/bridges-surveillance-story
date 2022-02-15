@@ -173,7 +173,7 @@
         <jaxb-api.version>2.3.1</jaxb-api.version>
 
         <h2.version>2.1.210</h2.version>
-        <gson.version>2.8.9</gson.version>
+        <gson.version>2.9.0</gson.version>
         <build-helper-maven-plugin.version>3.3.0</build-helper-maven-plugin.version>
         <testcontainers.version>1.16.3</testcontainers.version>
         <jdbc.version>1.16.3</jdbc.version>
