@@ -19,6 +19,7 @@ variables:
   DOCKER_HOST: "tcp://docker:2375"
   DOCKER_TLS_CERTDIR: ""
   DOCKER_DRIVER: overlay2
+
 image: maven:3-openjdk-16
 
 cache:
