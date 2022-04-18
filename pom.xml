@@ -163,7 +163,7 @@
         <kotest-extensions-spring.version>1.1.0</kotest-extensions-spring.version>
         <mockk.version>1.12.3</mockk.version>
 
-        <lombok.version>1.18.22</lombok.version>
+        <lombok.version>1.18.24</lombok.version>
         <failOnMissingWebXml>false</failOnMissingWebXml>
 
         <arquillian-bom.version>1.5.0.Final</arquillian-bom.version>
