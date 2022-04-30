@@ -130,3 +130,6 @@ venv-install:
 	exit
 demo:
 	python bl-demo-server/launch_demo_server.py
+update:
+	cd bl-bridge-server/bl-bridge-humidity-mqtt && npx browserslist --update-db && ncu -u && yarn
+	cd bl-bridge-server/bl-bridge-temperature-coap && npx browserslist --update-db && ncu -u && yarn
