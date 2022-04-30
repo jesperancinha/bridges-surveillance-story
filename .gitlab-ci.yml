@@ -35,7 +35,7 @@ cache:
 verify:
   <<: *verify
 
-node-bl-bridge-sensors:
+node-bl-bridge-sensors-build:
   image: node:16
   stage: build
   script:
@@ -86,7 +86,7 @@ python-coverage-demo-simulation:
         - coverage-demo.json
         - coverage-simulation.json
 
-node-coverage-coap-mqtt:
+node-bl-bridge-sensors-coverage:
   image: node:16
   stage: coverage
   script:
@@ -99,7 +99,7 @@ node-coverage-coap-mqtt:
     - npm run coverage
   only:
     - master
-  needs: ["node-bl-bridge-sensors"]
+  needs: ["node-bl-bridge-sensors-build"]
   cache:
     - key: COAP_MQTT
       paths:
@@ -151,7 +151,7 @@ reporting:
     - master
   needs:
     - maven-coverage
-    - node-coverage-coap-mqtt
+    - node-bl-bridge-sensors-coverage
     - python-coverage-demo-simulation
 
 
