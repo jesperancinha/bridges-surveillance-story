@@ -20,9 +20,7 @@ public record VehicleMerchandiseDto(
     @Builder
     public VehicleMerchandiseDto {
     }
-
     public VehicleMerchandiseDto() {
         this(null, null, null, null, null, null, null, null);
     }
-
 }
