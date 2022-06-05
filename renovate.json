@@ -1,6 +1,21 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "repositories": ["jesperancinha/bridge-logistics"],
+  "repositories": [
+    "jesperancinha/bridge-logistics"
+  ],
   "platform": "gitlab",
-  "extends": ["docker:disable"]
+  "extends": [
+    "docker:disable"
+  ],
+  "packageRules": [
+    {
+      "matchUpdateTypes": [
+        "minor",
+        "patch",
+        "pin",
+        "digest"
+      ],
+      "automerge": true
+    }
+  ]
 }
