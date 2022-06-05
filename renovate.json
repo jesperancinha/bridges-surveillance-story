@@ -7,6 +7,10 @@
   "extends": [
     "docker:disable"
   ],
+  "lockFileMaintenance": {
+    "enabled": true,
+    "automerge": true
+  },
   "packageRules": [
     {
       "matchUpdateTypes": [
