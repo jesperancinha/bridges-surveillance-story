@@ -163,4 +163,4 @@ update-dependencies:
     - renovate
   only:
     - master
-  needs: ["reporting"]
+  needs: []
