@@ -16,6 +16,11 @@
         "digest"
       ],
       "automerge": true
+    },
+    {
+      "extends": "packages:@angular",
+      "groupName": "Angular packages",
+      "automerge": true
     }
   ]
 }
