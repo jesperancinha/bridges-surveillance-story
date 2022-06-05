@@ -18,8 +18,10 @@
       "automerge": true
     },
     {
-      "extends": "packages:@angular",
-      "groupName": "Angular packages",
+      "groupName": "Angular Group",
+      "matchPackagePrefixes": [
+        "@angular/"
+      ],
       "automerge": true
     }
   ]
