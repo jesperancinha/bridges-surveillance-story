@@ -189,6 +189,7 @@
         <config.version>1.4.2</config.version>
         <jnr-posix.version>3.1.15</jnr-posix.version>
         <omni-coveragereporter-maven-plugin.version>0.3.0</omni-coveragereporter-maven-plugin.version>
+        <kotlinx-coroutines-debug.version>1.6.3</kotlinx-coroutines-debug.version>
     </properties>
 
     <dependencyManagement>
@@ -384,6 +385,20 @@
                 <artifactId>jdbc</artifactId>
                 <version>${jdbc.version}</version>
                 <scope>test</scope>
+            </dependency>
+            <!-- This Dependency is added as a workaround for the following issue -->
+            <!--- https://github.com/Kotlin/kotlinx.coroutines/issues/3334 -->
+            <dependency>
+                <groupId>org.jetbrains.kotlinx</groupId>
+                <artifactId>kotlinx-coroutines-debug</artifactId>
+                <version>${kotlinx-coroutines-debug.version}</version>
+                <scope>test</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.jetbrains.kotlinx</groupId>
+                        <artifactId>kotlinx-coroutines-bom</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
         </dependencies>
     </dependencyManagement>
