@@ -178,7 +178,7 @@
         <testcontainers.version>1.17.3</testcontainers.version>
         <jdbc.version>1.17.3</jdbc.version>
 
-        <maven-assembly-plugin.version>3.4.1</maven-assembly-plugin.version>
+        <maven-assembly-plugin.version>3.4.2</maven-assembly-plugin.version>
         <scala-maven-plugin.version>4.7.0</scala-maven-plugin.version>
         <compiler-bridge_2.12.version>1.7.1</compiler-bridge_2.12.version>
         <spark.version>3.3.0</spark.version>
