@@ -184,7 +184,7 @@
         <spark.version>3.3.0</spark.version>
         <scala-library.version>2.13.8</scala-library.version>
         <spark-cassandra-connector_2.12.version>3.2.0</spark-cassandra-connector_2.12.version>
-        <joda-time.version>2.10.14</joda-time.version>
+        <joda-time.version>2.11.0</joda-time.version>
         <play-json_2.12.version>2.9.2</play-json_2.12.version>
         <config.version>1.4.2</config.version>
         <jnr-posix.version>3.1.15</jnr-posix.version>
