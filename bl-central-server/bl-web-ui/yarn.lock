@@ -133,12 +133,34 @@
     rxjs "6.6.7"
     source-map "0.7.4"
 
+"@angular-devkit/core@14.2.1":
+  version "14.2.1"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-14.2.1.tgz#7ce14efdb5fce687bb4f13bef03d4b67e971b22e"
+  integrity sha512-lW8oNGuJqr4r31FWBjfWQYkSXdiOHBGOThIEtHvUVBKfPF/oVrupLueCUgBPel+NvxENXdo93uPsqHN7bZbmsQ==
+  dependencies:
+    ajv "8.11.0"
+    ajv-formats "2.1.1"
+    jsonc-parser "3.1.0"
+    rxjs "6.6.7"
+    source-map "0.7.4"
+
 "@angular-devkit/schematics@14.1.0":
   version "14.1.0"
   resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-14.1.0.tgz#7db408070701580a85cdc0b77fdab246a3add40c"
   integrity sha512-5QC01k9eznuQSiqxijKhVkAEmA8sioYuLhBzyffaPszSySH8kPMNxhAc8zJhBTNLumbS6iDaGkSqTQl5Kv9fOw==
   dependencies:
     "@angular-devkit/core" "14.1.0"
+    jsonc-parser "3.1.0"
+    magic-string "0.26.2"
+    ora "5.4.1"
+    rxjs "6.6.7"
+
+"@angular-devkit/schematics@14.2.1":
+  version "14.2.1"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-14.2.1.tgz#9d66080e60ab32d1b44c854cabc8f5cbb421d877"
+  integrity sha512-0U18FwDYt4zROBPrvewH6iBTkf2ozVHN4/gxUb9jWrqVw8mPU5AWc/iYxQLHBSinkr2Egjo1H/i9aBqgJSeh3g==
+  dependencies:
+    "@angular-devkit/core" "14.2.1"
     jsonc-parser "3.1.0"
     magic-string "0.26.2"
     ora "5.4.1"
@@ -1864,6 +1886,15 @@
   dependencies:
     "@angular-devkit/core" "14.1.0"
     "@angular-devkit/schematics" "14.1.0"
+    jsonc-parser "3.1.0"
+
+"@schematics/angular@~14.2.0":
+  version "14.2.1"
+  resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-14.2.1.tgz#00f54cb6b30dc1945b6d344ca225c04dcc12f682"
+  integrity sha512-Dchixep/FMETAMuyFchw9Nryi7tfuZQRumzIOtQpv+KaVtfjvcIlES0KuI0U3Qh7tGIYPBmO3Mkt3oojcl2RBA==
+  dependencies:
+    "@angular-devkit/core" "14.2.1"
+    "@angular-devkit/schematics" "14.2.1"
     jsonc-parser "3.1.0"
 
 "@tootallnate/once@2":
@@ -7445,10 +7476,10 @@ typed-assert@^1.0.8:
   resolved "https://registry.yarnpkg.com/typed-assert/-/typed-assert-1.0.8.tgz#4bf9f1ce7f3f974d09c3afd7c68d12e1391a233c"
   integrity sha512-5NkbXZUlmCE73Fs7gvkp1XXJWHYetPkg60QnQ2NXQmBYNFxbBr2zA8GCtaH4K2s2WhOmSlgiSTmrjrcm5tnM5g==
 
-typescript@~4.7.0:
-  version "4.7.2"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.7.2.tgz#1f9aa2ceb9af87cca227813b4310fff0b51593c4"
-  integrity sha512-Mamb1iX2FDUpcTRzltPxgWMKy3fhg0TN378ylbktPGPK/99KbDtMQ4W1hwgsbPAsG3a0xKa1vmw4VKZQbkvz5A==
+typescript@~4.8.0:
+  version "4.8.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.8.2.tgz#e3b33d5ccfb5914e4eeab6699cf208adee3fd790"
+  integrity sha512-C0I1UsrrDHo2fYI5oaCGbSejwX4ch+9Y5jTQELvovfmFkK3HHSZJB8MSJcWLmCUBzQBchCrZ9rMRV6GuNrvGtw==
 
 ua-parser-js@^0.7.30:
   version "0.7.31"
