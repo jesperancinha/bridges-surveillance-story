@@ -184,7 +184,6 @@
         <spark.version>3.3.0</spark.version>
         <scala-library.version>2.13.8</scala-library.version>
         <spark-cassandra-connector_2.12.version>3.2.0</spark-cassandra-connector_2.12.version>
-        <joda-time.version>2.11.0</joda-time.version>
         <play-json_2.12.version>2.9.3</play-json_2.12.version>
         <config.version>1.4.2</config.version>
         <jnr-posix.version>3.1.15</jnr-posix.version>
@@ -225,11 +224,6 @@
                 <groupId>com.typesafe.play</groupId>
                 <artifactId>play-json_2.12</artifactId>
                 <version>${play-json_2.12.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>joda-time</groupId>
-                <artifactId>joda-time</artifactId>
-                <version>${joda-time.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.datastax.spark</groupId>
