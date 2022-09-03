@@ -32,7 +32,7 @@ before_script:
 #  - apt-get update -y
 #  - apt-get upgrade -y
 #  - apt-get install build-essential -y
-#  - bash latest-compose.sh
+  - bash latest-compose.sh
 
 build node-sensors:
   image: node:18
