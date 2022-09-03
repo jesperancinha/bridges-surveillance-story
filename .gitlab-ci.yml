@@ -29,10 +29,10 @@ cache:
 
 before_script:
   - cat /etc/*-release
-  - apt-get update -y
-  - apt-get upgrade -y
-  - apt-get install build-essential -y
-  - bash latest-compose.sh
+#  - apt-get update -y
+#  - apt-get upgrade -y
+#  - apt-get install build-essential -y
+#  - bash latest-compose.sh
 
 build node-sensors:
   image: node:18
@@ -48,7 +48,7 @@ build node-sensors:
     - schedules
 
 build maven:
-  image: maven:3.8-openjdk-17-slim
+  image: openjdk:19-alpine
   stage: build
   cache:
     - key: MAVEN
@@ -80,7 +80,7 @@ qa node-sensors:
     - build node-sensors
 
 qa maven:
-  image: maven:3.8-openjdk-17-slim
+  image: openjdk:19-alpine
   stage: qa
   cache:
     - key: MAVEN
@@ -99,7 +99,7 @@ qa maven:
     - qa maven
 
 coverage python:
-  image: maven:3.8-openjdk-17-slim
+  image: openjdk:19-alpine
   stage: coverage
   script:
     - apt update -y
@@ -136,7 +136,7 @@ coverage node-sensors:
     - schedules
 
 coverage maven:
-  image: maven:3.8-openjdk-17-slim
+  image: openjdk:19-alpine
   stage: coverage
   cache:
     - key: MAVEN
@@ -157,7 +157,7 @@ coverage maven:
     - schedules
 
 reporting:
-  image: maven:3.8-openjdk-17-slim
+  image: openjdk:19-alpine
   stage: 'reporting'
   cache:
     - key: MAVEN
