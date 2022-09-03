@@ -1,0 +1,43 @@
+version: "3.7"
+
+services:
+
+  bl_central_server:
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+
+  bl_central_kafka_server:
+    ports:
+      - "9092:9092"
+      - "9093:9093"
+
+  bl_train_01_rabbitmq_server:
+    ports:
+      - "15673:15672"
+      - "5673:5672"
+
+  bl_bridge_01_sensors_server:
+    ports:
+      - "5683:5683/udp"
+
+  bl_bridge_01_mosquitto_server:
+    ports:
+      - "1883:1883"
+
+  bl_bridge_01_rabbitmq_server:
+    ports:
+      - "5674:5672"
+      - "15674:15672"
+
+  bl_central_psql:
+    ports:
+      - "5432:5432"
+
+  bl_central_server_apps:
+    ports:
+      - "9000:9000"
+
+  bl_central_cassandra:
+    ports:
+      - "9042:9042"

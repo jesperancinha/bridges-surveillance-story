@@ -103,6 +103,8 @@ docker-cleanup: docker-delete
 	docker rmi bridge-logistics_bl_central_server
 	docker rmi bridge-logistics_postgres
 	docker rmi bridge-logistics_bl_central_server_apps
+docker-action:
+	docker-compose -f docker-compose.yml up -d
 docker-delete-apps: stop
 	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_server_apps" | xargs docker rm
 	docker rmi bridge-logistics_bl_central_server_apps
@@ -157,3 +159,18 @@ cypress-firefox-full:
 cypress-edge:
 	cd e2e && make cypress-edge
 local-pipeline: build-maven build-npm test-maven test-node coverage report
+bl-wait:
+	bash bl_wait.sh
+dcd:
+	docker-compose down --remove-orphans
+	docker-compose rm -fsva
+	docker volume ls -qf dangling=true | xargs -I {} docker volume rm  {}
+dcp:
+	docker-compose stop
+dcup: dcd docker-clean docker bl-wait
+dcup-full-action: dcd docker-clean no-test build-npm docker bl-wait
+dcup-action: dcp docker-action bl-wait
+dcup-light: dcd
+	docker-compose up -d bl_central_psql
+create-demo-data:
+	cd bl-simulation-data && make create-demo-data

@@ -7,9 +7,6 @@ services:
     container_name: bl_central_server
     build:
       context: bl-central-server/bl-central-streaming/.
-    ports:
-      - "15672:15672"
-      - "5672:5672"
     deploy:
       resources:
         limits:
@@ -22,9 +19,6 @@ services:
     container_name: bl_central_kafka_server
     build:
       context: bl-central-server/kafka/.
-    ports:
-      - "9092:9092"
-      - "9093:9093"
     deploy:
       resources:
         limits:
@@ -37,9 +31,6 @@ services:
     container_name: bl_train_01_rabbitmq_server
     build:
       context: bl-train-server/rabbitmq/.
-    ports:
-      - "15673:15672"
-      - "5673:5672"
     deploy:
       resources:
         limits:
@@ -52,8 +43,6 @@ services:
     container_name: bl_bridge_01_sensors_server
     build:
       context: bl-bridge-server/.
-    ports:
-      - "5683:5683/udp"
     deploy:
       resources:
         limits:
@@ -65,8 +54,6 @@ services:
     container_name: bl_bridge_01_mosquitto_server
     build:
       context: bl-bridge-server/mosquitto/.
-    ports:
-      - "1883:1883"
     deploy:
       resources:
         limits:
@@ -78,9 +65,6 @@ services:
     container_name: bl_bridge_01_rabbitmq_server
     build:
       context: bl-bridge-server/rabbitmq/.
-    ports:
-      - "5674:5672"
-      - "15674:15672"
     deploy:
       resources:
         limits:
@@ -97,8 +81,6 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=admin
       - POSTGRES_MULTIPLE_DATABASES=bllogistics
-    ports:
-      - "5432:5432"
     deploy:
       resources:
         limits:
@@ -109,8 +91,6 @@ services:
     container_name: bl_central_server_apps
     build:
       context: bl-central-server/.
-    ports:
-      - "9000:9000"
     depends_on:
       - bl_central_psql
       - bl_central_server
@@ -127,8 +107,6 @@ services:
     container_name: bl_central_cassandra
     build:
       context: bl-central-server/bl-central-cassandra/.
-    ports:
-      - "9042:9042"
     environment:
       - "MAX_HEAP_SIZE=64M"
       - "HEAP_NEWSIZE=64M"

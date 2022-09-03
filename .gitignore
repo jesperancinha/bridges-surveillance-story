@@ -47,3 +47,7 @@ bin
 # Draw.IO
 *.bkp
 *.dtmp
+
+# Generated files
+bl-simulation-data/passengers/first-names.txt
+bl-simulation-data/passengers/last-names.txt
