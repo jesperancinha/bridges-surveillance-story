@@ -32,6 +32,7 @@ before_script:
 #  - apt-get update -y
 #  - apt-get upgrade -y
 #  - apt-get install build-essential -y
+  - dnf group install "C Development Tools and Libraries" "Development Tools" -y
   - bash latest-compose.sh
 
 build node-sensors:
