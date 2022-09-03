@@ -68,6 +68,7 @@ qa node-sensors:
   image: node:18
   stage: qa
   script:
+    - yarn global add jest
     - make build-npm
   cache:
     - key: NODE_CACHE
@@ -122,6 +123,7 @@ coverage node-sensors:
   image: node:18
   stage: coverage
   script:
+    - yarn global add jest
     - make coverage-npm
   only:
     - master
