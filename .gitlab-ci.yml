@@ -91,7 +91,7 @@ qa maven:
   needs:
     - qa maven
 
-coverage-python:
+coverage python:
   image: maven:3.8-openjdk-17-slim
   stage: coverage
   script:
