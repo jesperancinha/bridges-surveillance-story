@@ -113,7 +113,6 @@ coverage python:
   cache:
     - key: PYTHON_CACHE
       paths:
-        - 
         - coverage-demo.json
         - coverage-simulation.json
   except:
