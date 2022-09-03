@@ -29,10 +29,10 @@ cache:
 
 before_script:
   - cat /etc/*-release
-  - apt-get update -y
-  - apt-get upgrade -y
-  - apt-get install build-essential -y
-  - bash latest-compose.sh
+#  - apt-get update -y
+#  - apt-get upgrade -y
+#  - apt-get install build-essential -y
+#  - bash latest-compose.sh
 
 build node-sensors:
   image: node:18
