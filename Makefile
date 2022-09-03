@@ -8,7 +8,6 @@ coverage-python:
 coverage-maven:
 	mvn clean install jacoco:prepare-agent package jacoco:report
 coverage: coverage-npm coverage-python coverage-maven
-	mvn omni-coveragereporter:report
 build-npm:
 	cd bl-bridge-server/bl-bridge-temperature-coap && yarn && npm run build
 	cd bl-bridge-server/bl-bridge-humidity-mqtt && yarn && npm run build

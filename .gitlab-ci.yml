@@ -11,8 +11,8 @@ stages:
   - update
 
 variables:
-  MAVEN_OPTS: "-Dhttps.protocols=TLSv1.2 -Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=WARN -Dorg.slf4j.simpleLogger.showDateTime=true -Djava.awt.headless=true"
-  MAVEN_CLI_OPTS: "--batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true"
+  MAVEN_CACHE_OPTS: "-Dhttps.protocols=TLSv1.2 -Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=WARN -Dorg.slf4j.simpleLogger.showDateTime=true -Djava.awt.headless=true"
+  MAVEN_CACHE_CLI_OPTS: "--batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true"
   CODECOV_TOKEN: $CODECOV_TOKEN
   COVERALLS_REPO_TOKEN: $COVERALLS_REPO_TOKEN
   CODACY_PROJECT_TOKEN: $CODACY_PROJECT_TOKEN
@@ -40,7 +40,7 @@ build node-sensors:
   script:
     - make build-npm
   cache:
-    - key: COAP_MQTT
+    - key: NODE_CACHE
       paths:
        - bl-bridge-server/bl-bridge-temperature-coap/coverage
        - bl-bridge-server/bl-bridge-humidity-mqtt/coverage
@@ -51,7 +51,7 @@ build maven:
   image: openjdk:19-alpine
   stage: build
   cache:
-    - key: MAVEN
+    - key: MAVEN_CACHE
       paths:
        - bl-central-server/bl-domain-repository/target
        - bl-central-server/bl-merchandise-data-collector/target
@@ -70,7 +70,7 @@ qa node-sensors:
   script:
     - make build-npm
   cache:
-    - key: COAP_MQTT
+    - key: NODE_CACHE
       paths:
         - bl-bridge-server/bl-bridge-temperature-coap/coverage
         - bl-bridge-server/bl-bridge-humidity-mqtt/coverage
@@ -83,7 +83,7 @@ qa maven:
   image: openjdk:19-alpine
   stage: qa
   cache:
-    - key: MAVEN
+    - key: MAVEN_CACHE
       paths:
         - bl-central-server/bl-domain-repository/target
         - bl-central-server/bl-merchandise-data-collector/target
@@ -111,8 +111,9 @@ coverage python:
     - master
   needs: []
   cache:
-    - key: DEMO_SIMULATION
+    - key: PYTHON_CACHE
       paths:
+        - 
         - coverage-demo.json
         - coverage-simulation.json
   except:
@@ -128,7 +129,7 @@ coverage node-sensors:
   needs:
     - qa node-sensors
   cache:
-    - key: COAP_MQTT
+    - key: NODE_CACHE
       paths:
        - bl-bridge-server/bl-bridge-temperature-coap/coverage
        - bl-bridge-server/bl-bridge-humidity-mqtt/coverage
@@ -139,7 +140,7 @@ coverage maven:
   image: openjdk:19-alpine
   stage: coverage
   cache:
-    - key: MAVEN
+    - key: MAVEN_CACHE
       paths:
        - bl-central-server/bl-domain-repository/target
        - bl-central-server/bl-merchandise-data-collector/target
@@ -160,7 +161,7 @@ reporting:
   image: openjdk:19-alpine
   stage: 'reporting'
   cache:
-    - key: MAVEN
+    - key: MAVEN_CACHE
       paths:
        - bl-central-server/bl-domain-repository/target
        - bl-central-server/bl-merchandise-data-collector/target
@@ -168,11 +169,11 @@ reporting:
        - bl-central-server/bl-passengers-readings-service/target
        - bl-central-server/bl-sensor-data-collector/target
        - bl-central-server/bl-web-app/target
-    - key: COAP_MQTT
+    - key: NODE_CACHE
       paths:
        - bl-bridge-server/bl-bridge-temperature-coap/coverage
        - bl-bridge-server/bl-bridge-humidity-mqtt/coverage
-    - key: DEMO_SIMULATION
+    - key: PYTHON_CACHE
       paths:
        - coverage-demo.json
        - coverage-simulation.json

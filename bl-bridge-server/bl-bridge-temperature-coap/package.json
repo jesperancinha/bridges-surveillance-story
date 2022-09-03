@@ -4,9 +4,10 @@
   "description": "Humidity sensor emitter",
   "main": "index.js",
   "scripts": {
+    "prepare": "tsc",
     "build": "tsc",
     "start": "tsc && node dist/app.js",
-    "test": "test",
+    "test": "jest",
     "coverage": "jest --coverage"
   },
   "repository": {
@@ -20,19 +21,19 @@
   },
   "homepage": "https://github.com/jesperancinha/bridge-logistics#readme",
   "dependencies": {
-    "@types/node": "^18.0.0",
-    "coap": "^1.0.11",
-    "express": "^4.18.1",
-    "kafka-node": "^5.0.0",
-    "node-cron": "^3.0.0",
-    "ts-loader": "^9.3.0",
-    "typescript": "^4.7.3"
+    "@types/node": "18.7.14",
+    "coap": "1.0.11",
+    "express": "4.18.1",
+    "kafka-node": "5.0.0",
+    "node-cron": "3.0.2",
+    "ts-loader": "9.3.1",
+    "typescript": "4.8.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.18.2",
-    "@babel/preset-env": "^7.18.2",
-    "@testing-library/jest-dom": "^5.16.4",
-    "jest": "^29.0.0",
-    "jest-environment-jsdom": "^29.0.0"
+    "@babel/core": "^7.18.13",
+    "@babel/preset-env": "^7.18.10",
+    "@testing-library/jest-dom": "^5.16.5",
+    "jest": "^29.0.2",
+    "jest-environment-jsdom": "^29.0.2"
   }
 }
