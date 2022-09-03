@@ -122,7 +122,7 @@ coverage node-sensors:
   image: node:18
   stage: coverage
   script:
-    - make coverage-node
+    - make coverage-npm
   only:
     - master
   needs:
