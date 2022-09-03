@@ -21,7 +21,7 @@ variables:
   DOCKER_TLS_CERTDIR: ""
   DOCKER_DRIVER: overlay2
 
-image: maven:3-openjdk-18
+image: maven:3-openjdk-18-slim
 
 cache:
   paths:
@@ -29,10 +29,9 @@ cache:
 
 before_script:
   - cat /etc/*-release
-#  - apt-get update -y
-#  - apt-get upgrade -y
-#  - apt-get install build-essential -y
-  - dnf group install "C Development Tools and Libraries" "Development Tools" -y
+  - apt-get update -y
+  - apt-get upgrade -y
+  - apt-get install build-essential -y
   - bash latest-compose.sh
 
 build node-sensors:
@@ -49,7 +48,7 @@ build node-sensors:
     - schedules
 
 build maven:
-  image: maven:3-openjdk-18
+  image: maven:3-openjdk-18-slim
   stage: build
   cache:
     - key: MAVEN_CACHE
@@ -81,7 +80,7 @@ qa node-sensors:
     - build node-sensors
 
 qa maven:
-  image: maven:3-openjdk-18
+  image: maven:3-openjdk-18-slim
   stage: qa
   cache:
     - key: MAVEN_CACHE
@@ -100,7 +99,7 @@ qa maven:
     - qa maven
 
 coverage python:
-  image: maven:3-openjdk-18
+  image: maven:3-openjdk-18-slim
   stage: coverage
   script:
     - apt update -y
@@ -137,7 +136,7 @@ coverage node-sensors:
     - schedules
 
 coverage maven:
-  image: maven:3-openjdk-18
+  image: maven:3-openjdk-18-slim
   stage: coverage
   cache:
     - key: MAVEN_CACHE
@@ -158,7 +157,7 @@ coverage maven:
     - schedules
 
 reporting:
-  image: maven:3-openjdk-18
+  image: maven:3-openjdk-18-slim
   stage: 'reporting'
   cache:
     - key: MAVEN_CACHE
