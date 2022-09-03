@@ -1,9 +1,9 @@
-import coap from "coap"
+const coap = require("coap");
 
-import {produce} from "./kafkaProducer"
+import {produce} from "./kafkaProducer";
 
-console.log(process.argv)
-let server = coap.createServer()
+console.log(process.argv);
+let server = coap.createServer();
 let strings = process.argv.slice(2);
 let host = strings.length > 0 ? strings[0] : 'localhost'
 console.log(host)

@@ -11,6 +11,13 @@ from generate_people import generate_storyline_passengers
 def generate_all_passengers(number_of_passengers):
     return generate_storyline_passengers(number_of_passengers)
 
+
+def get_all_passengers():
+    f = open('./../bl-simulation-data/passengers/passengers.json')
+    data = json.load(f)
+    return data
+
+
 if __name__ == '__main__':
     passengers = generate_storyline_passengers(10)
     with open('./../bl-simulation-data/passengers/passengers.json', 'w') as file:

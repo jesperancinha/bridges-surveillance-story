@@ -30,7 +30,5 @@ checkServiceByNameAndMessage bl_bridge_01_mosquitto_server 'mosquitto version 2.
 checkServiceByNameAndMessage bl_central_kafka_server 'started (kafka.server.KafkaServer)'
 checkServiceByNameAndMessage bl_train_01_rabbitmq_server 'Setting permissions for user "test" in vhost "bl_train_01_sensor_vh"'
 checkServiceByNameAndMessage bl_bridge_01_rabbitmq_server 'Setting permissions for user "test" in vhost "bl_bridge_01_sensor_vh"'
-
-#TODO:
-#bl_bridge_01_sensors_server
-#bl_central_server_apps
+checkServiceByNameAndMessage bl_central_server_apps 'update bridge_opening_times set closing_time=?, opening_time=? where id=?'
+checkServiceByNameAndMessage bl_bridge_01_sensors_server 'Starting to Listen to MQTT '

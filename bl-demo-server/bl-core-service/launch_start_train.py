@@ -22,7 +22,7 @@ sys.path.insert(6, os.path.abspath('bl-demo-server/bl-bridge-services'))
 from send_train_timestamp import send_signal as send_train_signal
 from send_bridge_timestamp import send_signal as send_bridge_signal
 from send_merchandise import send_merchandise as send_train_merchandise
-from launch_generate_people import generate_all_passengers
+from launch_generate_people import get_all_passengers
 from send_people_readings import send_people
 
 
@@ -187,7 +187,7 @@ def start_train(host):
     print("🚂 leaves " + str(origin))
     print("🚂 goes to " + str(station))
 
-    passengers = generate_all_passengers(10)
+    passengers = get_all_passengers()
 
     print("🚂 carries passengers " + str(passengers))
 

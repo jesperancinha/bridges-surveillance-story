@@ -161,6 +161,9 @@ cypress-edge:
 local-pipeline: build-maven build-npm test-maven test-node coverage report
 bl-wait:
 	bash bl_wait.sh
+create-demo-data:
+	cd bl-simulation-data && make create-demo-data
+	cd bl-demo-server && make create-demo-data
 dcd:
 	docker-compose down --remove-orphans
 	docker-compose rm -fsva
@@ -168,9 +171,7 @@ dcd:
 dcp:
 	docker-compose stop
 dcup: dcd docker-clean docker bl-wait
-dcup-full-action: dcd docker-clean no-test build-npm docker bl-wait
+dcup-full-action: dcd docker-clean create-demo-data build-maven build-npm docker bl-wait
 dcup-action: dcp docker-action bl-wait
 dcup-light: dcd
 	docker-compose up -d bl_central_psql
-create-demo-data:
-	cd bl-simulation-data && make create-demo-data
