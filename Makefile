@@ -1,28 +1,30 @@
 b: build
 coverage-npm:
-	cd bl-bridge-server/bl-bridge-humidity-mqtt && yarn install && jest --coverage
-	cd bl-bridge-server/bl-bridge-temperature-coap && yarn install && jest --coverage
-coverage: coverage-npm
-	mvn clean install jacoco:prepare-agent package jacoco:report
+	cd bl-bridge-server/bl-bridge-humidity-mqtt && yarn && jest --coverage
+	cd bl-bridge-server/bl-bridge-temperature-coap && yarn && jest --coverage
+coverage-python:
 	coverage run --source=bl-demo-server -m pytest && coverage json -o coverage-demo.json
 	coverage run --source=bl-simulation-data -m pytest && coverage json -o coverage-simulation.json
+coverage-maven:
+	mvn clean install jacoco:prepare-agent package jacoco:report
+coverage: coverage-npm coverage-python coverage-maven
 	mvn omni-coveragereporter:report
-build: build-npm
-	cd bl-demo-server && python bl-core-service/launch_generate_people.py
-	mvn clean install -Pdemo -DskipTests
 build-npm:
-	cd bl-bridge-server/bl-bridge-temperature-coap && yarn install && npm run build
-	cd bl-bridge-server/bl-bridge-humidity-mqtt && yarn install && npm run build
+	cd bl-bridge-server/bl-bridge-temperature-coap && yarn && npm run build
+	cd bl-bridge-server/bl-bridge-humidity-mqtt && yarn && npm run build
 build-maven:
 	mvn clean install -Pdemo -DskipTests
-test:
-	mvn test
-	cd bl-bridge-server/bl-bridge-temperature-coap && npm run test
-	cd bl-bridge-server/bl-bridge-humidity-mqtt && npm run test
+build-python:
+	cd bl-demo-server && python bl-core-service/launch_generate_people.py
+build: build-npm build-python build-maven
 test-maven:
 	mvn test
 local: no-test
 	mkdir -p bin
+test-node:
+	cd bl-bridge-server/bl-bridge-temperature-coap && npm run test
+	cd bl-bridge-server/bl-bridge-humidity-mqtt && npm run test
+test: test-maven test-node
 no-test:
 	mvn clean install -DskipTests
 docker-clean:
@@ -136,3 +138,23 @@ update:
 npm-test:
 	cd bl-bridge-server/bl-bridge-humidity-mqtt && npm run coverage
 	cd bl-bridge-server/bl-bridge-temperature-coap && npm run coverage
+report:
+	mvn omni-coveragereporter:report
+cypress-install:
+	npm i -g cypress
+	cd e2e && make build
+cypress-open:
+	cd e2e && make cypress-open
+cypress-open-docker:
+	cd e2e && make cypress-open-docker
+cypress-electron:
+	cd e2e && make cypress-electron
+cypress-chrome:
+	cd e2e && make cypress-chrome
+cypress-firefox:
+	cd e2e && make cypress-firefox
+cypress-firefox-full:
+	cd e2e && make cypress-firefox-full
+cypress-edge:
+	cd e2e && make cypress-edge
+local-pipeline: build-maven build-npm test-maven test-node coverage report

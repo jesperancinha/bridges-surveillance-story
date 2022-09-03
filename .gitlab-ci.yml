@@ -2,6 +2,8 @@ services:
   - docker:dind
 stages:
   - build
+  - qa
+  - e2e
   - coverage
   - reporting
   - test
@@ -25,17 +27,11 @@ cache:
   paths:
     - .m2/repository/
 
-node-bl-bridge-sensors-build:
-  image: node:16
+build node-sensors:
+  image: node:18
   stage: build
   script:
-    - apt update -y
-    - apt install npm -y
-    - cd bl-bridge-server/bl-bridge-temperature-coap
-    - yarn install
-    - cd ../..
-    - cd bl-bridge-server/bl-bridge-humidity-mqtt
-    - yarn install
+    - make build-npm
   cache:
     - key: COAP_MQTT
       paths:
@@ -44,7 +40,7 @@ node-bl-bridge-sensors-build:
   except:
     - schedules
 
-maven-build:
+build maven:
   image: maven:3.8-openjdk-17-slim
   stage: build
   cache:
@@ -57,11 +53,45 @@ maven-build:
        - bl-central-server/bl-sensor-data-collector/target
        - bl-central-server/bl-web-app/target
   script:
-    - mvn clean install
+    - make build-maven
   except:
     - schedules
 
-python-coverage-demo-simulation:
+qa node-sensors:
+  image: node:18
+  stage: qa
+  script:
+    - make build-npm
+  cache:
+    - key: COAP_MQTT
+      paths:
+        - bl-bridge-server/bl-bridge-temperature-coap/coverage
+        - bl-bridge-server/bl-bridge-humidity-mqtt/coverage
+  except:
+    - schedules
+  needs:
+    - build node-sensors
+
+qa maven:
+  image: maven:3.8-openjdk-17-slim
+  stage: qa
+  cache:
+    - key: MAVEN
+      paths:
+        - bl-central-server/bl-domain-repository/target
+        - bl-central-server/bl-merchandise-data-collector/target
+        - bl-central-server/bl-meters-readings-service/target
+        - bl-central-server/bl-passengers-readings-service/target
+        - bl-central-server/bl-sensor-data-collector/target
+        - bl-central-server/bl-web-app/target
+  script:
+    - make no-test
+  except:
+    - schedules
+  needs:
+    - qa maven
+
+coverage-python:
   image: maven:3.8-openjdk-17-slim
   stage: coverage
   script:
@@ -69,8 +99,7 @@ python-coverage-demo-simulation:
     - apt install python3-pip -y
     - pip3 install coverage
     - pip3 install pytest
-    - coverage run --source=bl-demo-server -m pytest && coverage json -o coverage-demo.json
-    - coverage run --source=bl-simulation-data -m pytest && coverage json -o coverage-simulation.json
+    - make coverage-python
   only:
     - master
   needs: []
@@ -82,20 +111,15 @@ python-coverage-demo-simulation:
   except:
     - schedules
 
-node-bl-bridge-sensors-coverage:
-  image: node:16
+coverage node-sensors:
+  image: node:18
   stage: coverage
   script:
-    - cd bl-bridge-server/bl-bridge-temperature-coap
-    - yarn add jest
-    - npm run coverage
-    - cd ../..
-    - cd bl-bridge-server/bl-bridge-humidity-mqtt
-    - yarn add jest
-    - npm run coverage
+    - make coverage-node
   only:
     - master
-  needs: ["node-bl-bridge-sensors-build"]
+  needs:
+    - qa node-sensors
   cache:
     - key: COAP_MQTT
       paths:
@@ -104,7 +128,7 @@ node-bl-bridge-sensors-coverage:
   except:
     - schedules
 
-maven-coverage:
+coverage maven:
   image: maven:3.8-openjdk-17-slim
   stage: coverage
   cache:
@@ -117,11 +141,11 @@ maven-coverage:
        - bl-central-server/bl-sensor-data-collector/target
        - bl-central-server/bl-web-app/target
   script:
-    - mvn jacoco:prepare-agent package jacoco:report
+    - make coverage-maven
   only:
     - master
   needs:
-    - maven-build
+    - qa maven
   except:
     - schedules
 
@@ -146,13 +170,13 @@ reporting:
        - coverage-demo.json
        - coverage-simulation.json
   script:
-    - mvn omni-coveragereporter:report
+    - make report
   only:
     - master
   needs:
-    - maven-coverage
-    - node-bl-bridge-sensors-coverage
-    - python-coverage-demo-simulation
+    - coverage maven
+    - coverage node-sensors
+    - coverage python
   except:
     - schedules
 

@@ -13,9 +13,6 @@ activemq-data
 node_modules
 dist
 
-## MACOS
-.DS_Store
-
 ## Python builds
 *.pyc
 
@@ -30,3 +27,23 @@ out
 .coverage
 coverage*.json
 coverage
+
+# MacOS
+.DS_store
+.DS_Store
+
+# Logs
+logs
+
+# Cypress
+videos
+screenshots
+
+# VSCode
+bin
+.VSCode
+.vscode
+
+# Draw.IO
+*.bkp
+*.dtmp

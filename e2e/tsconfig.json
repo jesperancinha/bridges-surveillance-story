@@ -1,0 +1,6 @@
+{
+  "compilerOptions": {
+    "baseUrl": "http://localhost:8080"
+  },
+  "include": ["**/*.ts"]
+}
