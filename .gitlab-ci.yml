@@ -27,6 +27,13 @@ cache:
   paths:
     - .m2/repository/
 
+before_script:
+  - cat /etc/*-release
+  - apt-get update -y
+  - apt-get upgrade -y
+  - apt-get install build-essential -y
+  - bash latest-compose.sh
+
 build node-sensors:
   image: node:18
   stage: build
@@ -85,7 +92,7 @@ qa maven:
         - bl-central-server/bl-sensor-data-collector/target
         - bl-central-server/bl-web-app/target
   script:
-    - make no-test
+    - make test-maven
   except:
     - schedules
   needs:
