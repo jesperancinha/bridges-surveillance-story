@@ -4,7 +4,6 @@ stages:
   - build
   - coverage
   - reporting
-  - verify
   - test
   - docker-compose
   - update
@@ -25,15 +24,6 @@ image: maven:3-openjdk-16
 cache:
   paths:
     - .m2/repository/
-
-.verify: &verify
-  stage: test
-  script:
-    - 'mvn $MAVEN_CLI_OPTS verify'
-  except:
-    - master
-verify:
-  <<: *verify
 
 node-bl-bridge-sensors-build:
   image: node:16
@@ -176,3 +166,5 @@ update-dependencies:
   only:
     - schedules
   needs: []
+  timeout: 10m
+
