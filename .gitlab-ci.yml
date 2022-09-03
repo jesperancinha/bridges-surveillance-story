@@ -21,7 +21,7 @@ variables:
   DOCKER_TLS_CERTDIR: ""
   DOCKER_DRIVER: overlay2
 
-image: maven:3-openjdk-16
+image: maven:3-openjdk-18
 
 cache:
   paths:
@@ -48,7 +48,7 @@ build node-sensors:
     - schedules
 
 build maven:
-  image: openjdk:19-alpine
+  image: maven:3-openjdk-18
   stage: build
   cache:
     - key: MAVEN_CACHE
@@ -80,7 +80,7 @@ qa node-sensors:
     - build node-sensors
 
 qa maven:
-  image: openjdk:19-alpine
+  image: maven:3-openjdk-18
   stage: qa
   cache:
     - key: MAVEN_CACHE
@@ -99,7 +99,7 @@ qa maven:
     - qa maven
 
 coverage python:
-  image: openjdk:19-alpine
+  image: maven:3-openjdk-18
   stage: coverage
   script:
     - apt update -y
@@ -136,7 +136,7 @@ coverage node-sensors:
     - schedules
 
 coverage maven:
-  image: openjdk:19-alpine
+  image: maven:3-openjdk-18
   stage: coverage
   cache:
     - key: MAVEN_CACHE
@@ -157,7 +157,7 @@ coverage maven:
     - schedules
 
 reporting:
-  image: openjdk:19-alpine
+  image: maven:3-openjdk-18
   stage: 'reporting'
   cache:
     - key: MAVEN_CACHE
