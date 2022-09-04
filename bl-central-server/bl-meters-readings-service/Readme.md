@@ -3,7 +3,13 @@
 ## Starting Spark
 
 ```bash
-mvn scala:run -DmainClass=org.jesperancinha.bridgelogistics.readings.ReadingsLauncher
+mvn scala:run -DmainClass=org.jesperancinha.bridgelogistics.readings.MetersReadingsLauncher
+```
+
+## Start Jar
+
+```shell
+java --add-exports=java.base/jdk.internal.ref=ALL-UNNAMED --add-exports=java.base/sun.nio.ch=ALL-UNNAMED -jar target/bl-meters-readings-service-jar-with-dependencies.jar
 ```
 
 ## Installing cassandra

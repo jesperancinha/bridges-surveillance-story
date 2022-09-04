@@ -33,8 +33,8 @@ docker:
 	docker-compose up -d --build --remove-orphans
 docker-restart: stop-jars stop docker
 start-readers: stop-jars
-	java -jar bl-central-server/bl-passengers-readings-service/target/bl-passengers-readings-service-jar-with-dependencies.jar &
-	java -jar bl-central-server/bl-meters-readings-service/target/bl-meters-readings-service-jar-with-dependencies.jar &
+	java --add-exports=java.base/jdk.internal.ref=ALL-UNNAMED --add-exports=java.base/sun.nio.ch=ALL-UNNAMED -jar bl-central-server/bl-passengers-readings-service/target/bl-passengers-readings-service-jar-with-dependencies.jar &
+	java --add-exports=java.base/jdk.internal.ref=ALL-UNNAMED --add-exports=java.base/sun.nio.ch=ALL-UNNAMED -jar bl-central-server/bl-meters-readings-service/target/bl-meters-readings-service-jar-with-dependencies.jar &
 docker-databases: stop local
 build-images:
 build-docker: stop b
