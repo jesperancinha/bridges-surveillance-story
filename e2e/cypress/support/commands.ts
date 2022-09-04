@@ -35,3 +35,24 @@
 //     }
 //   }
 // }
+
+Cypress.Commands.add('checkCommonCSRabbitMQTableValues', () => {
+    cy.get('table > tbody > tr[class="alt1"] > td').contains("/").should('exist');
+    cy.get('table > tbody > tr[class="alt2"] > td').contains("/").should('exist');
+    cy.get('table > tbody > tr[class="alt1"] > td').contains("bl_bridge_01_sensor_vh").should('exist');
+    cy.get('table > tbody > tr[class="alt2"] > td').contains("bl_bridge_01_sensor_vh").should('exist');
+    cy.get('table > tbody > tr[class="alt1"]').eq(2).find("td").contains("bl_bridge_01_sensor_vh").should('exist');
+    cy.get('table > tbody > tr[class="alt2"] > td').contains("bl_train_01_merchandise_vh").should('exist');
+    cy.get('table > tbody > tr[class="alt1"] > td').contains("bl_train_01_merchandise_vh").should('exist');
+    cy.get('table > tbody > tr[class="alt2"]').eq(3).find('td').contains("bl_train_01_merchandise_vh").should('exist');
+    cy.get('table > tbody > tr[class="alt1"] > td').contains("bl_train_01_sensor_vh").should('exist');
+    cy.get('table > tbody > tr[class="alt2"] > td').contains("bl_train_01_sensor_vh").should('exist');
+    cy.get('table > tbody > tr[class="alt1"]').eq(5).find('td').contains("bl_train_01_sensor_vh").should('exist');
+})
+
+Cypress.Commands.add('checkCommonTrainRabbitMQTableValues', () => {
+    cy.get('table > tbody > tr[class="alt1"] > td').contains("bl_train_01_merchandise_vh").should('exist');
+    cy.get('table > tbody > tr[class="alt2"] > td').contains("bl_train_01_merchandise_vh").should('exist');
+    cy.get('table > tbody > tr[class="alt1"] > td').contains("bl_train_01_sensor_vh").should('exist');
+    cy.get('table > tbody > tr[class="alt2"] > td').contains("bl_train_01_sensor_vh").should('exist');
+})
