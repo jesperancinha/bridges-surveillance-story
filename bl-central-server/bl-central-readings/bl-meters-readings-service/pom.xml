@@ -3,7 +3,7 @@
 
     <parent>
         <groupId>org.jesperancinha.logistics</groupId>
-        <artifactId>bl-central-server</artifactId>
+        <artifactId>bl-central-readings</artifactId>
         <!--suppress MavenPropertyInParent -->
         <version>2.0.0-SNAPSHOT</version>
     </parent>

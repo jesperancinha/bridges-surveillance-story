@@ -33,8 +33,8 @@ docker:
 	docker-compose up -d --build --remove-orphans
 docker-restart: stop-jars stop docker
 start-readers: stop-jars
-	cd bl-central-server/bl-passengers-readings-service && make start-readings
-	cd bl-central-server/bl-meters-readings-service && make start-readings
+	cd bl-central-server/bl-central-readings/bl-passengers-readings-service && make start-readings &
+	cd bl-central-server/bl-central-readings/bl-meters-readings-service && make start-readings &
 docker-databases: stop local
 build-images:
 build-docker: stop b

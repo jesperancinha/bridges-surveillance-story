@@ -33,8 +33,7 @@
         <module>bl-domain-repository</module>
         <module>bl-merchandise-data-collector</module>
         <module>bl-web-app</module>
-        <module>bl-meters-readings-service</module>
-        <module>bl-passengers-readings-service</module>
         <module>bl-sensor-data-collector</module>
+        <module>bl-central-readings</module>
     </modules>
 </project>
