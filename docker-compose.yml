@@ -19,6 +19,10 @@ services:
     depends_on:
       bl_train_01_rabbitmq_server:
         condition: service_healthy
+      bl_bridge_01_rabbitmq_server:
+        condition: service_healthy
+      bl_central_psql:
+        condition: service_healthy
 
   bl_central_kafka_server:
     hostname: bl_central_kafka_server
@@ -31,6 +35,11 @@ services:
           memory: 1000M
         reservations:
           memory: 1000M
+    depends_on:
+      bl_train_01_rabbitmq_server:
+        condition: service_healthy
+      bl_central_psql:
+        condition: service_healthy
 
   bl_train_01_rabbitmq_server:
     hostname: bl_train_01_rabbitmq_server
@@ -80,6 +89,11 @@ services:
           memory: 200M
         reservations:
           memory: 200M
+    healthcheck:
+      test: ["CMD", "curl", "--silent", "http://127.0.0.1:15672"]
+      interval: 5s
+      timeout: 240s
+      retries: 60
 
   bl_central_psql:
     hostname: bl_central_psql

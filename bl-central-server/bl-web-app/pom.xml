@@ -110,6 +110,7 @@
         </profile>
     </profiles>
     <build>
+        <finalName>${artifactId}</finalName>
         <resources>
             <resource>
                 <directory>../../bl-simulation-data</directory>

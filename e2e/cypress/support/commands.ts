@@ -56,3 +56,8 @@ Cypress.Commands.add('checkCommonTrainRabbitMQTableValues', () => {
     cy.get('table > tbody > tr[class="alt1"] > td').contains("bl_train_01_sensor_vh").should('exist');
     cy.get('table > tbody > tr[class="alt2"] > td').contains("bl_train_01_sensor_vh").should('exist');
 })
+
+Cypress.Commands.add('checkCommonBridgeRabbitMQTableValues', () => {
+    cy.get('table > tbody > tr[class="alt1"] > td').contains("bl_bridge_01_sensor_vh").should('exist');
+    cy.get('table > tbody > tr[class="alt2"] > td').contains("bl_bridge_01_sensor_vh").should('exist');
+})
