@@ -45,6 +45,7 @@ object PassengersReadingsLauncher extends App {
   sparkConf.set("spark.cassandra.auth.username", "cassandra")
   sparkConf.set("spark.cassandra.auth.password", "cassandra")
   sparkConf.set("spark.cassandra.connection.timeoutMS", "10000")
+  sparkConf.set("spark.driver.host", "localhost")
   //    val streamingContext = new StreamingContext(sparkConf, Durations.seconds(10))
   //    val sc = new SparkContext("local[*]", "PassengerBridgeLogisticsReader", sparkConf)
   //    val streamingContext = new StreamingContext(sc, Durations.seconds(10))

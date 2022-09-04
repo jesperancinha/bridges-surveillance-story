@@ -164,6 +164,16 @@ bl-wait:
 create-demo-data:
 	cd bl-simulation-data && make create-demo-data
 	cd bl-demo-server && make create-demo-data
+build-kafka:
+	docker-compose stop bl_central_kafka_server
+	docker-compose rm bl_central_kafka_server
+	docker-compose build --no-cache bl_central_kafka_server
+	docker-compose up -d
+build-readers:
+	docker-compose stop bl_readers
+	docker-compose rm bl_readers
+	docker-compose build --no-cache bl_readers
+	docker-compose up -d
 dcd:
 	docker-compose down --remove-orphans
 	docker-compose rm -fsva

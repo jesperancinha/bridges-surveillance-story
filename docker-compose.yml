@@ -24,6 +24,26 @@ services:
       bl_central_psql:
         condition: service_healthy
 
+  bl_readers:
+    hostname: bl_readers
+    container_name: bl_readers
+    build:
+      context: bl-central-server/bl-central-readings/.
+    deploy:
+      resources:
+        limits:
+          memory: 2000M
+        reservations:
+          memory: 2000M
+    healthcheck:
+      test: ["CMD", "curl", "--silent", "http://127.0.0.1:4040"]
+      interval: 5s
+      timeout: 240s
+      retries: 60
+    depends_on:
+      bl_central_kafka_server:
+        condition: service_healthy
+
   bl_central_kafka_server:
     hostname: bl_central_kafka_server
     container_name: bl_central_kafka_server

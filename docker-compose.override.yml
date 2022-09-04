@@ -5,6 +5,11 @@ services:
       - "15672:15672"
       - "5672:5672"
 
+  bl_readers:
+    ports:
+      - "4040:4040"
+      - "4041:4041"
+
   bl_central_kafka_server:
     ports:
       - "9092:9092"

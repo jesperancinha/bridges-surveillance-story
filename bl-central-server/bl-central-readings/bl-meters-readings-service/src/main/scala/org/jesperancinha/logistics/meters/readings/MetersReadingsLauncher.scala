@@ -40,6 +40,7 @@ object MetersReadingsLauncher extends App {
   sparkConf.setMaster("local[*]")
   sparkConf.set("spark.cassandra.connection.host", cassandraHost)
   sparkConf.set("spark.local.dir", "/tmp/spark-temp");
+  sparkConf.set("spark.driver.host", "localhost")
   val streamingContext = new StreamingContext(sparkConf, Durations.seconds(10))
   val sc = streamingContext.sparkContext
 
