@@ -40,6 +40,11 @@ services:
         condition: service_healthy
       bl_central_psql:
         condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "kafka-topics --bootstrap-server 127.0.0.1:9092 --topic PASSENGER --describe"]
+      interval: 2s
+      timeout: 30s
+      retries: 30
 
   bl_train_01_rabbitmq_server:
     hostname: bl_train_01_rabbitmq_server

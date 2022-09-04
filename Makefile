@@ -26,7 +26,7 @@ test-node:
 test: test-maven test-node
 no-test:
 	mvn clean install -DskipTests
-docker-clean:
+docker-clean: docker-delete
 	docker-compose rm -svf
 docker:
 	rm -rf out
@@ -88,8 +88,8 @@ docker-stats-simple:
 docker-delete-idle:
 	docker ps --format '{{.ID}}' -q --filter="name=bl_" | xargs docker rm
 docker-delete: stop
-	docker ps -a --format '{{.ID}}' -q --filter="name=bl_" | xargs docker stop
-	docker ps -a --format '{{.ID}}' -q --filter="name=bl_" | xargs docker rm
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl_" | xargs -I {} docker stop {}
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl_" | xargs -I {} docker rm {}
 docker-cleanup: docker-delete
 	docker images -q | xargs docker rmi
 	docker rmi bridge-logistics_bl_train_01_rabbitmq_server
