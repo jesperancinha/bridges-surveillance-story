@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import json
+from pickle import PUT
 from time import sleep
 
 from aiocoap import *
@@ -16,9 +17,9 @@ async def send_meter(host, data):
     tries = 5
     while not success and tries > 0:
         try:
-            request = Message(code='PUT', payload=dumps, uri="coap://{0}:{1}".format(host, port))
+            request = Message(code=PUT, payload=str.encode(dumps), uri="coap://{0}:{1}".format(host, port))
             response = await context.request(request).response
-            print("🌡 Result" + str.join(" ", response.pretty_print().splitlines()))
+            print("🌡 Result" + str(response.payload))
             success = True
         except Exception as err:
             tries -= 1

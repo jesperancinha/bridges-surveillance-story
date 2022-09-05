@@ -1,3 +1,5 @@
+SHELL=/bin/bash
+
 b: build
 coverage-npm:
 	cd bl-bridge-server/bl-bridge-humidity-mqtt && yarn && jest --coverage
@@ -123,8 +125,9 @@ stop-jars:
 venv-install:
 	pip install virtualenv
 	pip install virtualenvwrapper
-venv:
+venv-login:
 	virtualenv venv --python=python3.7
+	echo "Please run source venv/bin/activate now"
 # Start Python Env - https://www.python.org/downloads/release/python-2718/
 install-python37-macos:
 	brew install python@3.7
@@ -133,9 +136,10 @@ install:
 	pip3 install pika
 	#pip3 install enum
 	pip3 install kafka-python
-	pip3 install coapthon
+	pip3 install aiocoap
 	pip3 install mqtt
 	pip3 install paho-mqtt
+	pip3 install asyncio
 	pip3 install --upgrade pip
 # End Python Env
 end-logs:

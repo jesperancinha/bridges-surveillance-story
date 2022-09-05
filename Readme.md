@@ -205,7 +205,7 @@ pip install requests
 pip install pika
 pip install enum
 pip install kafka
-pip install coapthon
+pip install aiocoap
 pip install mqtt
 pip install paho-mqtt
 exit

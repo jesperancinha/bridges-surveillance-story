@@ -7,6 +7,7 @@ from multiprocessing import Process
 from os import listdir
 from os.path import isfile, join
 from time import sleep
+import asyncio
 
 sys.path.insert(1, os.path.abspath('../bl-bridge-services'))
 sys.path.insert(2, os.path.abspath('bl-bridge-services'))
@@ -20,7 +21,7 @@ def send_bridge_temperature_meter_readings(host, f):
     data = json.load(f)
     data.update({'reading': random.randint(18, 28)})
     data.update({'timeOfReading': int(time.time() * 1000)})
-    send_temperature(host, data)
+    asyncio.run(send_temperature(host, data))
 
 
 def send_bridge_humidity_meter_readings(host, f):
