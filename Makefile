@@ -124,17 +124,27 @@ venv:
 	pip install virtualenv
 	pip install virtualenvwrapper
 	virtualenv venv --python=python2.7
-venv-install:
-	pip install requests
-	pip install pika
-	pip install enum
-	pip install kafka
-	pip install coapthon
-	pip install mqtt
-	pip install paho-mqtt
-	exit
+# Start Python Env - https://www.python.org/downloads/release/python-2718/
+install-python2-macos:
+	brew install python@2.7
+install-python2-macos-1:
+	brew install python@2
+install-python2-macos-2:
+	brew install octave-app/octave-app/python2
+install-python2-macos-3:
+	brew install python
+install:
+	pip3 install requests
+	pip3 install pika
+	#pip3 install enum
+	pip3 install kafka-python
+	pip3 install coapthon
+	pip3 install mqtt
+	pip3 install paho-mqtt
+	pip3 install --upgrade pip
+# End Python Env
 demo:
-	python bl-demo-server/launch_demo_server.py
+	python3 bl-demo-server/launch_demo_server.py
 update:
 	cd bl-bridge-server/bl-bridge-humidity-mqtt && npx browserslist --update-db && ncu -u && yarn
 	cd bl-bridge-server/bl-bridge-temperature-coap && npx browserslist --update-db && ncu -u && yarn
