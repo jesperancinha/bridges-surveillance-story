@@ -3,7 +3,7 @@ services:
   e2e-electron:
     image: "cypress/included:10.7.0"
     working_dir: /e2e
-    command: "--browser electron --config-file tests/cypress.pipeline.config.ts --config defaultCommandTimeout=15000,requestTimeout=15000"
+    command: "--browser electron --config-file cypress.pipeline.config.ts --config defaultCommandTimeout=15000,requestTimeout=15000"
     volumes:
       - ./e2e:/e2e
       - .env:/.env
@@ -14,7 +14,7 @@ services:
   e2e-chrome:
     image: "cypress/included:10.7.0"
     working_dir: /e2e
-    command: "--browser chrome --config-file tests/cypress.pipeline.config.ts --config defaultCommandTimeout=15000,requestTimeout=15000"
+    command: "--browser chrome --config-file cypress.pipeline.config.ts --config defaultCommandTimeout=15000,requestTimeout=15000"
     volumes:
       - ./e2e:/e2e
       - .env:/.env
@@ -25,7 +25,7 @@ services:
   e2e-firefox:
     image: "cypress/included:10.7.0"
     working_dir: /e2e
-    command: "--browser firefox --config-file tests/cypress.pipeline.config.ts --config defaultCommandTimeout=15000,requestTimeout=15000"
+    command: "--browser firefox --config-file cypress.pipeline.config.ts --config defaultCommandTimeout=15000,requestTimeout=15000"
     volumes:
       - ./e2e:/e2e
       - .env:/.env
@@ -47,7 +47,7 @@ services:
   e2e-edge:
     image: "cypress/included:10.7.0"
     working_dir: /e2e
-    command: "--browser edge --config-file tests/cypress.pipeline.config.ts --config defaultCommandTimeout=15000,requestTimeout=15000"
+    command: "--browser edge --config-file cypress.pipeline.config.ts --config defaultCommandTimeout=15000,requestTimeout=15000"
     volumes:
       - ./e2e:/e2e
       - .env:/.env
