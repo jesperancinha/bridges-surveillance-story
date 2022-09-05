@@ -7,6 +7,7 @@ from multiprocessing import Process
 from time import sleep
 
 import requests
+from distlib.compat import raw_input
 
 sys.path.insert(1, os.path.abspath('bl-core-service'))
 sys.path.insert(2, os.path.abspath('../bl-core-service'))

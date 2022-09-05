@@ -140,6 +140,7 @@ install:
 	pip3 install mqtt
 	pip3 install paho-mqtt
 	pip3 install asyncio
+	pip3 install distlib
 	pip3 install --upgrade pip
 # End Python Env
 end-logs:

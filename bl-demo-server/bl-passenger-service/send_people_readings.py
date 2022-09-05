@@ -23,6 +23,7 @@ def send_people(host, passengers):
         except Exception as err:
             print("🔴 2Passenger service not ready yet. Press Ctr-C to stop. Retry in 10 seconds...")
             print("🔴 " + str(err))
+            print(err)
             sleep(10)
     print("🧍🧍 Passengers sent!")
 
