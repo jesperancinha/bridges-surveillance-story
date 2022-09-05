@@ -7,7 +7,6 @@ services:
     volumes:
       - ./e2e:/e2e
       - .env:/.env
-      - ./docker-files/telegraf:/docker-files/telegraf
     networks:
       - bl-net
 
@@ -18,7 +17,6 @@ services:
     volumes:
       - ./e2e:/e2e
       - .env:/.env
-      - ./docker-files/telegraf:/docker-files/telegraf
     networks:
       - bl-net
 
@@ -29,7 +27,6 @@ services:
     volumes:
       - ./e2e:/e2e
       - .env:/.env
-      - ./docker-files/telegraf:/docker-files/telegraf
     networks:
       - bl-net
 
@@ -40,7 +37,6 @@ services:
     volumes:
       - ./e2e:/e2e
       - .env:/.env
-      - ./docker-files/telegraf:/docker-files/telegraf
     networks:
       - bl-net
 
@@ -51,6 +47,5 @@ services:
     volumes:
       - ./e2e:/e2e
       - .env:/.env
-      - ./docker-files/telegraf:/docker-files/telegraf
     networks:
       - bl-net
