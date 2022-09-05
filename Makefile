@@ -143,6 +143,8 @@ install:
 	pip3 install paho-mqtt
 	pip3 install --upgrade pip
 # End Python Env
+end-logs:
+	docker-compose logs --tail 2000
 demo:
 	python3 bl-demo-server/launch_demo_server.py
 update:
