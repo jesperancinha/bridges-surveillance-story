@@ -184,6 +184,6 @@ dcp:
 	docker-compose stop
 dcup: dcd docker-clean docker bl-wait
 dcup-full-action: dcd docker-clean create-demo-data build-maven build-npm docker bl-wait
-dcup-action: dcp docker-action bl-wait
+dcup-action: dcp create-demo-data docker-action bl-wait
 dcup-light: dcd
 	docker-compose up -d bl_central_psql
