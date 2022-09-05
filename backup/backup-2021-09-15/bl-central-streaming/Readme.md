@@ -9,7 +9,7 @@ These are the central server RabbitMQ streams
 ## Logs shortcut 
 
 ```shell
-docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_server" | xargs docker logs
+docker ps -a --format '{{.ID}}' -q --filter="name=bl-central-server" | xargs docker logs
 ```
 
 ## About me 👨🏽‍💻🚀🏳️‍🌈

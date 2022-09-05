@@ -9,7 +9,7 @@ services:
       - .env:/.env
       - ./docker-files/telegraf:/docker-files/telegraf
     networks:
-      - bl_net
+      - bl-net
 
   e2e-chrome:
     image: "cypress/included:10.7.0"
@@ -20,7 +20,7 @@ services:
       - .env:/.env
       - ./docker-files/telegraf:/docker-files/telegraf
     networks:
-      - bl_net
+      - bl-net
 
   e2e-firefox:
     image: "cypress/included:10.7.0"
@@ -31,7 +31,7 @@ services:
       - .env:/.env
       - ./docker-files/telegraf:/docker-files/telegraf
     networks:
-      - bl_net
+      - bl-net
 
   e2e-firefox-full:
     image: "cypress/included:10.7.0"
@@ -42,7 +42,7 @@ services:
       - .env:/.env
       - ./docker-files/telegraf:/docker-files/telegraf
     networks:
-      - bl_net
+      - bl-net
 
   e2e-edge:
     image: "cypress/included:10.7.0"
@@ -53,4 +53,4 @@ services:
       - .env:/.env
       - ./docker-files/telegraf:/docker-files/telegraf
     networks:
-      - bl_net
+      - bl-net

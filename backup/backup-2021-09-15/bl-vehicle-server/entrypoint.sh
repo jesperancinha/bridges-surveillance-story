@@ -22,18 +22,18 @@ rabbitmqctl set_user_tags test administrator
 rabbitmqctl set_permissions -p / test ".*" ".*" ".*"
 
 function sourceQueue(){
-    rabbitmqctl add_vhost bl_$1_vh
+    rabbitmqctl add_vhost bl-"$1"-vh
 
-    rabbitmqctl set_permissions -p bl_$1_vh test ".*" ".*" ".*"
+    rabbitmqctl set_permissions -p bl-"$1"-vh test ".*" ".*" ".*"
 
-    rabbitmqadmin -u test -p test -V bl_$1_vh declare exchange name=bl_$1_exchange type=fanout
+    rabbitmqadmin -u test -p test -V bl-"$1"-vh declare exchange name=bl-"$1"-exchange type=fanout
 
-    rabbitmqadmin -u test -p test -V bl_$1_vh declare queue name=bl_$1_queue
+    rabbitmqadmin -u test -p test -V bl-"$1"-vh declare queue name=bl-"$1"-queue
 
-    rabbitmqadmin -u test -p test -V bl_$1_vh declare binding source=bl_$1_exchange destination=bl_$1_queue
+    rabbitmqadmin -u test -p test -V bl-"$1"-vh declare binding source=bl-"$1"-exchange destination=bl-"$1"-queue
 }
 
-sourceQueue vehicle_01_merchandise
-sourceQueue vehicle_01_sensor
+sourceQueue vehicle-01-merchandise
+sourceQueue vehicle-01-sensor
 
 tail -f /dev/null

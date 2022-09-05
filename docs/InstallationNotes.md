@@ -20,7 +20,7 @@ sdk use 16.0.1.hs-adpt
 -   Hosts
 				When making tests with spark agains the dockerized environment, Kafka will have to reply back. For that we need this mapping:
 ```text
-127.0.0.1 bl_bridge_01_server
+127.0.0.1 bl-bridge-01-server
 ```
 
 ## Testing
@@ -127,7 +127,7 @@ pip install requests
 - Check logs
 
 ```bash
-docker container logs --details bridge-logistics_bl_central_cassandra_1 
+docker container logs --details bridge-logistics-bl-central-cassandra_1 
 ```
 
 - List running containers

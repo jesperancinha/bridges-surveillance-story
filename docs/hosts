@@ -1,2 +1,2 @@
-127.0.0.1 bl_bridge_01_server
-127.0.0.1 bl_train_01_rabbitmq_server
+127.0.0.1 bl-bridge-01-server
+127.0.0.1 bl-train-01-rabbitmq-servb

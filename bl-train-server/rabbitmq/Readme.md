@@ -1,4 +1,4 @@
-# bl_train_01_rabbitmq_server
+# bl-train-01-rabbitmq-server
 
 ## About me 👨🏽‍💻🚀🏳️‍🌈
 

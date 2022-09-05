@@ -45,71 +45,71 @@ clean-docker: docker-clean docker
 show:
 	docker ps -a  --format '{{.ID}} - {{.Names}} - {{.Status}}'
 logs-central-server:
-	docker logs bl_central_server
+	docker logs bl-central-server
 logs-central-server-tail:
-	docker logs -f bl_central_server
+	docker logs -f bl-central-server
 logs-apps-server:
-	docker logs bl_central_server_apps
+	docker logs bl-central-server-apps
 logs-apps-server-tail:
-	docker logs -f bl_central_server_apps
+	docker logs -f bl-central-server-apps
 logs-central-kafka-server:
-	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_kafka_server" | xargs docker logs
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl-central-kafka-server" | xargs docker logs
 logs-central-kafka-server-tail:
-	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_kafka_server" | xargs docker logs -f
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl-central-kafka-server" | xargs docker logs -f
 logs-zookeeper-server:
-	docker ps -a --format '{{.ID}}' -q --filter="name=bl_train_01_zookeeper_server" | xargs docker logs
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl-train-01-zookeeper-server" | xargs docker logs
 logs-zookeeper-server-tail:
-	docker ps -a --format '{{.ID}}' -q --filter="name=bl_train_01_zookeeper_server" | xargs docker logs -f
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl-train-01-zookeeper-server" | xargs docker logs -f
 logs-rabbitmq-server:
-	docker ps -a --format '{{.ID}}' -q --filter="name=bl_train_01_rabbitmq_server" | xargs docker logs
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl-train-01-rabbitmq-server" | xargs docker logs
 logs-rabbitmq-server-tail:
-	docker ps -a --format '{{.ID}}' -q --filter="name=bl_train_01_rabbitmq_server" | xargs docker logs -f
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl-train-01-rabbitmq-server" | xargs docker logs -f
 logs-cassandra-server:
-	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_cassandra" | xargs docker logs
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl-central-cassandra" | xargs docker logs
 logs-cassandra-server-tail:
-	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_cassandra" | xargs docker logs -f
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl-central-cassandra" | xargs docker logs -f
 docker-apps:
-	docker restart bl_central_server_apps
+	docker restart bl-central-server-apps
 docker-dependent:
-	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_kafka_server" | xargs docker restart
-	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_kafka_server" | xargs docker restart
-	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_cassandra" | xargs docker restart
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl-central-kafka-server" | xargs docker restart
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl-central-kafka-server" | xargs docker restart
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl-central-cassandra" | xargs docker restart
 docker-train:
-	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_kafka_server" | xargs docker stop
-	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_kafka_server" | xargs docker start
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl-central-kafka-server" | xargs docker stop
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl-central-kafka-server" | xargs docker start
 docker-bridge:
-	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_kafka_server" | xargs docker stop
-	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_kafka_server" | xargs docker start
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl-central-kafka-server" | xargs docker stop
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl-central-kafka-server" | xargs docker start
 docker-cassandra:
-	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_cassandra" | xargs docker stop
-	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_cassandra" | xargs docker start
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl-central-cassandra" | xargs docker stop
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl-central-cassandra" | xargs docker start
 docker-stats:
-	docker stats bl_central_server bl_central_server bl_central_kafka_server bl_bridge_01_sensors_server bl_bridge_01_mosquitto_server bl_bridge_01_rabbitmq_server bl_central_kafka_server bl_central_psql bl_central_server_apps bl_central_cassandra bl_train_01_rabbitmq_server
+	docker stats bl-central-server bl-central-server bl-central-kafka-server bl-bridge-01-sensors-server bl-bridge-01-mosquitto_server bl-bridge-01-rabbitmq-server bl-central-kafka-server bl-central-psql bl-central-server-apps bl-central-cassandra bl-train-01-rabbitmq-server
 docker-stats-simple:
-	docker stats bl_central_server bl_central_server bl_central_kafka_server bl_bridge_01_sensors_server bl_bridge_01_mosquitto_server bl_bridge_01_rabbitmq_server bl_central_kafka_server bl_central_psql bl_central_server_apps bl_train_01_rabbitmq_server
+	docker stats bl-central-server bl-central-server bl-central-kafka-server bl-bridge-01-sensors-server bl-bridge-01-mosquitto_server bl-bridge-01-rabbitmq-server bl-central-kafka-server bl-central-psql bl-central-server-apps bl-train-01-rabbitmq-server
 docker-delete-idle:
-	docker ps --format '{{.ID}}' -q --filter="name=bl_" | xargs docker rm
+	docker ps --format '{{.ID}}' -q --filter="name=bl-" | xargs docker rm
 docker-delete: stop
-	docker ps -a --format '{{.ID}}' -q --filter="name=bl_" | xargs -I {} docker stop {}
-	docker ps -a --format '{{.ID}}' -q --filter="name=bl_" | xargs -I {} docker rm {}
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl-" | xargs -I {} docker stop {}
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl-" | xargs -I {} docker rm {}
 docker-cleanup: docker-delete
 	docker images -q | xargs docker rmi
-	docker rmi bridge-logistics_bl_train_01_rabbitmq_server
-	docker rmi bridge-logistics_bl_central_kafka_server
-	docker rmi bridge-logistics_bl_train_01_zookeeper_server
-	docker rmi bridge-logistics_bl_central_kafka_server
-	docker rmi bridge-logistics_bl_bridge_01_rabbitmq_server
-	docker rmi bridge-logistics_bl_bridge_01_temperature_coap_server
-	docker rmi bridge-logistics_bl_bridge_01_humidity_mqtt_server
-	docker rmi bridge-logistics_bl_vehicle_01_server
-	docker rmi bridge-logistics_bl_central_server
+	docker rmi bridge-logistics-bl-train-01-rabbitmq-server
+	docker rmi bridge-logistics-bl-central-kafka-server
+	docker rmi bridge-logistics-bl-train-01-zookeeper-server
+	docker rmi bridge-logistics-bl-central-kafka-server
+	docker rmi bridge-logistics-bl-bridge-01-rabbitmq-server
+	docker rmi bridge-logistics-bl-bridge-01-temperature_coap_server
+	docker rmi bridge-logistics-bl-bridge-01-humidity_mqtt_server
+	docker rmi bridge-logistics-bl-vehicle-01-server
+	docker rmi bridge-logistics-bl-central-server
 	docker rmi bridge-logistics_postgres
-	docker rmi bridge-logistics_bl_central_server_apps
+	docker rmi bridge-logistics-bl-central-server-apps
 docker-action:
 	docker-compose -f docker-compose.yml up -d
 docker-delete-apps: stop
-	docker ps -a --format '{{.ID}}' -q --filter="name=bl_central_server_apps" | xargs docker rm
-	docker rmi bridge-logistics_bl_central_server_apps
+	docker ps -a --format '{{.ID}}' -q --filter="name=bl-central-server-apps" | xargs docker rm
+	docker rmi bridge-logistics-bl-central-server-apps
 prune-all: stop
 	docker ps -a --format '{{.ID}}' -q | xargs docker stop
 	docker ps -a --format '{{.ID}}' -q | xargs docker rm
@@ -167,14 +167,14 @@ create-demo-data:
 	cd bl-simulation-data && make create-demo-data
 	cd bl-demo-server && make create-demo-data
 build-kafka:
-	docker-compose stop bl_central_kafka_server
-	docker-compose rm bl_central_kafka_server
-	docker-compose build --no-cache bl_central_kafka_server
+	docker-compose stop bl-central-kafka-server
+	docker-compose rm bl-central-kafka-server
+	docker-compose build --no-cache bl-central-kafka-server
 	docker-compose up -d
 build-readers:
-	docker-compose stop bl_readers
-	docker-compose rm bl_readers
-	docker-compose build --no-cache bl_readers
+	docker-compose stop bl-readers
+	docker-compose rm bl-readers
+	docker-compose build --no-cache bl-readers
 	docker-compose up -d
 dcd:
 	docker-compose down --remove-orphans
@@ -186,4 +186,4 @@ dcup: dcd docker-clean docker bl-wait
 dcup-full-action: dcd docker-clean build-maven build-npm docker bl-wait
 dcup-action: dcp docker-action bl-wait
 dcup-light: dcd
-	docker-compose up -d bl_central_psql
+	docker-compose up -d bl-central-psql

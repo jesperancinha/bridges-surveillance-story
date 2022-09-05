@@ -1,4 +1,4 @@
-# bl_central_kafka_server
+# bl-central-kafka-server
 
 ## Kafka locations in the [bitnami/kafka](https://hub.docker.com/r/bitnami/kafka) image
 

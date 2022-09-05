@@ -18,9 +18,9 @@ import org.springframework.context.annotation.Configuration;
     matchIfMissing = true)
 public class BridgeSensorCollectorConfiguration extends CollectorConfiguration {
 
-    private static final String BL_BRIDGE_01_SENSOR_EXCHANGE = "bl_bridge_01_sensor_exchange";
+    private static final String BL_BRIDGE_01_SENSOR_EXCHANGE = "bl-bridge-01-sensor-exchange";
 
-    private static final String BL_BRIDGE_01_SENSOR_QUEUE = "bl_bridge_01_sensor_queue";
+    private static final String BL_BRIDGE_01_SENSOR_QUEUE = "bl-bridge-01-sensor-queue";
 
     @Value("${bridge.logistics.bridge.sensor.vhost}")
     private String vHost;

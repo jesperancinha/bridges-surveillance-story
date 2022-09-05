@@ -2,7 +2,7 @@
 
 ## Build containers
 
-### bl_train_server_01_rabbitmq
+### bl-train-server-01-rabbitmq
 
 ```bash
 docker stop bl-train-container
