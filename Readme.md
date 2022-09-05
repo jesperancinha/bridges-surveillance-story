@@ -71,7 +71,7 @@ This project is also the official support project of my article on medium:
       </a>
 </div>
 
-<i>NOTE: The Python2 environment has currently conflictd with the COAP Library. Because of this. the demo cannot be run at the moment. I'm currently busy trying to update this library to its counterpart in Python3.</i>
+<i>NOTE: The Python2 environment has currently conflicts with the COAP Library. Because of this. the demo cannot be run at the moment. I'm currently busy trying to update this library to its counterpart in Python3.</i>
 
 ## A detective case
 

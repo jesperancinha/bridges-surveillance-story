@@ -23,6 +23,8 @@ services:
         condition: service_healthy
       bl-central-psql:
         condition: service_healthy
+      bl-central-cassandra:
+        condition: service_healthy
     networks:
       - bl-net
 
@@ -44,6 +46,8 @@ services:
       retries: 60
     depends_on:
       bl-central-kafka-server:
+        condition: service_healthy
+      bl-central-cassandra:
         condition: service_healthy
     networks:
       - bl-net
@@ -100,6 +104,9 @@ services:
       resources:
         limits:
           memory: 100M
+    depends_on:
+      bl-central-kafka-server:
+        condition: service_healthy
     networks:
       - bl-net
 
@@ -169,6 +176,8 @@ services:
       bl-central-server:
         condition: service_healthy
       bl-train-01-rabbitmq-server:
+        condition: service_healthy
+      bl-central-cassandra:
         condition: service_healthy
     deploy:
       resources:

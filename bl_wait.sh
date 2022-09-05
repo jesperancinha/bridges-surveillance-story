@@ -29,6 +29,7 @@ checkServiceByNameAndMessage bl-bridge-01-mosquitto_server 'mosquitto version 2.
 checkServiceByNameAndMessage bl-central-kafka-server 'started (kafka.server.KafkaServer)'
 checkServiceByNameAndMessage bl-train-01-rabbitmq-server 'Setting permissions for user "test" in vhost "bl-train-01-sensor-vh"'
 checkServiceByNameAndMessage bl-bridge-01-rabbitmq-server 'Setting permissions for user "test" in vhost "bl-bridge-01-sensor-vh"'
-checkServiceByNameAndMessage bl-bridge-01-sensors-server 'Starting to Listen to MQTT '
+checkServiceByNameAndMessage bl-bridge-01-sensors-server 'Starting to Listen to MQTT'
+checkServiceByNameAndMessage bl-bridge-01-sensors-server 'Starting to Listen to COAP'
 checkServiceByNameAndMessage bl-central-server-apps 'update bridge_opening_times set closing_time=?, opening_time=? where id=?'
 checkServiceByNameAndMessage bl-central-server 'Setting policy "bl-bridge-01-sensor-policy" for pattern'

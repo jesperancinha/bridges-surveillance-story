@@ -13,7 +13,7 @@ server.on('request', function (req, res) {
     let success = false;
     while (!success) {
         try {
-            produce(host, JSON.parse(req.payload.toString()))
+            produce(host, JSON.parse(req.payload.toString()));
             res.end(`You just said this! ${requestMessage}`);
             success = true;
         } catch (err) {
@@ -23,12 +23,13 @@ server.on('request', function (req, res) {
 })
 
 server.listen(function () {
-})
+    console.log('temperature', 'Starting to Listen to COAP messages...')
+});
 
-function msleep(n) {
+function mSleep(n) {
     Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, n);
 }
 
 function sleep(n) {
-    msleep(n * 1000);
+    mSleep(n * 1000);
 }
