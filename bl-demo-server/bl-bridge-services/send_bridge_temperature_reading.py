@@ -3,23 +3,22 @@
 import json
 from time import sleep
 
-from coapthon.client.helperclient import HelperClient
+from aiocoap import *
 
 
-def send_meter(host, data):
+async def send_meter(host, data):
     port = 5683
-    path = ''
+    context = await Context.create_client_context()
 
-    client = HelperClient(server=(host, port))
     dumps = json.dumps(data)
     print("🌡 Sending temperature reading" + dumps)
     success = False
     tries = 5
     while not success and tries > 0:
         try:
-            response = client.post(path, dumps, timeout=5)
+            request = Message(code='PUT', payload=dumps, uri="coap://{0}:{1}".format(host, port))
+            response = await context.request(request).response
             print("🌡 Result" + str.join(" ", response.pretty_print().splitlines()))
-            client.stop()
             success = True
         except Exception as err:
             tries -= 1

@@ -207,9 +207,9 @@ def start_train(host):
             no_package_carriages = filter(lambda x: not "products" in x, carriages)
             json_carriages = json.load(carriages_json)
             train_carriages = map(lambda y:
-                                  filter(lambda z:
+                                  list(filter(lambda z:
                                          z["id"] == y["carriageId"],
-                                         json_carriages)[0], no_package_carriages)
+                                         json_carriages))[0], no_package_carriages)
             just_people_train_carriages = list(filter(lambda x: x["type"] == "people", train_carriages))
             total_carriages_number = len(just_people_train_carriages)
             current_carriage_index = 0
