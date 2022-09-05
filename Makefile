@@ -11,6 +11,8 @@ coverage: coverage-npm coverage-python coverage-maven
 build-npm:
 	cd bl-bridge-server/bl-bridge-temperature-coap && yarn && npm run build
 	cd bl-bridge-server/bl-bridge-humidity-mqtt && yarn && npm run build
+build-npm-cypress:
+	cd e2e && yarn
 build-maven:
 	mvn clean install -Pdemo -DskipTests
 build-python:
