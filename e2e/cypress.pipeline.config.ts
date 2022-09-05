@@ -10,11 +10,11 @@ module.exports = defineConfig({
                 timeout: 10000
             },
             rabbitmqBridgeHost: "bl-bridge-01-rabbitmq-server",
-            rabbitmqBridgePort: 15674,
+            rabbitmqBridgePort: 15672,
             rabbitmqCentralHost: "bl-central-server",
             rabbitmqCentralPort: 15672,
             rabbitmqTrainHost: "bl-train-01-rabbitmq-server",
-            rabbitmqTrainPort: 15673,
+            rabbitmqTrainPort: 15672,
             sparkPassengersHost: "bl-readers",
             sparkPassengersPort: 4040,
             sparkMeterHost: "bl-readers",
