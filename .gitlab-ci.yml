@@ -34,7 +34,20 @@ before_script:
   - apt-get install build-essential -y
   - bash latest-compose.sh
 
-build node-sensors:
+build cypress:
+  image: node:18
+  stage: build
+  cache:
+    - key: CYPRESS
+      paths:
+        - e2e/node_modules/
+  script:
+    - make build-npm-cypress
+  retry: 1
+  except:
+    - schedules
+
+build node:
   image: node:18
   stage: build
   script:
@@ -42,8 +55,8 @@ build node-sensors:
   cache:
     - key: NODE_CACHE
       paths:
-       - bl-bridge-server/bl-bridge-temperature-coap/coverage
-       - bl-bridge-server/bl-bridge-humidity-mqtt/coverage
+       - bl-bridge-server/bl-bridge-temperature-coap
+       - bl-bridge-server/bl-bridge-humidity-mqtt
   except:
     - schedules
 
@@ -64,7 +77,7 @@ build maven:
   except:
     - schedules
 
-qa node-sensors:
+qa node:
   image: node:18
   stage: qa
   script:
@@ -73,12 +86,12 @@ qa node-sensors:
   cache:
     - key: NODE_CACHE
       paths:
-        - bl-bridge-server/bl-bridge-temperature-coap/coverage
-        - bl-bridge-server/bl-bridge-humidity-mqtt/coverage
+        - bl-bridge-server/bl-bridge-temperature-coap
+        - bl-bridge-server/bl-bridge-humidity-mqtt
   except:
     - schedules
   needs:
-    - build node-sensors
+    - build node
 
 qa maven:
   image: maven:3-openjdk-18-slim
@@ -99,6 +112,136 @@ qa maven:
   needs:
     - build maven
 
+e2e electron:
+  image: node:18
+  stage: e2e
+  script:
+    - make dcup-action
+    - make cypress-electron
+    - make end-logs
+  needs:
+    - qa maven
+    - qa node
+    - build cypress
+  cache:
+    - key: MAVEN_CACHE
+      paths:
+        - bl-central-server/bl-domain-repository/target
+        - bl-central-server/bl-merchandise-data-collector/target
+        - bl-central-server/bl-meters-readings-service/target
+        - bl-central-server/bl-passengers-readings-service/target
+        - bl-central-server/bl-sensor-data-collector/target
+        - bl-central-server/bl-web-app/target
+    - key: NODE_CACHE
+      paths:
+        - bl-bridge-server/bl-bridge-temperature-coap
+        - bl-bridge-server/bl-bridge-humidity-mqtt
+    - key: CYPRESS
+      paths:
+        - e2e/node_modules/
+  allow_failure: true
+  timeout: 120m
+  retry: 1
+  except:
+    - schedules
+
+e2e chrome:
+  image: node:18
+  stage: e2e
+  script:
+    - make dcup-action
+    - make cypress-chrome
+    - make end-logs
+  needs:
+    - qa maven
+    - qa node
+    - build cypress
+  cache:
+    - key: MAVEN_CACHE
+      paths:
+        - bl-central-server/bl-domain-repository/target
+        - bl-central-server/bl-merchandise-data-collector/target
+        - bl-central-server/bl-meters-readings-service/target
+        - bl-central-server/bl-passengers-readings-service/target
+        - bl-central-server/bl-sensor-data-collector/target
+        - bl-central-server/bl-web-app/target
+    - key: NODE_CACHE
+      paths:
+        - bl-bridge-server/bl-bridge-temperature-coap
+        - bl-bridge-server/bl-bridge-humidity-mqtt
+    - key: CYPRESS
+      paths:
+        - e2e/node_modules/
+  timeout: 120m
+  retry: 1
+  except:
+    - schedules
+
+e2e firefox:
+  image: node:18
+  stage: e2e
+  script:
+    - make dcup-action
+    - make cypress-firefox
+    - make end-logs
+  needs:
+    - qa maven
+    - qa node
+    - build cypress
+  cache:
+    - key: MAVEN_CACHE
+      paths:
+        - bl-central-server/bl-domain-repository/target
+        - bl-central-server/bl-merchandise-data-collector/target
+        - bl-central-server/bl-meters-readings-service/target
+        - bl-central-server/bl-passengers-readings-service/target
+        - bl-central-server/bl-sensor-data-collector/target
+        - bl-central-server/bl-web-app/target
+    - key: NODE_CACHE
+      paths:
+        - bl-bridge-server/bl-bridge-temperature-coap
+        - bl-bridge-server/bl-bridge-humidity-mqtt
+    - key: CYPRESS
+      paths:
+        - e2e/node_modules/
+  timeout: 120m
+  allow_failure: true
+  retry: 1
+  except:
+    - schedules
+
+e2e edge:
+  image: node:18
+  stage: e2e
+  script:
+    - make dcup-action
+    - make cypress-edge
+    - make end-logs
+  needs:
+    - qa maven
+    - qa node
+    - build cypress
+  cache:
+    - key: MAVEN_CACHE
+      paths:
+        - bl-central-server/bl-domain-repository/target
+        - bl-central-server/bl-merchandise-data-collector/target
+        - bl-central-server/bl-meters-readings-service/target
+        - bl-central-server/bl-passengers-readings-service/target
+        - bl-central-server/bl-sensor-data-collector/target
+        - bl-central-server/bl-web-app/target
+    - key: NODE_CACHE
+      paths:
+        - bl-bridge-server/bl-bridge-temperature-coap
+        - bl-bridge-server/bl-bridge-humidity-mqtt
+    - key: CYPRESS
+      paths:
+        - e2e/node_modules/
+  timeout: 120m
+  retry: 1
+  except:
+    - schedules
+
 coverage python:
   image: maven:3-openjdk-18-slim
   stage: coverage
@@ -110,7 +253,11 @@ coverage python:
     - make coverage-python
   only:
     - master
-  needs: []
+  needs:
+    - e2e electron
+    - e2e chrome
+    - e2e firefox
+    - e2e edge
   cache:
     - key: PYTHON_CACHE
       paths:
@@ -119,7 +266,7 @@ coverage python:
   except:
     - schedules
 
-coverage node-sensors:
+coverage node:
   image: node:18
   stage: coverage
   script:
@@ -128,7 +275,10 @@ coverage node-sensors:
   only:
     - master
   needs:
-    - qa node-sensors
+    - e2e electron
+    - e2e chrome
+    - e2e firefox
+    - e2e edge
   cache:
     - key: NODE_CACHE
       paths:
@@ -154,7 +304,10 @@ coverage maven:
   only:
     - master
   needs:
-    - qa maven
+    - e2e electron
+    - e2e chrome
+    - e2e firefox
+    - e2e edge
   except:
     - schedules
 
@@ -184,7 +337,7 @@ reporting:
     - master
   needs:
     - coverage maven
-    - coverage node-sensors
+    - coverage node
     - coverage python
   except:
     - schedules

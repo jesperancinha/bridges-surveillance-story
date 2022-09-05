@@ -15,6 +15,7 @@ dist
 
 ## Python builds
 *.pyc
+.pytest_cache
 
 ## BL Generated files
 passengers.json
