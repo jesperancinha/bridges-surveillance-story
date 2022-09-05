@@ -120,19 +120,14 @@ stop: stop-jars
 	docker-compose down --remove-orphans
 stop-jars:
 	./stopRunningJars.sh
-venv:
+venv-install:
 	pip install virtualenv
 	pip install virtualenvwrapper
-	virtualenv venv --python=python2.7
+venv:
+	virtualenv venv --python=python3.7
 # Start Python Env - https://www.python.org/downloads/release/python-2718/
-install-python2-macos:
-	brew install python@2.7
-install-python2-macos-1:
-	brew install python@2
-install-python2-macos-2:
-	brew install octave-app/octave-app/python2
-install-python2-macos-3:
-	brew install python
+install-python37-macos:
+	brew install python@3.7
 install:
 	pip3 install requests
 	pip3 install pika
