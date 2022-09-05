@@ -13,7 +13,7 @@ build-npm:
 	cd bl-bridge-server/bl-bridge-humidity-mqtt && yarn && npm run build
 build-npm-cypress:
 	cd e2e && yarn
-build-maven:
+build-maven: create-demo-data
 	mvn clean install -Pdemo -DskipTests
 build-python:
 	cd bl-demo-server && python bl-core-service/launch_generate_people.py
@@ -183,7 +183,7 @@ dcd:
 dcp:
 	docker-compose stop
 dcup: dcd docker-clean docker bl-wait
-dcup-full-action: dcd docker-clean create-demo-data build-maven build-npm docker bl-wait
-dcup-action: dcp create-demo-data docker-action bl-wait
+dcup-full-action: dcd docker-clean build-maven build-npm docker bl-wait
+dcup-action: dcp docker-action bl-wait
 dcup-light: dcd
 	docker-compose up -d bl_central_psql
