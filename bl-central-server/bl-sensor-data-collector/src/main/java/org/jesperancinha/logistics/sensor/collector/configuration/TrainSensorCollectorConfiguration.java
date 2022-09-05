@@ -18,9 +18,9 @@ import org.springframework.context.annotation.Configuration;
     matchIfMissing = true)
 public class TrainSensorCollectorConfiguration extends CollectorConfiguration {
 
-    private static final String BL_TRAIN_01_SENSOR_EXCHANGE = "bl_train_01_sensor_exchange";
+    private static final String BL_TRAIN_01_SENSOR_EXCHANGE = "bl-train-01-sensor-exchange";
 
-    private static final String BL_TRAIN_01_SENSOR_QUEUE = "bl_train_01_sensor_queue";
+    private static final String BL_TRAIN_01_SENSOR_QUEUE = "bl-train-01-sensor-queue";
 
     @Value("${spring.rabbitmq.username}")
     private String username;

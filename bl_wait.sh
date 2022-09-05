@@ -23,12 +23,13 @@ function checkServiceByNameAndMessage() {
     echo "Succeeded $name Service after $counter tries!"
 }
 
-checkServiceByNameAndMessage bl_central_psql 'database system is ready to accept connections'
-checkServiceByNameAndMessage bl_central_cassandra 'Starting listening for CQL clients on /0.0.0.0:9042'
-checkServiceByNameAndMessage bl_bridge_01_mosquitto_server 'mosquitto version 2.0.11 running'
-checkServiceByNameAndMessage bl_central_kafka_server 'started (kafka.server.KafkaServer)'
-checkServiceByNameAndMessage bl_train_01_rabbitmq_server 'Setting permissions for user "test" in vhost "bl_train_01_sensor_vh"'
-checkServiceByNameAndMessage bl_bridge_01_rabbitmq_server 'Setting permissions for user "test" in vhost "bl_bridge_01_sensor_vh"'
-checkServiceByNameAndMessage bl_bridge_01_sensors_server 'Starting to Listen to MQTT '
-checkServiceByNameAndMessage bl_central_server_apps 'update bridge_opening_times set closing_time=?, opening_time=? where id=?'
-checkServiceByNameAndMessage bl_central_server 'Setting policy "bl_bridge_01_sensor_policy" for pattern'
+checkServiceByNameAndMessage bl-central-psql 'database system is ready to accept connections'
+checkServiceByNameAndMessage bl-central-cassandra 'Starting listening for CQL clients on /0.0.0.0:9042'
+checkServiceByNameAndMessage bl-bridge-01-mosquitto_server 'mosquitto version 2.0.11 running'
+checkServiceByNameAndMessage bl-central-kafka-server 'started (kafka.server.KafkaServer)'
+checkServiceByNameAndMessage bl-train-01-rabbitmq-server 'Setting permissions for user "test" in vhost "bl-train-01-sensor-vh"'
+checkServiceByNameAndMessage bl-bridge-01-rabbitmq-server 'Setting permissions for user "test" in vhost "bl-bridge-01-sensor-vh"'
+checkServiceByNameAndMessage bl-bridge-01-sensors-server 'bl-bridge-humidity-mqtt'
+checkServiceByNameAndMessage bl-bridge-01-sensors-server 'bl-bridge-temperature-coap'
+checkServiceByNameAndMessage bl-central-server-apps 'update bridge_opening_times set closing_time=?, opening_time=? where id=?'
+checkServiceByNameAndMessage bl-central-server 'Setting policy "bl-bridge-01-sensor-policy" for pattern'

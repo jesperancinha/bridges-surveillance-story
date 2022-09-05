@@ -7,7 +7,7 @@ In order to make sure that the Demo runs smoothly please check the following
 1. In your `/etc/hosts` you have this:
 
 ```shell
-127.0.0.1       bl_central_kafka_server
+127.0.0.1       bl-central-kafka-server
 ```
 3. Start the services in the containerized environment
 

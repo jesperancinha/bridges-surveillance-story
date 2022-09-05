@@ -39,25 +39,25 @@
 Cypress.Commands.add('checkCommonCSRabbitMQTableValues', () => {
     cy.get('table > tbody > tr[class="alt1"] > td').contains("/").should('exist');
     cy.get('table > tbody > tr[class="alt2"] > td').contains("/").should('exist');
-    cy.get('table > tbody > tr[class="alt1"] > td').contains("bl_bridge_01_sensor_vh").should('exist');
-    cy.get('table > tbody > tr[class="alt2"] > td').contains("bl_bridge_01_sensor_vh").should('exist');
-    cy.get('table > tbody > tr[class="alt1"]').eq(2).find("td").contains("bl_bridge_01_sensor_vh").should('exist');
-    cy.get('table > tbody > tr[class="alt2"] > td').contains("bl_train_01_merchandise_vh").should('exist');
-    cy.get('table > tbody > tr[class="alt1"] > td').contains("bl_train_01_merchandise_vh").should('exist');
-    cy.get('table > tbody > tr[class="alt2"]').eq(3).find('td').contains("bl_train_01_merchandise_vh").should('exist');
-    cy.get('table > tbody > tr[class="alt1"] > td').contains("bl_train_01_sensor_vh").should('exist');
-    cy.get('table > tbody > tr[class="alt2"] > td').contains("bl_train_01_sensor_vh").should('exist');
-    cy.get('table > tbody > tr[class="alt1"]').eq(5).find('td').contains("bl_train_01_sensor_vh").should('exist');
+    cy.get('table > tbody > tr[class="alt1"] > td').contains("bl-bridge-01-sensor-vh").should('exist');
+    cy.get('table > tbody > tr[class="alt2"] > td').contains("bl-bridge-01-sensor-vh").should('exist');
+    cy.get('table > tbody > tr[class="alt1"]').eq(2).find("td").contains("bl-bridge-01-sensor-vh").should('exist');
+    cy.get('table > tbody > tr[class="alt2"] > td').contains("bl-train-01-merchandise-vh").should('exist');
+    cy.get('table > tbody > tr[class="alt1"] > td').contains("bl-train-01-merchandise-vh").should('exist');
+    cy.get('table > tbody > tr[class="alt2"]').eq(3).find('td').contains("bl-train-01-merchandise-vh").should('exist');
+    cy.get('table > tbody > tr[class="alt1"] > td').contains("bl-train-01-sensor-vh").should('exist');
+    cy.get('table > tbody > tr[class="alt2"] > td').contains("bl-train-01-sensor-vh").should('exist');
+    cy.get('table > tbody > tr[class="alt1"]').eq(5).find('td').contains("bl-train-01-sensor-vh").should('exist');
 })
 
 Cypress.Commands.add('checkCommonTrainRabbitMQTableValues', () => {
-    cy.get('table > tbody > tr[class="alt1"] > td').contains("bl_train_01_merchandise_vh").should('exist');
-    cy.get('table > tbody > tr[class="alt2"] > td').contains("bl_train_01_merchandise_vh").should('exist');
-    cy.get('table > tbody > tr[class="alt1"] > td').contains("bl_train_01_sensor_vh").should('exist');
-    cy.get('table > tbody > tr[class="alt2"] > td').contains("bl_train_01_sensor_vh").should('exist');
+    cy.get('table > tbody > tr[class="alt1"] > td').contains("bl-train-01-merchandise-vh").should('exist');
+    cy.get('table > tbody > tr[class="alt2"] > td').contains("bl-train-01-merchandise-vh").should('exist');
+    cy.get('table > tbody > tr[class="alt1"] > td').contains("bl-train-01-sensor-vh").should('exist');
+    cy.get('table > tbody > tr[class="alt2"] > td').contains("bl-train-01-sensor-vh").should('exist');
 })
 
 Cypress.Commands.add('checkCommonBridgeRabbitMQTableValues', () => {
-    cy.get('table > tbody > tr[class="alt1"] > td').contains("bl_bridge_01_sensor_vh").should('exist');
-    cy.get('table > tbody > tr[class="alt2"] > td').contains("bl_bridge_01_sensor_vh").should('exist');
+    cy.get('table > tbody > tr[class="alt1"] > td').contains("bl-bridge-01-sensor-vh").should('exist');
+    cy.get('table > tbody > tr[class="alt2"] > td').contains("bl-bridge-01-sensor-vh").should('exist');
 })

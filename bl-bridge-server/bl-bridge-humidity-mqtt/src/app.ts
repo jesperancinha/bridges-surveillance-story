@@ -6,7 +6,7 @@ let strings = process.argv.slice(2);
 let host = strings.length > 0 ? strings[0] : 'localhost'
 console.log(host)
 
-var client = mqtt.connect('mqtt://bl_bridge_01_mosquitto_server')
+const client = mqtt.connect('mqtt://bl-bridge-01-mosquitto_server');
 client.on('connect', function () {
     client.subscribe('humidity', function (err) {
         if (!err) {

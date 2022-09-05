@@ -15,9 +15,9 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class VehicleMerchandiseCollectorConfiguration extends CollectorConfiguration {
 
-    private static final String BL_VEHICLE_01_MERCHANDISE_EXCHANGE = "bl_vehicle_01_merchandise_exchange";
+    private static final String BL_VEHICLE_01_MERCHANDISE_EXCHANGE = "bl-vehicle-01-merchandise-exchange";
 
-    private static final String BL_VEHICLE_01_MERCHANDISE_QUEUE = "bl_vehicle_01_merchandise_queue";
+    private static final String BL_VEHICLE_01_MERCHANDISE_QUEUE = "bl-vehicle-01-merchandise-queue";
 
     @Value("${spring.rabbitmq.username}")
     private String username;

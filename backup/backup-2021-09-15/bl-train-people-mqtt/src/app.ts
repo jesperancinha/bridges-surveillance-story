@@ -6,7 +6,7 @@ let strings = process.argv.slice(2);
 let host = strings.length > 0 ? strings[0] : 'localhost'
 console.log(host)
 
-var client = mqtt.connect('mqtt://127.0.0.1')
+const client = mqtt.connect('mqtt://127.0.0.1');
 client.on('connect', function () {
     client.subscribe('people', function (err) {
         if (!err) {

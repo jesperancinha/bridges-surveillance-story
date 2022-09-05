@@ -43,7 +43,7 @@ build cypress:
         - e2e/node_modules/
   script:
     - make build-npm-cypress
-  retry: 1
+#  retry: 1
   except:
     - schedules
 
@@ -141,7 +141,7 @@ e2e electron:
       paths:
         - e2e/node_modules/
 #  allow_failure: true
-  timeout: 120m
+  timeout: 20m
 #  retry: 1
   except:
     - schedules
@@ -173,7 +173,7 @@ e2e chrome:
     - key: CYPRESS
       paths:
         - e2e/node_modules/
-  timeout: 120m
+  timeout: 20m
 #  retry: 1
   except:
     - schedules
@@ -205,9 +205,9 @@ e2e firefox:
     - key: CYPRESS
       paths:
         - e2e/node_modules/
-  timeout: 120m
-#  allow_failure: true
-  retry: 1
+  timeout: 20m
+  allow_failure: true
+#  retry: 1
   except:
     - schedules
 
@@ -238,8 +238,8 @@ e2e edge:
     - key: CYPRESS
       paths:
         - e2e/node_modules/
-  timeout: 120m
-  retry: 1
+  timeout: 20m
+#  retry: 1
   except:
     - schedules
 
