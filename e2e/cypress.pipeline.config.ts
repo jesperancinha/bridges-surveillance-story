@@ -10,11 +10,17 @@ module.exports = defineConfig({
                 timeout: 10000
             },
             rabbitmqBridgeHost: "bl_bridge_01_rabbitmq_server",
+            rabbitmqBridgePort: 15674,
             rabbitmqCentralHost: "bl_central_server",
+            rabbitmqCentralPort: 15672,
             rabbitmqTrainHost: "bl_train_01_rabbitmq_server",
-            sparkMeterHost: "bl_readers",
+            rabbitmqTrainPort: 15673,
             sparkPassengersHost: "bl_readers",
-            centralAppsHost: "bl_central_server_apps"
+            sparkPassengersPort: 4040,
+            sparkMeterHost: "bl_readers",
+            sparkMeterPort: 4041,
+            centralAppsHost: "bl_central_server_apps",
+            centralAppsPort: 9000
         },
         includeShadowDom: true,
         video: false,

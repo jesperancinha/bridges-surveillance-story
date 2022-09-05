@@ -1,6 +1,6 @@
 describe('Swagger Tests for Central Apps', () => {
-    const host = Cypress.env('host') ? Cypress.env('host') : 'localhost';
-    const port = Cypress.env('port') ? Cypress.env('port') : '9000';
+    const host = Cypress.env('centralAppsHost') ? Cypress.env('host') : 'localhost';
+    const port = Cypress.env('centralAppsPort') ? Cypress.env('port') : '9000';
 
     it('shows swagger for central web-app', () => {
         cy.visit(`http://${host}:${port}/api/bridge/logistics/swagger-ui/index.html`);

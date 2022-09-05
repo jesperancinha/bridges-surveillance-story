@@ -30,5 +30,5 @@ checkServiceByNameAndMessage bl_central_kafka_server 'started (kafka.server.Kafk
 checkServiceByNameAndMessage bl_train_01_rabbitmq_server 'Setting permissions for user "test" in vhost "bl_train_01_sensor_vh"'
 checkServiceByNameAndMessage bl_bridge_01_rabbitmq_server 'Setting permissions for user "test" in vhost "bl_bridge_01_sensor_vh"'
 checkServiceByNameAndMessage bl_bridge_01_sensors_server 'Starting to Listen to MQTT '
-checkServiceByNameAndMessage bl_central_server 'Setting policy "bl_bridge_01_sensor_policy" for pattern'
 checkServiceByNameAndMessage bl_central_server_apps 'update bridge_opening_times set closing_time=?, opening_time=? where id=?'
+checkServiceByNameAndMessage bl_central_server 'Setting policy "bl_bridge_01_sensor_policy" for pattern'

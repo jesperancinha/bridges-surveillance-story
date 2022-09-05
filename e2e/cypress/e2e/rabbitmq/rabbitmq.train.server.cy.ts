@@ -1,8 +1,11 @@
 describe('RabbitMQ', () => {
+  const host = Cypress.env('rabbitmqTrainHost') ? Cypress.env('host') : 'localhost';
+  const port = Cypress.env('rabbitmqTrainPort') ? Cypress.env('port') : '15673';
+
   it('Logs into Train Server Rabbit MQ (rabbit@bl_train_01_rabbitmq_server)', () => {
 
     cy.log("Login")
-    cy.visit('http://localhost:15673/');
+    cy.visit(`http://${host}:${port}/`);
     cy.get('input[name="username"').type('test');
     cy.get('input[name="password"').type('test');
     cy.get('input[value="Login"]').click();
