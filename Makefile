@@ -181,12 +181,12 @@ build-kafka:
 	docker-compose stop bl-central-kafka-server
 	docker-compose rm bl-central-kafka-server
 	docker-compose build --no-cache bl-central-kafka-server
-	docker-compose up -d
+	docker-compose up -d bl-central-kafka-server
 build-readers:
 	docker-compose stop bl-readers
 	docker-compose rm bl-readers
 	docker-compose build --no-cache bl-readers
-	docker-compose up -d
+	docker-compose up -d bl-readers
 dcd:
 	docker-compose down --remove-orphans
 	docker-compose rm -fsva
