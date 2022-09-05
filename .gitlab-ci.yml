@@ -73,6 +73,7 @@ build maven:
        - bl-central-server/bl-sensor-data-collector/target
        - bl-central-server/bl-web-app/target
   script:
+    - apt install python3-pip -y
     - make build-maven
   except:
     - schedules
@@ -246,7 +247,6 @@ coverage python:
   image: maven:3-openjdk-18-slim
   stage: coverage
   script:
-    - apt update -y
     - apt install python3-pip -y
     - pip3 install coverage
     - pip3 install pytest
