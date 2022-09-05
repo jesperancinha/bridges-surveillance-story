@@ -1,6 +1,6 @@
 describe('RabbitMQ', () => {
-  const host = Cypress.env('rabbitmqCentralHost') ? Cypress.env('host') : 'localhost';
-  const port = Cypress.env('rabbitmqCentralPort') ? Cypress.env('port') : '15672';
+  const host = Cypress.env('rabbitmqCentralHost') ? Cypress.env('rabbitmqCentralHost') : 'localhost';
+  const port = Cypress.env('rabbitmqCentralPort') ? Cypress.env('rabbitmqCentralPort') : '15672';
 
   it('Logs into Central Server Rabbit MQ (rabbit@bl_central_server)', () => {
 

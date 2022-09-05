@@ -1,6 +1,6 @@
 describe('RabbitMQ', () => {
-  const host = Cypress.env('rabbitmqBridgeHost') ? Cypress.env('host') : 'localhost';
-  const port = Cypress.env('rabbitmqBridgePort') ? Cypress.env('port') : '15674';
+  const host = Cypress.env('rabbitmqBridgeHost') ? Cypress.env('rabbitmqBridgeHost') : 'localhost';
+  const port = Cypress.env('rabbitmqBridgePort') ? Cypress.env('rabbitmqBridgePort') : '15674';
 
   it('Logs into Bridge Server Rabbit MQ (rabbit@bl_bridge_01_rabbitmq_server)', () => {
 
