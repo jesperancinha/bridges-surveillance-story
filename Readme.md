@@ -199,16 +199,23 @@ pip install virtualenvwrapper
 Install virtualenv:
 
 ```shell
-virtualenv venv --python=python2.7
+virtualenv venv --python=python3.7
 source venv/bin/activate
-pip install requests
-pip install pika
-pip install enum
-pip install kafka
-pip install aiocoap
-pip install mqtt
-pip install paho-mqtt
-exit
+pip3 install requests
+pip3 install pika
+pip3 install kafka-python
+pip3 install aiocoap
+pip3 install mqtt
+pip3 install paho-mqtt
+pip3 install asyncio
+pip3 install distlib
+pip3 install --upgrade pip
+```
+
+Exit virtualenv:
+
+```shell
+deactivate
 ```
 
 ## Review Logs

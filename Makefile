@@ -134,7 +134,6 @@ install-python37-macos:
 install:
 	pip3 install requests
 	pip3 install pika
-	#pip3 install enum
 	pip3 install kafka-python
 	pip3 install aiocoap
 	pip3 install mqtt
