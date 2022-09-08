@@ -13,6 +13,10 @@
   },
   "packageRules": [
     {
+      "matchPackageNames": ["org.scala-lang:scala-library"],
+      "allowedVersions": "!/2\\.13\\.8$/"
+    },
+    {
       "matchUpdateTypes": [
         "minor",
         "patch",
