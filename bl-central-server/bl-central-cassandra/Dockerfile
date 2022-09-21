@@ -1,4 +1,4 @@
-FROM cassandra:3.11.2
+FROM cassandra:4.0.6
 
 EXPOSE 9042
 
