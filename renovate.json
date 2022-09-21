@@ -4,9 +4,7 @@
     "jesperancinha/bridge-logistics"
   ],
   "platform": "gitlab",
-  "extends": [
-    "docker:disable"
-  ],
+  "extends": ["github>whitesource/merge-confidence:beta"],
   "lockFileMaintenance": {
     "enabled": true,
     "automerge": true
