@@ -146,7 +146,7 @@
 
         <spring-boot-starter-amqp.version>2.7.3</spring-boot-starter-amqp.version>
         <spring-boot-configuration-processor.version>2.7.3</spring-boot-configuration-processor.version>
-        <spring-rabbit-test.version>2.4.6</spring-rabbit-test.version>
+        <spring-rabbit-test.version>2.4.7</spring-rabbit-test.version>
 
         <activemq.version>5.17.2</activemq.version>
         <amqp-client.version>5.7.1</amqp-client.version>

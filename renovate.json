@@ -41,7 +41,8 @@
         "rxjs",
         "codelyzer",
         "d3-color",
-        "jest"
+        "jest",
+        "ts-loader"
       ],
       "automerge": true
     },
