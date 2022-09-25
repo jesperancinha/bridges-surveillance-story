@@ -13,7 +13,7 @@ function checkServiceByNameAndMessage() {
       string=$(cat logs)
       sleep 1
       counter=$((counter+1))
-      if [ $counter -eq 200 ]; then
+      if [ $counter -eq 300 ]; then
           echo "Failed after $counter tries! Cypress tests may fail!!"
           echo "$string"
           exit 1

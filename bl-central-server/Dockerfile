@@ -12,7 +12,6 @@ COPY bl-merchandise-data-collector/target/bl-merchandise-data-collector.jar /roo
 
 COPY bl-sensor-data-collector/target/bl-sensor-data-collector.jar /root/bl-sensor-data-collector.jar
 
-COPY bl-web-app/target/bl-web-app.jar /root/bl-web-app.jar
 
 ENTRYPOINT ["/root/entrypoint.sh"]
 
