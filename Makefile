@@ -94,7 +94,7 @@ docker-delete-idle:
 docker-delete: stop
 	docker ps -a --format '{{.ID}}' -q --filter="name=bl-" | xargs -I {} docker stop {}
 	docker ps -a --format '{{.ID}}' -q --filter="name=bl-" | xargs -I {} docker rm {}
-docker-cleanup: docker-delete
+docker-cleanup: stop-containers docker-delete
 	docker images -q | xargs docker rmi
 	docker rmi bridge-logistics-bl-train-01-rabbitmq-server
 	docker rmi bridge-logistics-bl-central-kafka-server
@@ -120,6 +120,9 @@ prune-all: stop
 	docker system prune --all --volumes
 stop: stop-jars
 	docker-compose down --remove-orphans
+stop-containers:
+	docker ps -a -q --filter="name=bl-" | xargs -I {} docker stop {}
+	docker ps -a -q --filter="name=bl-" | xargs -I {} docker rm {}
 stop-jars:
 	./stopRunningJars.sh
 venv-install:
@@ -198,3 +201,10 @@ dcup-full-action: dcd docker-clean build-maven build-npm docker bl-wait
 dcup-action: dcp docker-action bl-wait
 dcup-light: dcd
 	docker-compose up -d bl-central-psql
+docker-prune:
+	docker ps -a --format ''{{.ID}}'' | xargs -I {}  docker stop {}
+	docker ps -a --format ''{{.ID}}'' | xargs -I {}  docker rm {}
+	docker network prune -f
+	docker system prune --all -f
+	docker builder prune -f
+	docker system prune --all --volumes -fl

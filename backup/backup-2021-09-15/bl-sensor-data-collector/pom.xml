@@ -118,6 +118,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot-starter-parent.version}</version>
                 <configuration>
                     <mainClass>org.jesperancinha.logistics.sensor.collector.DataCollectorLauncher</mainClass>
                 </configuration>
