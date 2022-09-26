@@ -144,8 +144,7 @@
         <maven-war-plugin.version>3.2.3</maven-war-plugin.version>
         <kotlin.version>1.7.10</kotlin.version>
 
-        <spring-boot-starter-amqp.version>2.7.3</spring-boot-starter-amqp.version>
-        <spring-boot-configuration-processor.version>2.7.4</spring-boot-configuration-processor.version>
+        <spring-boot-starter-parent.version>2.7.3</spring-boot-starter-parent.version>
         <spring-rabbit-test.version>2.4.7</spring-rabbit-test.version>
 
         <activemq.version>5.17.2</activemq.version>
@@ -192,7 +191,8 @@
         <jnr-posix.version>3.1.15</jnr-posix.version>
         <omni-coveragereporter-maven-plugin.version>0.3.0</omni-coveragereporter-maven-plugin.version>
         <kotlinx-coroutines-debug.version>1.6.4</kotlinx-coroutines-debug.version>
-        <spring-boot-starter-parent.version>2.7.3</spring-boot-starter-parent.version>
+
+        <!-- Swagger -->
         <springdoc-openapi-webmvc-core.version>1.6.11</springdoc-openapi-webmvc-core.version>
         <springdoc-openapi-ui.version>1.6.11</springdoc-openapi-ui.version>
     </properties>
@@ -224,7 +224,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-amqp</artifactId>
-                <version>${spring-boot-starter-amqp.version}</version>
+                <version>${spring-boot-starter-parent.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.amqp</groupId>
@@ -235,7 +235,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-configuration-processor</artifactId>
-                <version>${spring-boot-configuration-processor.version}</version>
+                <version>${spring-boot-starter-parent.version}</version>
                 <optional>true</optional>
             </dependency>
             <dependency>
