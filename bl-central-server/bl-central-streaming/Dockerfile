@@ -1,4 +1,4 @@
-FROM rabbitmq:3.10.7-management
+FROM rabbitmq:3.11.0-management
 
 WORKDIR /root
 
