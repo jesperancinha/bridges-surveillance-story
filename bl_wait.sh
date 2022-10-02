@@ -6,6 +6,7 @@ function checkServiceByNameAndMessage() {
     docker-compose logs "$name" > "logs"
     string=$(cat logs)
     counter=0
+    printf 'Starting service %s'"$name"
     while [[ "$string" != *"$message"* ]]
     do
       printf "."
@@ -20,12 +21,13 @@ function checkServiceByNameAndMessage() {
       fi
     done
     counter=$((counter+1))
-    echo "Succeeded $name Service after $counter tries!"
+    echo " => Succeeded $name Service after $counter tries!"
 }
 
 checkServiceByNameAndMessage bl-central-psql 'database system is ready to accept connections'
 checkServiceByNameAndMessage bl-central-cassandra 'Starting listening for CQL clients on /0.0.0.0:9042'
-checkServiceByNameAndMessage bl-bridge-01-mosquitto_server 'mosquitto version 2.0.11 running'
+checkServiceByNameAndMessage bl-bridge-01-mosquitto_server 'mosquitto version'
+checkServiceByNameAndMessage bl-bridge-01-mosquitto_server 'running'
 checkServiceByNameAndMessage bl-central-kafka-server 'started (kafka.server.KafkaServer)'
 checkServiceByNameAndMessage bl-train-01-rabbitmq-server 'Setting permissions for user "test" in vhost "bl-train-01-sensor-vh"'
 checkServiceByNameAndMessage bl-bridge-01-rabbitmq-server 'Setting permissions for user "test" in vhost "bl-bridge-01-sensor-vh"'
