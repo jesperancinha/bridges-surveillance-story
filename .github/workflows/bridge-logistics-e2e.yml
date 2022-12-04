@@ -20,6 +20,9 @@ jobs:
       - name: Start Docker
         run: make dcup-full-action
 
+      - name: Build Cypress
+        run: make build-npm-cypress
+
       - name: Run Cypress
         run: make cypress-electron
 
@@ -35,6 +38,9 @@ jobs:
 
       - name: Start Docker
         run: make dcup-full-action
+
+      - name: Build Cypress
+        run: make build-npm-cypress
 
       - name: Run Cypress
         run: make cypress-chrome
@@ -52,6 +58,9 @@ jobs:
       - name: Start Docker
         run: make dcup-full-action
 
+      - name: Build Cypress
+        run: make build-npm-cypress
+
       - name: Run Cypress
         run: make cypress-firefox
 
@@ -67,6 +76,9 @@ jobs:
 
       - name: Start Docker
         run: make dcup-full-action
+
+      - name: Build Cypress
+        run: make build-npm-cypress
 
       - name: Run Cypress
         run: make cypress-edge
