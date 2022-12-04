@@ -209,3 +209,8 @@ docker-prune:
 	docker system prune --all -f
 	docker builder prune -f
 	docker system prune --all --volumes -fl
+install-coverage-python:
+	apt install python3-pip -y
+	pip3 install coverage
+	pip3 install pytest
+	make coverage-python
