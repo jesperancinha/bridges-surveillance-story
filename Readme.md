@@ -2,16 +2,15 @@
 
 ---
 
-[![Generic badge](https://img.shields.io/static/v1.svg?label=GitLab&message=Bridge%20Management%20Logistics%20🌉&color=informational)](https://gitlab.com/jesperancinha/bridge-logistics)
+[![Twitter URL](https://img.shields.io/twitter/url?logoColor=blue&style=social&url=https%3A%2F%2Fimg.shields.io%2Ftwitter%2Furl%3Fstyle%3Dsocial)](https://twitter.com/intent/tweet?text=Checkout%20this%20@github%20repo%20by%20@joaofse%20%F0%9F%91%A8%F0%9F%8F%BD%E2%80%8D%F0%9F%92%BB:%20https://github.com/jesperancinha/bridges-surveillance-story)
+[![Generic badge](https://img.shields.io/static/v1.svg?label=GitHub&message=Bridge%20Surveillance%20Story%20🌉&color=informational)](https://github.com/jesperancinha/bridges-surveillance-story)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-[![Gitlab pipeline status (branch)](https://img.shields.io/gitlab/pipeline/jesperancinha/bridge-logistics/master)](https://gitlab.com/jesperancinha/bridge-logistics/pipelines)
-
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/9663f8cd66764af3b551e76c13ea7833)](https://www.codacy.com/gl/jesperancinha/bridge-logistics/dashboard?utm_source=gitlab.com&amp;utm_medium=referral&amp;utm_content=jesperancinha/bridge-logistics&amp;utm_campaign=Badge_Grade)
-[![codebeat badge](https://codebeat.co/badges/42f50b94-393c-4637-86cd-1ee6412995c6)](https://codebeat.co/projects/gitlab-com-jesperancinha-bridge-logistics-master)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/56395dd932804738979bbcb3bec4bc5f)](https://www.codacy.com/gh/jesperancinha/bridges-surveillance-story/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jesperancinha/bridges-surveillance-story&amp;utm_campaign=Badge_Grade)
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Coverage/9663f8cd66764af3b551e76c13ea7833)](https://www.codacy.com/gl/jesperancinha/bridge-logistics/dashboard?utm_source=gitlab.com&utm_medium=referral&utm_content=jesperancinha/bridge-logistics&utm_campaign=Badge_Coverage)
 [![codecov](https://codecov.io/gl/jesperancinha/bridge-logistics/branch/master/graph/badge.svg?token=OWTM085V5A)](https://codecov.io/gl/jesperancinha/bridge-logistics/branch/master)
-[![Coverage Status](https://coveralls.io/repos/gitlab/jesperancinha/bridge-logistics/badge.svg?branch=master)](https://coveralls.io/gitlab/jesperancinha/bridge-logistics?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/jesperancinha/bridges-surveillance-story/badge.svg?branch=master)](https://coveralls.io/github/jesperancinha/bridges-surveillance-story?branch=master)
 
 ---
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/java-50.png "Java")](https://www.oracle.com/nl/java/)
@@ -185,7 +184,7 @@ sdk install java 16.0.1.hs-adpt
 sdk use java 16.0.1.hs-adpt
 ```
 
-Use Java 16 as the default. You'll only need Java 11 for the Kafka Readers.	If you want to install everything locally without the help of containers then please check help file [InstallationNotes.md](./docs/InstallationNotes.md).	Further Documentation is available at the [wiki](https://gitlab.com/jesperancinha/bridge-logistics/-/wikis/Installation-notes).
+Use Java 16 as the default. You'll only need Java 11 for the Kafka Readers.	If you want to install everything locally without the help of containers then please check help file [InstallationNotes.md](./docs/InstallationNotes.md).	Further Documentation is available at the [wiki](https://github.com/jesperancinha/bridges-surveillance-story/-/wikis/Installation-notes).
 
 Install python libraries:
 
