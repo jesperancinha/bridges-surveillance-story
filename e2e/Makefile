@@ -1,3 +1,6 @@
+SHELL=/bin/bash
+GITHUB_RUN_ID ?=123
+
 cypress-open-docker:
 	npm run cypress:docker
 cypress-open:
