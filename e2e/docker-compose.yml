@@ -6,7 +6,6 @@ services:
     command: "--browser electron --config-file cypress.pipeline.config.ts --config defaultCommandTimeout=15000,requestTimeout=15000"
     volumes:
       - ./e2e:/e2e
-      - .env:/.env
     networks:
       - bl-net
 
@@ -16,7 +15,6 @@ services:
     command: "--browser chrome --config-file cypress.pipeline.config.ts --config defaultCommandTimeout=15000,requestTimeout=15000"
     volumes:
       - ./e2e:/e2e
-      - .env:/.env
     networks:
       - bl-net
 
@@ -26,7 +24,6 @@ services:
     command: "--browser firefox --config-file cypress.pipeline.config.ts --config defaultCommandTimeout=15000,requestTimeout=15000"
     volumes:
       - ./e2e:/e2e
-      - .env:/.env
     networks:
       - bl-net
 
@@ -36,7 +33,6 @@ services:
     command: "--config-file full.cypress.pipeline.config.ts --browser firefox --config defaultCommandTimeout=15000,requestTimeout=15000"
     volumes:
       - ./e2e:/e2e
-      - .env:/.env
     networks:
       - bl-net
 
@@ -46,6 +42,5 @@ services:
     command: "--browser edge --config-file cypress.pipeline.config.ts --config defaultCommandTimeout=15000,requestTimeout=15000"
     volumes:
       - ./e2e:/e2e
-      - .env:/.env
     networks:
       - bl-net
