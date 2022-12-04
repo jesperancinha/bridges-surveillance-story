@@ -210,7 +210,6 @@ docker-prune:
 	docker builder prune -f
 	docker system prune --all --volumes -fl
 install-coverage-python:
-	apt install python3-pip -y
-	pip3 install coverage
-	pip3 install pytest
-	make coverage-python
+	sudo apt install python3-pip -y
+	sudo pip3 install coverage
+	sudo pip3 install pytest
