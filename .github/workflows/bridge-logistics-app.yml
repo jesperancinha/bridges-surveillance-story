@@ -31,8 +31,11 @@ jobs:
     - name: Build Node JS and Test
       run: make build-npm && npm i -g jest && make test-node
 
-    - name: Coverage Reports
-      run: make report-coverage
+    - name: Coverage reports
+      run: make coverage-npm && make coverage-maven && make coverage-python
+
+    - name: Coverage Reports Sending
+      run: make report
       env:
         CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
