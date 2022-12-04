@@ -2,9 +2,9 @@ name: e2e-bridge-logistics-app
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
 
 jobs:
   e2e-electron:
