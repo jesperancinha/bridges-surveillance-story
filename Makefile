@@ -31,10 +31,10 @@ test: test-maven test-node
 no-test:
 	mvn clean install -DskipTests
 docker-clean: docker-delete
-	docker-compose rm -svf
+	docker-compose -p ${GITHUB_RUN_ID} rm -svf
 docker:
 	rm -rf out
-	docker-compose up -d --build --remove-orphans
+	docker-compose -p ${GITHUB_RUN_ID} up -d --build --remove-orphans
 docker-restart: stop-jars stop docker
 start-readers: stop-jars
 	cd bl-central-server/bl-central-readings/bl-passengers-readings-service && make start-readings &
@@ -42,7 +42,7 @@ start-readers: stop-jars
 docker-databases: stop local
 build-images:
 build-docker: stop b
-	docker-compose up -d --build --remove-orphans
+	docker-compose -p ${GITHUB_RUN_ID} up -d --build --remove-orphans
 clean-docker: docker-clean docker
 show:
 	docker ps -a  --format '{{.ID}} - {{.Names}} - {{.Status}}'
@@ -108,7 +108,7 @@ docker-cleanup: stop-containers docker-delete
 	docker rmi bridge-logistics_postgres
 	docker rmi bridge-logistics-bl-central-server-apps
 docker-action:
-	docker-compose -f docker-compose.yml up -d
+	docker-compose -p ${GITHUB_RUN_ID} -f docker-compose.yml up -d
 docker-delete-apps: stop
 	docker ps -a --format '{{.ID}}' -q --filter="name=bl-central-server-apps" | xargs docker rm
 	docker rmi bridge-logistics-bl-central-server-apps
@@ -119,7 +119,7 @@ prune-all: stop
 	docker builder prune
 	docker system prune --all --volumes
 stop: stop-jars
-	docker-compose down --remove-orphans
+	docker-compose -p ${GITHUB_RUN_ID} down --remove-orphans
 stop-containers:
 	docker ps -a -q --filter="name=bl-" | xargs -I {} docker stop {}
 	docker ps -a -q --filter="name=bl-" | xargs -I {} docker rm {}
@@ -146,7 +146,7 @@ install:
 	pip3 install --upgrade pip
 # End Python Env
 end-logs:
-	docker-compose logs --tail 100
+	docker-compose -p ${GITHUB_RUN_ID} logs --tail 100
 demo:
 	python3 bl-demo-server/launch_demo_server.py
 update:
@@ -181,26 +181,26 @@ create-demo-data:
 	cd bl-simulation-data && make create-demo-data
 	cd bl-demo-server && make create-demo-data
 build-kafka:
-	docker-compose stop bl-central-kafka-server
-	docker-compose rm bl-central-kafka-server
-	docker-compose build --no-cache bl-central-kafka-server
-	docker-compose up -d bl-central-kafka-server
+	docker-compose -p ${GITHUB_RUN_ID} stop bl-central-kafka-server
+	docker-compose -p ${GITHUB_RUN_ID} rm bl-central-kafka-server
+	docker-compose -p ${GITHUB_RUN_ID} build --no-cache bl-central-kafka-server
+	docker-compose -p ${GITHUB_RUN_ID} up -d bl-central-kafka-server
 build-readers:
-	docker-compose stop bl-readers
-	docker-compose rm bl-readers
-	docker-compose build --no-cache bl-readers
-	docker-compose up -d bl-readers
+	docker-compose -p ${GITHUB_RUN_ID} stop bl-readers
+	docker-compose -p ${GITHUB_RUN_ID} rm bl-readers
+	docker-compose -p ${GITHUB_RUN_ID} build --no-cache bl-readers
+	docker-compose -p ${GITHUB_RUN_ID} up -d bl-readers
 dcd:
-	docker-compose down --remove-orphans
-	docker-compose rm -fsva
+	docker-compose -p ${GITHUB_RUN_ID} down --remove-orphans
+	docker-compose -p ${GITHUB_RUN_ID} rm -fsva
 	docker volume ls -qf dangling=true | xargs -I {} docker volume rm  {}
 dcp:
-	docker-compose stop
+	docker-compose -p ${GITHUB_RUN_ID} stop
 dcup: dcd docker-clean docker bl-wait
 dcup-full-action: dcd docker-clean build-maven build-npm docker bl-wait
 dcup-action: dcp docker-action bl-wait
 dcup-light: dcd
-	docker-compose up -d bl-central-psql
+	docker-compose -p ${GITHUB_RUN_ID} up -d bl-central-psql
 docker-prune:
 	docker ps -a --format ''{{.ID}}'' | xargs -I {}  docker stop {}
 	docker ps -a --format ''{{.ID}}'' | xargs -I {}  docker rm {}
