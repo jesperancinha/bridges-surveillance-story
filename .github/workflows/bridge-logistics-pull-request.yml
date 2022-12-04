@@ -20,9 +20,6 @@ jobs:
         java-version: '19'
         distribution: 'zulu'
 
-    - name: Generate credentials
-      run:  make generate-credentials
-
     - name: Build Gradle
       run:  make build-maven
 

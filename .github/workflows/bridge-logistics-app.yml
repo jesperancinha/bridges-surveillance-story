@@ -17,9 +17,6 @@ jobs:
         java-version: '19'
         distribution: 'oracle'
 
-    - name: Generate credentials
-      run:  make generate-credentials
-
     - name: Build Gradle
       run:  make build-maven
 
