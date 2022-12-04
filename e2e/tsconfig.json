@@ -1,6 +1,9 @@
 {
   "compilerOptions": {
-    "baseUrl": "http://localhost:8080"
+    "baseUrl": "http://localhost:8080",
+    "esModuleInterop": true
   },
-  "include": ["**/*.ts"]
+  "include": [
+    "**/*.ts"
+  ]
 }
