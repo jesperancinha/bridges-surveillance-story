@@ -20,10 +20,10 @@ jobs:
         java-version: '19'
         distribution: 'zulu'
 
-    - name: Build Gradle
+    - name: Build Maven
       run:  make build-maven
 
-    - name: Test Gradle
+    - name: Test Maven
       run:  make test-maven
 
     - name: Use Node.js
