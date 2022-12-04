@@ -12,6 +12,10 @@
 [![codecov](https://codecov.io/gl/jesperancinha/bridge-logistics/branch/master/graph/badge.svg?token=OWTM085V5A)](https://codecov.io/gl/jesperancinha/bridge-logistics/branch/master)
 [![Coverage Status](https://coveralls.io/repos/github/jesperancinha/bridges-surveillance-story/badge.svg?branch=master)](https://coveralls.io/github/jesperancinha/bridges-surveillance-story?branch=master)
 
+[![GitHub language count](https://img.shields.io/github/languages/count/jesperancinha/bridges-surveillance-story.svg)](#)
+[![GitHub top language](https://img.shields.io/github/languages/top/jesperancinha/bridges-surveillance-story.svg)](#)
+[![GitHub top language](https://img.shields.io/github/languages/code-size/jesperancinha/bridges-surveillance-story.svg)](#)
+
 ---
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/java-50.png "Java")](https://www.oracle.com/nl/java/)
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/lombok-50.png "Lombok")](https://projectlombok.org/)
