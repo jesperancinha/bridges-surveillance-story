@@ -3,7 +3,7 @@ services:
   e2e-electron:
     image: "cypress/included:11.2.0"
     working_dir: /e2e
-    command: "--browser electron --config-file cypress.pipeline.config.ts --config defaultCommandTimeout=15000,requestTimeout=15000"
+    command: "--browser electron --config-file /e2e/cypress.pipeline.config.ts --config defaultCommandTimeout=15000,requestTimeout=15000"
     volumes:
       - ./e2e:/e2e
     networks:
@@ -12,7 +12,7 @@ services:
   e2e-chrome:
     image: "cypress/included:11.2.0"
     working_dir: /e2e
-    command: "--browser chrome --config-file cypress.pipeline.config.ts --config defaultCommandTimeout=15000,requestTimeout=15000"
+    command: "--browser chrome --config-file /e2e/cypress.pipeline.config.ts --config defaultCommandTimeout=15000,requestTimeout=15000"
     volumes:
       - ./e2e:/e2e
     networks:
@@ -21,7 +21,7 @@ services:
   e2e-firefox:
     image: "cypress/included:11.2.0"
     working_dir: /e2e
-    command: "--browser firefox --config-file cypress.pipeline.config.ts --config defaultCommandTimeout=15000,requestTimeout=15000"
+    command: "--browser firefox --config-file /e2e/cypress.pipeline.config.ts --config defaultCommandTimeout=15000,requestTimeout=15000"
     volumes:
       - ./e2e:/e2e
     networks:
@@ -30,7 +30,7 @@ services:
   e2e-firefox-full:
     image: "cypress/included:11.2.0"
     working_dir: /e2e
-    command: "--config-file full.cypress.pipeline.config.ts --browser firefox --config defaultCommandTimeout=15000,requestTimeout=15000"
+    command: "--config-file /e2e/full.cypress.pipeline.config.ts --browser firefox --config defaultCommandTimeout=15000,requestTimeout=15000"
     volumes:
       - ./e2e:/e2e
     networks:
@@ -39,7 +39,7 @@ services:
   e2e-edge:
     image: "cypress/included:11.2.0"
     working_dir: /e2e
-    command: "--browser edge --config-file cypress.pipeline.config.ts --config defaultCommandTimeout=15000,requestTimeout=15000"
+    command: "--browser edge --config-file /e2e/cypress.pipeline.config.ts --config defaultCommandTimeout=15000,requestTimeout=15000"
     volumes:
       - ./e2e:/e2e
     networks:
