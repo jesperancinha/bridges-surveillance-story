@@ -6,6 +6,9 @@
 [![Generic badge](https://img.shields.io/static/v1.svg?label=GitHub&message=Bridge%20Surveillance%20Story%20🌉&color=informational)](https://github.com/jesperancinha/bridges-surveillance-story)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
+[![bridge-logistics-app](https://github.com/jesperancinha/bridges-surveillance-story/actions/workflows/bridge-logistics-app.yml/badge.svg)](https://github.com/jesperancinha/bridges-surveillance-story/actions/workflows/bridge-logistics-app.yml)
+[![e2e-bridge-logistics-app](https://github.com/jesperancinha/bridges-surveillance-story/actions/workflows/bridge-logistics-e2e.yml/badge.svg)](https://github.com/jesperancinha/bridges-surveillance-story/actions/workflows/bridge-logistics-e2e.yml)
+
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/56395dd932804738979bbcb3bec4bc5f)](https://www.codacy.com/gh/jesperancinha/bridges-surveillance-story/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jesperancinha/bridges-surveillance-story&amp;utm_campaign=Badge_Grade)
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Coverage/9663f8cd66764af3b551e76c13ea7833)](https://www.codacy.com/gl/jesperancinha/bridge-logistics/dashboard?utm_source=gitlab.com&utm_medium=referral&utm_content=jesperancinha/bridge-logistics&utm_campaign=Badge_Coverage)
