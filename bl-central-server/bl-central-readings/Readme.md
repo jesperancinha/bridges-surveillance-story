@@ -1,16 +1,4 @@
-# bl-central-streaming
-
-These are the central server RabbitMQ streams
-
-## Open endpoints
-
--   [Main page](http://localhost:15672/) - [http://localhost:15672/](http://localhost:15672/) - 
-
-## Logs shortcut 
-
-```shell
-docker ps -a --format '{{.ID}}' -q --filter="name=bl-central-server" | xargs docker logs
-```
+# bl-central-readings
 
 ## About me 👨🏽‍💻🚀🏳️‍🌈
 
