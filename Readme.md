@@ -86,6 +86,8 @@ This project is also the official support project of my article on medium:
 [441f1dfc85467d69e93a445a5db6489ebf2a7211](https://github.com/jesperancinha/bridges-surveillance-story/tree/1.0.0)
 - [2.0.0](https://github.com/jesperancinha/bridges-surveillance-story/tree/2.0.0)
 [a8544e6611d0856809b6a3c7b5dd124a3d7067c1](https://github.com/jesperancinha/bridges-surveillance-story/tree/2.0.0)
+- [3.0.0](https://github.com/jesperancinha/bridges-surveillance-story/tree/3.0.0)
+[12cb8d3c481fac4587787683d2a114ca2f7e6952](https://github.com/jesperancinha/bridges-surveillance-story/tree/3.0.0)
 
 ## A detective case
 
