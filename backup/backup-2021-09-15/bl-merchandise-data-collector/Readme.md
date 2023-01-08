@@ -1,55 +1,72 @@
-# bl-readings-service
+# Bridge Logistics Merchandise Control Service (MCS)
 
-## Starting Spark
+## RabbitMQ administrator password
 
-```bash
-mvn scala:run -DmainClass=org.jesperancinha.bridgelogistics.readings.ReadingsLauncher
-```
-## Start Jar
+http://localhost:15672/
 
-```shell
-java --add-exports=java.base/jdk.internal.ref=ALL-UNNAMED --add-exports=java.base/sun.nio.ch=ALL-UNNAMED -jar target/bl-passengers-readings-service-jar-with-dependencies.jar
-```
+guest/guest
 
-## Installing cassandra
+## Create RabbitMQ Federation
 
 ```bash
-brew install cassandra
+rabbitmq-plugins enable rabbitmq_federation
+rabbitmq-plugins enable rabbitmq_federation_management
 ```
 
-## Starting cassandra
-Note that some cassandra versions only seem to run well with Java 8
+## Build
+mvn clean package && docker build -t org.jesperancinha/bridge-logistics-mcs .
+
+## Run
+
+docker rm -f bridge-logistics-mcs || true && docker run -d -p 8080:8080 -p 4848:4848 --name bridge-logistics-mcs org.jesperancinha/bridge-logistics-mcs
+
+## Configuration Files for RabbitMQ
+
+/usr/local/sbin/rabbitmq-defaults
+
+## Install RabbitMQ
+
+-   Command line
 ```bash
-cassandra
+brew install rabbitmq
+export PATH=$PATH:/usr/local/sbin
+vim ~/.bash_profile
+```
+-   Bash profile
+```bash
+#HOMEBREW RABBITMQ
+export HOMEBREW_RABBITMQ=/usr/local/Cellar/rabbitmq/3.8.3/sbin/
+export PATH=$PATH:$HOMEBREW_RABBITMQ
 ```
 
-## Cassandra command line
+>NOTE: Port 1883 may be in use by another application. Most likely Mosquitto. In that case, please run:
 
 ```bash
-cqlsh
+brew services stop mosquitto
 ```
 
-```genericsql
-DESCRIBE TABLES
-SELECT *  FROM java_api.products;
-
-```
-## Hints & Tricks
+## Start RabbitMQ
 
 ```bash
-brew install sbt
-brew upgrade sbt
+rabbitmq-server
 ```
+
+## Stop RabbiMQ
+
+```bash
+rabbitmqctl stop
+```
+
 ## References
 
--   [Reading configurations in Scala](https://medium.com/@ramkarnani24/reading-configurations-in-scala-f987f839f54d)
--   [Accessing Cassandra from Spark in Java](https://www.datastax.com/blog/2014/08/accessing-cassandra-spark-java)
--   [Step by Step of Configuring Apache Spark to Connect with Cassandra](https://chongyaorobin.wordpress.com/2015/07/16/step-by-step-of-how-to-configure-apache-spark-to-connect-with-cassandra/)
--   [Install All the THINGS! But especially Apache Cassandra, Apache Spark and Jupyter](https://www.datastax.com/blog/2019/04/install-all-things-especially-apache-cassandra-apache-spark-and-jupyter)
--   [Getting Started with Cassandra and Spark](https://www.codementor.io/@sheena/installing-cassandra-spark-linux-debian-ubuntu-14-du107vbhx)
--   [Structured Streaming + Kafka Integration Guide (Kafka broker version 0.10.0 or higher](https://spark.apache.org/docs/latest/structured-streaming-kafka-integration.html)
--   [Apache Spark - Lightning-fast unified analytics engine](https://spark.apache.org/)
--   [Apache Spark - Monitoring and Instrumentation](https://spark.apache.org/docs/latest/monitoring.html)
+-   [Messaging with RabbitMQ](https://spring.io/guides/gs/messaging-rabbitmq/)
+-   [Is it possible to run more than one rabbitmq instance on one machine?](https://stackoverflow.com/questions/21453910/is-it-possible-to-run-more-than-one-rabbitmq-instance-on-one-machine)
+-   [RabbitMQ Federation Plugin](https://www.rabbitmq.com/federation.html)
+-   [RabbitMQ Federated Exchanges](https://www.rabbitmq.com/federated-exchanges.html)
+-   [RabbitMQ Federation](https://medium.com/trendyol-tech/rabbitmq-federation-plugin-cb87f7450365)
+-   [RabbitMQ Management Plugin](https://www.rabbitmq.com/management.html)
+-   [RabbitMQ Clustering Guide](https://www.rabbitmq.com/clustering.html)
+-   [Running multiple RabbitMQ instances/servers on 1 machine](https://lazareski.com/multiple-rabbitmq-instances-on-1-machine)
 
 ## About me 👨🏽‍💻🚀🏳️‍🌈
 
