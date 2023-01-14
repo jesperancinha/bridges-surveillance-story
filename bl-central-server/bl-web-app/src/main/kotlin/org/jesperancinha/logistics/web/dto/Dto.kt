@@ -47,7 +47,7 @@ data class CarriageFullDto(
     @JsonProperty("people")
     val people: Long,
     @JsonProperty("products")
-    val products: List<ProductDto>
+    val products: List<ProductDto>?
 )
 
 data class ContainerFullDto(
