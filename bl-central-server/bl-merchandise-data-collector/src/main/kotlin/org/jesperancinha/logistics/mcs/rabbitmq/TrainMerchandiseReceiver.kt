@@ -1,7 +1,6 @@
 package org.jesperancinha.logistics.mcs.rabbitmq
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import lombok.extern.slf4j.Slf4j
 import org.jesperancinha.logistics.jpa.dao.*
 import org.jesperancinha.logistics.mcs.converter.MerchandiseLogConverter
 import org.jesperancinha.logistics.mcs.dto.CarrierDto
@@ -15,9 +14,7 @@ import java.nio.charset.Charset
 import java.time.Instant
 import java.util.*
 import java.util.concurrent.CountDownLatch
-import java.util.stream.Stream
 
-@Slf4j
 @Component
 class TrainMerchandiseReceiver(
     private val objectMapper: ObjectMapper,
@@ -34,8 +31,7 @@ class TrainMerchandiseReceiver(
         val messageString = String(message, Charset.defaultCharset())
         println("Received <$messageString>")
         try {
-            val trainMerchandiseDtos = objectMapper.readValue(messageString, Array<TrainMerchandiseDto>::class.java)
-            Stream.of(*trainMerchandiseDtos)
+            objectMapper.readValue(messageString, Array<TrainMerchandiseDto>::class.java)
                 .forEach { trainMerchandiseDto: TrainMerchandiseDto ->
                     val supplier = if (Objects.nonNull(trainMerchandiseDto.supplierId)) {
                         companyRepository.findById(trainMerchandiseDto.supplierId)

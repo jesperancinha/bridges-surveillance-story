@@ -2,7 +2,6 @@ package org.jesperancinha.logistics.sensor.collector.rabbitmq
 
 import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
-import lombok.extern.slf4j.Slf4j
 import org.jesperancinha.logistics.jpa.dao.BridgeRepository
 import org.jesperancinha.logistics.jpa.dao.LogRepository
 import org.jesperancinha.logistics.sensor.collector.converter.BridgeConverter
@@ -13,7 +12,6 @@ import java.nio.charset.Charset
 import java.util.*
 import java.util.concurrent.CountDownLatch
 
-@Slf4j
 @Component
 @ConditionalOnProperty(name = ["bridge.logistics.bridge.sensor.active"], matchIfMissing = true)
 class BridgeSensorReceiver(

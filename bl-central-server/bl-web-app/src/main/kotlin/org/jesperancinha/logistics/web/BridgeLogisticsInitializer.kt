@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.introspect.AnnotatedMember
 import com.fasterxml.jackson.databind.introspect.AnnotatedParameter
 import com.fasterxml.jackson.databind.introspect.JacksonAnnotationIntrospector
-import lombok.extern.slf4j.Slf4j
 import org.jesperancinha.logistics.jpa.dao.*
 import org.jesperancinha.logistics.web.dto.CarriageFullDto
 import org.jesperancinha.logistics.web.dto.ContainerFullDto
@@ -20,7 +19,6 @@ import java.util.function.Consumer
 import java.util.stream.Collectors
 
 @Component
-@Slf4j
 @Profile("local", "demo")
 class BridgeLogisticsInitializer(
     private val bridgeRepository: BridgeRepository,

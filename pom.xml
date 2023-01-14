@@ -157,7 +157,6 @@
         <kotest-extensions-spring.version>1.1.2</kotest-extensions-spring.version>
         <mockk.version>1.13.2</mockk.version>
 
-        <lombok.version>1.18.24</lombok.version>
         <failOnMissingWebXml>false</failOnMissingWebXml>
 
         <arquillian-bom.version>1.5.0.Final</arquillian-bom.version>
@@ -322,11 +321,6 @@
                 <groupId>com.github.dpaukov</groupId>
                 <artifactId>combinatoricslib3</artifactId>
                 <version>${combinatoricslib3.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>${lombok.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.h2database</groupId>
