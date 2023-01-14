@@ -15,24 +15,24 @@ data class Bridge(
     @GeneratedValue(strategy = GenerationType.AUTO) val id: Long? = null,
     val name: String? = null,
     val address: String? = null,
-    private val city: String? = null,
+    val city: String? = null,
     val postCode: String? = null,
-    private val countryCode: String? = null,
-    private val unitLength: String? = null,
-    private val length: Long? = null,
+    val countryCode: String? = null,
+    val unitLength: String? = null,
+    val length: Long? = null,
 
     @Column(precision = 10, scale = 6)
-    private val lat: BigDecimal? = null,
+    val lat: BigDecimal? = null,
 
     @Column(precision = 10, scale = 6)
-    private val lon: BigDecimal? = null,
-    private val radius: Long? = null,
-    private val type: String? = null,
+    val lon: BigDecimal? = null,
+    val radius: Long? = null,
+    val type: String? = null,
 
 
     ) {
     @OneToMany(mappedBy = "bridge")
-    private var bridgeOpeningTimes: List<BridgeOpeningTime>? = null
+    var bridgeOpeningTimes: List<BridgeOpeningTime>? = null
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -47,13 +47,13 @@ data class Bridge(
 data class BridgeLog(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private val id: Long? = null,
+    val id: Long? = null,
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "bridgeId", nullable = false)
-    private val bridge: Bridge? = null,
-    private val timestamp: Long? = null,
-    private val checkInOut: String? = null
+    val bridge: Bridge? = null,
+    val timestamp: Long? = null,
+    val checkInOut: String? = null
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -71,11 +71,11 @@ data class BridgeLog(
 @Table(name = "bridge_opening_conflicts")
 data class BridgeOpeningConflict(
     @Id
-    private val message: String? = null,
+    val message: String? = null,
 
     @ManyToMany(cascade = [CascadeType.ALL])
     @JoinColumn(name = "bridge_id", nullable = false, updatable = false)
-    private val relatedOpeningTime: List<BridgeOpeningTime>? = null
+    val relatedOpeningTime: List<BridgeOpeningTime>? = null
 )
 
 /**
@@ -91,49 +91,49 @@ data class BridgeOpeningConflict(
 data class BridgeOpeningTime(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private val id: Long? = null,
+    val id: Long? = null,
 
     @Column(name = "opening_time")
-    private val openingTime: Long? = null,
+    val openingTime: Long? = null,
 
     @Column(name = "closing_time")
-    private val closingTime: Long? = null,
+    val closingTime: Long? = null,
 
     @ManyToOne(optional = false, cascade = [CascadeType.ALL])
     @JoinColumn(name = "bridge_id", nullable = false, updatable = false, referencedColumnName = "id")
-    private val bridge: Bridge? = null
+    val bridge: Bridge? = null
 )
 
 @Entity
 @Table(name = "carriage")
-data class Carriage (
+data class Carriage(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null,
-    private val type: String? = null,
-    private val brand: String? = null,
-    private val capacity: Long? = null,
-    private val passengers: Long? = null,
-    private val axleLoad: Long? = null,
-    private val tare: Long? = null,
-    private val volume: Long? = null,
-    private val unitWeight: String? = null,
-    private val unitVolume: String? = null,
-    private val toilet: Boolean? = null,
+    val type: String? = null,
+    val brand: String? = null,
+    val capacity: Long? = null,
+    val passengers: Long? = null,
+    val axleLoad: Long? = null,
+    val tare: Long? = null,
+    val volume: Long? = null,
+    val unitWeight: String? = null,
+    val unitVolume: String? = null,
+    val toilet: Boolean? = null,
 )
 
 @Entity
 
 @Table(name = "company")
-data class Company (
+data class Company(
     @Id
-    private val id: Long? = null,
-    private val name: String? = null,
-    private val address: String? = null,
-    private val city: String? = null,
-    private val postCode: String? = null
+    val id: Long? = null,
+    val name: String? = null,
+    val address: String? = null,
+    val city: String? = null,
+    val postCode: String? = null
 
-){
+) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other == null || Hibernate.getClass(this) != Hibernate.getClass(other)) return false
@@ -157,15 +157,15 @@ data class Container(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null,
-    private val type: String? = null,
-    private val brand: String? = null,
-    private val model: String? = null,
-    private val capacity: Long? = null,
-    private val axleLoad: Long? = null,
-    private val tare: Long? = null,
-    private val volume: Long? = null,
-    private val unitWeight: String? = null,
-    private val unitVolume: String? = null
+    val type: String? = null,
+    val brand: String? = null,
+    val model: String? = null,
+    val capacity: Long? = null,
+    val axleLoad: Long? = null,
+    val tare: Long? = null,
+    val volume: Long? = null,
+    val unitWeight: String? = null,
+    val unitVolume: String? = null
 )
 
 @Entity
@@ -173,9 +173,9 @@ data class Container(
 data class Freight(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private val id: Long? = null,
-    private val name: String? = null,
-    private val type: String? = null,
+    val id: Long? = null,
+    val name: String? = null,
+    val type: String? = null,
 
     @ManyToMany
     @JoinTable(
@@ -183,13 +183,13 @@ data class Freight(
         joinColumns = [JoinColumn(name = "freight_id", referencedColumnName = "id")],
         inverseJoinColumns = [JoinColumn(name = "container_id", referencedColumnName = "id")]
     )
-    private val containers: List<Container>? = null,
+    val containers: List<Container>? = null,
 
     @ManyToOne
-    private val supplier: Company? = null,
+    val supplier: Company? = null,
 
     @ManyToOne
-    private val vendor: Company? = null
+    val vendor: Company? = null
 )
 
 @Entity
@@ -198,57 +198,57 @@ data class Merchandise(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null,
-    private val timestamp: Long? = null,
+    val timestamp: Long? = null,
 
     @ManyToOne
-    private val supplier: Company? = null,
+    val supplier: Company? = null,
 
     @ManyToOne
-    private val vendor: Company? = null,
+    val vendor: Company? = null,
 
     @ManyToOne
-    private val transportPackage: TransportPackage? = null,
+    val transportPackage: TransportPackage? = null,
 
     @ManyToOne
-    private val productCargo: ProductCargo? = null,
+    val productCargo: ProductCargo? = null,
 
     @Column(precision = 10, scale = 6)
-    private val lat: BigDecimal? = null,
+    val lat: BigDecimal? = null,
 
     @Column(precision = 10, scale = 6)
-    private val lon: BigDecimal? = null
+    val lon: BigDecimal? = null
 )
 
 @Entity
 @Table(name = "merchandise_log")
-data class MerchandiseLog (
+data class MerchandiseLog(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null,
-    private val timestamp: Long? = null,
+    val timestamp: Long? = null,
 
     /**
      * Status can be LOADED, INTRANSIT, DELIVERED
      */
-    private val status: Status? = null,
+    val status: Status? = null,
 
     @ManyToOne
-    private val supplier: Company? = null,
+    val supplier: Company? = null,
 
     @ManyToOne
-    private val vendor: Company? = null,
+    val vendor: Company? = null,
 
     @ManyToOne
-    private val transportPackage: TransportPackage? = null,
+    val transportPackage: TransportPackage? = null,
 
     @ManyToOne
-    private val productCargo: ProductCargo? = null,
+    val productCargo: ProductCargo? = null,
 
     @Column(precision = 10, scale = 6)
-    private val lat: BigDecimal? = null,
+    val lat: BigDecimal? = null,
 
     @Column(precision = 10, scale = 6)
-    private val lon: BigDecimal? = null
+    val lon: BigDecimal? = null
 )
 
 @Entity
@@ -256,10 +256,10 @@ data class MerchandiseLog (
 data class Passenger(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private val id: Long? = null,
-    private val firstName: String? = null,
-    private val lastName: String? = null,
-    private val gender: String? = null
+    val id: Long? = null,
+    val firstName: String? = null,
+    val lastName: String? = null,
+    val gender: String? = null
 )
 
 @Entity
@@ -267,19 +267,19 @@ data class Passenger(
 data class Product(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private val id: Long? = null,
-    private val name: String? = null,
-    private val packaging: String? = null,
-    private val brand: String? = null,
-    private val packageSize: Long? = null,
-    private val weightPerUnit: Long? = null,
-    private val unitWeight: String? = null,
-    private val barcode: String? = null,
-    private val correctionFactor: Long? = null,
-    private val width: Long? = null,
-    private val height: Long? = null,
-    private val depth: Long? = null,
-    private val unitDimension: String? = null
+    val id: Long? = null,
+    val name: String? = null,
+    val packaging: String? = null,
+    val brand: String? = null,
+    val packageSize: Long? = null,
+    val weightPerUnit: Long? = null,
+    val unitWeight: String? = null,
+    val barcode: String? = null,
+    val correctionFactor: Long? = null,
+    val width: Long? = null,
+    val height: Long? = null,
+    val depth: Long? = null,
+    val unitDimension: String? = null
 )
 
 @Entity
@@ -287,11 +287,11 @@ data class Product(
 data class ProductCargo(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private val id: Long? = null,
+    val id: Long? = null,
 
     @ManyToOne
-    private val product: Product? = null,
-    private val quantity: Long? = null
+    val product: Product? = null,
+    val quantity: Long? = null
 )
 
 @Entity
@@ -299,9 +299,9 @@ data class ProductCargo(
 data class Train(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private val id: Long? = null,
-    private val name: String? = null,
-    private val type: String? = null,
+    val id: Long? = null,
+    val name: String? = null,
+    val type: String? = null,
 
     @ManyToMany
     @JoinTable(
@@ -309,54 +309,54 @@ data class Train(
         joinColumns = [JoinColumn(name = "train_id", referencedColumnName = "id")],
         inverseJoinColumns = [JoinColumn(name = "carriage_id", referencedColumnName = "id")]
     )
-    private val carriages: List<Carriage>? = null,
+    val carriages: List<Carriage>? = null,
 
     @ManyToOne
-    private val supplier: Company? = null,
+    val supplier: Company? = null,
 
     @ManyToOne
-    private val vendor: Company? = null
+    val vendor: Company? = null
 )
 
 @Entity
 @Table(name = "trains_log")
-data class TrainLog (
+data class TrainLog(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private val id: Long? = null,
+    val id: Long? = null,
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "trainId", nullable = false, updatable = false)
-    private val train: Train? = null,
-    private val lat: BigDecimal? = null,
-    private val lon: BigDecimal? = null,
-    private val timestamp: Long? = null,
-    private val checkInOut: String? = null,
-    private val weight: Long? = null,
-    private val carriageId: Long? = null
+    val train: Train? = null,
+    val lat: BigDecimal? = null,
+    val lon: BigDecimal? = null,
+    val timestamp: Long? = null,
+    val checkInOut: String? = null,
+    val weight: Long? = null,
+    val carriageId: Long? = null
 )
 
 @Entity
 @Table(name = "transport_package")
 data class TransportPackage(
     @Id
-    private val id: Long? = null,
+    val id: Long? = null,
 
     @ManyToOne
-    private val supplier: Company? = null,
+    val supplier: Company? = null,
 
     @ManyToOne
-    private val vendor: Company? = null,
+    val vendor: Company? = null,
 
     @OneToMany
-    private val productCargos: List<ProductCargo>? = null,
+    val productCargos: List<ProductCargo>? = null,
 
     @ManyToOne
-    private val carriage: Carriage? = null,
+    val carriage: Carriage? = null,
 
     @ManyToOne
-    private val container: Container? = null,
-    private val weight: Long? = null
+    val container: Container? = null,
+    val weight: Long? = null
 )
 
 enum class Status {

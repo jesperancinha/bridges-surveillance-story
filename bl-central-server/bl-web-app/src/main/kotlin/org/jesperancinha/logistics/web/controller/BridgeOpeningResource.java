@@ -1,7 +1,6 @@
 package org.jesperancinha.logistics.web.controller;
 
 import org.jesperancinha.logistics.web.services.BridgeOpeningService;
-import org.jesperancinha.logistics.web.services.BridgeOpeningServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +15,7 @@ public class BridgeOpeningResource {
 
     private final BridgeOpeningService bridgeOpeningService;
 
-    public BridgeOpeningResource(BridgeOpeningServiceImpl bridgeOpeningService) {
+    public BridgeOpeningResource(BridgeOpeningService bridgeOpeningService) {
         this.bridgeOpeningService = bridgeOpeningService;
     }
 
