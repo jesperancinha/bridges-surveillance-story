@@ -12,7 +12,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven.compiler}</version>
+                <version>${maven.compiler.version}</version>
                 <configuration>
                     <source>${maven.compiler.source}</source>
                     <target>${maven.compiler.target}</target>
@@ -133,11 +133,11 @@
         <java.version>17</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
-        <maven.compiler>3.10.1</maven.compiler>
-        <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+        <maven.compiler.version>3.10.1</maven.compiler.version>
+        <maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
         <maven-failsafe-plugin.version>3.0.0-M7</maven-failsafe-plugin.version>
         <maven-war-plugin.version>3.2.3</maven-war-plugin.version>
-        <kotlin.version>1.7.20</kotlin.version>
+        <kotlin.version>1.8.0</kotlin.version>
 
         <spring-boot-starter-parent.version>2.7.4</spring-boot-starter-parent.version>
         <spring-rabbit-test.version>2.4.7</spring-rabbit-test.version>
@@ -157,7 +157,6 @@
         <kotest-extensions-spring.version>1.1.2</kotest-extensions-spring.version>
         <mockk.version>1.13.2</mockk.version>
 
-        <lombok.version>1.18.24</lombok.version>
         <failOnMissingWebXml>false</failOnMissingWebXml>
 
         <arquillian-bom.version>1.5.0.Final</arquillian-bom.version>
@@ -324,11 +323,6 @@
                 <version>${combinatoricslib3.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>${lombok.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>com.h2database</groupId>
                 <artifactId>h2</artifactId>
                 <version>${h2.version}</version>
@@ -337,6 +331,16 @@
                 <groupId>com.google.code.gson</groupId>
                 <artifactId>gson</artifactId>
                 <version>${gson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-stdlib</artifactId>
+                <version>${kotlin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-reflect</artifactId>
+                <version>${kotlin.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.mockk</groupId>
