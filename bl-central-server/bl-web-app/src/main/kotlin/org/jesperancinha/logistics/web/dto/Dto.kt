@@ -65,7 +65,7 @@ data class FreightDto(
     @JsonProperty("name")
     val name: String,
     @JsonProperty("type")
-    val type: String,
+    val type: String?,
     @JsonProperty("supplierId")
     val supplierId: Long,
     @JsonProperty("vendorId")
