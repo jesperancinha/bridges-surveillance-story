@@ -24,8 +24,8 @@ class BridgeSensorReceiver(
     val latch = CountDownLatch(1)
 
     @Throws(JsonProcessingException::class)
-    fun receiveMessage(message: ByteArray?) {
-        val messageString = kotlin.String(message, Charset.defaultCharset())
+    fun receiveMessage(message: ByteArray) {
+        val messageString = String(message, Charset.defaultCharset())
         val bridgeLogDto = objectMapper.readValue(messageString, BridgeLogDto::class.java)
         if (Objects.nonNull(bridgeLogDto.id)) {
             val bridge = bridgeRepository.findById(bridgeLogDto.id)

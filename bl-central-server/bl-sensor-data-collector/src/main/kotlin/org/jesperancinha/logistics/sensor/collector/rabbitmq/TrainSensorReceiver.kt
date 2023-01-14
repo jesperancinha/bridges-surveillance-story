@@ -24,8 +24,8 @@ class TrainSensorReceiver(
     val latch = CountDownLatch(1)
 
     @Throws(JsonProcessingException::class)
-    fun receiveMessage(message: ByteArray?) {
-        val messageString = kotlin.String(message, Charset.defaultCharset())
+    fun receiveMessage(message: ByteArray) {
+        val messageString = String(message, Charset.defaultCharset())
         println("Received <$messageString>")
         val trainLogDto = objectMapper.readValue(messageString, TrainLogDto::class.java)
         if (Objects.nonNull(trainLogDto.id)) {
