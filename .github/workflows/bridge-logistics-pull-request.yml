@@ -5,9 +5,7 @@ name: bridge-logistics-app-pull-request
 
 on:
   pull_request:
-    branches:
-      - master
-      - 'migration**'
+    branches: [ master ]
 
 jobs:
   build:
