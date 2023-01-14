@@ -3,7 +3,7 @@ package org.jesperancinha.logistics.sensor.collector.rabbitmq;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.jesperancinha.logistics.jpa.model.Bridge;
+import org.jesperancinha.logistics.jpa.dao.Bridge;
 import org.jesperancinha.logistics.jpa.repositories.BridgeRepository;
 import org.jesperancinha.logistics.jpa.repositories.LogRepository;
 import org.jesperancinha.logistics.sensor.collector.converter.BridgeConverter;

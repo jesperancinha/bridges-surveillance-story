@@ -1,7 +1,7 @@
 package org.jesperancinha.logistics.mcs.converter;
 
-import org.jesperancinha.logistics.jpa.model.Merchandise;
-import org.jesperancinha.logistics.jpa.model.MerchandiseLog;
+import org.jesperancinha.logistics.jpa.dao.Merchandise;
+import org.jesperancinha.logistics.jpa.dao.MerchandiseLog;
 
 public class MerchandiseLogConverter {
 

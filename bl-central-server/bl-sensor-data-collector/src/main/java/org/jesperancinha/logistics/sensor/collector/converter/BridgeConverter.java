@@ -1,7 +1,7 @@
 package org.jesperancinha.logistics.sensor.collector.converter;
 
-import org.jesperancinha.logistics.jpa.model.Bridge;
-import org.jesperancinha.logistics.jpa.model.BridgeLog;
+import org.jesperancinha.logistics.jpa.dao.Bridge;
+import org.jesperancinha.logistics.jpa.dao.BridgeLog;
 import org.jesperancinha.logistics.sensor.collector.data.BridgeLogDto;
 
 public class BridgeConverter {

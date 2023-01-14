@@ -1,8 +1,8 @@
 package org.jesperancinha.logistics.mcs.data;
 
 import lombok.Builder;
-import org.jesperancinha.logistics.jpa.types.Status;
-import org.jesperancinha.logistics.jpa.types.TrainType;
+import org.jesperancinha.logistics.jpa.dao.Status;
+import org.jesperancinha.logistics.jpa.dao.TrainType;
 import org.springframework.lang.NonNull;
 
 import java.math.BigDecimal;

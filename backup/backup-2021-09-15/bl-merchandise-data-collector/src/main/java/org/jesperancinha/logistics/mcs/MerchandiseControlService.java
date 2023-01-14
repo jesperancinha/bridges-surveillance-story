@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EnableJpaRepositories("org.jesperancinha.logistics.jpa.repositories")
-@EntityScan("org.jesperancinha.logistics.jpa.model")
+@EntityScan("org.jesperancinha.logistics.jpa.dao")
 public class MerchandiseControlService {
     public static void main(String[] args) {
         SpringApplication.run(MerchandiseControlService.class, args);

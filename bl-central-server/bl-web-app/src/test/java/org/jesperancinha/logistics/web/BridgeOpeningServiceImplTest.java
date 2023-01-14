@@ -1,6 +1,6 @@
 package org.jesperancinha.logistics.web;
 
-import org.jesperancinha.logistics.jpa.repositories.OpeningTimeRepository;
+import org.jesperancinha.logistics.jpa.dao.OpeningTimeRepository;
 import org.jesperancinha.logistics.web.data.BridgeDto;
 import org.jesperancinha.logistics.web.data.BridgeOpeningTimeDto;
 import org.jesperancinha.logistics.web.services.BridgeOpeningServiceImpl;

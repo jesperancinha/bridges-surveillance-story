@@ -1,4 +1,4 @@
-name: e2e-bridge-logistics-app
+ name: e2e-bridge-logistics-app
 
 on:
   push:

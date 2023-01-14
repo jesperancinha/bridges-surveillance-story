@@ -2,11 +2,11 @@ package org.jesperancinha.logistics.mcs.rabbitmq;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.jesperancinha.logistics.jpa.model.Company;
-import org.jesperancinha.logistics.jpa.model.MerchandiseLog;
-import org.jesperancinha.logistics.jpa.model.Product;
-import org.jesperancinha.logistics.jpa.model.ProductCargo;
-import org.jesperancinha.logistics.jpa.model.TransportPackage;
+import org.jesperancinha.logistics.jpa.dao.Company;
+import org.jesperancinha.logistics.jpa.dao.MerchandiseLog;
+import org.jesperancinha.logistics.jpa.dao.Product;
+import org.jesperancinha.logistics.jpa.dao.ProductCargo;
+import org.jesperancinha.logistics.jpa.dao.TransportPackage;
 import org.jesperancinha.logistics.jpa.repositories.CompanyRepository;
 import org.jesperancinha.logistics.jpa.repositories.ContainerRepository;
 import org.jesperancinha.logistics.jpa.repositories.MerchandiseLogRepository;

@@ -1,7 +1,7 @@
 package org.jesperancinha.logistics.sensor.collector.converter;
 
-import org.jesperancinha.logistics.jpa.model.Vehicle;
-import org.jesperancinha.logistics.jpa.model.VehicleLog;
+import org.jesperancinha.logistics.jpa.dao.Vehicle;
+import org.jesperancinha.logistics.jpa.dao.VehicleLog;
 import org.jesperancinha.logistics.sensor.collector.data.VehicleLogDto;
 
 public class VehicleConverter {

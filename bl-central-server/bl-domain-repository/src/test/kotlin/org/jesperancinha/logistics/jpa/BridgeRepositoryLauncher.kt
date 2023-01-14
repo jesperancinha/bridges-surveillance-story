@@ -10,7 +10,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories
  */
 @SpringBootApplication
 @EnableJpaRepositories
-@EnableAutoConfiguration
 class BridgeRepositoryLauncher {
     companion object {
         @JvmStatic

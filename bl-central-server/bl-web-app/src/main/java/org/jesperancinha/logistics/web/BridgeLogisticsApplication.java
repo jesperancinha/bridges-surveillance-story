@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EnableJpaRepositories("org.jesperancinha.logistics.jpa.repositories")
-@EntityScan("org.jesperancinha.logistics.jpa.model")
+@EntityScan("org.jesperancinha.logistics.jpa.dao")
 @OpenAPIDefinition(
         info = @Info(title = "OpenAPI definition"),
         servers = {

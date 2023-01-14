@@ -1,4 +1,4 @@
-package org.jesperancinha.logistics.jpa.model;
+package org.jesperancinha.logistics.jpa.dao;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -2,18 +2,18 @@ package org.jesperancinha.logistics.mcs.rabbitmq;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.jesperancinha.logistics.jpa.model.Company;
-import org.jesperancinha.logistics.jpa.model.MerchandiseLog;
-import org.jesperancinha.logistics.jpa.model.Product;
-import org.jesperancinha.logistics.jpa.model.ProductCargo;
-import org.jesperancinha.logistics.jpa.model.TransportPackage;
-import org.jesperancinha.logistics.jpa.repositories.CarriageRepository;
-import org.jesperancinha.logistics.jpa.repositories.CompanyRepository;
-import org.jesperancinha.logistics.jpa.repositories.MerchandiseLogRepository;
-import org.jesperancinha.logistics.jpa.repositories.MerchandiseRepository;
-import org.jesperancinha.logistics.jpa.repositories.ProductCargoRepository;
-import org.jesperancinha.logistics.jpa.repositories.ProductRepository;
-import org.jesperancinha.logistics.jpa.repositories.TransportPackageRepository;
+import org.jesperancinha.logistics.jpa.dao.Company;
+import org.jesperancinha.logistics.jpa.dao.MerchandiseLog;
+import org.jesperancinha.logistics.jpa.dao.Product;
+import org.jesperancinha.logistics.jpa.dao.ProductCargo;
+import org.jesperancinha.logistics.jpa.dao.TransportPackage;
+import org.jesperancinha.logistics.jpa.dao.CarriageRepository;
+import org.jesperancinha.logistics.jpa.dao.CompanyRepository;
+import org.jesperancinha.logistics.jpa.dao.MerchandiseLogRepository;
+import org.jesperancinha.logistics.jpa.dao.MerchandiseRepository;
+import org.jesperancinha.logistics.jpa.dao.ProductCargoRepository;
+import org.jesperancinha.logistics.jpa.dao.ProductRepository;
+import org.jesperancinha.logistics.jpa.dao.TransportPackageRepository;
 import org.jesperancinha.logistics.mcs.converter.MerchandiseLogConverter;
 import org.jesperancinha.logistics.mcs.data.TrainMerchandiseDto;
 import org.springframework.stereotype.Component;
@@ -25,7 +25,7 @@ import java.util.Objects;
 import java.util.concurrent.CountDownLatch;
 import java.util.stream.Stream;
 
-import static org.jesperancinha.logistics.jpa.types.Status.DELIVERED;
+import static org.jesperancinha.logistics.jpa.dao.Status.DELIVERED;
 
 @Slf4j
 @Component

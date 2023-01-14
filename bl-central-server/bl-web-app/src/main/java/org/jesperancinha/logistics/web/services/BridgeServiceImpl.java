@@ -1,7 +1,7 @@
 package org.jesperancinha.logistics.web.services;
 
-import org.jesperancinha.logistics.jpa.model.Bridge;
-import org.jesperancinha.logistics.jpa.repositories.BridgeRepository;
+import org.jesperancinha.logistics.jpa.dao.Bridge;
+import org.jesperancinha.logistics.jpa.dao.BridgeRepository;
 import org.jesperancinha.logistics.web.utils.GeoCalculator;
 import org.springframework.stereotype.Service;
 
