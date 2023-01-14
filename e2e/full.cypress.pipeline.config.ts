@@ -25,5 +25,9 @@ module.exports = defineConfig({
         includeShadowDom: true,
         supportFile: `${__dirname}/cypress/support/e2e.ts`,
         specPattern: `${__dirname}/cypress/e2e/**/*.cy.{js,jsx,ts,tsx}`,
+        retries: {
+            runMode: 4,
+            openMode: 0
+        }
     },
 });
