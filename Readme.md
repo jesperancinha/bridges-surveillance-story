@@ -12,7 +12,7 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/56395dd932804738979bbcb3bec4bc5f)](https://www.codacy.com/gh/jesperancinha/bridges-surveillance-story/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jesperancinha/bridges-surveillance-story&amp;utm_campaign=Badge_Grade)
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Coverage/56395dd932804738979bbcb3bec4bc5f)](https://www.codacy.com/gh/jesperancinha/bridges-surveillance-story/dashboard?utm_source=github.com&utm_medium=referral&utm_content=jesperancinha/bridges-surveillance-story&utm_campaign=Badge_Coverage)
-[![codecov](https://codecov.io/gh/jesperancinha/bridges-surveillance-story/branch/main/graph/badge.svg?token=rSu5dH7N7q)](https://codecov.io/gh/jesperancinha/bridges-surveillance-story)
+[![codecov](https://codecov.io/gh/jesperancinha/bridges-surveillance-story/branch/master/graph/badge.svg?token=rSu5dH7N7q)](https://codecov.io/gh/jesperancinha/bridges-surveillance-story/tree/master)
 [![Coverage Status](https://coveralls.io/repos/github/jesperancinha/bridges-surveillance-story/badge.svg?branch=master)](https://coveralls.io/github/jesperancinha/bridges-surveillance-story?branch=master)
 
 [![GitHub language count](https://img.shields.io/github/languages/count/jesperancinha/bridges-surveillance-story.svg)](#)
