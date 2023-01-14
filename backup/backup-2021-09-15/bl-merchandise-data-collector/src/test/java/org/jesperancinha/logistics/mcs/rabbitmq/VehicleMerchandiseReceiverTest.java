@@ -3,7 +3,7 @@ package org.jesperancinha.logistics.mcs.rabbitmq;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
-import org.jesperancinha.logistics.mcs.data.VehicleMerchandiseDto;
+import org.jesperancinha.logistics.mcs.dto.VehicleMerchandiseDto;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

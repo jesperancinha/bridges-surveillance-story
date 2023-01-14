@@ -1,146 +1,109 @@
-package org.jesperancinha.logistics.mcs.rabbitmq;
+package org.jesperancinha.logistics.mcs.rabbitmq
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.extern.slf4j.Slf4j;
-import org.jesperancinha.logistics.jpa.dao.Company;
-import org.jesperancinha.logistics.jpa.dao.MerchandiseLog;
-import org.jesperancinha.logistics.jpa.dao.Product;
-import org.jesperancinha.logistics.jpa.dao.ProductCargo;
-import org.jesperancinha.logistics.jpa.dao.TransportPackage;
-import org.jesperancinha.logistics.jpa.dao.CarriageRepository;
-import org.jesperancinha.logistics.jpa.dao.CompanyRepository;
-import org.jesperancinha.logistics.jpa.dao.MerchandiseLogRepository;
-import org.jesperancinha.logistics.jpa.dao.MerchandiseRepository;
-import org.jesperancinha.logistics.jpa.dao.ProductCargoRepository;
-import org.jesperancinha.logistics.jpa.dao.ProductRepository;
-import org.jesperancinha.logistics.jpa.dao.TransportPackageRepository;
-import org.jesperancinha.logistics.mcs.converter.MerchandiseLogConverter;
-import org.jesperancinha.logistics.mcs.data.TrainMerchandiseDto;
-import org.springframework.stereotype.Component;
-
-import java.nio.charset.Charset;
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.concurrent.CountDownLatch;
-import java.util.stream.Stream;
-
-import static org.jesperancinha.logistics.jpa.dao.Status.DELIVERED;
+import com.fasterxml.jackson.databind.ObjectMapper
+import lombok.extern.slf4j.Slf4j
+import org.jesperancinha.logistics.jpa.dao.*
+import org.jesperancinha.logistics.mcs.converter.MerchandiseLogConverter
+import org.jesperancinha.logistics.mcs.dto.CarrierDto
+import org.jesperancinha.logistics.mcs.dto.ProductInTransitDto
+import org.jesperancinha.logistics.mcs.dto.TrainMerchandiseDto
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+import org.springframework.data.repository.findByIdOrNull
+import org.springframework.stereotype.Component
+import java.nio.charset.Charset
+import java.time.Instant
+import java.util.*
+import java.util.concurrent.CountDownLatch
+import java.util.stream.Stream
 
 @Slf4j
 @Component
-public class TrainMerchandiseReceiver {
-
-    private final ObjectMapper objectMapper;
-
-    private CountDownLatch latch = new CountDownLatch(1);
-
-    private final MerchandiseLogRepository merchandiseLogRepository;
-
-    private final MerchandiseRepository merchandiseRepository;
-
-    private final ProductRepository productRepository;
-
-    private final TransportPackageRepository transportPackageRepository;
-
-    private final CompanyRepository companyRepository;
-
-    private final ProductCargoRepository productCargoRepository;
-
-    private final CarriageRepository carriageRepository;
-
-    public TrainMerchandiseReceiver(ObjectMapper objectMapper, MerchandiseLogRepository merchandiseLogRepository, MerchandiseRepository merchandiseRepository, ProductRepository productRepository, TransportPackageRepository transportPackageRepository,
-                                    CompanyRepository companyRepository, ProductCargoRepository productCargoRepository, CarriageRepository carriageRepository) {
-        this.objectMapper = objectMapper;
-        this.merchandiseLogRepository = merchandiseLogRepository;
-        this.merchandiseRepository = merchandiseRepository;
-        this.productRepository = productRepository;
-        this.transportPackageRepository = transportPackageRepository;
-        this.companyRepository = companyRepository;
-        this.productCargoRepository = productCargoRepository;
-        this.carriageRepository = carriageRepository;
-    }
-
-    public void receiveMessage(byte[] message) {
-        String messageString = new String(message, Charset.defaultCharset());
-        System.out.println("Received <" + messageString + ">");
+class TrainMerchandiseReceiver(
+    private val objectMapper: ObjectMapper,
+    private val merchandiseLogRepository: MerchandiseLogRepository,
+    private val merchandiseRepository: MerchandiseRepository,
+    private val productRepository: ProductRepository,
+    private val transportPackageRepository: TransportPackageRepository,
+    private val companyRepository: CompanyRepository,
+    private val productCargoRepository: ProductCargoRepository,
+    private val carriageRepository: CarriageRepository
+) {
+    val latch = CountDownLatch(1)
+    fun receiveMessage(message: ByteArray) {
+        val messageString = String(message, Charset.defaultCharset())
+        println("Received <$messageString>")
         try {
-            final TrainMerchandiseDto[] trainMerchandiseDtos = objectMapper.readValue(messageString, TrainMerchandiseDto[].class);
-            Stream.of(trainMerchandiseDtos)
-                    .forEach(trainMerchandiseDto -> {
-                        final Company supplier;
-                        if (Objects.nonNull(trainMerchandiseDto.supplierId())) {
-                            supplier = companyRepository.findById(trainMerchandiseDto.supplierId())
-                                    .orElse(null);
-                        } else {
-                            supplier = null;
-                        }
-
-                        final Company vendor;
-                        if (Objects.nonNull(trainMerchandiseDto.vendorId())) {
-                            vendor = companyRepository.findById(trainMerchandiseDto.vendorId())
-                                    .orElse(null);
-                        } else {
-                            vendor = null;
-                        }
-
-                        trainMerchandiseDto.composition()
-                                .parallelStream()
-                                .forEach(carrierDto -> {
-                                    final Long packageId = carrierDto.packageId();
-                                    final TransportPackage transportPackage = TransportPackage.builder()
-                                            .id(packageId)
-                                            .supplier(supplier)
-                                            .vendor(vendor)
-                                            .weight(carrierDto.weight())
-                                            .carriage(carriageRepository.findById(carrierDto.carriageId())
-                                                    .orElse(null))
-                                            .productCargos(new ArrayList<>())
-                                            .build();
-                                    final TransportPackage transportPackage1 = transportPackageRepository.save(transportPackage);
-                                    if (Objects.nonNull(carrierDto.products())) {
-                                        carrierDto.products()
-                                                .parallelStream()
-                                                .forEach(productInTransitDto -> {
-                                                    final Product product = productRepository.findById(productInTransitDto.productId())
-                                                            .orElse(null);
-                                                    final ProductCargo productCargo = ProductCargo.builder()
-                                                            .product(product)
-                                                            .quantity(productInTransitDto.quantity())
-                                                            .build();
-                                                    final ProductCargo productCargoDb = productCargoRepository.save(productCargo);
-                                                    final MerchandiseLog merchandiseLog = MerchandiseLog.builder()
-                                                            .supplier(supplier)
-                                                            .vendor(vendor)
-                                                            .timestamp(Instant.now()
-                                                                    .toEpochMilli())
-                                                            .transportPackage(transportPackage1)
-                                                            .productCargo(productCargoDb)
-                                                            .status(trainMerchandiseDto.status())
-                                                            .lat(trainMerchandiseDto.lat())
-                                                            .lon(trainMerchandiseDto.lon())
-                                                            .build();
-                                                    transportPackage1.getProductCargos()
-                                                            .add(productCargoDb);
-                                                    merchandiseLogRepository.save(merchandiseLog);
-                                                    if (merchandiseLog.getStatus() == DELIVERED) {
-                                                        merchandiseRepository.save(MerchandiseLogConverter.toMerchandise(merchandiseLog));
-                                                    }
-                                                });
-
+            val trainMerchandiseDtos = objectMapper.readValue(messageString, Array<TrainMerchandiseDto>::class.java)
+            Stream.of(*trainMerchandiseDtos)
+                .forEach { trainMerchandiseDto: TrainMerchandiseDto ->
+                    val supplier = if (Objects.nonNull(trainMerchandiseDto.supplierId)) {
+                        companyRepository.findById(trainMerchandiseDto.supplierId)
+                            .orElse(null)
+                    } else {
+                        null
+                    }
+                    val vendor = if (Objects.nonNull(trainMerchandiseDto.vendorId)) {
+                        companyRepository.findById(trainMerchandiseDto.vendorId)
+                            .orElse(null)
+                    } else {
+                        null
+                    }
+                    trainMerchandiseDto.composition
+                        ?.forEach { carrierDto: CarrierDto ->
+                            val packageId = carrierDto.packageId
+                            val transportPackage: TransportPackage = TransportPackage(
+                                id = packageId,
+                                supplier = supplier,
+                                vendor = vendor,
+                                weight = carrierDto.weight,
+                                carriage =
+                                carriageRepository.findByIdOrNull(carrierDto.carriageId),
+                                productCargos = ArrayList()
+                            )
+                            val transportPackage1 = transportPackageRepository.save(transportPackage)
+                            if (Objects.nonNull(carrierDto.products)) {
+                                carrierDto.products
+                                    .parallelStream()
+                                    .forEach { productInTransitDto: ProductInTransitDto ->
+                                        val product = productRepository.findById(productInTransitDto.productId)
+                                            .orElse(null)
+                                        val productCargo: ProductCargo = ProductCargo(
+                                            product = product,
+                                            quantity = productInTransitDto.quantity
+                                        )
+                                        val productCargoDb = productCargoRepository.save(productCargo)
+                                        val merchandiseLog: MerchandiseLog = MerchandiseLog(
+                                            supplier = supplier,
+                                            vendor = vendor,
+                                            timestamp = Instant.now().toEpochMilli(),
+                                            transportPackage = transportPackage1,
+                                            productCargo = productCargoDb,
+                                            status = trainMerchandiseDto.status,
+                                            lat = trainMerchandiseDto.lat,
+                                            lon = trainMerchandiseDto.lon
+                                        )
+                                        transportPackage1.productCargos?.add(productCargoDb)
+                                        merchandiseLogRepository.save(merchandiseLog)
+                                        if (merchandiseLog.status === Status.DELIVERED) {
+                                            merchandiseRepository.save(
+                                                MerchandiseLogConverter.toMerchandise(
+                                                    merchandiseLog
+                                                )
+                                            )
+                                        }
                                     }
-                                    transportPackageRepository.save(transportPackage1);
-
-                                });
-                        latch.countDown();
-                    });
-        } catch (Exception e) {
-            log.error("Error receiving message!", e);
+                            }
+                            transportPackageRepository.save(transportPackage1)
+                        }
+                    latch.countDown()
+                }
+        } catch (e: Exception) {
+            logger.error("Error receiving message!", e)
         }
     }
 
-    public CountDownLatch getLatch() {
-        return latch;
+    companion object {
+        val logger: Logger = LoggerFactory.getLogger(TrainMerchandiseReceiver::class.java)
     }
-
 }

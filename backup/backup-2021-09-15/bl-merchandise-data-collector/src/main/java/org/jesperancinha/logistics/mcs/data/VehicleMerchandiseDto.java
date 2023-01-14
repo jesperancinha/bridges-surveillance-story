@@ -1,4 +1,4 @@
-package org.jesperancinha.logistics.mcs.data;
+package org.jesperancinha.logistics.mcs.dto;
 
 import lombok.Builder;
 import org.jesperancinha.logistics.jpa.types.Status;

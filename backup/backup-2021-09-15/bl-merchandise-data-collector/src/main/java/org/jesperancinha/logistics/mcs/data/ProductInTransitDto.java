@@ -1,4 +1,4 @@
-package org.jesperancinha.logistics.mcs.data;
+package org.jesperancinha.logistics.mcs.dto;
 
 public record ProductInTransitDto(
     Long productId,

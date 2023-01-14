@@ -349,7 +349,7 @@ data class TransportPackage(
     val vendor: Company? = null,
 
     @OneToMany
-    val productCargos: List<ProductCargo>? = null,
+    val productCargos: MutableList<ProductCargo>? = null,
 
     @ManyToOne
     val carriage: Carriage? = null,

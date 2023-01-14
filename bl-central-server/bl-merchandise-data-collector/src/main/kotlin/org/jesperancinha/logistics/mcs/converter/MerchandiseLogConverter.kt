@@ -1,19 +1,18 @@
-package org.jesperancinha.logistics.mcs.converter;
+package org.jesperancinha.logistics.mcs.converter
 
-import org.jesperancinha.logistics.jpa.dao.Merchandise;
-import org.jesperancinha.logistics.jpa.dao.MerchandiseLog;
+import org.jesperancinha.logistics.jpa.dao.Merchandise
+import org.jesperancinha.logistics.jpa.dao.MerchandiseLog
 
-public class MerchandiseLogConverter {
-
-    public static Merchandise toMerchandise(MerchandiseLog merchandiseLog) {
-        return Merchandise.builder()
-            .productCargo(merchandiseLog.getProductCargo())
-            .supplier(merchandiseLog.getSupplier())
-            .vendor(merchandiseLog.getVendor())
-            .timestamp(merchandiseLog.getTimestamp())
-            .transportPackage(merchandiseLog.getTransportPackage())
-            .lat(merchandiseLog.getLat())
-            .lon(merchandiseLog.getLon())
-            .build();
+object MerchandiseLogConverter {
+    fun toMerchandise(merchandiseLog: MerchandiseLog): Merchandise {
+        return Merchandise(
+            productCargo = merchandiseLog.productCargo,
+            supplier = merchandiseLog.supplier,
+            vendor = merchandiseLog.vendor,
+            timestamp = merchandiseLog.timestamp,
+            transportPackage = merchandiseLog.transportPackage,
+            lat = merchandiseLog.lat,
+            lon = merchandiseLog.lon
+        )
     }
 }

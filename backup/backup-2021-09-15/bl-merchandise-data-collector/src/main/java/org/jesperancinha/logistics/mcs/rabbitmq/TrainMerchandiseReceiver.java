@@ -15,7 +15,7 @@ import org.jesperancinha.logistics.jpa.repositories.ProductCargoRepository;
 import org.jesperancinha.logistics.jpa.repositories.ProductRepository;
 import org.jesperancinha.logistics.jpa.repositories.TransportPackageRepository;
 import org.jesperancinha.logistics.mcs.converter.MerchandiseLogConverter;
-import org.jesperancinha.logistics.mcs.data.TrainMerchandiseDto;
+import org.jesperancinha.logistics.mcs.dto.TrainMerchandiseDto;
 import org.springframework.stereotype.Component;
 
 import java.nio.charset.Charset;
