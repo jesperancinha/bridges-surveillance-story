@@ -2,9 +2,8 @@ package org.jesperancinha.logistics.web
 
 import org.assertj.core.api.Assertions
 import org.jesperancinha.logistics.jpa.dao.OpeningTimeRepository
-import org.jesperancinha.logistics.web.data.BridgeDto
-import org.jesperancinha.logistics.web.data.BridgeOpeningConflictDto
-import org.jesperancinha.logistics.web.data.BridgeOpeningTimeDto
+import org.jesperancinha.logistics.web.dto.BridgeDto
+import org.jesperancinha.logistics.web.dto.BridgeOpeningTimeDto
 import org.jesperancinha.logistics.web.services.BridgeOpeningService
 import org.jesperancinha.logistics.web.utils.GeoCalculator
 import org.junit.jupiter.api.AfterEach
@@ -24,38 +23,40 @@ class BridgeOpeningServiceTest @Autowired constructor(
     @Autowired
     private val bridgeOpeningService: BridgeOpeningService
 ) {
-    private val bridgeOpeningTimeDto1 by lazy { BridgeOpeningTimeDto.builder()
-        .bridge(BRIDGE_ONE)
-        .openingTime(LocalDateTime.of(2016, 11, 1, 10, 10, 0))
-        .closingTime(LocalDateTime.of(2016, 11, 1, 12, 10, 0))
-        .build() }
+    private val bridgeOpeningTimeDto1 by lazy {
+        BridgeOpeningTimeDto(
+            bridge = BRIDGE_ONE,
+            openingTime = LocalDateTime.of(2016, 11, 1, 10, 10, 0),
+            closingTime = LocalDateTime.of(2016, 11, 1, 12, 10, 0)
+        )
+    }
     private val bridgeOpeningTimeDto2 by lazy {
-        BridgeOpeningTimeDto.builder()
-            .bridge(BRIDGE_ONE)
-            .openingTime(LocalDateTime.of(2016, 11, 1, 11, 10, 0))
-            .closingTime(LocalDateTime.of(2016, 11, 1, 13, 10, 0))
-            .build()
+        BridgeOpeningTimeDto(
+            bridge = BRIDGE_ONE,
+            openingTime = LocalDateTime.of(2016, 11, 1, 11, 10, 0),
+            closingTime = LocalDateTime.of(2016, 11, 1, 13, 10, 0)
+        )
     }
     private val bridgeOpeningTimeDto3 by lazy {
-        BridgeOpeningTimeDto.builder()
-            .bridge(BRIDGE_ONE)
-            .openingTime(LocalDateTime.of(2016, 11, 1, 12, 10, 0))
-            .closingTime(LocalDateTime.of(2016, 11, 1, 14, 10, 0))
-            .build()
+        BridgeOpeningTimeDto(
+            bridge = BRIDGE_ONE,
+            openingTime = LocalDateTime.of(2016, 11, 1, 12, 10, 0),
+            closingTime = LocalDateTime.of(2016, 11, 1, 14, 10, 0)
+        )
     }
     private val bridgeOpeningTimeDto4 by lazy {
-        BridgeOpeningTimeDto.builder()
-            .bridge(BRIDGE_TWO)
-            .openingTime(LocalDateTime.of(2016, 11, 1, 9, 10, 0))
-            .closingTime(LocalDateTime.of(2016, 11, 1, 14, 10, 0))
-            .build()
+        BridgeOpeningTimeDto(
+            bridge = BRIDGE_TWO,
+            openingTime = LocalDateTime.of(2016, 11, 1, 9, 10, 0),
+            closingTime = LocalDateTime.of(2016, 11, 1, 14, 10, 0)
+        )
     }
     private val bridgeOpeningTimeDto5: BridgeOpeningTimeDto by lazy {
-        BridgeOpeningTimeDto.builder()
-            .bridge(BRIDGE_TWO)
-            .openingTime(LocalDateTime.of(2016, 11, 1, 12, 10, 0))
-            .closingTime(LocalDateTime.of(2016, 11, 1, 20, 10, 0))
-            .build()
+        BridgeOpeningTimeDto(
+            bridge = BRIDGE_TWO,
+            openingTime = LocalDateTime.of(2016, 11, 1, 12, 10, 0),
+            closingTime = LocalDateTime.of(2016, 11, 1, 20, 10, 0)
+        )
     }
 
 
@@ -63,6 +64,7 @@ class BridgeOpeningServiceTest @Autowired constructor(
 
     @MockBean
     private val openingTimeRepository: OpeningTimeRepository? = null
+
     @BeforeEach
     fun setUp() {
         testCases.add(bridgeOpeningTimeDto1)
@@ -132,11 +134,11 @@ class BridgeOpeningServiceTest @Autowired constructor(
     }
 
     companion object {
-        private val BRIDGE_ONE = BridgeDto.builder()
-            .name("25 de Abril")
-            .build()
-        private val BRIDGE_TWO = BridgeDto.builder()
-            .name("Vasco da Gama")
-            .build()
+        private val BRIDGE_ONE = BridgeDto(
+            name = "25 de Abril"
+        )
+        private val BRIDGE_TWO = BridgeDto(
+            name = "Vasco da Gama"
+        )
     }
 }

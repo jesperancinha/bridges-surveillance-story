@@ -6,10 +6,10 @@ import com.fasterxml.jackson.databind.introspect.AnnotatedParameter
 import com.fasterxml.jackson.databind.introspect.JacksonAnnotationIntrospector
 import lombok.extern.slf4j.Slf4j
 import org.jesperancinha.logistics.jpa.dao.*
-import org.jesperancinha.logistics.web.data.CarriageFullDto
-import org.jesperancinha.logistics.web.data.ContainerFullDto
-import org.jesperancinha.logistics.web.data.FreightDto
-import org.jesperancinha.logistics.web.data.TrainDto
+import org.jesperancinha.logistics.web.dto.CarriageFullDto
+import org.jesperancinha.logistics.web.dto.ContainerFullDto
+import org.jesperancinha.logistics.web.dto.FreightDto
+import org.jesperancinha.logistics.web.dto.TrainDto
 import org.springframework.boot.CommandLineRunner
 import org.springframework.context.annotation.Profile
 import org.springframework.data.repository.findByIdOrNull
@@ -17,9 +17,7 @@ import org.springframework.stereotype.Component
 import java.time.Instant
 import java.util.*
 import java.util.function.Consumer
-import java.util.function.Function
 import java.util.stream.Collectors
-import java.util.stream.IntStream
 
 @Component
 @Slf4j
