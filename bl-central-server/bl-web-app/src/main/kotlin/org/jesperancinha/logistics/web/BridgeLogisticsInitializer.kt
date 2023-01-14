@@ -1,9 +1,6 @@
 package org.jesperancinha.logistics.web
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.databind.introspect.AnnotatedMember
-import com.fasterxml.jackson.databind.introspect.AnnotatedParameter
-import com.fasterxml.jackson.databind.introspect.JacksonAnnotationIntrospector
 import org.jesperancinha.logistics.jpa.dao.*
 import org.jesperancinha.logistics.web.dto.CarriageFullDto
 import org.jesperancinha.logistics.web.dto.ContainerFullDto
