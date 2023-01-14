@@ -7,7 +7,6 @@ on:
   pull_request:
     branches:
       - master
-      - 'migration**'
 
 jobs:
   build:

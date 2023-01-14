@@ -1,13 +1,6 @@
  name: e2e-bridge-logistics-app
 
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches:
-      - master
-      - 'migration**'
-
+on: [push]
 jobs:
   e2e-electron:
     runs-on: ubuntu-latest
