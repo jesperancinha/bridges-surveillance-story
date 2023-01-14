@@ -33,23 +33,6 @@ class BridgeLogisticsInitializer(
 ) : CommandLineRunner {
     private val objectMapper = ObjectMapper()
 
-    init {
-        val implicitRecordAI: JacksonAnnotationIntrospector = object : JacksonAnnotationIntrospector() {
-            override fun findImplicitPropertyName(m: AnnotatedMember): String {
-                if (m.declaringClass
-                        .isRecord
-                ) {
-                    if (m is AnnotatedParameter) {
-                        return m.getDeclaringClass()
-                            .recordComponents[m.index].name
-                    }
-                }
-                return super.findImplicitPropertyName(m)
-            }
-        }
-        objectMapper.setAnnotationIntrospector(implicitRecordAI)
-    }
-
     @Throws(Exception::class)
     override fun run(vararg args: String) {
         bridgeRepository.saveAll(
