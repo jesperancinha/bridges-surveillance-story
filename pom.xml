@@ -172,7 +172,7 @@
         <jdbc.version>1.17.6</jdbc.version>
 
         <maven-assembly-plugin.version>3.4.2</maven-assembly-plugin.version>
-        <scala-maven-plugin.version>4.7.2</scala-maven-plugin.version>
+        <scala-maven-plugin.version>4.8.0</scala-maven-plugin.version>
 
         <scala.sdk.version>2.12</scala.sdk.version>
         <scala-library.version>${scala.sdk.version}.16</scala-library.version>
