@@ -135,7 +135,7 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <maven.compiler.version>3.10.1</maven.compiler.version>
         <maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
-        <maven-failsafe-plugin.version>3.0.0-M7</maven-failsafe-plugin.version>
+        <maven-failsafe-plugin.version>3.0.0-M8</maven-failsafe-plugin.version>
         <maven-war-plugin.version>3.2.3</maven-war-plugin.version>
         <kotlin.version>1.8.0</kotlin.version>
 
@@ -155,7 +155,7 @@
         <kotest.version>5.4.2</kotest.version>
         <springmockk.version>4.0.0</springmockk.version>
         <kotest-extensions-spring.version>1.1.2</kotest-extensions-spring.version>
-        <mockk.version>1.13.2</mockk.version>
+        <mockk.version>1.13.3</mockk.version>
 
         <failOnMissingWebXml>false</failOnMissingWebXml>
 
