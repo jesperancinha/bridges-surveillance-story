@@ -1,8 +1,8 @@
 package org.jesperancinha.logistics.jpa.dao
 
 import org.hibernate.Hibernate
-import jakarta.math.BigDecimal
 import jakarta.persistence.*
+import java.math.BigDecimal
 
 @Entity
 @Table(name = "bridge")
