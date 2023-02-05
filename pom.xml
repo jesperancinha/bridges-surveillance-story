@@ -137,7 +137,7 @@
         <maven-surefire-plugin.version>3.0.0-M8</maven-surefire-plugin.version>
         <maven-failsafe-plugin.version>3.0.0-M8</maven-failsafe-plugin.version>
         <maven-war-plugin.version>3.2.3</maven-war-plugin.version>
-        <kotlin.version>1.8.0</kotlin.version>
+        <kotlin.version>1.8.10</kotlin.version>
 
         <spring-boot-starter-parent.version>3.0.2</spring-boot-starter-parent.version>
         <spring-rabbit-test.version>3.0.1</spring-rabbit-test.version>
@@ -149,7 +149,7 @@
         <javaee-api.version>8.0.1</javaee-api.version>
         <slf4j-api.version>2.0.6</slf4j-api.version>
 
-        <postgresql.version>42.5.1</postgresql.version>
+        <postgresql.version>42.5.3</postgresql.version>
 
         <kotest.version>5.5.4</kotest.version>
         <kotest.version>5.4.2</kotest.version>
@@ -183,7 +183,7 @@
 
         <config.version>1.4.2</config.version>
         <jnr-posix.version>3.1.16</jnr-posix.version>
-        <omni-coveragereporter-maven-plugin.version>0.3.2</omni-coveragereporter-maven-plugin.version>
+        <omni-coveragereporter-maven-plugin.version>0.4.2</omni-coveragereporter-maven-plugin.version>
         <kotlinx-coroutines-debug.version>1.6.4</kotlinx-coroutines-debug.version>
 
         <!-- Swagger -->
