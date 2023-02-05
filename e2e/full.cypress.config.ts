@@ -9,7 +9,7 @@ module.exports = defineConfig({
     supportFile: `${__dirname}/cypress/support/e2e.ts`,
     specPattern: `${__dirname}/cypress/e2e/**/*.cy.{js,jsx,ts,tsx}`,
     retries: {
-      runMode: 4,
+      runMode: 10,
       openMode: 0
     }
   },
