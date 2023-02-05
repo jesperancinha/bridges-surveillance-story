@@ -2,7 +2,7 @@ package org.jesperancinha.logistics.jpa.dao
 
 import org.hibernate.Hibernate
 import java.math.BigDecimal
-import javax.persistence.*
+import jakarta.persistence.*
 
 @Entity
 @Table(name = "bridge")
@@ -12,7 +12,7 @@ import javax.persistence.*
 )
 data class Bridge(
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO) val id: Long? = null,
+    @GeneratedValue(strategy = GenerationType.IDENTITY) val id: Long? = null,
     val name: String? = null,
     val address: String? = null,
     val city: String? = null,
@@ -46,7 +46,7 @@ data class Bridge(
 @Table(name = "bridge_logs")
 data class BridgeLog(
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
 
     @ManyToOne(optional = false)
@@ -255,7 +255,7 @@ data class MerchandiseLog(
 @Table(name = "passengers")
 data class Passenger(
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
     val firstName: String? = null,
     val lastName: String? = null,
@@ -322,7 +322,7 @@ data class Train(
 @Table(name = "trains_log")
 data class TrainLog(
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
 
     @ManyToOne(optional = false)
