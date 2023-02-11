@@ -68,7 +68,7 @@ oc apply -f bl-train-server-deployment.yaml
 -   [Chapter 8.  Cross-cluster message distribution](https://livebook.manning.com/book/rabbitmq-in-depth/chapter-8/)
 -   [Understand Federation in RabbitMQ - RabbitMQ Federation Plugin](https://jee-appy.blogspot.com/2018/08/setup-rabbitmq-exchange-federation.html)
 
-## About me 👨🏽‍💻🚀🏳️‍🌈
+## About me
 
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-20/JEOrgLogo-20.png "João Esperancinha Homepage")](http://joaofilipesabinoesperancinha.nl)
 [![GitHub followers](https://img.shields.io/github/followers/jesperancinha.svg?label=Jesperancinha&style=social "GitHub")](https://github.com/jesperancinha)

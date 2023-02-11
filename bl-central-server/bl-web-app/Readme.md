@@ -45,7 +45,7 @@ objectMapper.setAnnotationIntrospector(implicitRecordAI);
 -   [Support for record types in JDK 14 #46](https://github.com/FasterXML/jackson-future-ideas/issues/46)
 -   [jetty://](https://www.eclipse.org/jetty/documentation/current/index.html)
 
-## About me 👨🏽‍💻🚀🏳️‍🌈
+## About me
 
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-20/JEOrgLogo-20.png "João Esperancinha Homepage")](http://joaofilipesabinoesperancinha.nl)
 [![GitHub followers](https://img.shields.io/github/followers/jesperancinha.svg?label=Jesperancinha&style=social "GitHub")](https://github.com/jesperancinha)
