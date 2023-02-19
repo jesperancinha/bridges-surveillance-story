@@ -134,8 +134,8 @@
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <maven.compiler.version>3.10.1</maven.compiler.version>
-        <maven-surefire-plugin.version>3.0.0-M8</maven-surefire-plugin.version>
-        <maven-failsafe-plugin.version>3.0.0-M8</maven-failsafe-plugin.version>
+        <maven-surefire-plugin.version>3.0.0-M9</maven-surefire-plugin.version>
+        <maven-failsafe-plugin.version>3.0.0-M9</maven-failsafe-plugin.version>
         <maven-war-plugin.version>3.2.3</maven-war-plugin.version>
         <kotlin.version>1.8.10</kotlin.version>
 
@@ -149,7 +149,7 @@
         <javaee-api.version>8.0.1</javaee-api.version>
         <slf4j-api.version>2.0.6</slf4j-api.version>
 
-        <postgresql.version>42.5.3</postgresql.version>
+        <postgresql.version>42.5.4</postgresql.version>
 
         <kotest.version>5.5.5</kotest.version>
         <kotest.version>5.4.2</kotest.version>
@@ -175,8 +175,8 @@
         <scala-maven-plugin.version>4.8.0</scala-maven-plugin.version>
 
         <scala.sdk.version>2.12</scala.sdk.version>
-        <scala-library.version>2.13.10</scala-library.version>
-        <spark.version>3.3.1</spark.version>
+        <scala-library.version>${scala.sdk.version}.16</scala-library.version>
+        <spark.version>3.3.2</spark.version>
         <compiler-bridge.version>1.8.0</compiler-bridge.version>
         <spark-cassandra-connector.version>3.3.0</spark-cassandra-connector.version>
         <play-json.version>2.9.4</play-json.version>
