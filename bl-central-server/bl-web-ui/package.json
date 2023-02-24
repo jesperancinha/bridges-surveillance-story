@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~15.1.6",
-    "@angular/cli": "~15.1.6",
+    "@angular/cli": "~15.2.0",
     "@angular/compiler-cli": "~15.0.2",
     "@angular/language-service": "~15.1.5",
     "@schematics/angular": "~15.2.0",
