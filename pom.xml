@@ -133,7 +133,7 @@
         <java.version>17</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
-        <maven.compiler.version>3.10.1</maven.compiler.version>
+        <maven.compiler.version>3.11.0</maven.compiler.version>
         <maven-surefire-plugin.version>3.0.0-M9</maven-surefire-plugin.version>
         <maven-failsafe-plugin.version>3.0.0-M9</maven-failsafe-plugin.version>
         <maven-war-plugin.version>3.2.3</maven-war-plugin.version>
@@ -142,7 +142,7 @@
         <spring-boot-starter-parent.version>3.0.2</spring-boot-starter-parent.version>
         <spring-rabbit-test.version>3.0.2</spring-rabbit-test.version>
 
-        <activemq.version>5.17.3</activemq.version>
+        <activemq.version>5.17.4</activemq.version>
         <amqp-client.version>5.7.1</amqp-client.version>
 
         <combinatoricslib3.version>3.3.3</combinatoricslib3.version>
