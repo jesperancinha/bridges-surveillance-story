@@ -23,6 +23,9 @@ class TrainMerchandiseReceiverTest {
         private val postgreSQLContainer: PostgreSQLContainer<*> = PostgreSQLContainer("postgres")
             .withUsername("postgres")
             .withPassword("admin")
+            .also {
+                it.start()
+            }
 
         @JvmStatic
         @BeforeAll
