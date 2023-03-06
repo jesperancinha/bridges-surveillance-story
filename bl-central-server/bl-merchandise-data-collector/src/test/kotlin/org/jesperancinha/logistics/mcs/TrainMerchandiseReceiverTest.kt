@@ -3,6 +3,9 @@ package org.jesperancinha.logistics.mcs
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.test.context.ActiveProfiles
+import org.springframework.test.context.DynamicPropertyRegistry
+import org.springframework.test.context.DynamicPropertySource
 import org.springframework.test.context.TestPropertySource
 import org.testcontainers.containers.PostgreSQLContainer
 import org.testcontainers.junit.jupiter.Container
@@ -12,6 +15,7 @@ import java.sql.DriverManager
 @SpringBootTest
 @TestPropertySource("classpath:application-test.properties")
 @Testcontainers
+@ActiveProfiles("test")
 class TrainMerchandiseReceiverTest {
     @Test
     fun receiveMessage() {
@@ -23,18 +27,18 @@ class TrainMerchandiseReceiverTest {
         private val postgreSQLContainer: PostgreSQLContainer<*> = PostgreSQLContainer("postgres")
             .withUsername("postgres")
             .withPassword("admin")
-            .also {
-                it.start()
-            }
+            .withDatabaseName("bllogistics")
 
+        init {
+            postgreSQLContainer.start()
+        }
+
+        @DynamicPropertySource
         @JvmStatic
-        @BeforeAll
-        @Throws(Exception::class)
-        fun initialise(): Unit {
-            DriverManager.getConnection(postgreSQLContainer.jdbcUrl, "postgres", "admin").use { conn ->
-                val statement = conn.createStatement()
-                statement.execute("CREATE DATABASE bllogistics")
-            }
+        fun setProperties(registry: DynamicPropertyRegistry) {
+            registry.add(
+                "spring.datasource.url"
+            ) { "jdbc:postgresql://localhost:${postgreSQLContainer.firstMappedPort}/bllogistics" }
         }
     }
 }
