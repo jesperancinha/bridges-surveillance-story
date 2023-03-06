@@ -14,7 +14,13 @@ jobs:
           distribution: 'adopt'
 
       - name: Start Docker
-        run: make dcup-full-action
+        uses: nick-fields/retry@v2
+        with:
+          max_attempts: 2
+          retry_on: error
+          timeout_seconds: 2400
+          command: |
+            make dcup-full-action
 
       - name: Build Cypress
         run: make build-npm-cypress
@@ -33,7 +39,13 @@ jobs:
           distribution: 'adopt'
 
       - name: Start Docker
-        run: make dcup-full-action
+        uses: nick-fields/retry@v2
+        with:
+          max_attempts: 2
+          retry_on: error
+          timeout_seconds: 2400
+          command: |
+            make dcup-full-action
 
       - name: Build Cypress
         run: make build-npm-cypress
@@ -52,7 +64,13 @@ jobs:
           distribution: 'adopt'
 
       - name: Start Docker
-        run: make dcup-full-action
+        uses: nick-fields/retry@v2
+        with:
+          max_attempts: 2
+          retry_on: error
+          timeout_seconds: 2400
+          command: |
+            make dcup-full-action
 
       - name: Build Cypress
         run: make build-npm-cypress
@@ -71,7 +89,13 @@ jobs:
           distribution: 'adopt'
 
       - name: Start Docker
-        run: make dcup-full-action
+        uses: nick-fields/retry@v2
+        with:
+          max_attempts: 2
+          retry_on: error
+          timeout_seconds: 2400
+          command: |
+            make dcup-full-action
 
       - name: Build Cypress
         run: make build-npm-cypress
