@@ -5,14 +5,13 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.gson.Gson
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.nulls.shouldNotBeNull
-import org.assertj.core.api.Assertions
 import org.jesperancinha.logistics.mcs.dto.TrainMerchandiseDto
 import org.junit.jupiter.api.Test
 
 /**
  * Created by jofisaes on 16/09/2021
  */
-class TrainMerchandiseReceiverTest {
+class TrainMerchandiseReceiverUnitTest {
     /**
      * GSON doesn't parse to record correctly with current version.
      * Records are marked as final and GSON doesn't like that.
