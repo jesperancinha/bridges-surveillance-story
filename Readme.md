@@ -19,7 +19,11 @@
 [![GitHub top language](https://img.shields.io/github/languages/top/jesperancinha/bridges-surveillance-story.svg)](#)
 [![GitHub top language](https://img.shields.io/github/languages/code-size/jesperancinha/bridges-surveillance-story.svg)](#)
 
+
+## Technologies used
+
 ---
+
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/kotlin-50.png "Kotlin 1.5.21")](https://kotlinlang.org/)
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/kotest-50.png "Kotest")](https://kotest.io/)
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/mockk-50.png "MockK")](https://mockk.io/)
@@ -49,6 +53,10 @@
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/amqp-50.png "AMQP")](https://www.amqp.org/)
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/swagger-50.png "Swagger")](https://swagger.io/)
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/cypress-50.png "Cypress")](https://www.cypress.io/)
+
+---
+
+## Introduction
 
 This application uses event sourcing to serve the logistics for a bridge management system. This is what in general this
 project is responsible for
