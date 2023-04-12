@@ -135,6 +135,17 @@
     ora "5.4.1"
     rxjs "6.6.7"
 
+"@angular-devkit/schematics@15.2.6":
+  version "15.2.6"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-15.2.6.tgz#fb5b7530f21586dbdec45cac56f8a418bcfd053d"
+  integrity sha512-f7VgnAcok7AwR/DhX0ZWskB0rFBo/KsvtIUA2qZSrpKMf8eFiwu03dv/b2mI0vnf+1FBfIQzJvO0ww45zRp6dA==
+  dependencies:
+    "@angular-devkit/core" "15.2.6"
+    jsonc-parser "3.2.0"
+    magic-string "0.29.0"
+    ora "5.4.1"
+    rxjs "6.6.7"
+
 "@angular/animations@~15.0.2":
   version "15.0.2"
   resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-15.0.2.tgz#13617cf4ae98b555955c474c11b4e88e6d0259b9"
@@ -1728,13 +1739,22 @@
     read-package-json-fast "^3.0.0"
     which "^3.0.0"
 
-"@schematics/angular@15.2.5", "@schematics/angular@~15.2.5":
+"@schematics/angular@15.2.5":
   version "15.2.5"
   resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-15.2.5.tgz#0f185db69b146c17ea8051febac2bee85bda0a4e"
   integrity sha512-YN0A5bzuqEmLdwbcQRop9TFj0QVxTC/XCL0K5DfDymVBS2j09NMyLLVc6TDOs+J/fMQr5EwiT149ikzqiUmAcw==
   dependencies:
     "@angular-devkit/core" "15.2.5"
     "@angular-devkit/schematics" "15.2.5"
+    jsonc-parser "3.2.0"
+
+"@schematics/angular@~15.2.6":
+  version "15.2.6"
+  resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-15.2.6.tgz#5a0face51806f6b2adf67eef73b08c31744b07bc"
+  integrity sha512-OcBUvVAxZEMBX+fi0ytybeAdmStra+GwtlvipS70yOxcAgJ84ZrnZGN7a072cCVQcq7AgqUfssnyqCx1wu+yCg==
+  dependencies:
+    "@angular-devkit/core" "15.2.6"
+    "@angular-devkit/schematics" "15.2.6"
     jsonc-parser "3.2.0"
 
 "@tootallnate/once@2":
