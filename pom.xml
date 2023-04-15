@@ -142,7 +142,7 @@
         <spring-boot-starter-parent.version>3.0.4</spring-boot-starter-parent.version>
         <spring-rabbit-test.version>3.0.3</spring-rabbit-test.version>
 
-        <activemq.version>5.18.0</activemq.version>
+        <activemq.version>5.18.1</activemq.version>
         <amqp-client.version>5.7.1</amqp-client.version>
 
         <combinatoricslib3.version>3.3.3</combinatoricslib3.version>
@@ -155,7 +155,7 @@
         <kotest.version>5.4.2</kotest.version>
         <springmockk.version>4.0.2</springmockk.version>
         <kotest-extensions-spring.version>1.1.2</kotest-extensions-spring.version>
-        <mockk.version>1.13.4</mockk.version>
+        <mockk.version>1.13.5</mockk.version>
 
         <failOnMissingWebXml>false</failOnMissingWebXml>
 
@@ -176,7 +176,7 @@
 
         <scala.sdk.version>2.12</scala.sdk.version>
         <scala-library.version>${scala.sdk.version}.16</scala-library.version>
-        <spark.version>3.3.2</spark.version>
+        <spark.version>3.4.0</spark.version>
         <compiler-bridge.version>1.8.0</compiler-bridge.version>
         <spark-cassandra-connector.version>3.3.0</spark-cassandra-connector.version>
         <play-json.version>2.9.4</play-json.version>
