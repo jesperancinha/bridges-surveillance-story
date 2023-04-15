@@ -158,22 +158,24 @@ npm-test:
 	cd bl-bridge-server/bl-bridge-temperature-coap && npm run coverage
 report:
 	mvn omni-coveragereporter:report
+log-all:
+	docker-compose -p ${GITHUB_RUN_ID} logs
 cypress-install:
 	npm i -g cypress
 	cd e2e && make build
-cypress-open:
+cypress-open: log-all
 	cd e2e && make cypress-open
-cypress-open-docker:
+cypress-open-docker: log-all
 	cd e2e && make cypress-open-docker
-cypress-electron:
+cypress-electron: log-all
 	cd e2e && make cypress-electron
-cypress-chrome:
+cypress-chrome: log-all
 	cd e2e && make cypress-chrome
-cypress-firefox:
-	cd e2e && make cypress-firefox
-cypress-firefox-full:
+cypress-firefox: log-all
+	 cd e2e && make cypress-firefox
+cypress-firefox-full: log-all
 	cd e2e && make cypress-firefox-full
-cypress-edge:
+cypress-edge: log-all
 	cd e2e && make cypress-edge
 local-pipeline: build-maven build-npm test-maven test-node coverage report
 bl-wait:
