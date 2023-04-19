@@ -151,7 +151,7 @@
 
         <postgresql.version>42.6.0</postgresql.version>
 
-        <kotest.version>5.5.5</kotest.version>
+        <kotest.version>5.6.1</kotest.version>
         <kotest.version>5.4.2</kotest.version>
         <springmockk.version>4.0.2</springmockk.version>
         <kotest-extensions-spring.version>1.1.2</kotest-extensions-spring.version>
