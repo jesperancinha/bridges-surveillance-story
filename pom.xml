@@ -184,7 +184,7 @@
         <config.version>1.4.2</config.version>
         <jnr-posix.version>3.1.16</jnr-posix.version>
         <omni-coveragereporter-maven-plugin.version>0.4.3</omni-coveragereporter-maven-plugin.version>
-        <kotlinx-coroutines-debug.version>1.7.0</kotlinx-coroutines-debug.version>
+        <kotlinx-coroutines-debug.version>1.7.1</kotlinx-coroutines-debug.version>
 
         <!-- Swagger -->
         <springdoc-openapi-webmvc-core.version>1.7.0</springdoc-openapi-webmvc-core.version>
