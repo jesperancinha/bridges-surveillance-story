@@ -177,7 +177,7 @@
         <scala.sdk.version>2.12</scala.sdk.version>
         <scala-library.version>${scala.sdk.version}.16</scala-library.version>
         <spark.version>3.4.0</spark.version>
-        <compiler-bridge.version>1.8.0</compiler-bridge.version>
+        <compiler-bridge.version>1.8.1</compiler-bridge.version>
         <spark-cassandra-connector.version>3.3.0</spark-cassandra-connector.version>
         <play-json.version>2.9.4</play-json.version>
 
