@@ -139,7 +139,7 @@
         <maven-war-plugin.version>3.2.3</maven-war-plugin.version>
         <kotlin.version>1.8.21</kotlin.version>
 
-        <spring-boot-starter-parent.version>2.7.4</spring-boot-starter-parent.version>
+        <spring-boot-starter-parent.version>3.0.6</spring-boot-starter-parent.version>
         <spring-rabbit-test.version>3.0.4</spring-rabbit-test.version>
 
         <activemq.version>5.18.1</activemq.version>
@@ -172,23 +172,12 @@
         <jdbc.version>1.18.1</jdbc.version>
 
         <maven-assembly-plugin.version>3.5.0</maven-assembly-plugin.version>
-        <scala-maven-plugin.version>4.8.1</scala-maven-plugin.version>
 
-        <scala.sdk.version>2.12</scala.sdk.version>
-        <scala-library.version>${scala.sdk.version}.16</scala-library.version>
-        <spark.version>3.4.0</spark.version>
-        <compiler-bridge.version>1.8.1</compiler-bridge.version>
-        <spark-cassandra-connector.version>3.3.0</spark-cassandra-connector.version>
-        <play-json.version>2.9.4</play-json.version>
-
-        <config.version>1.4.2</config.version>
-        <jnr-posix.version>3.1.16</jnr-posix.version>
         <omni-coveragereporter-maven-plugin.version>0.4.3</omni-coveragereporter-maven-plugin.version>
         <kotlinx-coroutines-debug.version>1.7.1</kotlinx-coroutines-debug.version>
 
         <!-- Swagger -->
-        <springdoc-openapi-webmvc-core.version>1.7.0</springdoc-openapi-webmvc-core.version>
-        <springdoc-openapi-ui.version>1.7.0</springdoc-openapi-ui.version>
+        <springdoc-openapi-starter-webmvc-ui.version>2.1.0</springdoc-openapi-starter-webmvc-ui.version>
     </properties>
 
     <dependencyManagement>
@@ -207,13 +196,8 @@
             </dependency>
             <dependency>
                 <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-webmvc-core</artifactId>
-                <version>${springdoc-openapi-webmvc-core.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-ui</artifactId>
-                <version>${springdoc-openapi-ui.version}</version>
+                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+                <version>${springdoc-openapi-starter-webmvc-ui.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -231,56 +215,6 @@
                 <artifactId>spring-boot-configuration-processor</artifactId>
                 <version>${spring-boot-starter-parent.version}</version>
                 <optional>true</optional>
-            </dependency>
-            <dependency>
-                <groupId>com.typesafe</groupId>
-                <artifactId>config</artifactId>
-                <version>${config.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.typesafe.play</groupId>
-                <artifactId>play-json_${scala.sdk.version}</artifactId>
-                <version>${play-json.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.datastax.spark</groupId>
-                <artifactId>spark-cassandra-connector_${scala.sdk.version}</artifactId>
-                <version>${spark-cassandra-connector.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.scala-lang</groupId>
-                <artifactId>scala-library</artifactId>
-                <version>${scala-library.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.spark</groupId>
-                <artifactId>spark-core_${scala.sdk.version}</artifactId>
-                <version>${spark.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.spark</groupId>
-                <artifactId>spark-sql_${scala.sdk.version}</artifactId>
-                <version>${spark.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.spark</groupId>
-                <artifactId>spark-streaming_${scala.sdk.version}</artifactId>
-                <version>${spark.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.spark</groupId>
-                <artifactId>spark-streaming-kafka-0-10_${scala.sdk.version}</artifactId>
-                <version>${spark.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.scala-sbt</groupId>
-                <artifactId>compiler-bridge_${scala.sdk.version}</artifactId>
-                <version>${compiler-bridge.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.jnr</groupId>
-                <artifactId>jnr-posix</artifactId>
-                <version>${jnr-posix.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.postgresql</groupId>
