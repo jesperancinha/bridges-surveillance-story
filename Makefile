@@ -1,11 +1,19 @@
 SHELL=/bin/bash
 GITHUB_RUN_ID ?=123
 SBT_VERSION ?= 1.8.3
+NPM_MODULE_LOCATIONS := bl-bridge-server/bl-bridge-humidity-mqtt \
+						bl-bridge-server/bl-bridge-temperature-coap
 
 b: build
 coverage-npm:
-	cd bl-bridge-server/bl-bridge-humidity-mqtt && yarn && jest --coverage
-	cd bl-bridge-server/bl-bridge-temperature-coap && yarn && jest --coverage
+	@for location in $(NPM_MODULE_LOCATIONS); do \
+		export CURRENT=$(shell pwd); \
+		echo "Building $$location..."; \
+		cd $$location; \
+		yarn; \
+		jest --coverage; \
+		cd $$CURRENT; \
+	done
 coverage-python:
 	coverage run --source=bl-demo-server -m pytest && coverage json -o coverage-demo.json
 	coverage run --source=bl-simulation-data -m pytest && coverage json -o coverage-simulation.json
@@ -13,8 +21,14 @@ coverage-maven:
 	mvn clean install jacoco:prepare-agent package jacoco:report
 coverage: coverage-npm coverage-python coverage-maven
 build-npm:
-	cd bl-bridge-server/bl-bridge-temperature-coap && yarn && npm run build
-	cd bl-bridge-server/bl-bridge-humidity-mqtt && yarn && npm run build
+	@for location in $(NPM_MODULE_LOCATIONS); do \
+		export CURRENT=$(shell pwd); \
+		echo "Building $$location..."; \
+		cd $$location; \
+		yarn; \
+		npm run build; \
+		cd $$CURRENT; \
+	done
 build-npm-cypress:
 	cd e2e && yarn
 build-maven: create-demo-data

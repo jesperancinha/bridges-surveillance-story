@@ -114,7 +114,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>org.jesperancinha.logistics.readings.PassengersReadingsLauncher</mainClass>
+                            <mainClass>org.jesperancinha.logistics.passengers.readings.PassengersReadingsLauncher</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
