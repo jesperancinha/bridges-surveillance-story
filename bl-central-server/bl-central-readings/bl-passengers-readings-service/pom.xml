@@ -51,6 +51,18 @@
             <groupId>org.scala-sbt</groupId>
             <artifactId>compiler-bridge_${scala.sdk.version}</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -102,7 +114,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>org.jesperancinha.logistics.readings.PassengersReadingsLauncher</mainClass>
+                            <mainClass>org.jesperancinha.logistics.passengers.readings.PassengersReadingsLauncher</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

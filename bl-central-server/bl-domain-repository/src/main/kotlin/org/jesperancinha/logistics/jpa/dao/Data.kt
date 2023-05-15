@@ -2,7 +2,7 @@ package org.jesperancinha.logistics.jpa.dao
 
 import org.hibernate.Hibernate
 import java.math.BigDecimal
-import javax.persistence.*
+import jakarta.persistence.*
 
 @Entity
 @Table(name = "bridge")

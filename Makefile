@@ -1,10 +1,32 @@
 SHELL=/bin/bash
 GITHUB_RUN_ID ?=123
+SBT_VERSION ?= 1.8.3
+NPM_MODULE_LOCATIONS := bl-bridge-server/bl-bridge-humidity-mqtt \
+						bl-bridge-server/bl-bridge-temperature-coap
+PYTHON_MODULE_LOCATIONS := bl-demo-server \
+						   bl-simulation-data
+ALL_IMAGES := bridge-logistics-bl-train-01-rabbitmq-server \
+              bridge-logistics-bl-central-kafka-server \
+              bridge-logistics-bl-train-01-zookeeper-server \
+              bridge-logistics-bl-central-kafka-server \
+              bridge-logistics-bl-bridge-01-rabbitmq-server \
+              bridge-logistics-bl-bridge-01-temperature_coap_server \
+              bridge-logistics-bl-bridge-01-humidity_mqtt_server \
+              bridge-logistics-bl-vehicle-01-server \
+              bridge-logistics-bl-central-server \
+              bridge-logistics_postgres \
+              bridge-logistics-bl-central-server-apps
 
 b: build
 coverage-npm:
-	cd bl-bridge-server/bl-bridge-humidity-mqtt && yarn && jest --coverage
-	cd bl-bridge-server/bl-bridge-temperature-coap && yarn && jest --coverage
+	@for location in $(NPM_MODULE_LOCATIONS); do \
+		export CURRENT=$(shell pwd); \
+		echo "Running coverage for $$location..."; \
+		cd $$location; \
+		yarn; \
+		jest --coverage; \
+		cd $$CURRENT; \
+	done
 coverage-python:
 	coverage run --source=bl-demo-server -m pytest && coverage json -o coverage-demo.json
 	coverage run --source=bl-simulation-data -m pytest && coverage json -o coverage-simulation.json
@@ -12,8 +34,14 @@ coverage-maven:
 	mvn clean install jacoco:prepare-agent package jacoco:report
 coverage: coverage-npm coverage-python coverage-maven
 build-npm:
-	cd bl-bridge-server/bl-bridge-temperature-coap && yarn && npm run build
-	cd bl-bridge-server/bl-bridge-humidity-mqtt && yarn && npm run build
+	@for location in $(NPM_MODULE_LOCATIONS); do \
+		export CURRENT=$(shell pwd); \
+		echo "Building $$location..."; \
+		cd $$location; \
+		yarn; \
+		npm run build; \
+		cd $$CURRENT; \
+	done
 build-npm-cypress:
 	cd e2e && yarn
 build-maven: create-demo-data
@@ -26,8 +54,13 @@ test-maven:
 local: no-test
 	mkdir -p bin
 test-node:
-	cd bl-bridge-server/bl-bridge-temperature-coap && npm run test
-	cd bl-bridge-server/bl-bridge-humidity-mqtt && npm run test
+	@for location in $(NPM_MODULE_LOCATIONS); do \
+		export CURRENT=$(shell pwd); \
+		echo "Testing $$location..."; \
+		cd $$location; \
+		npm run test; \
+		cd $$CURRENT; \
+	done
 test: test-maven test-node
 no-test:
 	mvn clean install -DskipTests
@@ -96,18 +129,11 @@ docker-delete: stop
 	docker ps -a --format '{{.ID}}' -q --filter="name=bl-" | xargs -I {} docker stop {}
 	docker ps -a --format '{{.ID}}' -q --filter="name=bl-" | xargs -I {} docker rm {}
 docker-cleanup: stop-containers docker-delete
-	docker images -q | xargs docker rmi
-	docker rmi bridge-logistics-bl-train-01-rabbitmq-server
-	docker rmi bridge-logistics-bl-central-kafka-server
-	docker rmi bridge-logistics-bl-train-01-zookeeper-server
-	docker rmi bridge-logistics-bl-central-kafka-server
-	docker rmi bridge-logistics-bl-bridge-01-rabbitmq-server
-	docker rmi bridge-logistics-bl-bridge-01-temperature_coap_server
-	docker rmi bridge-logistics-bl-bridge-01-humidity_mqtt_server
-	docker rmi bridge-logistics-bl-vehicle-01-server
-	docker rmi bridge-logistics-bl-central-server
-	docker rmi bridge-logistics_postgres
-	docker rmi bridge-logistics-bl-central-server-apps
+	docker images -q | xargs -I {} docker rmi {}
+	@for image in $(ALL_IMAGES); do \
+		echo "Stopping image $$image..."; \
+		docker rmi $$image; \
+	done
 docker-action:
 	docker-compose -p ${GITHUB_RUN_ID} -f docker-compose.yml up -d
 docker-delete-apps: stop
@@ -172,7 +198,7 @@ cypress-electron: log-all
 cypress-chrome: log-all
 	cd e2e && make cypress-chrome
 cypress-firefox: log-all
-	 cd e2e && make cypress-firefox
+	cd e2e && make cypress-firefox
 cypress-firefox-full: log-all
 	cd e2e && make cypress-firefox-full
 cypress-edge: log-all
@@ -215,3 +241,18 @@ install-coverage-python:
 	sudo apt install python3-pip -y
 	sudo pip3 install coverage
 	sudo pip3 install pytest
+upgrade-sbt:
+	sudo apt upgrade
+	sudo apt update
+	export SDKMAN_DIR="$(HOME)/.sdkman"; \
+	[[ -s "$(HOME)/.sdkman/bin/sdkman-init.sh" ]]; \
+	source "$(HOME)/.sdkman/bin/sdkman-init.sh"; \
+	sdk update; \
+	sbtVersion=$(shell sbt --version |  tr '\n' ' ' | cut -f6 -d' '); \
+	if [[ -z "$$sbtVersion" ]]; then \
+		sdk install sbt $(SBT_VERSION); \
+		sdk use gradle $(SBT_VERSION); \
+	else \
+		(yes "" 2>/dev/null || true) | sdk install sbt; \
+	fi; \
+	export SBT_VERSION=$(shell sbt --version |  tr '\n' ' ' | cut -f6 -d' ');
