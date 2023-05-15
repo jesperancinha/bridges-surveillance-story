@@ -28,6 +28,7 @@
 
     <properties>
         <revision>2.0.0-SNAPSHOT</revision>
+        <hibernate-validator.version>5.2.4.Final</hibernate-validator.version>
     </properties>
     <modules>
         <module>bl-domain-repository</module>
@@ -36,4 +37,14 @@
         <module>bl-sensor-data-collector</module>
         <module>bl-central-readings</module>
     </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>${hibernate-validator.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>
