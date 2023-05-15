@@ -1,14 +1,13 @@
-package org.jesperancinha.logistics.readings
+package org.jesperancinha.logistics.passengers.readings
 
 import com.datastax.spark.connector._
 import com.datastax.spark.connector.cql.CassandraConnector
 import com.typesafe.config.ConfigFactory
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.apache.kafka.common.serialization.StringDeserializer
+import org.apache.spark.SparkConf
 import org.apache.spark.streaming.kafka010.{ConsumerStrategies, KafkaUtils, LocationStrategies}
 import org.apache.spark.streaming.{Durations, StreamingContext}
-import org.apache.spark.{SparkConf, SparkContext}
-import org.jesperancinha.logistics.passengers.readings.Passenger
 import play.api.libs.json.Json
 
 import java.util.UUID
