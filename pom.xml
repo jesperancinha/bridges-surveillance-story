@@ -177,14 +177,14 @@
         <scala.sdk.version>2.12</scala.sdk.version>
         <scala-library.version>${scala.sdk.version}.16</scala-library.version>
         <spark.version>3.4.0</spark.version>
-        <compiler-bridge.version>1.8.0</compiler-bridge.version>
+        <compiler-bridge.version>1.8.1</compiler-bridge.version>
         <spark-cassandra-connector.version>3.3.0</spark-cassandra-connector.version>
         <play-json.version>2.9.4</play-json.version>
 
         <config.version>1.4.2</config.version>
         <jnr-posix.version>3.1.16</jnr-posix.version>
         <omni-coveragereporter-maven-plugin.version>0.4.3</omni-coveragereporter-maven-plugin.version>
-        <kotlinx-coroutines-debug.version>1.7.0</kotlinx-coroutines-debug.version>
+        <kotlinx-coroutines-debug.version>1.7.1</kotlinx-coroutines-debug.version>
 
         <!-- Swagger -->
         <springdoc-openapi-webmvc-core.version>1.7.0</springdoc-openapi-webmvc-core.version>
