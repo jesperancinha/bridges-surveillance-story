@@ -228,6 +228,6 @@ upgrade-sbt:
 		sdk install sbt $(SBT_VERSION); \
 		sdk use gradle $(SBT_VERSION); \
 	else \
-		(yes "" 2>/dev/null || true) | sdk install sbt -y; \
-		export SBT_VERSION=$(shell sbt --version |  tr '\n' ' ' | cut -f6 -d' '); \
-	fi;
+		(yes "" 2>/dev/null || true) | sdk install sbt; \
+	fi; \
+	export SBT_VERSION=$(shell sbt --version |  tr '\n' ' ' | cut -f6 -d' ');
