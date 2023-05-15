@@ -5,12 +5,23 @@ NPM_MODULE_LOCATIONS := bl-bridge-server/bl-bridge-humidity-mqtt \
 						bl-bridge-server/bl-bridge-temperature-coap
 PYTHON_MODULE_LOCATIONS := bl-demo-server \
 						   bl-simulation-data
+ALL_IMAGES := bridge-logistics-bl-train-01-rabbitmq-server \
+              bridge-logistics-bl-central-kafka-server \
+              bridge-logistics-bl-train-01-zookeeper-server \
+              bridge-logistics-bl-central-kafka-server \
+              bridge-logistics-bl-bridge-01-rabbitmq-server \
+              bridge-logistics-bl-bridge-01-temperature_coap_server \
+              bridge-logistics-bl-bridge-01-humidity_mqtt_server \
+              bridge-logistics-bl-vehicle-01-server \
+              bridge-logistics-bl-central-server \
+              bridge-logistics_postgres \
+              bridge-logistics-bl-central-server-apps
 
 b: build
 coverage-npm:
 	@for location in $(NPM_MODULE_LOCATIONS); do \
 		export CURRENT=$(shell pwd); \
-		echo "Building $$location..."; \
+		echo "Running coverage for $$location..."; \
 		cd $$location; \
 		yarn; \
 		jest --coverage; \
@@ -45,7 +56,7 @@ local: no-test
 test-node:
 	@for location in $(NPM_MODULE_LOCATIONS); do \
 		export CURRENT=$(shell pwd); \
-		echo "Building $$location..."; \
+		echo "Testing $$location..."; \
 		cd $$location; \
 		npm run test; \
 		cd $$CURRENT; \
@@ -118,18 +129,11 @@ docker-delete: stop
 	docker ps -a --format '{{.ID}}' -q --filter="name=bl-" | xargs -I {} docker stop {}
 	docker ps -a --format '{{.ID}}' -q --filter="name=bl-" | xargs -I {} docker rm {}
 docker-cleanup: stop-containers docker-delete
-	docker images -q | xargs docker rmi
-	docker rmi bridge-logistics-bl-train-01-rabbitmq-server
-	docker rmi bridge-logistics-bl-central-kafka-server
-	docker rmi bridge-logistics-bl-train-01-zookeeper-server
-	docker rmi bridge-logistics-bl-central-kafka-server
-	docker rmi bridge-logistics-bl-bridge-01-rabbitmq-server
-	docker rmi bridge-logistics-bl-bridge-01-temperature_coap_server
-	docker rmi bridge-logistics-bl-bridge-01-humidity_mqtt_server
-	docker rmi bridge-logistics-bl-vehicle-01-server
-	docker rmi bridge-logistics-bl-central-server
-	docker rmi bridge-logistics_postgres
-	docker rmi bridge-logistics-bl-central-server-apps
+	docker images -q | xargs -I {} docker rmi {}
+	@for image in $(ALL_IMAGES); do \
+		echo "Stopping image $$image..."; \
+		docker rmi $$image; \
+	done
 docker-action:
 	docker-compose -p ${GITHUB_RUN_ID} -f docker-compose.yml up -d
 docker-delete-apps: stop
