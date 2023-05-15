@@ -3,6 +3,8 @@ GITHUB_RUN_ID ?=123
 SBT_VERSION ?= 1.8.3
 NPM_MODULE_LOCATIONS := bl-bridge-server/bl-bridge-humidity-mqtt \
 						bl-bridge-server/bl-bridge-temperature-coap
+PYTHON_MODULE_LOCATIONS := bl-demo-server \
+						   bl-simulation-data
 
 b: build
 coverage-npm:
@@ -41,8 +43,13 @@ test-maven:
 local: no-test
 	mkdir -p bin
 test-node:
-	cd bl-bridge-server/bl-bridge-temperature-coap && npm run test
-	cd bl-bridge-server/bl-bridge-humidity-mqtt && npm run test
+	@for location in $(NPM_MODULE_LOCATIONS); do \
+		export CURRENT=$(shell pwd); \
+		echo "Building $$location..."; \
+		cd $$location; \
+		npm run test; \
+		cd $$CURRENT; \
+	done
 test: test-maven test-node
 no-test:
 	mvn clean install -DskipTests
