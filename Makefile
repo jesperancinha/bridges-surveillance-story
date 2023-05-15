@@ -1,5 +1,6 @@
 SHELL=/bin/bash
 GITHUB_RUN_ID ?=123
+SBT_VERSION ?= 1.8.3
 
 b: build
 coverage-npm:
@@ -172,7 +173,7 @@ cypress-electron: log-all
 cypress-chrome: log-all
 	cd e2e && make cypress-chrome
 cypress-firefox: log-all
-	 cd e2e && make cypress-firefox
+	cd e2e && make cypress-firefox
 cypress-firefox-full: log-all
 	cd e2e && make cypress-firefox-full
 cypress-edge: log-all
@@ -215,3 +216,18 @@ install-coverage-python:
 	sudo apt install python3-pip -y
 	sudo pip3 install coverage
 	sudo pip3 install pytest
+upgrade-sbt:
+	sudo apt upgrade
+	sudo apt update
+	export SDKMAN_DIR="$(HOME)/.sdkman"; \
+	[[ -s "$(HOME)/.sdkman/bin/sdkman-init.sh" ]]; \
+	source "$(HOME)/.sdkman/bin/sdkman-init.sh"; \
+	sdk update; \
+	sbtVersion=$(shell sbt --version |  tr '\n' ' ' | cut -f6 -d' '); \
+	if [[ -z "$$sbtVersion" ]]; then \
+		sdk install sbt $(SBT_VERSION); \
+		sdk use gradle $(SBT_VERSION); \
+	else \
+		(yes "" 2>/dev/null || true) | sdk install sbt -y; \
+		export SBT_VERSION=$(shell sbt --version |  tr '\n' ' ' | cut -f6 -d' '); \
+	fi;
