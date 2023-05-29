@@ -5,6 +5,7 @@ import com.typesafe.config.ConfigFactory
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.apache.kafka.common.serialization.StringDeserializer
 import org.apache.spark.SparkConf
+import org.apache.spark.streaming.dstream.InputDStream
 import org.apache.spark.streaming.kafka010.{ConsumerStrategies, KafkaUtils, LocationStrategies}
 import org.apache.spark.streaming.{Durations, StreamingContext}
 import play.api.libs.json.Json
@@ -53,12 +54,12 @@ object MetersReadingsLauncher extends App {
   )
 
   val temperatureTopics: Array[String] = Array("TEMPERATURE")
-  val temperatureStream: org.apache.spark.streaming.dstream.InputDStream[ConsumerRecord[String, String]]
+  val temperatureInputStream: InputDStream[ConsumerRecord[String, String]]
   = KafkaUtils.createDirectStream(streamingContext, LocationStrategies.PreferConsistent,
     ConsumerStrategies.Subscribe[String, String](temperatureTopics, kafkaParams))
 
   val humidityTopics: Array[String] = Array("HUMIDITY")
-  val humidityStream: org.apache.spark.streaming.dstream.InputDStream[ConsumerRecord[String, String]]
+  val humidityInputStream: InputDStream[ConsumerRecord[String, String]]
   = KafkaUtils.createDirectStream(streamingContext, LocationStrategies.PreferConsistent,
     ConsumerStrategies.Subscribe[String, String](humidityTopics, kafkaParams))
 
@@ -96,7 +97,7 @@ object MetersReadingsLauncher extends App {
 //  val file_collect = rdd.collect().take(100)
 //  file_collect.foreach(println(_))
 
-  temperatureStream.foreachRDD { rdd =>
+  temperatureInputStream.foreachRDD { rdd =>
     System.out.println("--- New RDD with " + rdd.partitions.length + " partitions and " + rdd.count + " records")
     val strings = rdd.map(record => record.value()).collect();
     strings.foreach(temperatureString => {
@@ -124,7 +125,7 @@ object MetersReadingsLauncher extends App {
 //  val file_collectH = rddH.collect().take(100)
 //  file_collectH.foreach(println(_))
 
-  humidityStream.foreachRDD { rdd =>
+  humidityInputStream.foreachRDD { rdd =>
     System.out.println("--- New RDD with " + rdd.partitions.length + " partitions and " + rdd.count + " records")
     val strings = rdd.map(record => record.value()).collect();
     strings.foreach(humidityString => {
@@ -149,13 +150,13 @@ object MetersReadingsLauncher extends App {
   }
 
   println("***************************************************************************************************************")
-  println(temperatureStream.id)
-  println(temperatureStream.count())
+  println(temperatureInputStream.id)
+  println(temperatureInputStream.count())
   println("***************************************************************************************************************")
 
   println("***************************************************************************************************************")
-  println(humidityStream.id)
-  println(humidityStream.count())
+  println(humidityInputStream.id)
+  println(humidityInputStream.count())
   println("***************************************************************************************************************")
 
   streamingContext.start

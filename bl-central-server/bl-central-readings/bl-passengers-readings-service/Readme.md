@@ -42,6 +42,7 @@ brew upgrade sbt
 ```
 ## References
 
+-   [Data operations with spark and cassandra](https://anant.us/blog/modern-business/data-operations-with-spark-and-cassandra/)
 -   [Reading configurations in Scala](https://medium.com/@ramkarnani24/reading-configurations-in-scala-f987f839f54d)
 -   [Accessing Cassandra from Spark in Java](https://www.datastax.com/blog/2014/08/accessing-cassandra-spark-java)
 -   [Step by Step of Configuring Apache Spark to Connect with Cassandra](https://chongyaorobin.wordpress.com/2015/07/16/step-by-step-of-how-to-configure-apache-spark-to-connect-with-cassandra/)

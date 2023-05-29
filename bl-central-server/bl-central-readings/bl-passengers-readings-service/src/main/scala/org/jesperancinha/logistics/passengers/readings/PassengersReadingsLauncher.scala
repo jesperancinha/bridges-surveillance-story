@@ -5,6 +5,7 @@ import com.typesafe.config.ConfigFactory
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.apache.kafka.common.serialization.StringDeserializer
 import org.apache.spark.SparkConf
+import org.apache.spark.streaming.dstream.InputDStream
 import org.apache.spark.streaming.kafka010.{ConsumerStrategies, KafkaUtils, LocationStrategies}
 import org.apache.spark.streaming.{Durations, StreamingContext}
 import play.api.libs.json.Json
@@ -63,7 +64,7 @@ object PassengersReadingsLauncher extends App {
   )
 
   val passengerTopics: Array[String] = Array("PASSENGER")
-  val passengerStream: org.apache.spark.streaming.dstream.InputDStream[ConsumerRecord[String, String]]
+  val passengerInputStream: InputDStream[ConsumerRecord[String, String]]
   = KafkaUtils.createDirectStream(streamingContext, LocationStrategies.PreferConsistent,
     ConsumerStrategies.Subscribe[String, String](passengerTopics, kafkaParams))
 
@@ -98,7 +99,7 @@ object PassengersReadingsLauncher extends App {
   //  val file_collect = rdd.collect().take(100)
   //  file_collect.foreach(println(_))
 
-  passengerStream.foreachRDD { rdd =>
+  passengerInputStream.foreachRDD { rdd =>
     System.out.println("--- New RDD with " + rdd.partitions.length + " partitions and " + rdd.count + " records")
     val strings = rdd.map(record => record.value()).collect();
     strings.foreach(temperatureString => {
@@ -139,8 +140,8 @@ object PassengersReadingsLauncher extends App {
   }
 
   println("***************************************************************************************************************")
-  println(passengerStream.id)
-  println(passengerStream.count())
+  println(passengerInputStream.id)
+  println(passengerInputStream.count())
   println("***************************************************************************************************************")
 
   streamingContext.start
