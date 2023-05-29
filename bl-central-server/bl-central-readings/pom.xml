@@ -11,18 +11,18 @@
 
     <properties>
         <scala-maven-plugin.version>4.8.1</scala-maven-plugin.version>
-        <scala.sdk.version>2.12</scala.sdk.version>
+        <scala.sdk.version>2.13</scala.sdk.version>
         <scala-library.version>2.13.10</scala-library.version>
         <spark.version>3.4.0</spark.version>
         <jnr-posix.version>3.1.16</jnr-posix.version>
         <config.version>1.4.2</config.version>
         <compiler-bridge.version>1.8.1</compiler-bridge.version>
-        <spark-cassandra-connector.version>3.3.0</spark-cassandra-connector.version>
         <play-json.version>2.9.4</play-json.version>
         <maven-assembly-plugin.version>3.6.0</maven-assembly-plugin.version>
         <omni-coveragereporter-maven-plugin.version>0.4.3</omni-coveragereporter-maven-plugin.version>
         <jacoco-maven-plugin.version>0.8.10</jacoco-maven-plugin.version>
         <jackson.version>2.14.3</jackson.version>
+        <cassandra-driver-core.version>3.0.0</cassandra-driver-core.version>
     </properties>
 
     <dependencyManagement>
@@ -31,11 +31,6 @@
                 <groupId>com.typesafe.play</groupId>
                 <artifactId>play-json_${scala.sdk.version}</artifactId>
                 <version>${play-json.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.datastax.spark</groupId>
-                <artifactId>spark-cassandra-connector_${scala.sdk.version}</artifactId>
-                <version>${spark-cassandra-connector.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.scala-lang</groupId>
@@ -94,6 +89,11 @@
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-annotations</artifactId>
                 <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.datastax.cassandra</groupId>
+                <artifactId>cassandra-driver-core</artifactId>
+                <version>${cassandra-driver-core.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -1,7 +1,6 @@
 package org.jesperancinha.logistics.passengers.readings
 
-import com.datastax.spark.connector._
-import com.datastax.spark.connector.cql.CassandraConnector
+import com.datastax.driver.core.Cluster
 import com.typesafe.config.ConfigFactory
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.apache.kafka.common.serialization.StringDeserializer
@@ -26,7 +25,9 @@ object PassengersReadingsLauncher extends App {
     }
   }
 
-  val config = ConfigFactory.load("application.conf").getConfig("org.jesperancinha.logistics")
+  val config = ConfigFactory
+    .load("application.conf")
+    .getConfig("org.jesperancinha.logistics")
   val envConfig = config.getConfig(env)
   val sparkConfig = config.getConfig("spark")
   val appName = sparkConfig.getString("app-name")
@@ -66,10 +67,14 @@ object PassengersReadingsLauncher extends App {
   = KafkaUtils.createDirectStream(streamingContext, LocationStrategies.PreferConsistent,
     ConsumerStrategies.Subscribe[String, String](passengerTopics, kafkaParams))
 
-  val connector = CassandraConnector.apply(sc)
+  val cluster = Cluster.builder()
+    .addContactPoint(sparkConf.get("spark.driver.host"))
+    .withPort(9042)
+    .build()
+
 
   try {
-    val session = connector.openSession()
+    val session = cluster.connect()
     try {
       //        session.execute("DROP KEYSPACE IF EXISTS readings")
       session.execute("CREATE KEYSPACE IF NOT EXISTS readings WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 1}")
@@ -89,17 +94,17 @@ object PassengersReadingsLauncher extends App {
     } finally if (session != null) session.close()
   }
 
-  val rdd = sc.cassandraTable("readings", "passengers")
-  val file_collect = rdd.collect().take(100)
-  file_collect.foreach(println(_))
+  //  val rdd = sc.cassandraTable("readings", "passengers")
+  //  val file_collect = rdd.collect().take(100)
+  //  file_collect.foreach(println(_))
 
   passengerStream.foreachRDD { rdd =>
     System.out.println("--- New RDD with " + rdd.partitions.length + " partitions and " + rdd.count + " records")
     val strings = rdd.map(record => record.value()).collect();
     strings.foreach(temperatureString => {
       System.out.println("--- New RDD id " + rdd.id)
-      val passengeres = Json.fromJson[Array[Passenger]](Json.parse(temperatureString)).get
-      passengeres.foreach(passenger => {
+      val passengers = Json.fromJson[Array[Passenger]](Json.parse(temperatureString)).get
+      passengers.foreach(passenger => {
         try {
           val collection = sc.parallelize(Seq((
             UUID.randomUUID(),
@@ -115,16 +120,16 @@ object PassengersReadingsLauncher extends App {
             passenger.lon,
             passenger.timeOfReading
           )))
-          collection.saveToCassandra("readings", "passengers",
-            SomeColumns("id",
-              "passenger_id", "first_name", "last_name", "gender",
-              "carriage_id",
-              "weight",
-              "unit",
-              "status",
-              "lat",
-              "lon",
-              "time_of_reading"))
+                    collection.saveToCassandra("readings", "passengers",
+                      SomeColumns("id",
+                        "passenger_id", "first_name", "last_name", "gender",
+                        "carriage_id",
+                        "weight",
+                        "unit",
+                        "status",
+                        "lat",
+                        "lon",
+                        "time_of_reading"))
         }
         catch {
           case e: java.util.NoSuchElementException => println("This data doesn't make sense" + e.getMessage)

@@ -1,7 +1,6 @@
 package org.jesperancinha.logistics.meters.readings
 
-import com.datastax.spark.connector._
-import com.datastax.spark.connector.cql.CassandraConnector
+import com.datastax.driver.core.Cluster
 import com.typesafe.config.ConfigFactory
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.apache.kafka.common.serialization.StringDeserializer
@@ -63,10 +62,14 @@ object MetersReadingsLauncher extends App {
   = KafkaUtils.createDirectStream(streamingContext, LocationStrategies.PreferConsistent,
     ConsumerStrategies.Subscribe[String, String](humidityTopics, kafkaParams))
 
-  val connector = CassandraConnector.apply(sc)
+ val cluster =  Cluster.builder()
+    .addContactPoint(sparkConf.get("spark.driver.host"))
+    .withPort(9042)
+    .build()
+
 
   try {
-    val session = connector.openSession()
+    val session = cluster.connect()
     try {
       //        session.execute("DROP KEYSPACE IF EXISTS readings")
       session.execute("CREATE KEYSPACE IF NOT EXISTS readings WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 1}")
@@ -89,9 +92,9 @@ object MetersReadingsLauncher extends App {
     } finally if (session != null) session.close()
   }
 
-  val rdd = sc.cassandraTable("readings", "temperatures")
-  val file_collect = rdd.collect().take(100)
-  file_collect.foreach(println(_))
+//  val rdd = sc.cassandraTable("readings", "temperatures")
+//  val file_collect = rdd.collect().take(100)
+//  file_collect.foreach(println(_))
 
   temperatureStream.foreachRDD { rdd =>
     System.out.println("--- New RDD with " + rdd.partitions.length + " partitions and " + rdd.count + " records")
@@ -117,9 +120,9 @@ object MetersReadingsLauncher extends App {
     })
   }
 
-  val rddH = sc.cassandraTable("readings", "humidity")
-  val file_collectH = rddH.collect().take(100)
-  file_collectH.foreach(println(_))
+//  val rddH = sc.cassandraTable("readings", "humidity")
+//  val file_collectH = rddH.collect().take(100)
+//  file_collectH.foreach(println(_))
 
   humidityStream.foreachRDD { rdd =>
     System.out.println("--- New RDD with " + rdd.partitions.length + " partitions and " + rdd.count + " records")

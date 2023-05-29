@@ -21,12 +21,12 @@
             <artifactId>config</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.typesafe.play</groupId>
-            <artifactId>play-json_${scala.sdk.version}</artifactId>
+            <groupId>com.datastax.cassandra</groupId>
+            <artifactId>cassandra-driver-core</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.datastax.spark</groupId>
-            <artifactId>spark-cassandra-connector_${scala.sdk.version}</artifactId>
+            <groupId>com.typesafe.play</groupId>
+            <artifactId>play-json_${scala.sdk.version}</artifactId>
         </dependency>
         <dependency>
             <groupId>org.scala-lang</groupId>
