@@ -124,12 +124,34 @@
     rxjs "7.8.1"
     source-map "0.7.4"
 
+"@angular-devkit/core@16.1.6":
+  version "16.1.6"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-16.1.6.tgz#13fecea02870ac12a93a90521df6addd4a9c851e"
+  integrity sha512-3OjtrPWvsqVkMBwqPeE65ccCIw56FooNpVVAJ0XwhVQv5mA81pmbCzU7JsR6U449ZT7O4cQblzZMQvWvx74HCg==
+  dependencies:
+    ajv "8.12.0"
+    ajv-formats "2.1.1"
+    jsonc-parser "3.2.0"
+    rxjs "7.8.1"
+    source-map "0.7.4"
+
 "@angular-devkit/schematics@16.1.5":
   version "16.1.5"
   resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-16.1.5.tgz#9917e98ae6362dcf00cbf0a2ad9ad160651108a3"
   integrity sha512-s6D/I0pfJJ7+XaAYyXh6IsS3Tya4WKeBuVcWWE7IK6TMEd5a1yDQ5O9RO2/G8UcxBwlKZmeuFbJkclpF6q3hYA==
   dependencies:
     "@angular-devkit/core" "16.1.5"
+    jsonc-parser "3.2.0"
+    magic-string "0.30.0"
+    ora "5.4.1"
+    rxjs "7.8.1"
+
+"@angular-devkit/schematics@16.1.6":
+  version "16.1.6"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-16.1.6.tgz#3cc3b77fdcaf88ed3824676f73bbd36446bb68d0"
+  integrity sha512-KA8P78gaS76HMHGBOM8JHJXWLOxCIShYVB2Un/Cu6z3jVODvXq+ILZUc1Y0RsAce/vsl2wf8qpoh5Lku9KJHUQ==
+  dependencies:
+    "@angular-devkit/core" "16.1.6"
     jsonc-parser "3.2.0"
     magic-string "0.30.0"
     ora "5.4.1"
@@ -1728,13 +1750,22 @@
     read-package-json-fast "^3.0.0"
     which "^3.0.0"
 
-"@schematics/angular@16.1.5", "@schematics/angular@~16.1.1":
+"@schematics/angular@16.1.5":
   version "16.1.5"
   resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-16.1.5.tgz#d9f92815d4e15f26c93952c52576e6cfca5f09eb"
   integrity sha512-GwSweqKGjMc9oqU6fukqYKlBflCCDA/l2qfA60YIdf4SubaZnIUpkpNXTbWeFRPJh8zQShb8OZE7cVj8MZRruw==
   dependencies:
     "@angular-devkit/core" "16.1.5"
     "@angular-devkit/schematics" "16.1.5"
+    jsonc-parser "3.2.0"
+
+"@schematics/angular@~16.1.6":
+  version "16.1.6"
+  resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-16.1.6.tgz#f54e29dc9b79bc774522abfcfa536bc9b6c89d88"
+  integrity sha512-BxghkeLfnMgV0D4DZDcbfPpox/Orw1ismSVGoQMIV/Daj2pqfSK+n97NAu0r0EsQyR5agPxOX9khVft+otODhg==
+  dependencies:
+    "@angular-devkit/core" "16.1.6"
+    "@angular-devkit/schematics" "16.1.6"
     jsonc-parser "3.2.0"
 
 "@sigstore/protobuf-specs@^0.1.0":
