@@ -125,12 +125,35 @@
     rxjs "7.8.1"
     source-map "0.7.4"
 
+"@angular-devkit/core@16.2.7":
+  version "16.2.7"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-16.2.7.tgz#193b3e6b4975dc387fab9a0eb9f4d44828e8fef5"
+  integrity sha512-XskObYrg7NRdEuHnSVZOM7OeinEL8HzugjmKnawAa+dAbFCCoGsVWjMliA/Q8sb1yfGkyL0WW7DZABZj7EGwWA==
+  dependencies:
+    ajv "8.12.0"
+    ajv-formats "2.1.1"
+    jsonc-parser "3.2.0"
+    picomatch "2.3.1"
+    rxjs "7.8.1"
+    source-map "0.7.4"
+
 "@angular-devkit/schematics@16.2.6":
   version "16.2.6"
   resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-16.2.6.tgz#4ac6a2674f40fa646ce36fb91095ca5b744131d2"
   integrity sha512-PhpRYHCJ3WvZXmng6Qk8TXeQf83jeBMAf7AIzI8h0fgeBocOl97Xf7bZpLg6GymiU+rVn15igQ4Rz9rKAay8bQ==
   dependencies:
     "@angular-devkit/core" "16.2.6"
+    jsonc-parser "3.2.0"
+    magic-string "0.30.1"
+    ora "5.4.1"
+    rxjs "7.8.1"
+
+"@angular-devkit/schematics@16.2.7":
+  version "16.2.7"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-16.2.7.tgz#6b7a8e4ffdc5a79016b5c86ff4e666f19aad9892"
+  integrity sha512-zu3xHwA4w+kXHkyyjGl3i7uSU2/kKLPKuyyixw0WLcKUQCYd7TWmu8OC0qCDa42XkxP9gGL091dJFu56exgneA==
+  dependencies:
+    "@angular-devkit/core" "16.2.7"
     jsonc-parser "3.2.0"
     magic-string "0.30.1"
     ora "5.4.1"
@@ -1734,13 +1757,22 @@
     read-package-json-fast "^3.0.0"
     which "^3.0.0"
 
-"@schematics/angular@16.2.6", "@schematics/angular@~16.2.5":
+"@schematics/angular@16.2.6":
   version "16.2.6"
   resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-16.2.6.tgz#50104c34f3f1bcfb48dc7a11bcfbeb364a33f1ff"
   integrity sha512-fM09WPqST+nhVGV5Q3fhG7WKo96kgSVMsbz3wGS0DmTn4zge7ZWnrW3VvbxnMapmGoKa9DFPqdqNln4ADcdIMQ==
   dependencies:
     "@angular-devkit/core" "16.2.6"
     "@angular-devkit/schematics" "16.2.6"
+    jsonc-parser "3.2.0"
+
+"@schematics/angular@~16.2.7":
+  version "16.2.7"
+  resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-16.2.7.tgz#64f1c2b025d365f77289c84fb79b7f8d6e17edd3"
+  integrity sha512-sL+7vmwYPdo29rp99XYlm8gibqcjjOL5LKEleVQlv63SRES3HLMt7DeYivUfizcMENu/1hDtX41ig4Mu1SpNzg==
+  dependencies:
+    "@angular-devkit/core" "16.2.7"
+    "@angular-devkit/schematics" "16.2.7"
     jsonc-parser "3.2.0"
 
 "@sigstore/protobuf-specs@^0.1.0":
