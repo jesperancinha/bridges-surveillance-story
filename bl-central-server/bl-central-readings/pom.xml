@@ -28,6 +28,11 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>com.fasterxml.jackson.module</groupId>
+                <artifactId>jackson-module-scala_2.13</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>com.typesafe.play</groupId>
                 <artifactId>play-json_${scala.sdk.version}</artifactId>
                 <version>${play-json.version}</version>
