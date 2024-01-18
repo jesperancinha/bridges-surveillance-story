@@ -32,7 +32,7 @@
     "@angular/cli": "~17.0.10",
     "@angular/compiler-cli": "~15.0.2",
     "@angular/language-service": "~17.0.9",
-    "@schematics/angular": "~17.0.6",
+    "@schematics/angular": "~17.1.0",
     "@types/jasmine": "~5.1.4",
     "@types/jasminewd2": "~2.0.13",
     "@types/node": "~20.11.5",
