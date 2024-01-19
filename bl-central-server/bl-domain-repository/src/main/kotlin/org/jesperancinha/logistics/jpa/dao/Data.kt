@@ -50,7 +50,7 @@ data class BridgeLog(
     val id: Long? = null,
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "bridgeId", nullable = false)
+    @JoinColumn(name = "bridgeId", nullable = true, insertable = true, updatable = true)
     val bridge: Bridge? = null,
     val timestamp: Long? = null,
     val checkInOut: String? = null
@@ -74,7 +74,7 @@ data class BridgeOpeningConflict(
     val message: String? = null,
 
     @ManyToMany(cascade = [CascadeType.ALL])
-    @JoinColumn(name = "bridge_id", nullable = false, updatable = false)
+    @JoinTable(joinColumns = [JoinColumn(name = "bridge_id", nullable = true, updatable = true, insertable = true)])
     val relatedOpeningTime: List<BridgeOpeningTime>? = null
 )
 
@@ -100,7 +100,7 @@ data class BridgeOpeningTime(
     val closingTime: Long? = null,
 
     @ManyToOne(optional = false, cascade = [CascadeType.ALL])
-    @JoinColumn(name = "bridge_id", nullable = false, updatable = false, referencedColumnName = "id")
+    @JoinColumn(name = "bridge_id", nullable = true, updatable = true, referencedColumnName = "id")
     val bridge: Bridge? = null
 )
 
@@ -326,7 +326,7 @@ data class TrainLog(
     val id: Long? = null,
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "trainId", nullable = false, updatable = false)
+    @JoinColumn(name = "trainId", nullable = false, updatable = true, insertable = true)
     val train: Train? = null,
     val lat: BigDecimal? = null,
     val lon: BigDecimal? = null,
