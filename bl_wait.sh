@@ -35,5 +35,5 @@ checkServiceByNameAndMessage bl-train-01-rabbitmq-server 'Setting permissions fo
 checkServiceByNameAndMessage bl-bridge-01-rabbitmq-server 'Setting permissions for user "test" in vhost "bl-bridge-01-sensor-vh"'
 checkServiceByNameAndMessage bl-bridge-01-sensors-server 'bl-bridge-humidity-mqtt'
 checkServiceByNameAndMessage bl-bridge-01-sensors-server 'bl-bridge-temperature-coap'
-checkServiceByNameAndMessage bl-central-server-apps 'update bridge_opening_times set closing_time=?, opening_time=? where id=?'
+checkServiceByNameAndMessage bl-central-server-apps 'update bridge_opening_times'
 checkServiceByNameAndMessage bl-central-server 'Setting policy "bl-bridge-01-sensor-policy" for pattern'
