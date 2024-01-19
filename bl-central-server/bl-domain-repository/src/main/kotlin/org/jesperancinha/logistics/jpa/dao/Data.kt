@@ -74,7 +74,7 @@ data class BridgeOpeningConflict(
     val message: String? = null,
 
     @ManyToMany(cascade = [CascadeType.ALL])
-    @JoinColumn(name = "bridge_id", nullable = false, updatable = false)
+    @JoinTable(joinColumns = [JoinColumn(name = "bridge_id", nullable = false, updatable = false, insertable = false)])
     val relatedOpeningTime: List<BridgeOpeningTime>? = null
 )
 
@@ -100,7 +100,7 @@ data class BridgeOpeningTime(
     val closingTime: Long? = null,
 
     @ManyToOne(optional = false, cascade = [CascadeType.ALL])
-    @JoinColumn(name = "bridge_id", nullable = false, updatable = false, referencedColumnName = "id")
+    @JoinTable(joinColumns = [JoinColumn(name = "bridge_id", nullable = false, updatable = false, referencedColumnName = "id")])
     val bridge: Bridge? = null
 )
 
