@@ -165,7 +165,7 @@
         <jacoco-maven-plugin.version>0.8.11</jacoco-maven-plugin.version>
         <jaxb-api.version>2.3.1</jaxb-api.version>
 
-        <h2.version>2.1.214</h2.version>
+        <h2.version>2.2.224</h2.version>
         <gson.version>2.10.1</gson.version>
         <build-helper-maven-plugin.version>3.4.0</build-helper-maven-plugin.version>
         <testcontainers.version>1.19.3</testcontainers.version>
