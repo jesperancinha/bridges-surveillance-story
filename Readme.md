@@ -43,18 +43,13 @@ may happen in a configured range around the bridge
 2.  For merchandise, a development area will be created called MCS(Merchandise Control Service).
 3.  For bridge timetables and ranges, a development area will be created called DCS(Domain Control Service).
 
-This project is also the official support project of my article on medium:
 
-[![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-20/medium-20.png "Medium")](https://medium.com/swlh/the-streaming-bridges-a-kafka-rabbitmq-mqtt-and-coap-example-9077a598169)
-[The streaming bridges — A Kafka, RabbitMQ, MQTT and CoAP example](https://medium.com/swlh/the-streaming-bridges-a-kafka-rabbitmq-mqtt-and-coap-example-9077a598169)
+<details>
+<summary><b>Stable Releases</b></summary>
 
-<div align="center">
-      <a title="The streaming bridges — A Kafka, RabbitMQ, MQTT and CoAP example" href="https://medium.com/swlh/the-streaming-bridges-a-kafka-rabbitmq-mqtt-and-coap-example-9077a598169">
-     <img 
-          src="./docs/images/articles.bridges.intro.jpeg"
-          style="width:100%;">
-      </a>
-</div>
+This repo is also the official support repo to my article on medium:
+
+[![](https://img.shields.io/badge/The%20streaming%20bridges%20—%20A%20Kafka,%20RabbitMQ,%20MQTT%20and%20CoAP%20example-12100E?style=for-the-badge&logo=medium&logoColor=white)](https://medium.com/swlh/the-streaming-bridges-a-kafka-rabbitmq-mqtt-and-coap-example-9077a598169)
 
 #### Stable releases
 
@@ -62,6 +57,8 @@ This project is also the official support project of my article on medium:
 -   [2.0.0](https://github.com/jesperancinha/bridges-surveillance-story/tree/2.0.0) - [a8544e6611d0856809b6a3c7b5dd124a3d7067c1](https://github.com/jesperancinha/bridges-surveillance-story/tree/2.0.0)
 -   [3.0.0](https://github.com/jesperancinha/bridges-surveillance-story/tree/3.0.0) - [12cb8d3c481fac4587787683d2a114ca2f7e6952](https://github.com/jesperancinha/bridges-surveillance-story/tree/3.0.0) - Java / JDK17 / Scala / Python / Spring Boot 2.7.4
 -   [4.0.0](https://github.com/jesperancinha/bridges-surveillance-story/tree/4.0.0) - [591e0ff5797f736577669500826b5bca90a9b4e9](https://github.com/jesperancinha/bridges-surveillance-story/tree/4.0.0) - Kotlin 1.8.0 / JDK17 / Scala / Python / Spring Boot 2.7.4
+
+</details>
 
 ## A detective case
 
