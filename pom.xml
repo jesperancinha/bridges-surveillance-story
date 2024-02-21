@@ -145,11 +145,11 @@
         <activemq.version>6.0.1</activemq.version>
         <amqp-client.version>5.7.1</amqp-client.version>
 
-        <combinatoricslib3.version>3.3.3</combinatoricslib3.version>
+        <combinatoricslib3.version>3.4.0</combinatoricslib3.version>
         <javaee-api.version>8.0.1</javaee-api.version>
         <slf4j-api.version>2.0.12</slf4j-api.version>
 
-        <postgresql.version>42.7.1</postgresql.version>
+        <postgresql.version>42.7.2</postgresql.version>
 
         <kotest.version>5.8.0</kotest.version>
         <kotest.version>5.4.2</kotest.version>
@@ -168,7 +168,7 @@
         <h2.version>2.2.224</h2.version>
         <gson.version>2.10.1</gson.version>
         <build-helper-maven-plugin.version>3.5.0</build-helper-maven-plugin.version>
-        <testcontainers.version>1.19.4</testcontainers.version>
+        <testcontainers.version>1.19.5</testcontainers.version>
         <jdbc.version>1.19.5</jdbc.version>
 
         <maven-assembly-plugin.version>3.5.0</maven-assembly-plugin.version>
