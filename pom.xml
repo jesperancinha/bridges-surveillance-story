@@ -169,7 +169,7 @@
         <gson.version>2.10.1</gson.version>
         <build-helper-maven-plugin.version>3.5.0</build-helper-maven-plugin.version>
         <testcontainers.version>1.19.6</testcontainers.version>
-        <jdbc.version>1.19.6</jdbc.version>
+        <jdbc.version>1.19.7</jdbc.version>
 
         <maven-assembly-plugin.version>3.5.0</maven-assembly-plugin.version>
 
