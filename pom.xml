@@ -295,6 +295,12 @@
             </dependency>
             <dependency>
                 <groupId>io.kotest</groupId>
+                <artifactId>kotest-framework-api-jvm</artifactId>
+                <version>${kotest.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.kotest</groupId>
                 <artifactId>kotest-runner-junit5</artifactId>
                 <version>${kotest.version}</version>
                 <scope>test</scope>
