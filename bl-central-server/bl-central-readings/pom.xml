@@ -12,7 +12,7 @@
     <properties>
         <scala-maven-plugin.version>4.9.0</scala-maven-plugin.version>
         <scala.sdk.version>2.13</scala.sdk.version>
-        <scala-library.version>2.13.13</scala-library.version>
+        <scala-library.version>2.13.14</scala-library.version>
         <spark.version>3.5.1</spark.version>
         <jnr-posix.version>3.1.19</jnr-posix.version>
         <config.version>1.4.3</config.version>
