@@ -9,6 +9,11 @@ updates:
     directory: "/bl-central-server/bl-web-ui"
     schedule:
       interval: "daily"
+    groups:
+      angular:
+        patterns:
+          - "@angular*"
+          - "angular*"
 
   - package-ecosystem: "npm"
     directory: "/e2e"
