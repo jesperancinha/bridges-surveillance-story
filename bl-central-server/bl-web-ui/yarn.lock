@@ -1767,10 +1767,10 @@
   resolved "https://registry.yarnpkg.com/@msgpackr-extract/msgpackr-extract-win32-x64/-/msgpackr-extract-win32-x64-3.0.2.tgz#0f164b726869f71da3c594171df5ebc1c4b0a407"
   integrity sha512-O+6Gs8UeDbyFpbSh2CPEz/UOrrdWPTBYNblZK5CxxLisYt4kGX3Sc+czffFonyjiGSq3jWLwJS/CCJc7tBr4sQ==
 
-"@nebular/eva-icons@^10.0.0":
-  version "10.0.0"
-  resolved "https://registry.yarnpkg.com/@nebular/eva-icons/-/eva-icons-10.0.0.tgz#ce1f832f8548d1701e2de197e420b8d6e0580944"
-  integrity sha512-z/8j+5f81IzyxP1Hl2xS1+k9QEYpJpKcbK5SWfR66z9OMTIR+/V5OGGvpR7XLLIBEwzFPab72KwYE8Pf/2JDLQ==
+"@nebular/eva-icons@^13.0.0":
+  version "13.0.0"
+  resolved "https://registry.yarnpkg.com/@nebular/eva-icons/-/eva-icons-13.0.0.tgz#22292d507e223af9e236d52fd4270b781b29e31e"
+  integrity sha512-4M9vwo3OJeDjlVufeGTg1u/01uxZ0LH8f8GvD1wuyzGitY/3hlySmXP31Nz/koKcM9QJZsm0wECJVxd+8BDf3Q==
   dependencies:
     tslib "^2.3.0"
 
