@@ -110,12 +110,35 @@
     rxjs "7.8.1"
     source-map "0.7.4"
 
+"@angular-devkit/core@18.0.6":
+  version "18.0.6"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-18.0.6.tgz#9a3d7a7531a0ffea2aeaab792ccfcb5c4524bc2d"
+  integrity sha512-07U0S2fpUBjkg4k6uAEQQHSFfearyHGrONlgkxAlk7HWM5jfHp/8D2+ui1OFZgXpSAHF2C5gULbze/2o9ZNgag==
+  dependencies:
+    ajv "8.13.0"
+    ajv-formats "3.0.1"
+    jsonc-parser "3.2.1"
+    picomatch "4.0.2"
+    rxjs "7.8.1"
+    source-map "0.7.4"
+
 "@angular-devkit/schematics@18.0.5":
   version "18.0.5"
   resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-18.0.5.tgz#693ea714afe70212a5f0b503cf9de81495e568c6"
   integrity sha512-hZwAq3hwuJzCuh7uqO/7T9IMERhYVxz+ganJlEykpyr58o0IjUM1Q4ZSH5UOYlGRPdBCZJbfiafZ0Sg5w5xBww==
   dependencies:
     "@angular-devkit/core" "18.0.5"
+    jsonc-parser "3.2.1"
+    magic-string "0.30.10"
+    ora "5.4.1"
+    rxjs "7.8.1"
+
+"@angular-devkit/schematics@18.0.6":
+  version "18.0.6"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-18.0.6.tgz#1eb0eb45e926aba99ea8e9859dd3fcc46da14731"
+  integrity sha512-lzjPp8qWV4p3reyKZ2QRF7rQYc17WMCR61vKldQJBuJrS30yx87x22ASn4BCAo7kKKRv8gXJmoXjCPDFlcfRsw==
+  dependencies:
+    "@angular-devkit/core" "18.0.6"
     jsonc-parser "3.2.1"
     magic-string "0.30.10"
     ora "5.4.1"
@@ -2103,13 +2126,22 @@
   resolved "https://registry.yarnpkg.com/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.18.0.tgz#5d694d345ce36b6ecf657349e03eb87297e68da4"
   integrity sha512-UOo5FdvOL0+eIVTgS4tIdbW+TtnBLWg1YBCcU2KWM7nuNwRz9bksDX1bekJJCpu25N1DVWaCwnT39dVQxzqS8g==
 
-"@schematics/angular@18.0.5", "@schematics/angular@~18.0.3":
+"@schematics/angular@18.0.5":
   version "18.0.5"
   resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-18.0.5.tgz#ecae367f2df837f90ca611b444d90588c3eb0e91"
   integrity sha512-dV50GIEGl6S5wE6xtAhmHWdLhsOlnNUpAx/v3BPR2AOr90zJvIM03TqAQTzAlnPatxK2WLelRgqVMbPfAVvLAg==
   dependencies:
     "@angular-devkit/core" "18.0.5"
     "@angular-devkit/schematics" "18.0.5"
+    jsonc-parser "3.2.1"
+
+"@schematics/angular@~18.0.6":
+  version "18.0.6"
+  resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-18.0.6.tgz#d40ea0b1c98351d1927eef861f31801837ff8785"
+  integrity sha512-SZ73nNhCengIOy3GCUbLL++GdpaQ5T9bh05OAdQJuUNtwz1ot8QoQjkcbumKIfTicwMiLxy+OR4sZN1VcUVYpQ==
+  dependencies:
+    "@angular-devkit/core" "18.0.6"
+    "@angular-devkit/schematics" "18.0.6"
     jsonc-parser "3.2.1"
 
 "@sigstore/bundle@^2.1.1":
