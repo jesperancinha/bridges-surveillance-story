@@ -9,10 +9,6 @@ target
 ## ActiveMQ
 activemq-data
 
-## Node JS Build
-node_modules
-dist
-
 ## Python builds
 *.pyc
 .pytest_cache
@@ -52,3 +48,16 @@ bin
 # Generated files
 bl-simulation-data/passengers/first-names.txt
 bl-simulation-data/passengers/last-names.txt
+
+# NPM
+package-lock.json
+yarn.lock
+node_modules
+dist
+
+## Automation
+cypressUpdateOne.sh
+docker-composetmp.yml
+packagetmp.json
+pluginUpdatesOne.sh
+javaUpdatesOne.sh
