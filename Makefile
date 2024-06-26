@@ -176,7 +176,10 @@ end-logs:
 	docker-compose -p ${GITHUB_RUN_ID} logs --tail 100
 demo:
 	python3 bl-demo-server/launch_demo_server.py
-update:
+remove-lock-files:
+	find . -name "package-lock.json" | xargs -I {} rm {}; \
+	find . -name "yarn.lock" | xargs -I {} rm {};
+update: remove-lock-files
 	cd bl-bridge-server/bl-bridge-humidity-mqtt && npx browserslist --update-db && ncu -u && yarn
 	cd bl-bridge-server/bl-bridge-temperature-coap && npx browserslist --update-db && ncu -u && yarn
 npm-test:
