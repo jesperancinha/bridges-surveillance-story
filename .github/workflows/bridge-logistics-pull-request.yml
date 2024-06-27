@@ -23,10 +23,10 @@ jobs:
     - name: Test Maven
       run:  make test-maven
 
-    - name: Use Node.js
+    - name: Set up Node.js 20
       uses: actions/setup-node@v4
       with:
-        node-version: '16'
+        node-version: '20'
 
     - name: Build Node JS and Test
       run: make build-npm && npm i -g jest && make test-node
