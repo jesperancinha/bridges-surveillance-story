@@ -172,7 +172,7 @@
 
         <maven-assembly-plugin.version>3.5.0</maven-assembly-plugin.version>
 
-        <omni-coveragereporter-maven-plugin.version>0.4.3</omni-coveragereporter-maven-plugin.version>
+        <omni-coveragereporter-maven-plugin.version>0.4.4</omni-coveragereporter-maven-plugin.version>
         <kotlinx-coroutines-debug.version>1.8.1</kotlinx-coroutines-debug.version>
 
         <!-- Swagger -->
