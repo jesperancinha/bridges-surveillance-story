@@ -140,7 +140,7 @@
         <kotlin.version>2.0.21</kotlin.version>
 
         <spring-boot-starter-parent.version>3.3.5</spring-boot-starter-parent.version>
-        <spring-rabbit-test.version>3.1.8</spring-rabbit-test.version>
+        <spring-rabbit-test.version>3.2.0</spring-rabbit-test.version>
 
         <activemq.version>6.1.4</activemq.version>
         <amqp-client.version>5.7.1</amqp-client.version>
