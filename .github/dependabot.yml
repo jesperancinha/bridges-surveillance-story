@@ -11,6 +11,9 @@ updates:
       kotlin:
         patterns:
           - "*kotlin*"
+      spring:
+        patterns:
+          - "*spring*"
 
   - package-ecosystem: "npm"
     directory: "/bl-central-server/bl-web-ui"
