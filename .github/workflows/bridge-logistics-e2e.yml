@@ -22,6 +22,11 @@ jobs:
           command: |
             make dcup-full-action
 
+      - name: Cypress Fail!
+        if: failure()
+        run: |
+          make docker-logs
+
       - name: Build Cypress
         run: make build-npm-cypress
 
@@ -46,6 +51,11 @@ jobs:
           timeout_seconds: 2400
           command: |
             make dcup-full-action
+
+      - name: Cypress Fail!
+        if: failure()
+        run: |
+          make docker-logs
 
       - name: Build Cypress
         run: make build-npm-cypress
@@ -72,6 +82,11 @@ jobs:
           command: |
             make dcup-full-action
 
+      - name: Cypress Fail!
+        if: failure()
+        run: |
+          make docker-logs
+
       - name: Build Cypress
         run: make build-npm-cypress
 
@@ -96,6 +111,11 @@ jobs:
           timeout_seconds: 2400
           command: |
             make dcup-full-action
+
+      - name: Cypress Fail!
+        if: failure()
+        run: |
+          make docker-logs
 
       - name: Build Cypress
         run: make build-npm-cypress
