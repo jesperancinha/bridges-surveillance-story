@@ -2,6 +2,7 @@ package org.jesperancinha.logistics.web.dto
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import java.time.LocalDateTime
+import java.util.UUID
 
 data class BridgeDto(
     @JsonProperty("name")
@@ -61,7 +62,7 @@ data class ContainerFullDto(
 
 data class FreightDto(
     @JsonProperty("id")
-    val id: Long,
+    val id: UUID,
     @JsonProperty("name")
     val name: String,
     @JsonProperty("type")
@@ -83,7 +84,7 @@ data class ProductDto(
 
 data class TrainDto(
     @JsonProperty("id")
-    val id: Long,
+    val id: UUID,
     @JsonProperty("name")
     val name: String,
     @JsonProperty("type")

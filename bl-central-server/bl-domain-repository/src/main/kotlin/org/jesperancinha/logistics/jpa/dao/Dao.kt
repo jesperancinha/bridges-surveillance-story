@@ -3,8 +3,9 @@ package org.jesperancinha.logistics.jpa.dao
 import org.springframework.data.repository.CrudRepository
 import org.springframework.data.repository.query.Param
 import java.math.BigDecimal
+import java.util.UUID
 
-interface BridgeRepository : CrudRepository<Bridge, Long> {
+interface BridgeRepository : CrudRepository<Bridge, UUID> {
     fun findBridgeBySquareBoundary(
         @Param("latWest") latWest: BigDecimal,
         @Param("latEast") latEast: BigDecimal,
@@ -31,9 +32,9 @@ interface OpeningTimeRepository : CrudRepository<BridgeOpeningTime, Long> {
     ): List<BridgeOpeningTime>
 }
 
-interface PassengerRepository : CrudRepository<Passenger, Long>
-interface ProductCargoRepository : CrudRepository<ProductCargo, Long>
-interface ProductRepository : CrudRepository<Product, Long>
-interface TrainRepository : CrudRepository<Train, Long>
-interface TrainsLogRepository : CrudRepository<TrainLog, Long>
-interface TransportPackageRepository : CrudRepository<TransportPackage, Long>
+interface PassengerRepository : CrudRepository<Passenger, UUID>
+interface ProductCargoRepository : CrudRepository<ProductCargo, UUID>
+interface ProductRepository : CrudRepository<Product, UUID>
+interface TrainRepository : CrudRepository<Train, UUID>
+interface TrainsLogRepository : CrudRepository<TrainLog, UUID>
+interface TransportPackageRepository : CrudRepository<TransportPackage, UUID>
