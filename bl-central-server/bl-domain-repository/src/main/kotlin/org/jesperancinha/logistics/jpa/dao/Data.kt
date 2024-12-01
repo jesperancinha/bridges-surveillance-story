@@ -13,7 +13,8 @@ import java.util.UUID
 )
 data class Bridge(
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID) val id: UUID? = null,
+    @GeneratedValue(strategy = GenerationType.UUID)
+    val id: UUID? = null,
     val name: String? = null,
     val address: String? = null,
     val city: String? = null,
