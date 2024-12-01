@@ -42,9 +42,9 @@ data class BridgeOpeningTimeDto(
 
 data class CarriageFullDto(
     @JsonProperty("carriageId")
-    val carriageId: Long,
+    val carriageId: UUID,
     @JsonProperty("packageId")
-    val packageId: Long,
+    val packageId: UUID,
     @JsonProperty("people")
     val people: Long,
     @JsonProperty("products")
@@ -53,9 +53,9 @@ data class CarriageFullDto(
 
 data class ContainerFullDto(
     @JsonProperty("containerId")
-    val containerId: Long,
+    val containerId: UUID,
     @JsonProperty("packageId")
-    val packageId: Long,
+    val packageId: UUID,
     @JsonProperty("products")
     val products: List<ProductDto>
 )
@@ -68,16 +68,16 @@ data class FreightDto(
     @JsonProperty("type")
     val type: String?,
     @JsonProperty("supplierId")
-    val supplierId: Long,
+    val supplierId: UUID,
     @JsonProperty("vendorId")
-    val vendorId: Long,
+    val vendorId: UUID,
     @JsonProperty("composition")
     val composition: List<ContainerFullDto>
 )
 
 data class ProductDto(
     @JsonProperty("productId")
-    val productId: Long,
+    val productId: UUID,
     @JsonProperty("quantity")
     val quantity: Long
 )
@@ -90,9 +90,9 @@ data class TrainDto(
     @JsonProperty("type")
     val type: String,
     @JsonProperty("supplierId")
-    val supplierId: Long,
+    val supplierId: UUID,
     @JsonProperty("vendorId")
-    val vendorId: Long,
+    val vendorId: UUID,
     @JsonProperty("composition")
     val composition: List<CarriageFullDto>
 )

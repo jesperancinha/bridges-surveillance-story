@@ -335,7 +335,7 @@ data class TrainLog(
     val timestamp: Long? = null,
     val checkInOut: String? = null,
     val weight: Long? = null,
-    val carriageId: Long? = null
+    val carriageId: UUID? = null
 )
 
 @Entity

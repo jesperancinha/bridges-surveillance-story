@@ -8,9 +8,9 @@ import java.util.UUID
 
 data class CarrierDto(
     @JsonProperty("carriageId")
-    val carriageId: Long,
+    val carriageId: UUID,
     @JsonProperty("containerId")
-    val containerId: Long,
+    val containerId: UUID,
     @JsonProperty("packageId")
     val packageId: UUID,
     @JsonProperty("weight")
@@ -21,8 +21,8 @@ data class CarrierDto(
 
 data class ContainerDto(
     @JsonProperty("containerId")
-    val containerId: Long,
-    val packageId: Long,
+    val containerId: UUID,
+    val packageId: UUID,
     val products: List<ProductInTransitDto>
 )
 
@@ -39,9 +39,9 @@ data class TrainMerchandiseDto(
     @JsonProperty("name")
     val name: String?,
     @JsonProperty("supplierId")
-    val supplierId: Long?,
+    val supplierId: UUID?,
     @JsonProperty("vendorId")
-    val vendorId: Long?,
+    val vendorId: UUID?,
     @JsonProperty("type")
     val type: TrainType?,
     @JsonProperty("status")

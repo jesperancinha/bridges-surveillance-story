@@ -11,5 +11,5 @@ data class TrainLogDto(
     val lat: BigDecimal,
     val lon: BigDecimal,
     val weight: Long,
-    val carriageId: Long
+    val carriageId: UUID
 )
