@@ -14,15 +14,15 @@ interface BridgeRepository : CrudRepository<Bridge, UUID> {
     ): List<Bridge?>?
 }
 
-interface CarriageRepository : CrudRepository<Carriage, Long>
-interface CompanyRepository : CrudRepository<Company, Long>
-interface ContainerRepository : CrudRepository<Container, Long>
-interface FreightRepository : CrudRepository<Freight, Long>
-interface LogRepository : CrudRepository<BridgeLog, Long>
-interface MerchandiseLogRepository : CrudRepository<MerchandiseLog, Long>
-interface MerchandiseRepository : CrudRepository<Merchandise, Long>
-interface OpeningConflictRepository : CrudRepository<BridgeOpeningConflict, Long>
-interface OpeningTimeRepository : CrudRepository<BridgeOpeningTime, Long> {
+interface CarriageRepository : CrudRepository<Carriage, UUID>
+interface CompanyRepository : CrudRepository<Company, UUID>
+interface ContainerRepository : CrudRepository<Container, UUID>
+interface FreightRepository : CrudRepository<Freight, UUID>
+interface LogRepository : CrudRepository<BridgeLog, UUID>
+interface MerchandiseLogRepository : CrudRepository<MerchandiseLog, UUID>
+interface MerchandiseRepository : CrudRepository<Merchandise, UUID>
+interface OpeningConflictRepository : CrudRepository<BridgeOpeningConflict, UUID>
+interface OpeningTimeRepository : CrudRepository<BridgeOpeningTime, UUID> {
     fun findBridgeBySquareBoundaryUnderRadius(
         @Param("latWest") latWest: BigDecimal,
         @Param("latEast") latEast: BigDecimal,
