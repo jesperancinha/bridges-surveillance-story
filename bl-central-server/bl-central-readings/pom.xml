@@ -16,7 +16,7 @@
         <spark.version>4.0.0-preview2</spark.version>
         <jnr-posix.version>3.1.20</jnr-posix.version>
         <config.version>1.4.3</config.version>
-        <compiler-bridge.version>1.10.4</compiler-bridge.version>
+        <compiler-bridge.version>1.10.5</compiler-bridge.version>
         <spark-cassandra-connector.version>3.5.1</spark-cassandra-connector.version>
         <play-json.version>2.10.6</play-json.version>
         <maven-assembly-plugin.version>3.7.1</maven-assembly-plugin.version>
