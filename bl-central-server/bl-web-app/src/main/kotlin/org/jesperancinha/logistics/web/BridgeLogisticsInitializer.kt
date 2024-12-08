@@ -127,7 +127,7 @@ class BridgeLogisticsInitializer(
                 (0..200)
                     .map { integer: Int ->
                         BridgeOpeningTime(
-                            id = integer.toLong(),
+                            id = UUID.randomUUID(),
                             bridge = bridge,
                             openingTime =
                             now.plusMillis(millisToAdd * integer * 2)

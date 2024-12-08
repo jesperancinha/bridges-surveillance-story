@@ -3,8 +3,9 @@ package org.jesperancinha.logistics.jpa.dao
 import org.springframework.data.repository.CrudRepository
 import org.springframework.data.repository.query.Param
 import java.math.BigDecimal
+import java.util.UUID
 
-interface BridgeRepository : CrudRepository<Bridge, Long> {
+interface BridgeRepository : CrudRepository<Bridge, UUID> {
     fun findBridgeBySquareBoundary(
         @Param("latWest") latWest: BigDecimal,
         @Param("latEast") latEast: BigDecimal,
@@ -13,15 +14,15 @@ interface BridgeRepository : CrudRepository<Bridge, Long> {
     ): List<Bridge?>?
 }
 
-interface CarriageRepository : CrudRepository<Carriage, Long>
-interface CompanyRepository : CrudRepository<Company, Long>
-interface ContainerRepository : CrudRepository<Container, Long>
-interface FreightRepository : CrudRepository<Freight, Long>
-interface LogRepository : CrudRepository<BridgeLog, Long>
-interface MerchandiseLogRepository : CrudRepository<MerchandiseLog, Long>
-interface MerchandiseRepository : CrudRepository<Merchandise, Long>
-interface OpeningConflictRepository : CrudRepository<BridgeOpeningConflict, Long>
-interface OpeningTimeRepository : CrudRepository<BridgeOpeningTime, Long> {
+interface CarriageRepository : CrudRepository<Carriage, UUID>
+interface CompanyRepository : CrudRepository<Company, UUID>
+interface ContainerRepository : CrudRepository<Container, UUID>
+interface FreightRepository : CrudRepository<Freight, UUID>
+interface LogRepository : CrudRepository<BridgeLog, UUID>
+interface MerchandiseLogRepository : CrudRepository<MerchandiseLog, UUID>
+interface MerchandiseRepository : CrudRepository<Merchandise, UUID>
+interface OpeningConflictRepository : CrudRepository<BridgeOpeningConflict, UUID>
+interface OpeningTimeRepository : CrudRepository<BridgeOpeningTime, UUID> {
     fun findBridgeBySquareBoundaryUnderRadius(
         @Param("latWest") latWest: BigDecimal,
         @Param("latEast") latEast: BigDecimal,
@@ -31,9 +32,9 @@ interface OpeningTimeRepository : CrudRepository<BridgeOpeningTime, Long> {
     ): List<BridgeOpeningTime>
 }
 
-interface PassengerRepository : CrudRepository<Passenger, Long>
-interface ProductCargoRepository : CrudRepository<ProductCargo, Long>
-interface ProductRepository : CrudRepository<Product, Long>
-interface TrainRepository : CrudRepository<Train, Long>
-interface TrainsLogRepository : CrudRepository<TrainLog, Long>
-interface TransportPackageRepository : CrudRepository<TransportPackage, Long>
+interface PassengerRepository : CrudRepository<Passenger, UUID>
+interface ProductCargoRepository : CrudRepository<ProductCargo, UUID>
+interface ProductRepository : CrudRepository<Product, UUID>
+interface TrainRepository : CrudRepository<Train, UUID>
+interface TrainsLogRepository : CrudRepository<TrainLog, UUID>
+interface TransportPackageRepository : CrudRepository<TransportPackage, UUID>

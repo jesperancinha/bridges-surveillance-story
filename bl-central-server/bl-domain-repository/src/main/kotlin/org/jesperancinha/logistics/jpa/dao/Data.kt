@@ -3,6 +3,7 @@ package org.jesperancinha.logistics.jpa.dao
 import org.hibernate.Hibernate
 import java.math.BigDecimal
 import jakarta.persistence.*
+import java.util.UUID
 
 @Entity
 @Table(name = "bridge")
@@ -12,7 +13,8 @@ import jakarta.persistence.*
 )
 data class Bridge(
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO) val id: Long? = null,
+    @GeneratedValue(strategy = GenerationType.UUID)
+    val id: UUID? = null,
     val name: String? = null,
     val address: String? = null,
     val city: String? = null,
@@ -46,8 +48,8 @@ data class Bridge(
 @Table(name = "bridge_logs")
 data class BridgeLog(
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    val id: Long? = null,
+    @GeneratedValue(strategy = GenerationType.UUID)
+    val id: UUID? = null,
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "bridgeId", nullable = true, insertable = true, updatable = true)
@@ -91,7 +93,7 @@ data class BridgeOpeningConflict(
 data class BridgeOpeningTime(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = null,
+    val id: UUID? = null,
 
     @Column(name = "opening_time")
     val openingTime: Long? = null,
@@ -127,7 +129,7 @@ data class Carriage(
 @Table(name = "company")
 data class Company(
     @Id
-    val id: Long? = null,
+    val id: UUID? = null,
     val name: String? = null,
     val address: String? = null,
     val city: String? = null,
@@ -173,7 +175,7 @@ data class Container(
 data class Freight(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = null,
+    val id: UUID? = null,
     val name: String? = null,
     val type: String? = null,
 
@@ -255,8 +257,8 @@ data class MerchandiseLog(
 @Table(name = "passengers")
 data class Passenger(
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    val id: Long? = null,
+    @GeneratedValue(strategy = GenerationType.UUID)
+    val id: UUID? = null,
     val firstName: String? = null,
     val lastName: String? = null,
     val gender: String? = null
@@ -267,7 +269,7 @@ data class Passenger(
 data class Product(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = null,
+    val id: UUID? = null,
     val name: String? = null,
     val packaging: String? = null,
     val brand: String? = null,
@@ -287,7 +289,7 @@ data class Product(
 data class ProductCargo(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = null,
+    val id: UUID? = null,
 
     @ManyToOne
     val product: Product? = null,
@@ -299,7 +301,7 @@ data class ProductCargo(
 data class Train(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = null,
+    val id: UUID? = null,
     val name: String? = null,
     val type: String? = null,
 
@@ -322,8 +324,8 @@ data class Train(
 @Table(name = "trains_log")
 data class TrainLog(
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    val id: Long? = null,
+    @GeneratedValue(strategy = GenerationType.UUID)
+    val id: UUID? = null,
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "trainId", nullable = false, updatable = true, insertable = true)
@@ -333,14 +335,14 @@ data class TrainLog(
     val timestamp: Long? = null,
     val checkInOut: String? = null,
     val weight: Long? = null,
-    val carriageId: Long? = null
+    val carriageId: UUID? = null
 )
 
 @Entity
 @Table(name = "transport_package")
 data class TransportPackage(
     @Id
-    val id: Long? = null,
+    val id: UUID? = null,
 
     @ManyToOne
     val supplier: Company? = null,
