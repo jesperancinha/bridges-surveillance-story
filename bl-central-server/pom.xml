@@ -28,7 +28,7 @@
 
     <properties>
         <revision>2.0.0-SNAPSHOT</revision>
-        <hibernate-validator.version>8.0.1.Final</hibernate-validator.version>
+        <hibernate-validator.version>8.0.2.Final</hibernate-validator.version>
     </properties>
     <modules>
         <module>bl-domain-repository</module>
