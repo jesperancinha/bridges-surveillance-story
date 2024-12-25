@@ -17,7 +17,7 @@ import java.util.function.Consumer
 import java.util.stream.Collectors
 
 @Component
-@Profile("local", "demo")
+@Profile("default","local", "demo")
 class BridgeLogisticsInitializer(
     private val bridgeRepository: BridgeRepository,
     private val carriageRepository: CarriageRepository,
