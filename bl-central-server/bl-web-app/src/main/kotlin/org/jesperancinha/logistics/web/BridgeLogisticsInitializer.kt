@@ -10,6 +10,7 @@ import org.springframework.boot.CommandLineRunner
 import org.springframework.context.annotation.Profile
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Component
+import org.springframework.transaction.annotation.Transactional
 import java.time.Instant
 import java.util.*
 import java.util.function.Consumer
@@ -31,6 +32,7 @@ class BridgeLogisticsInitializer(
     private val objectMapper = ObjectMapper()
 
     @Throws(Exception::class)
+    @Transactional
     override fun run(vararg args: String) {
         bridgeRepository.saveAll(
             listOf(
