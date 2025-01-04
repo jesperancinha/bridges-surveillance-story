@@ -1,8 +1,8 @@
 package org.jesperancinha.logistics.jpa.dao
 
+import jakarta.persistence.*
 import org.hibernate.Hibernate
 import java.math.BigDecimal
-import jakarta.persistence.*
 
 @Entity
 @Table(name = "bridge")
@@ -101,7 +101,7 @@ data class BridgeOpeningTime(
 
     @ManyToOne(optional = false, cascade = [CascadeType.ALL])
     @JoinColumn(name = "bridge_id", nullable = true, updatable = true, referencedColumnName = "id")
-    val bridge: Bridge? = null
+    var bridge: Bridge? = null
 )
 
 @Entity

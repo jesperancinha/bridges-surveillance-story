@@ -31,3 +31,13 @@ updates:
     directory: "/e2e"
     schedule:
       interval: "daily"
+
+  - package-ecosystem: "npm"
+    directory: "/bl-bridge-server/bl-bridge-humidity-mqtt"
+    schedule:
+      interval: "daily"
+
+  - package-ecosystem: "npm"
+    directory: "/bl-bridge-server/bl-bridge-temperature-coap"
+    schedule:
+      interval: "daily"
