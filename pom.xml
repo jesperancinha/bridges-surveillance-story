@@ -142,7 +142,7 @@
         <spring-boot-starter-parent.version>3.3.5</spring-boot-starter-parent.version>
         <spring-rabbit-test.version>3.2.1</spring-rabbit-test.version>
 
-        <activemq.version>6.1.4</activemq.version>
+        <activemq.version>6.1.5</activemq.version>
         <amqp-client.version>5.7.1</amqp-client.version>
 
         <combinatoricslib3.version>3.4.0</combinatoricslib3.version>
