@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "name": "Berlagebrug",
+    "city": "Amsterdam",
+    "countryCode": "NL",
+    "length": "80",
+    "radius": "120",
+    "lat": 52.347293,
+    "lon": 4.912372,
+    "unitLength": "meter",
+    "type": "train"
+  },
+  {
+    "id": 2,
+    "name": "Demka spoor-brug",
+    "city": "Utrecht",
+    "countryCode": "NL",
+    "length": "255",
+    "radius": "400",
+    "lat": 52.110256,
+    "lon": 5.077085,
+    "unitLength": "meter",
+    "type": "vehicle"
+  }
+]
+
