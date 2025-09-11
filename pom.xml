@@ -147,9 +147,6 @@
 
         <combinatoricslib3.version>3.4.0</combinatoricslib3.version>
         <javaee-api.version>8.0.1</javaee-api.version>
-        <slf4j-api.version>2.0.16</slf4j-api.version>
-
-        <postgresql.version>42.7.5</postgresql.version>
 
         <kotest.version>5.9.1</kotest.version>
         <springmockk.version>4.0.2</springmockk.version>
@@ -173,7 +170,6 @@
         <maven-assembly-plugin.version>3.5.0</maven-assembly-plugin.version>
 
         <omni-coveragereporter-maven-plugin.version>0.4.4</omni-coveragereporter-maven-plugin.version>
-        <kotlinx-coroutines-debug.version>1.10.1</kotlinx-coroutines-debug.version>
 
         <!-- Swagger -->
         <springdoc-openapi-starter-webmvc-ui.version>2.7.0</springdoc-openapi-starter-webmvc-ui.version>
@@ -216,11 +212,6 @@
                 <optional>true</optional>
             </dependency>
             <dependency>
-                <groupId>org.postgresql</groupId>
-                <artifactId>postgresql</artifactId>
-                <version>${postgresql.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>org.apache.activemq</groupId>
                 <artifactId>activemq-client</artifactId>
                 <version>${activemq.version}</version>
@@ -239,11 +230,6 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-io</artifactId>
                 <version>${commons-io.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-api</artifactId>
-                <version>${slf4j-api.version}</version>
             </dependency>
             <dependency>
                 <groupId>javax</groupId>
@@ -340,20 +326,6 @@
                 <artifactId>jdbc</artifactId>
                 <version>${jdbc.version}</version>
                 <scope>test</scope>
-            </dependency>
-            <!-- This Dependency is added as a workaround for the following issue -->
-            <!--- https://github.com/Kotlin/kotlinx.coroutines/issues/3334 -->
-            <dependency>
-                <groupId>org.jetbrains.kotlinx</groupId>
-                <artifactId>kotlinx-coroutines-debug</artifactId>
-                <version>${kotlinx-coroutines-debug.version}</version>
-                <scope>test</scope>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.jetbrains.kotlinx</groupId>
-                        <artifactId>kotlinx-coroutines-bom</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
         </dependencies>
     </dependencyManagement>
