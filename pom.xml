@@ -162,7 +162,7 @@
         <jaxb-api.version>2.3.1</jaxb-api.version>
 
         <h2.version>2.3.232</h2.version>
-        <gson.version>2.12.1</gson.version>
+        <gson.version>2.13.1</gson.version>
         <build-helper-maven-plugin.version>3.6.0</build-helper-maven-plugin.version>
         <testcontainers.version>1.20.4</testcontainers.version>
         <jdbc.version>1.20.5</jdbc.version>
