@@ -1,4 +1,4 @@
-FROM confluentinc/cp-kafka
+FROM confluentinc/cp-kafka:7.9.1
 
 WORKDIR /usr/local/bin
 
