@@ -22,7 +22,7 @@
         <maven-assembly-plugin.version>3.7.1</maven-assembly-plugin.version>
         <omni-coveragereporter-maven-plugin.version>0.4.4</omni-coveragereporter-maven-plugin.version>
         <jacoco-maven-plugin.version>0.8.12</jacoco-maven-plugin.version>
-        <jackson.version>2.18.2</jackson.version>
+        <jackson.version>2.20.0</jackson.version>
     </properties>
 
     <dependencyManagement>
