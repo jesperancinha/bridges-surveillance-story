@@ -10,23 +10,30 @@
     </modules>
 
     <properties>
-        <scala-maven-plugin.version>4.9.2</scala-maven-plugin.version>
+        <scala-maven-plugin.version>4.9.5</scala-maven-plugin.version>
         <scala.sdk.version>2.13</scala.sdk.version>
         <scala-library.version>2.13.16</scala-library.version>
-        <spark.version>4.0.0-preview2</spark.version>
+        <spark.version>4.1.0-preview1</spark.version>
         <jnr-posix.version>3.1.20</jnr-posix.version>
         <config.version>1.4.3</config.version>
-        <compiler-bridge.version>1.10.7</compiler-bridge.version>
+        <compiler-bridge.version>1.10.8</compiler-bridge.version>
         <spark-cassandra-connector.version>3.5.1</spark-cassandra-connector.version>
         <play-json.version>2.10.6</play-json.version>
         <maven-assembly-plugin.version>3.7.1</maven-assembly-plugin.version>
-        <omni-coveragereporter-maven-plugin.version>0.4.4</omni-coveragereporter-maven-plugin.version>
-        <jacoco-maven-plugin.version>0.8.12</jacoco-maven-plugin.version>
-        <jackson.version>2.18.2</jackson.version>
+        <omni-coveragereporter-maven-plugin.version>0.4.5</omni-coveragereporter-maven-plugin.version>
+        <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
+        <jackson.version>2.20.0</jackson.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.fasterxml.jackson</groupId>
+                <artifactId>jackson-bom</artifactId>
+                <version>${jackson.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <dependency>
                 <groupId>com.fasterxml.jackson.module</groupId>
                 <artifactId>jackson-module-scala_2.13</artifactId>
@@ -81,24 +88,6 @@
                 <groupId>com.typesafe</groupId>
                 <artifactId>config</artifactId>
                 <version>${config.version}</version>
-            </dependency>
-            <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-databind</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
-            <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-core</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
-            <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations -->
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-annotations</artifactId>
-                <version>${jackson.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
