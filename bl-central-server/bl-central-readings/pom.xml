@@ -18,7 +18,7 @@
         <config.version>1.4.3</config.version>
         <compiler-bridge.version>1.10.8</compiler-bridge.version>
         <spark-cassandra-connector.version>3.5.1</spark-cassandra-connector.version>
-        <play-json.version>2.10.6</play-json.version>
+        <play-json.version>2.10.7</play-json.version>
         <maven-assembly-plugin.version>3.7.1</maven-assembly-plugin.version>
         <omni-coveragereporter-maven-plugin.version>0.4.5</omni-coveragereporter-maven-plugin.version>
         <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
