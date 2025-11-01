@@ -13,7 +13,7 @@
         <scala-maven-plugin.version>4.9.6</scala-maven-plugin.version>
         <scala.sdk.version>2.13</scala.sdk.version>
         <scala-library.version>2.13.17</scala-library.version>
-        <spark.version>4.1.0-preview2</spark.version>
+        <spark.version>4.1.0-preview3</spark.version>
         <jnr-posix.version>3.1.21</jnr-posix.version>
         <config.version>1.4.5</config.version>
         <compiler-bridge.version>1.11.0</compiler-bridge.version>
@@ -22,7 +22,7 @@
         <maven-assembly-plugin.version>3.7.1</maven-assembly-plugin.version>
         <omni-coveragereporter-maven-plugin.version>0.4.5</omni-coveragereporter-maven-plugin.version>
         <jacoco-maven-plugin.version>0.8.14</jacoco-maven-plugin.version>
-        <jackson.version>2.20.0</jackson.version>
+        <jackson.version>2.20.1</jackson.version>
     </properties>
 
     <dependencyManagement>
