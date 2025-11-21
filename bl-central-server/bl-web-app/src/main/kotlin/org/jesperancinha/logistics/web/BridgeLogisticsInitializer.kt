@@ -1,6 +1,7 @@
 package org.jesperancinha.logistics.web
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import org.hibernate.Session
 import org.jesperancinha.logistics.jpa.dao.*
 import org.jesperancinha.logistics.web.dto.CarriageFullDto
 import org.jesperancinha.logistics.web.dto.ContainerFullDto
@@ -17,7 +18,8 @@ import java.util.function.Consumer
 import java.util.stream.Collectors
 
 @Component
-@Profile("default","local", "demo")
+@Profile("default", "local", "demo")
+@Transactional
 class BridgeLogisticsInitializer(
     private val bridgeRepository: BridgeRepository,
     private val carriageRepository: CarriageRepository,
@@ -31,16 +33,22 @@ class BridgeLogisticsInitializer(
 ) : CommandLineRunner {
     private val objectMapper = ObjectMapper()
 
-    @Throws(Exception::class)
     @Transactional
-    override fun run(vararg args: String) {
+    override fun run(vararg args: String?) {
+        bridgeRepository.deleteAll()
+        companyRepository.deleteAll()
+        carriageRepository.deleteAll()
+        containerRepository.deleteAll()
+        freightRepository.deleteAll()
+        trainRepository.deleteAll()
+        openingTimeRepository.deleteAll()
         bridgeRepository.saveAll(
             listOf(
                 *objectMapper.readValue(
                     javaClass.getResourceAsStream("/bridges.json"),
                     Array<Bridge>::class.java
                 )
-            )
+            ).map { bridge: Bridge -> bridge.copy(id = null) }
         )
         companyRepository.saveAll(
             listOf(
@@ -56,7 +64,7 @@ class BridgeLogisticsInitializer(
                     javaClass.getResourceAsStream("/carriages.json"),
                     Array<Carriage>::class.java
                 )
-            )
+            ).map { carriage: Carriage -> carriage.copy(id = null) }
         )
         containerRepository.saveAll(
             listOf(
@@ -64,7 +72,7 @@ class BridgeLogisticsInitializer(
                     javaClass.getResourceAsStream("/containers.json"),
                     Array<Container>::class.java
                 )
-            )
+            ).map { container: Container -> container.copy(id = null) }
         )
         productRepository.saveAll(
             listOf(
@@ -72,7 +80,7 @@ class BridgeLogisticsInitializer(
                     javaClass.getResourceAsStream("/products.json"),
                     Array<Product>::class.java
                 )
-            )
+            ).map { product: Product -> product.copy(id = null) }
         )
         passengerRepository.saveAll(
             listOf(
@@ -80,7 +88,7 @@ class BridgeLogisticsInitializer(
                     javaClass.getResourceAsStream("/passengers/passengers.json"),
                     Array<Passenger>::class.java
                 )
-            )
+            ).map { passenger: Passenger -> passenger.copy(id = null) }
         )
         objectMapper.readValue(
             javaClass.getResourceAsStream("/freight.json"),
@@ -96,9 +104,11 @@ class BridgeLogisticsInitializer(
                 },
                 supplier = companyRepository.findByIdOrNull(freightDto.supplierId),
                 vendor =
-                companyRepository.findByIdOrNull(freightDto.vendorId)
+                    companyRepository.findByIdOrNull(freightDto.vendorId)
             )
-        }.forEach(freightRepository::save)
+        }
+            .map { freight: Freight -> freight.copy(id = null) }
+            .forEach(freightRepository::save)
 
         objectMapper.readValue(javaClass.getResourceAsStream("/train.json"), Array<TrainDto>::class.java)
             .map { trainDto ->
@@ -115,31 +125,31 @@ class BridgeLogisticsInitializer(
                         .filter { obj: Carriage? -> Objects.nonNull(obj) }
                         .collect(Collectors.toList()),
                     supplier =
-                    companyRepository.findByIdOrNull(trainDto.supplierId),
+                        companyRepository.findByIdOrNull(trainDto.supplierId),
                     vendor =
-                    companyRepository.findByIdOrNull(trainDto.vendorId),
+                        companyRepository.findByIdOrNull(trainDto.vendorId),
                 )
             }
+            .map { train: Train -> train.copy(id = null) }
             .forEach(trainRepository::save)
 
         bridgeRepository.findAll()
-            .forEach(Consumer { bridge ->
+            .forEach { bridge ->
                 val now = Instant.now()
                 val millisToAdd: Long = 10000
                 (0..200)
                     .map { integer: Int ->
                         BridgeOpeningTime(
-                            id = integer.toLong(),
                             bridge = bridge,
                             openingTime =
-                            now.plusMillis(millisToAdd * integer * 2)
-                                .toEpochMilli(),
+                                now.plusMillis(millisToAdd * integer * 2)
+                                    .toEpochMilli(),
                             closingTime =
-                            now.plusMillis(millisToAdd * (integer * 2 + 1))
-                                .toEpochMilli()
+                                now.plusMillis(millisToAdd * (integer * 2 + 1))
+                                    .toEpochMilli()
                         )
                     }
                     .forEach(openingTimeRepository::save)
-            })
+            }
     }
 }
