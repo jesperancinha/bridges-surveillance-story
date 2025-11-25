@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   e2e-electron:
-    image: "cypress/included:15.6.0"
+    image: "cypress/included:15.7.0"
     working_dir: /e2e
     command: "--browser electron --config defaultCommandTimeout=15000,requestTimeout=15000"
     volumes:
@@ -10,7 +10,7 @@ services:
       - bl-net
 
   e2e-chrome:
-    image: "cypress/included:15.6.0"
+    image: "cypress/included:15.7.0"
     working_dir: /e2e
     command: "--browser chrome --config defaultCommandTimeout=15000,requestTimeout=15000"
     volumes:
@@ -19,7 +19,7 @@ services:
       - bl-net
 
   e2e-firefox:
-    image: "cypress/included:15.6.0"
+    image: "cypress/included:15.7.0"
     working_dir: /e2e
     command: "--browser firefox --config defaultCommandTimeout=15000,requestTimeout=15000"
     volumes:
@@ -28,7 +28,7 @@ services:
       - bl-net
 
   e2e-firefox-full:
-    image: "cypress/included:15.6.0"
+    image: "cypress/included:15.7.0"
     working_dir: /e2e
     command: "--config-file /e2e/full.cypress.config.ts --browser firefox --config defaultCommandTimeout=15000,requestTimeout=15000"
     volumes:
@@ -37,7 +37,7 @@ services:
       - bl-net
 
   e2e-edge:
-    image: "cypress/included:15.6.0"
+    image: "cypress/included:15.7.0"
     working_dir: /e2e
     command: "--browser edge --config defaultCommandTimeout=15000,requestTimeout=15000"
     volumes:
