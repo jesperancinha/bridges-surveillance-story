@@ -28,19 +28,7 @@ data class Bridge(
     val lon: BigDecimal? = null,
     val radius: Long? = null,
     val type: String? = null,
-
-
-    ) {
-    @OneToMany(mappedBy = "bridge")
-    var bridgeOpeningTimes: List<BridgeOpeningTime>? = null
-
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (other == null || Hibernate.getClass(this) != Hibernate.getClass(other)) return false
-        val bridge = other as Bridge
-        return id == bridge.id
-    }
-}
+    )
 
 @Entity
 @Table(name = "bridge_logs")
@@ -99,7 +87,7 @@ data class BridgeOpeningTime(
     @Column(name = "closing_time")
     val closingTime: Long? = null,
 
-    @ManyToOne(optional = false, cascade = [CascadeType.ALL])
+    @ManyToOne(optional = false, cascade = [CascadeType.ALL], fetch = FetchType.EAGER)
     @JoinColumn(name = "bridge_id", nullable = true, updatable = true, referencedColumnName = "id")
     val bridge: Bridge? = null
 )
