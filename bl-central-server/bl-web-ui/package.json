@@ -35,7 +35,7 @@
     "@schematics/angular": "~21.0.0",
     "@types/jasmine": "~5.1.4",
     "@types/jasminewd2": "~2.0.13",
-    "@types/node": "~24.10.0",
+    "@types/node": "~25.0.1",
     "codelyzer": "^6.0.2",
     "jasmine-core": "~5.13.0",
     "jasmine-spec-reporter": "~7.0.0",
